@@ -56,7 +56,7 @@
 		46C903F91D03861A005FC496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46C904071D03871F005FC496 /* TextHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWViewController.swift; sourceTree = "<group>"; };
 		46C904091D0387A3005FC496 /* Homework.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Homework.storyboard; sourceTree = "<group>"; };
-		46C9040D1D0393D4005FC496 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		46C9040D1D0393D4005FC496 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4AD00A1623BA7A175528BC45 /* Pods_homework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_homework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7BED0303C9F9FB464F17D0 /* Pods-homeworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-homeworkTests/Pods-homeworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		5D194A4F43ADECD7A5049F66 /* Pods-homeworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-homeworkTests/Pods-homeworkTests.debug.xcconfig"; sourceTree = "<group>"; };
