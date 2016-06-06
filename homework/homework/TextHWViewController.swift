@@ -15,7 +15,10 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
     }
 
     var scrollView: UIScrollView!
+    var svContentView: UIView!
     var imageView: UIImageView!
+    
+    var markViewHelper: TextHWMarkViewHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,7 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
         self.view.backgroundColor = UIColor.blackColor()
         
         scrollView = UIScrollView(frame: self.view.bounds)
+        
         self.view.addSubview(scrollView)
         
         let image = UIImage(named: "hw_sample2")
@@ -35,7 +39,10 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
         let imageViewHeight = imageViewWidth * imageHeight / imageWidth
         imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
-        scrollView.addSubview(imageView)
+        svContentView = UIView(frame: imageView.frame)
+        scrollView.addSubview(svContentView)
+        
+        svContentView.addSubview(imageView)
         scrollView.contentSize = imageView.frame.size
         
         scrollView.delegate = self
@@ -46,6 +53,12 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
         doubleTap.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(doubleTap)
         
+        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap))
+        singleTap.numberOfTapsRequired = 1
+        // singleTap.requireGestureRecognizerToFail(doubleTap)
+        scrollView.addGestureRecognizer(singleTap)
+        
+        self.markViewHelper = TextHWMarkViewHelper(svContentView: self.svContentView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,15 +67,26 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return imageView
+        return svContentView
     }
     
     func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
-        
+        self.markViewHelper.hideAll()
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        
+        self.markViewHelper.hideAll()
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.markViewHelper.hideAll()
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        let scale: CGFloat = self.scrollView.zoomScale
+        let center: CGPoint = recognizer.locationInView(recognizer.view)
+        let newCenter: CGPoint = CGPoint(x: center.x / scale, y: center.y / scale)
+        self.markViewHelper.addMark(newCenter)
     }
     
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
