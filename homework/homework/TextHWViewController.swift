@@ -31,13 +31,8 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
         
         self.view.addSubview(scrollView)
         
-        let image = UIImage(named: "hw_sample2")
-        let imageWidth:CGFloat = (image?.size.width)!
-        let imageHeight:CGFloat = (image?.size.height)!
-        self.imageView = UIImageView(image: image)
-        let imageViewWidth = self.view.frame.width
-        let imageViewHeight = imageViewWidth * imageHeight / imageWidth
-        imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        let image = UIImage(named: "hw_sample")
+        self.initImageView(image)
         
         svContentView = UIView(frame: imageView.frame)
         scrollView.addSubview(svContentView)
@@ -64,6 +59,23 @@ class TextHWViewController: UIViewController, UIScrollViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func initImageView(image: UIImage?) {
+        let imageWidth:CGFloat = (image?.size.width)!
+        let imageHeight:CGFloat = (image?.size.height)!
+        self.imageView = UIImageView(image: image)
+        self.imageView.contentMode = .ScaleAspectFit
+        let imageViewWidth = self.view.frame.width
+        let imageViewHeight = imageViewWidth * imageHeight / imageWidth
+        print(imageViewHeight)
+        print(self.view.frame.height)
+        if imageViewHeight > self.view.frame.height {
+            imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        } else {
+            // let y = (self.view.frame.width - imageViewHeight) / 2
+            imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: self.view.frame.height)
+        }
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {

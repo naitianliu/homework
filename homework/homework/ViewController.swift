@@ -27,9 +27,12 @@ class ViewController: UIViewController {
     @IBAction func TextHWViewControllerOnClick(sender: AnyObject) {
         
         let textHWVC = self.homeworkStoryboard.instantiateViewControllerWithIdentifier("TextHWViewController") as! TextHWViewController
-        textHWVC.modalTransitionStyle = .CoverVertical
-        self.presentViewController(textHWVC, animated: true, completion: nil)
-        
+        self.navigationController?.pushViewController(textHWVC, animated: true)
+    }
+    
+    @IBAction func TextHWCameraViewControllerOnClick(sender: AnyObject) {
+        let textHWCameraVC = self.homeworkStoryboard.instantiateViewControllerWithIdentifier("TextHWCameraViewController") as! TextHWCameraViewController
+        self.navigationController?.pushViewController(textHWCameraVC, animated: true)
     }
 }
 

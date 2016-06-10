@@ -10,6 +10,7 @@
 		4600BCF21D04CD4000BF460D /* TextHWMarkViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF11D04CD4000BF460D /* TextHWMarkViewHelper.swift */; };
 		4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF31D04E5A200BF460D /* GlobalConstants.swift */; };
 		4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF81D05222300BF460D /* TextHWMarkActionsView.swift */; };
+		4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */; };
 		46C903D81D038619005FC496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D71D038619005FC496 /* AppDelegate.swift */; };
 		46C903DA1D038619005FC496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D91D038619005FC496 /* ViewController.swift */; };
 		46C903DD1D038619005FC496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C903DB1D038619005FC496 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		4600BCF11D04CD4000BF460D /* TextHWMarkViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWMarkViewHelper.swift; sourceTree = "<group>"; };
 		4600BCF31D04E5A200BF460D /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		4600BCF81D05222300BF460D /* TextHWMarkActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWMarkActionsView.swift; sourceTree = "<group>"; };
+		4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWCameraViewController.swift; sourceTree = "<group>"; };
 		46C903D41D038619005FC496 /* homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C903D71D038619005FC496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C903D91D038619005FC496 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		4600BCFC1D07D45900BF460D /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				46C904071D03871F005FC496 /* TextHWViewController.swift */,
+				4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
 		46C903CB1D038619005FC496 = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +188,8 @@
 		46C904051D038657005FC496 /* Homework */ = {
 			isa = PBXGroup;
 			children = (
+				4600BCFC1D07D45900BF460D /* View Controller */,
 				4600BCF01D04CCCB00BF460D /* View */,
-				46C904071D03871F005FC496 /* TextHWViewController.swift */,
 				46C904091D0387A3005FC496 /* Homework.storyboard */,
 			);
 			name = Homework;
@@ -471,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				46C904081D03871F005FC496 /* TextHWViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,

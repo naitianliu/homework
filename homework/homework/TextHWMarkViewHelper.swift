@@ -11,8 +11,8 @@ import UIKit
 
 class TextHWMarkViewHelper: NSObject {
     struct Constant {
-        static let markButtonWidth: CGFloat = 80
-        static let markButtonGap: CGFloat = 0
+        static let markButtonWidth: CGFloat = 50
+        static let markButtonGap: CGFloat = 10
         
         struct ImageName {
             static let markSelectionCenter = "mark-selection-center"
@@ -67,10 +67,10 @@ class TextHWMarkViewHelper: NSObject {
         markSelectionButtonCheck = UIButton(frame: frame)
         markSelectionButtonCircle = UIButton(frame: frame)
         markSelectionButtonTimes = UIButton(frame: frame)
-        markSelectionButtonCenter.setImage(UIImage(named: Constant.ImageName.markSelectionCenter), forState: .Normal)
-        markSelectionButtonCheck.setImage(UIImage(named: Constant.ImageName.markSelectionCheck), forState: .Normal)
-        markSelectionButtonCircle.setImage(UIImage(named: Constant.ImageName.markSelectionCircle), forState: .Normal)
-        markSelectionButtonTimes.setImage(UIImage(named: Constant.ImageName.markSelectionTimes), forState: .Normal)
+        markSelectionButtonCenter.setBackgroundImage(UIImage(named: Constant.ImageName.markSelectionCenter), forState: .Normal)
+        markSelectionButtonCheck.setBackgroundImage(UIImage(named: Constant.ImageName.markSelectionCheck), forState: .Normal)
+        markSelectionButtonCircle.setBackgroundImage(UIImage(named: Constant.ImageName.markSelectionCircle), forState: .Normal)
+        markSelectionButtonTimes.setBackgroundImage(UIImage(named: Constant.ImageName.markSelectionTimes), forState: .Normal)
         self.svContentView.addSubview(markSelectionButtonCenter)
         self.svContentView.addSubview(markSelectionButtonCheck)
         self.svContentView.addSubview(markSelectionButtonCircle)
@@ -128,15 +128,15 @@ class TextHWMarkViewHelper: NSObject {
             let markButton = UIButton(frame: markSelectionButtonCenter.frame)
             switch sender.tag {
             case 1:
-                markButton.setImage(UIImage(named: Constant.ImageName.markCheck), forState: .Normal)
+                markButton.setBackgroundImage(UIImage(named: Constant.ImageName.markCheck), forState: .Normal)
                 markButton.tag = 11
                 break
             case 2:
-                markButton.setImage(UIImage(named: Constant.ImageName.markCircle), forState: .Normal)
+                markButton.setBackgroundImage(UIImage(named: Constant.ImageName.markCircle), forState: .Normal)
                 markButton.tag = 12
                 break
             case 3:
-                markButton.setImage(UIImage(named: Constant.ImageName.markTimes), forState: .Normal)
+                markButton.setBackgroundImage(UIImage(named: Constant.ImageName.markTimes), forState: .Normal)
                 markButton.tag = 13
                 break
             default:

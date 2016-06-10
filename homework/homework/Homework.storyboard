@@ -27,5 +27,24 @@
             </objects>
             <point key="canvasLocation" x="1078" y="437"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="meL-cO-4ny">
+            <objects>
+                <viewController storyboardIdentifier="TextHWCameraViewController" id="xX0-X6-NZB" customClass="TextHWCameraViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e8S-K3-7v2"/>
+                        <viewControllerLayoutGuide type="bottom" id="5rL-VY-tr6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ESy-Ob-hkM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="hLe-Fi-Dq0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="78V-JF-NfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1803" y="437"/>
+        </scene>
     </scenes>
 </document>
