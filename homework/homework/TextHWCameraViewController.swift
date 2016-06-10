@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TextHWCameraViewController: UIViewController {
     struct Constant {
@@ -16,6 +17,13 @@ class TextHWCameraViewController: UIViewController {
         static let titleViewHeight: CGFloat = 44
         static let titleViewPadding: CGFloat = 10
     }
+    
+    @IBOutlet weak var cameraView: UIView!
+    
+    var captureSession: AVCaptureSession?
+    var captureDevice: AVCaptureDevice?
+    var previewLayer : AVCaptureVideoPreviewLayer?
+    var stillImageOutput = AVCaptureStillImageOutput()
     
     var currentPage: Int = 1
     var totalPage: Int = 1
@@ -30,7 +38,65 @@ class TextHWCameraViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.initNavTitleView()
+        self.initCameraSettings()
         
+    }
+    
+    func initCameraSettings() {
+        captureSession = AVCaptureSession()
+        captureSession?.sessionPreset = AVCaptureSessionPresetPhoto
+        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        if backCamera.position == AVCaptureDevicePosition.Back {
+            captureDevice = backCamera
+        }
+        stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        captureSession?.addOutput(stillImageOutput)
+        if captureDevice != nil {
+            beiginSession()
+        }
+    }
+    
+    func beiginSession() {
+        configureDevice()
+        do {
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            if captureSession!.canAddInput(input) {
+                captureSession?.addInput(input)
+            }
+        } catch {
+            print(error)
+        }
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer!.frame = CGRect(x: 0, y: 44, width: self.view.frame.width, height: self.view.frame.height - 100)
+        previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        print(previewLayer?.frame)
+        self.cameraView.layer.addSublayer(previewLayer!)
+        captureSession!.startRunning()
+    }
+    
+    func configureDevice() {
+        if let device = captureDevice {
+            try! device.lockForConfiguration()
+            device.focusMode = .Locked
+            device.setFocusModeLockedWithLensPosition(0.5, completionHandler: { (time) in
+                
+            })
+            device.unlockForConfiguration()
+        }
+    }
+    
+    func focusTo(value : Float) {
+        if let device = captureDevice {
+            do {
+                try device.lockForConfiguration()
+                device.setFocusModeLockedWithLensPosition(value, completionHandler: { (time) -> Void in
+                    //
+                })
+                device.unlockForConfiguration()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -84,14 +150,24 @@ class TextHWCameraViewController: UIViewController {
         self.navigationItem.titleView = titleView
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func cameraButtonOnClick(sender: AnyObject) {
+        if let videoConnection = stillImageOutput.connectionWithMediaType(AVMediaTypeVideo) {
+            stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { (sampleBuffer, error) in
+                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+                let dataProvider = CGDataProviderCreateWithCFData(imageData)
+                let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, .RenderingIntentDefault)
+                let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: .Right)
+                self.showPreviewVC(image)
+            })
+        }
     }
-    */
+    
+    func showPreviewVC(image: UIImage) {
+        let previewVC = self.storyboard?.instantiateViewControllerWithIdentifier("TextHWCameraImagePreviewViewController") as! TextHWCameraImagePreviewViewController
+        previewVC.image = image
+        self.presentViewController(previewVC, animated: false) { 
+            
+        }
+    }
 
 }
