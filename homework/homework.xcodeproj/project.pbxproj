@@ -12,6 +12,10 @@
 		4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF81D05222300BF460D /* TextHWMarkActionsView.swift */; };
 		4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */; };
 		4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCFD1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift */; };
+		4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCFF1D0B8C4800BF460D /* AudioHWRecordViewController.swift */; };
+		4600BD031D0CD0D500BF460D /* RecorderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD021D0CD0D500BF460D /* RecorderHelper.swift */; };
+		4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD051D0CFA9100BF460D /* DateUtility.swift */; };
+		4600BD081D0D26E600BF460D /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD071D0D26E600BF460D /* PlayerHelper.swift */; };
 		46C903D81D038619005FC496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D71D038619005FC496 /* AppDelegate.swift */; };
 		46C903DA1D038619005FC496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D91D038619005FC496 /* ViewController.swift */; };
 		46C903DD1D038619005FC496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C903DB1D038619005FC496 /* Main.storyboard */; };
@@ -51,6 +55,10 @@
 		4600BCF81D05222300BF460D /* TextHWMarkActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWMarkActionsView.swift; sourceTree = "<group>"; };
 		4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWCameraViewController.swift; sourceTree = "<group>"; };
 		4600BCFD1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWCameraImagePreviewViewController.swift; sourceTree = "<group>"; };
+		4600BCFF1D0B8C4800BF460D /* AudioHWRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioHWRecordViewController.swift; sourceTree = "<group>"; };
+		4600BD021D0CD0D500BF460D /* RecorderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderHelper.swift; sourceTree = "<group>"; };
+		4600BD051D0CFA9100BF460D /* DateUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
+		4600BD071D0D26E600BF460D /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		46C903D41D038619005FC496 /* homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C903D71D038619005FC496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C903D91D038619005FC496 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,8 +141,26 @@
 				46C904071D03871F005FC496 /* TextHWViewController.swift */,
 				4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */,
 				4600BCFD1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift */,
+				4600BCFF1D0B8C4800BF460D /* AudioHWRecordViewController.swift */,
 			);
 			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		4600BD011D0CD0AE00BF460D /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				4600BD021D0CD0D500BF460D /* RecorderHelper.swift */,
+				4600BD071D0D26E600BF460D /* PlayerHelper.swift */,
+			);
+			name = "View Model";
+			sourceTree = "<group>";
+		};
+		4600BD041D0CFA5F00BF460D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4600BD051D0CFA9100BF460D /* DateUtility.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		46C903CB1D038619005FC496 = {
@@ -191,6 +217,8 @@
 		46C904051D038657005FC496 /* Homework */ = {
 			isa = PBXGroup;
 			children = (
+				4600BD041D0CFA5F00BF460D /* Utility */,
+				4600BD011D0CD0AE00BF460D /* View Model */,
 				4600BCFC1D07D45900BF460D /* View Controller */,
 				4600BCF01D04CCCB00BF460D /* View */,
 				46C904091D0387A3005FC496 /* Homework.storyboard */,
@@ -487,11 +515,15 @@
 			files = (
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
 				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
+				4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				46C904081D03871F005FC496 /* TextHWViewController.swift in Sources */,
+				4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
 				46C903D81D038619005FC496 /* AppDelegate.swift in Sources */,
+				4600BD031D0CD0D500BF460D /* RecorderHelper.swift in Sources */,
 				4600BCF21D04CD4000BF460D /* TextHWMarkViewHelper.swift in Sources */,
+				4600BD081D0D26E600BF460D /* PlayerHelper.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

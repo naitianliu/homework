@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        self.navigationItem.title = "首页"
         
     }
 
@@ -33,6 +33,11 @@ class ViewController: UIViewController {
     @IBAction func TextHWCameraViewControllerOnClick(sender: AnyObject) {
         let textHWCameraVC = self.homeworkStoryboard.instantiateViewControllerWithIdentifier("TextHWCameraViewController") as! TextHWCameraViewController
         self.navigationController?.pushViewController(textHWCameraVC, animated: true)
+    }
+    
+    @IBAction func audioHWRecordVCButtonOnClick(sender: AnyObject) {
+        let audioHWVC = self.homeworkStoryboard.instantiateViewControllerWithIdentifier("AudioHWRecordViewController") as! AudioHWRecordViewController
+        self.navigationController?.pushViewController(audioHWVC, animated: true)
     }
 }
 

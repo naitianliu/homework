@@ -41,6 +41,13 @@
                                     <action selector="TextHWCameraViewControllerOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zqD-OB-yWN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxE-e5-R3z">
+                                <rect key="frame" x="228" y="259" width="92" height="30"/>
+                                <state key="normal" title="Audio Record"/>
+                                <connections>
+                                    <action selector="audioHWRecordVCButtonOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lVO-vx-ajf"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ro-9k-cQ6">
                                 <rect key="frame" x="188" y="114" width="155" height="30"/>
                                 <state key="normal" title="TextHWViewController"/>
@@ -51,11 +58,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uxE-e5-R3z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Bz-K9-kuM"/>
                             <constraint firstItem="lz7-GK-T3L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NA3-9S-sGK"/>
                             <constraint firstItem="1Ro-9k-cQ6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="257" id="UNK-Ib-j51"/>
                             <constraint firstItem="1Ro-9k-cQ6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wy7-6H-AG8"/>
                             <constraint firstItem="1Ro-9k-cQ6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="cIy-EY-5Rl"/>
                             <constraint firstItem="lz7-GK-T3L" firstAttribute="top" secondItem="1Ro-9k-cQ6" secondAttribute="bottom" constant="33" id="dFb-kj-dVD"/>
+                            <constraint firstItem="uxE-e5-R3z" firstAttribute="top" secondItem="lz7-GK-T3L" secondAttribute="bottom" constant="30" id="gOu-28-daa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1Ro-9k-cQ6" secondAttribute="trailing" constant="257" id="yCc-7f-TLT"/>
                         </constraints>
                         <variation key="default">

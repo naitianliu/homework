@@ -29,6 +29,133 @@
             </objects>
             <point key="canvasLocation" x="1078" y="437"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="O07-yR-6iR">
+            <objects>
+                <navigationController id="Ecg-If-Pjb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="tsq-x9-W7z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.4602007269859314" green="0.82673650979995728" blue="0.7193949818611145" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OxY-2c-HDO" kind="relationship" relationship="rootViewController" id="7Yt-L0-9aj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Guc-KF-X9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="365" y="1187"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="cnA-KY-r8A">
+            <objects>
+                <viewController storyboardIdentifier="AudioHWRecordViewController" id="OxY-2c-HDO" customClass="AudioHWRecordViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="73j-SZ-25d"/>
+                        <viewControllerLayoutGuide type="bottom" id="9me-sR-sLT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8dX-Qe-MmN">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="msV-Fz-Sza">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQe-ej-6Yo">
+                                        <rect key="frame" x="208" y="52" width="127" height="127"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="McD-hY-YQC"/>
+                                            <constraint firstAttribute="width" constant="100" id="yyi-yF-qSj"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="record-button"/>
+                                        <state key="selected" backgroundImage="recording-button"/>
+                                        <connections>
+                                            <action selector="recordButtonToggle:" destination="OxY-2c-HDO" eventType="touchUpInside" id="Gtd-D2-skG"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="开始录音" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s66-GA-uTa">
+                                        <rect key="frame" x="113" y="203" width="317" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.4602007269859314" green="0.82673650979995728" blue="0.7193949818611145" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lQe-ej-6Yo" firstAttribute="centerX" secondItem="msV-Fz-Sza" secondAttribute="centerX" id="UHb-k8-H0n"/>
+                                    <constraint firstItem="s66-GA-uTa" firstAttribute="top" secondItem="lQe-ej-6Yo" secondAttribute="bottom" constant="20" id="gGo-71-sHu"/>
+                                    <constraint firstAttribute="height" constant="250" id="iAs-Cm-AK0"/>
+                                    <constraint firstItem="s66-GA-uTa" firstAttribute="centerX" secondItem="msV-Fz-Sza" secondAttribute="centerX" id="mZ9-6W-2qQ"/>
+                                    <constraint firstItem="lQe-ej-6Yo" firstAttribute="top" secondItem="msV-Fz-Sza" secondAttribute="top" constant="60" id="r3m-0N-qWj"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rs0-yp-dCu">
+                                <rect key="frame" x="0.0" y="275" width="600" height="261"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recordItemCell" textLabel="ZGp-m8-u5i" detailTextLabel="zqR-Ow-bfx" imageView="4l0-QU-oQQ" style="IBUITableViewCellStyleValue1" id="cEu-av-Cjv">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEu-av-Cjv" id="sPe-ax-Dex">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZGp-m8-u5i">
+                                                    <rect key="frame" x="58" y="12" width="32" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zqR-Ow-bfx">
+                                                    <rect key="frame" x="543" y="12" width="42" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="record-icon-1" id="4l0-QU-oQQ">
+                                                    <rect key="frame" x="15" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OxY-2c-HDO" id="nQZ-4Y-dg3"/>
+                                    <outlet property="delegate" destination="OxY-2c-HDO" id="3Tg-pj-RVG"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="msV-Fz-Sza" firstAttribute="top" secondItem="73j-SZ-25d" secondAttribute="bottom" constant="-1" id="6lK-Kd-73O"/>
+                            <constraint firstItem="Rs0-yp-dCu" firstAttribute="leading" secondItem="8dX-Qe-MmN" secondAttribute="leadingMargin" constant="-20" id="AyS-A3-MJr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="msV-Fz-Sza" secondAttribute="trailing" constant="-20" id="ETx-lJ-H6u"/>
+                            <constraint firstItem="9me-sR-sLT" firstAttribute="top" secondItem="Rs0-yp-dCu" secondAttribute="bottom" id="IiS-tv-cDo"/>
+                            <constraint firstItem="msV-Fz-Sza" firstAttribute="leading" secondItem="8dX-Qe-MmN" secondAttribute="leadingMargin" constant="-20" id="OQG-17-FtO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rs0-yp-dCu" secondAttribute="trailing" constant="-20" id="SNN-e4-dNJ"/>
+                            <constraint firstItem="Rs0-yp-dCu" firstAttribute="top" secondItem="msV-Fz-Sza" secondAttribute="bottom" id="fkL-wr-szi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="aii-Jw-I2N">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="JHj-Zs-NKe"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="recordButton" destination="lQe-ej-6Yo" id="C0d-7k-O0x"/>
+                        <outlet property="recordLabel" destination="s66-GA-uTa" id="aXh-PI-jyG"/>
+                        <outlet property="recordView" destination="msV-Fz-Sza" id="cWB-HZ-GqC"/>
+                        <outlet property="tableView" destination="Rs0-yp-dCu" id="SCY-p7-cWO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPO-up-a62" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="1187"/>
+        </scene>
         <!--TextHW Camera View Controller-->
         <scene sceneID="meL-cO-4ny">
             <objects>
@@ -204,5 +331,8 @@
     <resources>
         <image name="camera-button" width="65" height="65"/>
         <image name="camera-nextpage" width="139" height="58"/>
+        <image name="record-button" width="127" height="127"/>
+        <image name="record-icon-1" width="28" height="28"/>
+        <image name="recording-button" width="127" height="127"/>
     </resources>
 </document>
