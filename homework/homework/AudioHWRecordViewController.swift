@@ -21,6 +21,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         }
         struct Identifier {
             static let recordItemCell = "recordItemCell"
+            static let playingRecordItemCell = "playingRecordItemCell"
         }
         struct EmptySet {
             static let title = "还没有任何录音"
@@ -35,6 +36,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     var originalTopItemTitle: String?
     
     var recording: Bool = false
+    var playingRow: Int?
     
     var tableData = [[String: AnyObject]]()
 
@@ -44,7 +46,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     
     var recorderHelper: RecorderHelper!
-    var playerHelper: PlayerHelper!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +65,6 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         recorderHelper = RecorderHelper()
-        playerHelper = PlayerHelper()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,8 +72,8 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         originalNavbarShadowImage = self.navigationController?.navigationBar.shadowImage
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationItem.title = Constant.navItemTitle
-        self.recordView.backgroundColor = GlobalConstans.themeColor
-        self.recordLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.recordView.backgroundColor = GlobalConstants.themeColor
+        self.recordLabel.font = UIFont.boldSystemFontOfSize(20)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -86,6 +87,8 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func startRecord() {
+        playingRow = nil
+        self.reloadTable()
         self.recorderHelper.startRecording { (success) in
             if success {
                 self.recordButton.setBackgroundImage(UIImage(named: Constant.ImageName.recordButtonSelected), forState: .Normal)
@@ -103,13 +106,15 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
             self.recording = false
             self.recordLabel.text = Constant.recordLabelTitle
             self.recordButton.setBackgroundImage(UIImage(named: Constant.ImageName.recordButtonNormal), forState: .Normal)
-            let duration = recordItemData["duration"] as! String
+            let duration = recordItemData["duration"] as! NSTimeInterval
             let filename = recordItemData["filename"] as! String
+            let uuid = recordItemData["uuid"] as! String
             let rowDict: [String: AnyObject] = [
                 "duration": duration,
                 "currentTime": currentTimeString,
                 "recording": false,
-                "filename": filename
+                "filename": filename,
+                "uuid": uuid
             ]
             self.tableData.append(rowDict)
             self.reloadTable()
@@ -172,25 +177,45 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.recordItemCell)!
         let rowDict = self.tableData[indexPath.row]
-        let duration = rowDict["duration"] as! String
+        let duration = rowDict["duration"] as! NSTimeInterval
         let currentTime = rowDict["currentTime"] as! String
-        let itemRecording = rowDict["recording"] as! Bool
-        cell.textLabel?.text = duration
-        cell.detailTextLabel?.text = currentTime
-        return cell
+        let filename = rowDict["filename"] as! String
+        let uuid = rowDict["uuid"] as! String
+        if indexPath.row == playingRow {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.playingRecordItemCell) as! PlayingRecordItemTableViewCell
+            cell.configurate(filename, duration: duration, submitOnClick: {
+                // submit button event
+                OSSHelper().uploadFile(filename, objectKey: uuid)
+                }, playBackNextOnClick: { (type) in
+                    if type == "next" {
+                        
+                    } else if type == "back" {
+                        
+                    }
+            })
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.recordItemCell) as! RecordItemTableViewCell
+            cell.configurate(duration, time: currentTime)
+            return cell
+        }
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        if indexPath.row == playingRow {
+            return 160
+        } else {
+            return 60
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let rowDict = self.tableData[indexPath.row]
-        let filenamePath = rowDict["filename"] as! String
-        playerHelper.startPlay(filenamePath)
-        
+        if playingRow != indexPath.row {
+            playingRow = indexPath.row
+            self.reloadTable()
+        }
     }
 }

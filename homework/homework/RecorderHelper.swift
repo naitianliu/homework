@@ -85,12 +85,11 @@ class RecorderHelper: NSObject, AVAudioRecorderDelegate {
             audioRecorder!.stop()
             stopTimeEpoch = self.dateUtility.convertDateToEpoch(NSDate())
             let durationTI = NSTimeInterval(stopTimeEpoch - startTimeEpoch)
-            let duration: String = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(durationTI)
             audioRecorder = nil
             if let recordStopped = recordStopped {
                 let recordItemDict: [String: AnyObject] = [
-                    "duration": duration,
-                    "id": self.recordItemId!,
+                    "duration": durationTI,
+                    "uuid": self.recordItemId!,
                     "filename": self.recordItemFilename!
                 ]
                 recordStopped(recordItemData: recordItemDict)

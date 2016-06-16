@@ -38,4 +38,12 @@ class PlayerHelper: NSObject {
         audioPlayer?.stop()
         return audioPlayer?.currentTime
     }
+    
+    func getCurrentTime() -> NSTimeInterval {
+        var currentTime: NSTimeInterval = 0
+        if let player = audioPlayer {
+            currentTime = player.currentTime
+        }
+        return currentTime
+    }
 }
