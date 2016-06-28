@@ -83,7 +83,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.4602007269859314" green="0.82673650979995728" blue="0.7193949818611145" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.45882352941176469" green="0.82745098039215681" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="lQe-ej-6Yo" firstAttribute="centerX" secondItem="msV-Fz-Sza" secondAttribute="centerX" id="UHb-k8-H0n"/>
                                     <constraint firstItem="s66-GA-uTa" firstAttribute="top" secondItem="lQe-ej-6Yo" secondAttribute="bottom" constant="20" id="gGo-71-sHu"/>
@@ -107,7 +107,7 @@
                                                     <rect key="frame" x="58" y="20" width="32" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zqR-Ow-bfx">

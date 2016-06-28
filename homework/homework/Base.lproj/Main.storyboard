@@ -55,6 +55,13 @@
                                     <action selector="TextHWViewControllerOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SM3-gc-8Bl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-Sd-uAV">
+                                <rect key="frame" x="234" y="317" width="80" height="30"/>
+                                <state key="normal" title="weixin login"/>
+                                <connections>
+                                    <action selector="weixinLoginButtonOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zrC-5q-SAX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -62,8 +69,10 @@
                             <constraint firstItem="lz7-GK-T3L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NA3-9S-sGK"/>
                             <constraint firstItem="1Ro-9k-cQ6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="257" id="UNK-Ib-j51"/>
                             <constraint firstItem="1Ro-9k-cQ6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wy7-6H-AG8"/>
+                            <constraint firstItem="wCA-Sd-uAV" firstAttribute="top" secondItem="uxE-e5-R3z" secondAttribute="bottom" constant="28" id="cFB-55-pu6"/>
                             <constraint firstItem="1Ro-9k-cQ6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="cIy-EY-5Rl"/>
                             <constraint firstItem="lz7-GK-T3L" firstAttribute="top" secondItem="1Ro-9k-cQ6" secondAttribute="bottom" constant="33" id="dFb-kj-dVD"/>
+                            <constraint firstItem="wCA-Sd-uAV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dPJ-eD-mKQ"/>
                             <constraint firstItem="uxE-e5-R3z" firstAttribute="top" secondItem="lz7-GK-T3L" secondAttribute="bottom" constant="30" id="gOu-28-daa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1Ro-9k-cQ6" secondAttribute="trailing" constant="257" id="yCc-7f-TLT"/>
                         </constraints>

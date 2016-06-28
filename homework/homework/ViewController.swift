@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Diplomat
 
 class ViewController: UIViewController {
     
@@ -38,6 +39,12 @@ class ViewController: UIViewController {
     @IBAction func audioHWRecordVCButtonOnClick(sender: AnyObject) {
         let audioHWVC = self.homeworkStoryboard.instantiateViewControllerWithIdentifier("AudioHWRecordViewController") as! AudioHWRecordViewController
         self.navigationController?.pushViewController(audioHWVC, animated: true)
+    }
+    
+    @IBAction func weixinLoginButtonOnClick(sender: AnyObject) {
+        Diplomat.sharedInstance().authWithName(kDiplomatTypeWechat) { (result, error) in
+            print(result)
+        }
     }
 }
 

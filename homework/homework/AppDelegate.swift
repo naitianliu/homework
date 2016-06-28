@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Diplomat
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = GlobalConstants.themeColor
         UINavigationBar.appearance().translucent = false
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        Diplomat.sharedInstance().registerWithConfigurations([kDiplomatTypeWechat: [kDiplomatAppIdKey: GlobalConstants.Weixin.appId, kDiplomatAppSecretKey: GlobalConstants.Weixin.appSecret]])
         
         return true
     }
@@ -47,6 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return Diplomat.sharedInstance().handleOpenURL(url)
+    }
 
 }
 

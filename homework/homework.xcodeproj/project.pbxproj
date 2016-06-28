@@ -18,6 +18,7 @@
 		4600BD081D0D26E600BF460D /* PlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD071D0D26E600BF460D /* PlayerHelper.swift */; };
 		4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD091D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift */; };
 		4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD0B1D0E540A00BF460D /* RecordItemTableViewCell.swift */; };
+		4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4612AF4A1D22372500044E60 /* Auth.storyboard */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -66,6 +67,12 @@
 		4600BD071D0D26E600BF460D /* PlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHelper.swift; sourceTree = "<group>"; };
 		4600BD091D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingRecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		4600BD0B1D0E540A00BF460D /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
+		4612AF4A1D22372500044E60 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		46307F4C1D20ECC200A1971D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		46307F4E1D20ECCD00A1971D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		46307F501D20ECDB00A1971D /* dylib1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = dylib1.o; path = usr/lib/dylib1.o; sourceTree = SDKROOT; };
+		46307F521D20ED0000A1971D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		46307F541D20ED1500A1971D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		466222FA1D12387F0067F338 /* CallAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallAPIHelper.swift; sourceTree = "<group>"; };
 		466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		466222FF1D1258830067F338 /* OSSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSSHelper.swift; sourceTree = "<group>"; };
@@ -186,6 +193,14 @@
 			name = Aliyun;
 			sourceTree = "<group>";
 		};
+		466223011D1A49BC0067F338 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4612AF4A1D22372500044E60 /* Auth.storyboard */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
 		46C903CB1D038619005FC496 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +227,7 @@
 		46C903D61D038619005FC496 /* homework */ = {
 			isa = PBXGroup;
 			children = (
+				466223011D1A49BC0067F338 /* Auth */,
 				466222F91D12385F0067F338 /* Utility */,
 				46C904061D0386AB005FC496 /* Others */,
 				46C904051D038657005FC496 /* Homework */,
@@ -265,6 +281,11 @@
 		A7AFFCAF20A955B20D531EF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46307F541D20ED1500A1971D /* libc++.tbd */,
+				46307F521D20ED0000A1971D /* libsqlite3.0.tbd */,
+				46307F501D20ECDB00A1971D /* dylib1.o */,
+				46307F4E1D20ECCD00A1971D /* SystemConfiguration.framework */,
+				46307F4C1D20ECC200A1971D /* libz.tbd */,
 				4AD00A1623BA7A175528BC45 /* Pods_homework.framework */,
 				9C3504548DA935ED75A24501 /* Pods_homeworkTests.framework */,
 				33FE513E4A346D16FFD6E649 /* Pods_homeworkUITests.framework */,
@@ -384,6 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */,
 				46C9040E1D0393D4005FC496 /* Podfile in Resources */,
 				46C903E21D038619005FC496 /* LaunchScreen.storyboard in Resources */,
 				46C903DF1D038619005FC496 /* Assets.xcassets in Resources */,
@@ -697,6 +719,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = homework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/homework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.naitianliu.homework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -709,6 +735,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = homework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/homework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.naitianliu.homework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
