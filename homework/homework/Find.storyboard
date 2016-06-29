@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="PZf-xy-8qk">
+            <objects>
+                <navigationController storyboardIdentifier="FindNC" id="BMI-K8-vpj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yfA-Ye-ZKx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Mx9-fn-LO1" kind="relationship" relationship="rootViewController" id="4dn-mn-Ee0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RHx-eD-00A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-479" y="674"/>
+        </scene>
+        <!--查找-->
+        <scene sceneID="V2r-m6-14h">
+            <objects>
+                <viewController id="Mx9-fn-LO1" customClass="FindViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OZr-PT-XCK"/>
+                        <viewControllerLayoutGuide type="bottom" id="UrQ-Ve-StP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zsf-vi-Np1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="查找" id="Ki7-0M-q1r"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0z2-pr-1qs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="674"/>
+        </scene>
+    </scenes>
+</document>

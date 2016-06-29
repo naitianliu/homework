@@ -19,6 +19,15 @@
 		4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD091D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift */; };
 		4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BD0B1D0E540A00BF460D /* RecordItemTableViewCell.swift */; };
 		4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4612AF4A1D22372500044E60 /* Auth.storyboard */; };
+		4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4612AF4D1D23803400044E60 /* Classroom.storyboard */; };
+		4612AF511D23815100044E60 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF501D23815100044E60 /* MainTabBarController.swift */; };
+		4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF521D2482D100044E60 /* ClassroomViewController.swift */; };
+		4612AF561D2483A800044E60 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF551D2483A800044E60 /* MeViewController.swift */; };
+		4612AF581D2483BC00044E60 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4612AF571D2483BC00044E60 /* Me.storyboard */; };
+		4612AF5B1D2483F200044E60 /* Find.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4612AF5A1D2483F200044E60 /* Find.storyboard */; };
+		4612AF5D1D2483FE00044E60 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF5C1D2483FE00044E60 /* FindViewController.swift */; };
+		4612AF601D2489DE00044E60 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF5F1D2489DE00044E60 /* HomeViewController.swift */; };
+		4612AF621D2489E800044E60 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4612AF611D2489E800044E60 /* Home.storyboard */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -68,6 +77,15 @@
 		4600BD091D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingRecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		4600BD0B1D0E540A00BF460D /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		4612AF4A1D22372500044E60 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		4612AF4D1D23803400044E60 /* Classroom.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Classroom.storyboard; sourceTree = "<group>"; };
+		4612AF501D23815100044E60 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		4612AF521D2482D100044E60 /* ClassroomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomViewController.swift; sourceTree = "<group>"; };
+		4612AF551D2483A800044E60 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		4612AF571D2483BC00044E60 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		4612AF5A1D2483F200044E60 /* Find.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Find.storyboard; sourceTree = "<group>"; };
+		4612AF5C1D2483FE00044E60 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
+		4612AF5F1D2489DE00044E60 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4612AF611D2489E800044E60 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		46307F4C1D20ECC200A1971D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		46307F4E1D20ECCD00A1971D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		46307F501D20ECDB00A1971D /* dylib1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = dylib1.o; path = usr/lib/dylib1.o; sourceTree = SDKROOT; };
@@ -174,6 +192,51 @@
 			name = "View Model";
 			sourceTree = "<group>";
 		};
+		4612AF4C1D23777A00044E60 /* Classroom */ = {
+			isa = PBXGroup;
+			children = (
+				4612AF4D1D23803400044E60 /* Classroom.storyboard */,
+				4612AF521D2482D100044E60 /* ClassroomViewController.swift */,
+			);
+			name = Classroom;
+			sourceTree = "<group>";
+		};
+		4612AF4F1D2380E800044E60 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				46C903DB1D038619005FC496 /* Main.storyboard */,
+				4612AF501D23815100044E60 /* MainTabBarController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		4612AF541D24839700044E60 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				4612AF551D2483A800044E60 /* MeViewController.swift */,
+				4612AF571D2483BC00044E60 /* Me.storyboard */,
+			);
+			name = Me;
+			sourceTree = "<group>";
+		};
+		4612AF591D2483D500044E60 /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				4612AF5A1D2483F200044E60 /* Find.storyboard */,
+				4612AF5C1D2483FE00044E60 /* FindViewController.swift */,
+			);
+			name = Find;
+			sourceTree = "<group>";
+		};
+		4612AF5E1D2489D100044E60 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4612AF5F1D2489DE00044E60 /* HomeViewController.swift */,
+				4612AF611D2489E800044E60 /* Home.storyboard */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		466222F91D12385F0067F338 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +290,11 @@
 		46C903D61D038619005FC496 /* homework */ = {
 			isa = PBXGroup;
 			children = (
+				4612AF5E1D2489D100044E60 /* Home */,
+				4612AF591D2483D500044E60 /* Find */,
+				4612AF541D24839700044E60 /* Me */,
+				4612AF4F1D2380E800044E60 /* Main */,
+				4612AF4C1D23777A00044E60 /* Classroom */,
 				466223011D1A49BC0067F338 /* Auth */,
 				466222F91D12385F0067F338 /* Utility */,
 				46C904061D0386AB005FC496 /* Others */,
@@ -270,7 +338,6 @@
 			children = (
 				46C903D71D038619005FC496 /* AppDelegate.swift */,
 				46C903D91D038619005FC496 /* ViewController.swift */,
-				46C903DB1D038619005FC496 /* Main.storyboard */,
 				46C903E01D038619005FC496 /* LaunchScreen.storyboard */,
 				46C903E31D038619005FC496 /* Info.plist */,
 				4600BCF31D04E5A200BF460D /* GlobalConstants.swift */,
@@ -406,11 +473,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */,
+				4612AF621D2489E800044E60 /* Home.storyboard in Resources */,
 				46C9040E1D0393D4005FC496 /* Podfile in Resources */,
 				46C903E21D038619005FC496 /* LaunchScreen.storyboard in Resources */,
 				46C903DF1D038619005FC496 /* Assets.xcassets in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
+				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
+				4612AF581D2483BC00044E60 /* Me.storyboard in Resources */,
 				46C903DD1D038619005FC496 /* Main.storyboard in Resources */,
+				4612AF5B1D2483F200044E60 /* Find.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,14 +629,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
 				4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */,
+				4612AF511D23815100044E60 /* MainTabBarController.swift in Sources */,
 				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
+				4612AF5D1D2483FE00044E60 /* FindViewController.swift in Sources */,
 				4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */,
+				4612AF601D2489DE00044E60 /* HomeViewController.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */,
 				46C904081D03871F005FC496 /* TextHWViewController.swift in Sources */,
 				466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */,
+				4612AF561D2483A800044E60 /* MeViewController.swift in Sources */,
 				4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
 				466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */,

@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Diplomat.sharedInstance().registerWithConfigurations([kDiplomatTypeWechat: [kDiplomatAppIdKey: GlobalConstants.Weixin.appId, kDiplomatAppSecretKey: GlobalConstants.Weixin.appSecret]])
         
+        let mainTabBarController = MainTabBarController()
+        self.window?.rootViewController = mainTabBarController
+        
         return true
     }
 
