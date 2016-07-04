@@ -17,6 +17,14 @@ struct GlobalConstants {
         static let appId = "wxaf15e2cba7d87936"
         static let appSecret = "05aa0f9946b7ec9f587acf476373e103"
     }
+
+    static let APIErrorMessage = [
+        1010: "该号码还没有注册",
+        1011: "密码不正确，请重新输入",
+        1020: "每天最多可以发送五次验证码",
+        1050: "该手机号码已被注册",
+        1051: "验证码错误或已过期，请返回重新获取验证码",
+    ]
 }
 
 let APIEndpoint = "http://localhost:8000"
@@ -24,5 +32,11 @@ let APIEndpoint = "http://localhost:8000"
 struct APIURL {
     
     static let getSTSToken = "\(APIEndpoint)/api/v1/vendors/get_sts_token/"
-}
 
+    static let authPhoneLogin = "\(APIEndpoint)/api/v1/auth/phone/login/"
+    static let authPhoneVerifyCodeSend = "\(APIEndpoint)/api/v1/auth/phone/verification_code/send/"
+    static let authPhoneVerifyCodeVerify = "\(APIEndpoint)/api/v1/auth/phone/verification_code/verify/"
+    static let authPhoneResetPassword = "\(APIEndpoint)/api/v1/auth/phone/reset_password/"
+    static let authPhoneRegister = "\(APIEndpoint)/api/v1/auth/phone/register/"
+
+}

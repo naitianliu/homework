@@ -108,10 +108,19 @@ class UserDefaultsHelper {
         let username = Defaults[.username]
         return username
     }
+
+    func getNickname() -> String? {
+        let nickname = Defaults[.nickname]
+        return nickname
+    }
     
     func getToken() -> String {
         let token: String = Defaults[.token]!
         return token
+    }
+
+    func updateToken(token: String) {
+        Defaults[.token] = token
     }
     
     func removeUserInfo() {
@@ -124,13 +133,21 @@ class UserDefaultsHelper {
     func checkIfLogin() -> Bool {
         var result = false
         let token: String? = Defaults[.token]
-        let username: String? = Defaults[.username]
-        if token != nil && username != nil {
+        if token != nil {
             result = true
         }
         return result
     }
-    
+
+    func checkIfProfileReady() -> Bool {
+        let nickname = Defaults[.nickname]
+        let profileImageURL = Defaults[.profileImageURL]
+        if nickname == nil || profileImageURL == nil {
+            return false
+        } else {
+            return true
+        }
+    }
     
 }
 

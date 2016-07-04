@@ -44,12 +44,23 @@ class MainTabBarController: UITabBarController {
         meNC.tabBarItem.image = UIImage(named: "tab-me")
         
         self.viewControllers = [homeNC, classroomNC, findNC, meNC]
+
+        showUpdateProfileNC()
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func showUpdateProfileNC() {
+        if UserDefaultsHelper().checkIfProfileReady() { return }
+        let updateProfileNC = meStoryboard.instantiateViewControllerWithIdentifier("UpdateProfileNC") as! UINavigationController
+        updateProfileNC.modalTransitionStyle = .CoverVertical
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.presentViewController(updateProfileNC, animated: true, completion: nil)
+        }
     }
 
 }

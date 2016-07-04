@@ -10,7 +10,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fpV-uA-KD9">
             <objects>
-                <navigationController id="C5z-Rl-q6p" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AuthNC" id="C5z-Rl-q6p" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8NZ-Vu-a6b">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-194" y="502"/>
         </scene>
-        <!--View Controller-->
+        <!--选择登录方式-->
         <scene sceneID="4qm-tO-t9C">
             <objects>
-                <viewController id="yPj-9W-VeA" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="yPj-9W-VeA" customClass="LoginViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PL2-KY-LIY"/>
                         <viewControllerLayoutGuide type="bottom" id="by5-Hz-cV8"/>
@@ -36,14 +36,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="984-kf-AfI">
-                                <rect key="frame" x="200" y="448" width="201" height="49"/>
+                                <rect key="frame" x="200" y="397" width="201" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="984-kf-AfI" secondAttribute="height" multiplier="217:49" id="ZxO-Ti-chX"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="weixin-button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLh-UA-seL">
-                                <rect key="frame" x="249" y="516" width="102" height="34"/>
+                                <rect key="frame" x="249" y="461" width="102" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="手机登录">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,12 +57,12 @@
                         <constraints>
                             <constraint firstItem="ZLh-UA-seL" firstAttribute="top" secondItem="984-kf-AfI" secondAttribute="bottom" constant="20" id="0iX-NO-RH6"/>
                             <constraint firstItem="ZLh-UA-seL" firstAttribute="centerX" secondItem="Smk-gu-gf8" secondAttribute="centerX" id="6sz-lA-dsJ"/>
-                            <constraint firstItem="by5-Hz-cV8" firstAttribute="top" secondItem="984-kf-AfI" secondAttribute="bottom" constant="120" id="N1y-ps-8JJ"/>
+                            <constraint firstItem="by5-Hz-cV8" firstAttribute="top" secondItem="984-kf-AfI" secondAttribute="bottom" constant="100" id="N1y-ps-8JJ"/>
                             <constraint firstItem="984-kf-AfI" firstAttribute="leading" secondItem="Smk-gu-gf8" secondAttribute="leadingMargin" constant="50" id="Ps7-Zv-vKq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="984-kf-AfI" secondAttribute="trailing" constant="50" id="sQh-sA-fA4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="wxF-Pw-sFQ"/>
+                    <navigationItem key="navigationItem" title="选择登录方式" id="wxF-Pw-sFQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg2-Qb-xKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,7 +71,7 @@
         <!--手机登录-->
         <scene sceneID="L0d-8h-Hdd">
             <objects>
-                <viewController id="013-R8-yhk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhoneLoginViewController" id="013-R8-yhk" customClass="PhoneLoginViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lC4-aN-Emy"/>
                         <viewControllerLayoutGuide type="bottom" id="v1g-yY-xWG"/>
@@ -146,6 +146,9 @@
                                 <state key="normal" title="登录" backgroundImage="button-block-bg">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="LoginButtonOnClick:" destination="013-R8-yhk" eventType="touchUpInside" id="abm-xj-I3I"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
@@ -184,6 +187,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passwordTextField" destination="w0Q-Xx-w4k" id="s8j-8M-f2X"/>
+                        <outlet property="phoneNumberTextField" destination="VNH-pM-Rie" id="zlR-JX-bUg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHg-c7-OfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,7 +199,7 @@
         <!--忘记密码-->
         <scene sceneID="YXl-Gg-sAB">
             <objects>
-                <viewController id="m8I-p2-N3L" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgetPasswordViewController" id="m8I-p2-N3L" customClass="ForgetPasswordViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DPN-6t-Yhv"/>
                         <viewControllerLayoutGuide type="bottom" id="58h-rh-CjI"/>
@@ -233,7 +240,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FVB-Zl-VGT">
                                         <rect key="frame" x="17" y="13" width="470" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3R-Mr-vR1">
                                         <rect key="frame" x="505" y="0.0" width="4" height="62"/>
@@ -324,7 +331,7 @@
         <!--重置密码-->
         <scene sceneID="9qB-FN-a6c">
             <objects>
-                <viewController id="Can-bj-Ecz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPasswordViewController" id="Can-bj-Ecz" customClass="ResetPasswordViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P19-bF-Cff"/>
                         <viewControllerLayoutGuide type="bottom" id="mbh-fw-XeD"/>
@@ -430,7 +437,7 @@
         <!--手机注册-->
         <scene sceneID="9Yp-ng-wbh">
             <objects>
-                <viewController id="4eL-jc-m7w" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhoneRegisterViewController" id="4eL-jc-m7w" customClass="PhoneRegisterViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SHz-37-0OI"/>
                         <viewControllerLayoutGuide type="bottom" id="kNS-PB-zVn"/>
@@ -471,7 +478,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Urt-LM-mGQ">
                                         <rect key="frame" x="17" y="13" width="470" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0sX-LQ-LXe">
                                         <rect key="frame" x="505" y="0.0" width="4" height="62"/>
@@ -486,6 +493,9 @@
                                         <state key="normal" title="获取">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="obtainCodeButtonOnClick:" destination="4eL-jc-m7w" eventType="touchUpInside" id="bS0-vy-dhs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -524,10 +534,13 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Y3g-Rl-ZTF"/>
                                         <exclude reference="KDu-Bv-JUb"/>
+                                        <exclude reference="Y3g-Rl-ZTF"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="nextButtonOnClick:" destination="4eL-jc-m7w" eventType="touchUpInside" id="rk4-5P-fzs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -552,7 +565,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="手机注册" id="wHm-en-eD3"/>
                     <connections>
-                        <segue destination="Diw-qR-8cM" kind="show" id="CbX-Pe-WaN"/>
+                        <outlet property="phoneNumberTextField" destination="NTx-E0-h2V" id="kw9-gz-zFH"/>
+                        <outlet property="verifyCodeTextField" destination="Urt-LM-mGQ" id="F31-1k-nZI"/>
+                        <segue destination="Diw-qR-8cM" kind="show" identifier="RegisterSetPasswordSegue" id="CbX-Pe-WaN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ztg-1i-wsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -562,7 +577,7 @@
         <!--设置密码-->
         <scene sceneID="sp5-7W-6Kt">
             <objects>
-                <viewController id="Diw-qR-8cM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetPasswordViewController" id="Diw-qR-8cM" customClass="SetPasswordViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F2e-8S-lLO"/>
                         <viewControllerLayoutGuide type="bottom" id="XhD-Td-5jg"/>
@@ -628,6 +643,9 @@
                                 <state key="normal" title="完成注册并登录" backgroundImage="button-block-bg">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="completeLoginButtonOnClick:" destination="Diw-qR-8cM" eventType="touchUpInside" id="2jx-cJ-8QT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -660,6 +678,10 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passwordTextField" destination="vBR-9G-jeA" id="YKa-YG-ITc"/>
+                        <outlet property="reinputPasswordTextField" destination="BXO-c0-IdE" id="JA5-yP-zUf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZT-rb-sjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

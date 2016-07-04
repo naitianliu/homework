@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Diplomat.sharedInstance().registerWithConfigurations([kDiplomatTypeWechat: [kDiplomatAppIdKey: GlobalConstants.Weixin.appId, kDiplomatAppSecretKey: GlobalConstants.Weixin.appSecret]])
         
-        let mainTabBarController = MainTabBarController()
-        self.window?.rootViewController = mainTabBarController
+        switchRootVC()
         
         return true
     }
@@ -55,6 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return Diplomat.sharedInstance().handleOpenURL(url)
+    }
+
+    func didLogin() {
+        self.switchRootVC()
+    }
+
+    func switchRootVC() {
+        let isLogin = UserDefaultsHelper().checkIfLogin()
+        if isLogin {
+            let mainTabBarController = MainTabBarController()
+            self.window?.rootViewController = mainTabBarController
+        } else {
+            let authStoryboard = UIStoryboard(name: "Auth", bundle: nil)
+            let authNC = authStoryboard.instantiateViewControllerWithIdentifier("AuthNC") as! UINavigationController
+            self.window?.rootViewController = authNC
+        }
     }
 
 }
