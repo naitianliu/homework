@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -141,11 +142,59 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2Dh-fD-hVl" id="ag1-8N-2Vd"/>
+                        <segue destination="S7L-Gb-JDs" kind="show" identifier="UpdateAvatarSegue" id="3a3-32-ih6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Koy-My-Oib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="739" y="1225"/>
+        </scene>
+        <!--头像-->
+        <scene sceneID="2Ag-dV-Qd9">
+            <objects>
+                <viewController id="S7L-Gb-JDs" customClass="UpdateAvatarViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cD2-Z2-AIr"/>
+                        <viewControllerLayoutGuide type="bottom" id="3TX-H6-yfS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b3K-o1-i9c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bd0-LZ-SsD">
+                                <rect key="frame" x="180" y="108" width="240" height="227"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bd0-LZ-SsD" secondAttribute="height" multiplier="1:1" id="CqQ-JM-Z2k"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRU-qi-aHK">
+                                <rect key="frame" x="262" y="415" width="77" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="更换头像">
+                                    <color key="titleColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateAvatarButtonOnClick:" destination="S7L-Gb-JDs" eventType="touchUpInside" id="4fx-co-ec7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bd0-LZ-SsD" firstAttribute="leading" secondItem="b3K-o1-i9c" secondAttribute="leadingMargin" constant="20" id="8ie-3h-9hM"/>
+                            <constraint firstItem="bd0-LZ-SsD" firstAttribute="top" secondItem="cD2-Z2-AIr" secondAttribute="bottom" constant="50" id="LT8-c2-zow"/>
+                            <constraint firstItem="YRU-qi-aHK" firstAttribute="top" secondItem="bd0-LZ-SsD" secondAttribute="bottom" constant="100" id="SEr-vT-4Ia"/>
+                            <constraint firstItem="YRU-qi-aHK" firstAttribute="centerX" secondItem="b3K-o1-i9c" secondAttribute="centerX" id="she-mk-QtU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bd0-LZ-SsD" secondAttribute="trailing" constant="20" id="vQT-6h-t4A"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="头像" id="OfP-8W-V1e"/>
+                    <connections>
+                        <outlet property="avatarImageView" destination="bd0-LZ-SsD" id="4Vg-fs-Gb0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fKF-rG-DoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1463" y="1225"/>
         </scene>
         <!--我-->
         <scene sceneID="ADk-hY-vCd">

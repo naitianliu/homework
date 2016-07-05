@@ -186,7 +186,11 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.playingRecordItemCell) as! PlayingRecordItemTableViewCell
             cell.configurate(filename, duration: duration, submitOnClick: {
                 // submit button event
-                OSSHelper().uploadFile(filename, objectKey: uuid)
+                OSSHelper().uploadFile(filename, objectKey: uuid, complete: { (success, objectURL) in
+                    if success {
+                        // upload url to server
+                    }
+                })
                 }, playBackNextOnClick: { (type) in
                     if type == "next" {
                         

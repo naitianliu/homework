@@ -68,6 +68,16 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
+            self.performSegueWithIdentifier("UpdateAvatarSegue", sender: nil)
+        default:
+            break
+        }
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 && indexPath.section == 0 {
             return 80

@@ -79,9 +79,9 @@ class DateUtility {
     }
     
     func convertTZToEpoch(tzString: String) -> Int {
-        print(tzString)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
         let date = dateFormatter.dateFromString(tzString)!
         let epoch = self.convertDateToEpoch(date)
         return epoch

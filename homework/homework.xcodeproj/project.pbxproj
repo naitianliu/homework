@@ -37,6 +37,11 @@
 		4612AF711D29E5A400044E60 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF701D29E5A400044E60 /* AlertHelper.swift */; };
 		4612AF731D2A1FBF00044E60 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF721D2A1FBF00044E60 /* UpdateProfileViewController.swift */; };
 		4612AF771D2A2BDB00044E60 /* ProfileEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF761D2A2BDB00044E60 /* ProfileEditTableViewCell.swift */; };
+		4612AF791D2B0BCC00044E60 /* UpdateAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF781D2B0BCC00044E60 /* UpdateAvatarViewController.swift */; };
+		4612AF7B1D2B4E5700044E60 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF7A1D2B4E5700044E60 /* FileHelper.swift */; };
+		4612AF7D1D2B74AE00044E60 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF7C1D2B74AE00044E60 /* ImageHelper.swift */; };
+		4612AF801D2B7C1C00044E60 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF7F1D2B7C1C00044E60 /* UINavigationController.swift */; };
+		4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF811D2B86AA00044E60 /* ProgressHUDHelper.swift */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -104,6 +109,11 @@
 		4612AF701D29E5A400044E60 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		4612AF721D2A1FBF00044E60 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		4612AF761D2A2BDB00044E60 /* ProfileEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditTableViewCell.swift; sourceTree = "<group>"; };
+		4612AF781D2B0BCC00044E60 /* UpdateAvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAvatarViewController.swift; sourceTree = "<group>"; };
+		4612AF7A1D2B4E5700044E60 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		4612AF7C1D2B74AE00044E60 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		4612AF7F1D2B7C1C00044E60 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		4612AF811D2B86AA00044E60 /* ProgressHUDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDHelper.swift; sourceTree = "<group>"; };
 		46307F4C1D20ECC200A1971D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		46307F4E1D20ECCD00A1971D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		46307F501D20ECDB00A1971D /* dylib1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = dylib1.o; path = usr/lib/dylib1.o; sourceTree = SDKROOT; };
@@ -274,6 +284,7 @@
 			children = (
 				4612AF551D2483A800044E60 /* MeViewController.swift */,
 				4612AF721D2A1FBF00044E60 /* UpdateProfileViewController.swift */,
+				4612AF781D2B0BCC00044E60 /* UpdateAvatarViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -286,6 +297,14 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		4612AF7E1D2B7BFB00044E60 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4612AF7F1D2B7C1C00044E60 /* UINavigationController.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		466222F91D12385F0067F338 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +313,9 @@
 				466222FA1D12387F0067F338 /* CallAPIHelper.swift */,
 				466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */,
 				4612AF701D29E5A400044E60 /* AlertHelper.swift */,
+				4612AF7A1D2B4E5700044E60 /* FileHelper.swift */,
+				4612AF7C1D2B74AE00044E60 /* ImageHelper.swift */,
+				4612AF811D2B86AA00044E60 /* ProgressHUDHelper.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -389,6 +411,7 @@
 		46C904061D0386AB005FC496 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				4612AF7E1D2B7BFB00044E60 /* Extensions */,
 				46C903D91D038619005FC496 /* ViewController.swift */,
 				46C903E01D038619005FC496 /* LaunchScreen.storyboard */,
 				46C903E31D038619005FC496 /* Info.plist */,
@@ -686,6 +709,7 @@
 				4612AF671D2497CD00044E60 /* PhoneLoginViewController.swift in Sources */,
 				4612AF651D24919000044E60 /* LoginViewController.swift in Sources */,
 				4612AF511D23815100044E60 /* MainTabBarController.swift in Sources */,
+				4612AF801D2B7C1C00044E60 /* UINavigationController.swift in Sources */,
 				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
 				4612AF5D1D2483FE00044E60 /* FindViewController.swift in Sources */,
 				4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */,
@@ -704,13 +728,17 @@
 				4600BD031D0CD0D500BF460D /* RecorderHelper.swift in Sources */,
 				4612AF771D2A2BDB00044E60 /* ProfileEditTableViewCell.swift in Sources */,
 				466223001D1258830067F338 /* OSSHelper.swift in Sources */,
+				4612AF791D2B0BCC00044E60 /* UpdateAvatarViewController.swift in Sources */,
 				4612AF6D1D24985B00044E60 /* ForgetPasswordViewController.swift in Sources */,
+				4612AF7B1D2B4E5700044E60 /* FileHelper.swift in Sources */,
 				4600BCF21D04CD4000BF460D /* TextHWMarkViewHelper.swift in Sources */,
 				4612AF691D2497E400044E60 /* PhoneRegisterViewController.swift in Sources */,
 				4600BD081D0D26E600BF460D /* PlayerHelper.swift in Sources */,
 				4612AF731D2A1FBF00044E60 /* UpdateProfileViewController.swift in Sources */,
+				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
 				4612AF6F1D24987900044E60 /* ResetPasswordViewController.swift in Sources */,
+				4612AF7D1D2B74AE00044E60 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

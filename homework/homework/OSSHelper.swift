@@ -12,6 +12,7 @@ import AliyunOSSiOS
 class OSSHelper {
     
     typealias TokenObtainedClosureType = (stsToken: [String: String]) -> Void
+    typealias UploadCompleteClosureType = (success: Bool, objectURL: String?) -> Void
     
     struct Constant {
         static let bucketName = "hw-audio"
@@ -42,11 +43,12 @@ class OSSHelper {
                 tokenObtained(stsToken: credentials!)
                 }, errorOccurs: { (error) in
                     // error
+                    print(error)
             })
         }
     }
     
-    func uploadFile(filepath: String, objectKey: String) {
+    func uploadFile(filepath: String, objectKey: String, complete: UploadCompleteClosureType) {
         let put = OSSPutObjectRequest()
         put.bucketName = Constant.bucketName
         put.objectKey = objectKey
@@ -55,8 +57,11 @@ class OSSHelper {
         putTask?.continueWithBlock({ (task) -> AnyObject? in
             if (task.error == nil) {
                 print("upload object success")
+                let objectURL = "http://\(Constant.bucketName).\(Constant.OSS_Endpoint)/\(objectKey)"
+                complete(success: true, objectURL: objectURL)
             } else {
                 print("upload object failed error: \(task.error)")
+                complete(success: false, objectURL: nil)
             }
             return nil
         })

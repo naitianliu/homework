@@ -25,6 +25,7 @@ struct GlobalConstants {
         1050: "该手机号码已被注册",
         1051: "验证码错误或已过期，请返回重新获取验证码",
     ]
+
 }
 
 let APIEndpoint = "http://localhost:8000"
