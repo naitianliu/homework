@@ -28,16 +28,17 @@ struct GlobalConstants {
 
 }
 
-let APIEndpoint = "http://localhost:8000"
+let APIEndpoint = "http://localhost:8000/api/v1"
 
 struct APIURL {
     
-    static let getSTSToken = "\(APIEndpoint)/api/v1/vendors/get_sts_token/"
+    static let getSTSToken = "\(APIEndpoint)/vendors/get_sts_token/"
 
-    static let authPhoneLogin = "\(APIEndpoint)/api/v1/auth/phone/login/"
-    static let authPhoneVerifyCodeSend = "\(APIEndpoint)/api/v1/auth/phone/verification_code/send/"
-    static let authPhoneVerifyCodeVerify = "\(APIEndpoint)/api/v1/auth/phone/verification_code/verify/"
-    static let authPhoneResetPassword = "\(APIEndpoint)/api/v1/auth/phone/reset_password/"
-    static let authPhoneRegister = "\(APIEndpoint)/api/v1/auth/phone/register/"
+    static let authPhoneLogin = "\(APIEndpoint)/auth/phone/login/"
+    static let authPhoneVerifyCodeSend = "\(APIEndpoint)/auth/phone/verification_code/send/"
+    static let authPhoneVerifyCodeVerify = "\(APIEndpoint)/auth/phone/verification_code/verify/"
+    static let authPhoneResetPassword = "\(APIEndpoint)/auth/phone/reset_password/"
+    static let authPhoneRegister = "\(APIEndpoint)/auth/phone/register/"
+    static let authUserProfileUpdate = "\(APIEndpoint)/auth/user/profile/update/"
 
 }

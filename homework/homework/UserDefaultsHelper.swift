@@ -90,6 +90,10 @@ class UserDefaultsHelper {
             Defaults[.deviceToken] = deviceTokenStr
         }
     }
+
+    func updateNickname(nickname: String) {
+        Defaults[.nickname] = nickname
+    }
     
     func getDeviceToken() -> String? {
         return Defaults[.deviceToken]

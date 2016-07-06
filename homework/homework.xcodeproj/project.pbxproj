@@ -42,6 +42,7 @@
 		4612AF7D1D2B74AE00044E60 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF7C1D2B74AE00044E60 /* ImageHelper.swift */; };
 		4612AF801D2B7C1C00044E60 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF7F1D2B7C1C00044E60 /* UINavigationController.swift */; };
 		4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF811D2B86AA00044E60 /* ProgressHUDHelper.swift */; };
+		4612AF841D2CD48D00044E60 /* SaveInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF831D2CD48D00044E60 /* SaveInputViewController.swift */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -114,6 +115,7 @@
 		4612AF7C1D2B74AE00044E60 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		4612AF7F1D2B7C1C00044E60 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		4612AF811D2B86AA00044E60 /* ProgressHUDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDHelper.swift; sourceTree = "<group>"; };
+		4612AF831D2CD48D00044E60 /* SaveInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveInputViewController.swift; sourceTree = "<group>"; };
 		46307F4C1D20ECC200A1971D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		46307F4E1D20ECCD00A1971D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		46307F501D20ECDB00A1971D /* dylib1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = dylib1.o; path = usr/lib/dylib1.o; sourceTree = SDKROOT; };
@@ -285,6 +287,7 @@
 				4612AF551D2483A800044E60 /* MeViewController.swift */,
 				4612AF721D2A1FBF00044E60 /* UpdateProfileViewController.swift */,
 				4612AF781D2B0BCC00044E60 /* UpdateAvatarViewController.swift */,
+				4612AF831D2CD48D00044E60 /* SaveInputViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */,
 				4612AF711D29E5A400044E60 /* AlertHelper.swift in Sources */,
 				4612AF561D2483A800044E60 /* MeViewController.swift in Sources */,
+				4612AF841D2CD48D00044E60 /* SaveInputViewController.swift in Sources */,
 				4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
 				466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */,

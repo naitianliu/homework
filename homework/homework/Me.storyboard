@@ -190,11 +190,65 @@
                     <navigationItem key="navigationItem" title="头像" id="OfP-8W-V1e"/>
                     <connections>
                         <outlet property="avatarImageView" destination="bd0-LZ-SsD" id="4Vg-fs-Gb0"/>
+                        <segue destination="Rm3-vM-N5w" kind="show" identifier="SaveInputSegue" id="8ov-9G-Vq4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKF-rG-DoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1463" y="1225"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="QV4-fy-lV5">
+            <objects>
+                <viewController storyboardIdentifier="SaveInputViewController" id="Rm3-vM-N5w" customClass="SaveInputViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SrQ-V1-THa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nep-8V-JHI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RWC-b9-sIf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DAP-S0-rN4">
+                                <rect key="frame" x="0.0" y="102" width="600" height="51"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fm8-8a-KlX">
+                                        <rect key="frame" x="8" y="0.0" width="576" height="51"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fm8-8a-KlX" firstAttribute="top" secondItem="DAP-S0-rN4" secondAttribute="top" id="0wE-WC-Gsv"/>
+                                    <constraint firstAttribute="height" constant="50" id="ELa-mW-aSe"/>
+                                    <constraint firstItem="fm8-8a-KlX" firstAttribute="leading" secondItem="DAP-S0-rN4" secondAttribute="leading" constant="20" id="Hst-Ib-clG"/>
+                                    <constraint firstAttribute="bottom" secondItem="fm8-8a-KlX" secondAttribute="bottom" id="msQ-xd-EBZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="fm8-8a-KlX" secondAttribute="trailing" constant="20" id="ntl-uV-noH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="DAP-S0-rN4" firstAttribute="leading" secondItem="RWC-b9-sIf" secondAttribute="leadingMargin" constant="-20" id="3ku-AO-Fcs"/>
+                            <constraint firstItem="DAP-S0-rN4" firstAttribute="top" secondItem="SrQ-V1-THa" secondAttribute="bottom" constant="30" id="4ss-Gm-8aZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DAP-S0-rN4" secondAttribute="trailing" constant="-20" id="rCf-Sg-C44"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="DZI-XC-A0d">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="4pM-te-bYC">
+                            <connections>
+                                <action selector="saveButtonOnClick:" destination="Rm3-vM-N5w" id="xrc-Zl-1rU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inputTextField" destination="fm8-8a-KlX" id="lpO-ne-qiv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rjQ-Vj-64L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2183" y="1225"/>
         </scene>
         <!--我-->
         <scene sceneID="ADk-hY-vCd">

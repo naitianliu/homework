@@ -12,6 +12,8 @@ import RSKImageCropper
 
 class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate {
 
+    let apiURL = APIURL.authUserProfileUpdate
+
     @IBOutlet weak var avatarImageView: UIImageView!
 
     var imgURL: String?
@@ -21,6 +23,8 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
     let imagePicker = UIImagePickerController()
 
     var newImage: UIImage?
+
+    var progressHUD: ProgressHUDHelper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,8 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
         } else {
             avatarImageView.image = placeholderImage
         }
+
+        progressHUD = ProgressHUDHelper(view: self.view)
 
     }
 
@@ -114,14 +120,25 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
         let objectKey = NSUUID().UUIDString
         let filepath = FileHelper().saveImageToFile(image, objectKey: objectKey)
         if let filepath = filepath {
-            let progressHUD = ProgressHUDHelper(view: self.view)
-            progressHUD.show()
+            self.progressHUD.show()
             OSSHelper().uploadFile(filepath, objectKey: objectKey, complete: { (success, objectURL) in
                 if success {
                     print(objectURL)
+                    self.updateProfileImageURL(objectURL!)
+                } else {
+                    self.progressHUD.hide()
                 }
-                progressHUD.hide()
             })
+        }
+    }
+
+    private func updateProfileImageURL(imageURL: String) {
+        CallAPIHelper(url: self.apiURL, data: ["img_url": imageURL]).POST({ (responseData) in
+            // completion
+            self.progressHUD.hide()
+            }) { (error) in
+                // error
+                self.progressHUD.hide()
         }
     }
 }

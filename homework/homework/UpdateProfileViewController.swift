@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveInputVCDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -29,6 +29,10 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBAction func confirmButtonOnClick(sender: AnyObject) {
 
+    }
+
+    private func reloadTable() {
+        self.tableView.reloadData()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -73,6 +77,11 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             self.performSegueWithIdentifier("UpdateAvatarSegue", sender: nil)
+        case (1, 0):
+            let saveInputVC = self.storyboard?.instantiateViewControllerWithIdentifier("SaveInputViewController") as! SaveInputViewController
+            saveInputVC.navbarTitle = "名字"
+            saveInputVC.delegate = self
+            self.navigationController?.pushViewController(saveInputVC, animated: true)
         default:
             break
         }
@@ -93,6 +102,21 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
+    }
+
+    func didFinishedInputToSave(input: String) {
+        let progressHUD = ProgressHUDHelper(view: self.view)
+        progressHUD.show()
+        let apiURL = APIURL.authUserProfileUpdate
+        CallAPIHelper(url: apiURL, data: ["nickname": input]).POST({ (responseData) in
+            // completion
+            UserDefaultsHelper().updateNickname(input)
+            self.reloadTable()
+            progressHUD.hide()
+            }) { (error) in
+                // error
+                progressHUD.hide()
+        }
     }
 
 }
