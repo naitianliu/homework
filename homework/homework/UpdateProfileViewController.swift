@@ -18,6 +18,11 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadTable()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,7 +59,7 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
         var cell: UITableViewCell!
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            cell = tableView.dequeueReusableCellWithIdentifier("ProfileEditTableViewCell") as! ProfileEditTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ProfileEditTableViewCell") as! ProfileEditTableViewCell
             return cell
         case (1, 0):
             cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)

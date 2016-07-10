@@ -126,6 +126,17 @@ class UserDefaultsHelper {
     func updateToken(token: String) {
         Defaults[.token] = token
     }
+
+    func getProfileImageURL() -> String? {
+        let profileImageURL = Defaults[.profileImageURL]
+        return profileImageURL
+    }
+
+    func updateProfileImageURL(profileImageURL: String?) {
+        if let profileImageURL = profileImageURL {
+            Defaults[.profileImageURL] = profileImageURL
+        }
+    }
     
     func removeUserInfo() {
         Defaults[.username] = nil

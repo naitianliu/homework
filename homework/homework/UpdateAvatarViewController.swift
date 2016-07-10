@@ -16,8 +16,6 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
 
     @IBOutlet weak var avatarImageView: UIImageView!
 
-    var imgURL: String?
-
     let placeholderImage = UIImage(named: "profile-placeholder")
 
     let imagePicker = UIImagePickerController()
@@ -31,7 +29,7 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
 
         imagePicker.delegate = self
 
-        if let imgURL = imgURL {
+        if let imgURL = UserDefaultsHelper().getProfileImageURL() {
             avatarImageView.sd_setImageWithURL(NSURL(string: imgURL), placeholderImage: placeholderImage)
         } else {
             avatarImageView.image = placeholderImage
@@ -136,6 +134,7 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
         CallAPIHelper(url: self.apiURL, data: ["img_url": imageURL]).POST({ (responseData) in
             // completion
             self.progressHUD.hide()
+            UserDefaultsHelper().updateProfileImageURL(imageURL)
             }) { (error) in
                 // error
                 self.progressHUD.hide()
