@@ -49,20 +49,15 @@ class SetClassroomNameViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func performDone() {
-        self.dismissViewControllerAnimated(false) {
-            self.completeInputName()
-        }
-    }
-
-    private func completeInputName() {
         let text = nameTextField.text!
         if text == "" {
             AlertHelper(viewController: self).showPromptAlertView(kAlertMessage[1]!)
             return
         }
-        classroomName = text
-        self.completeDismissBlock!(name: self.classroomName!)
+        self.dismissViewControllerAnimated(false) {
+            self.classroomName = text
+            self.completeDismissBlock!(name: self.classroomName!)
+        }
     }
-
 
 }

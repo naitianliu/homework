@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveInputVCDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -21,6 +21,7 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.registerNib(UINib(nibName: "DescriptionTableViewCell", bundle: nil), forCellReuseIdentifier: "DescriptionTableViewCell")
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -100,6 +101,33 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
+            self.showSaveInputVCForName()
+        case (1, 0):
+            self.showAddSchoolNC()
+        default:
+            break
+        }
+    }
+
+    private func showSaveInputVCForName() {
+        let meStoryboard = UIStoryboard(name: "Me", bundle: nil)
+        let saveInputVC = meStoryboard.instantiateViewControllerWithIdentifier("SaveInputViewController") as! SaveInputViewController
+        saveInputVC.navbarTitle = "班级名称"
+        saveInputVC.delegate = self
+        self.navigationController?.pushViewController(saveInputVC, animated: true)
+    }
+
+    private func showAddSchoolNC() {
+        let addSchoolNC = self.storyboard?.instantiateViewControllerWithIdentifier("AddSchoolNC") as! UINavigationController
+        addSchoolNC.modalTransitionStyle = .CoverVertical
+        self.presentViewController(addSchoolNC, animated: true, completion: nil)
+    }
+
+    func didFinishedInputToSave(input: String) {
+        classroomName = input
+        self.reloadTable()
     }
 
 }

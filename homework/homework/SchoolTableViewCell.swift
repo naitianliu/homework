@@ -1,5 +1,5 @@
 //
-//  DescriptionTableViewCell.swift
+//  SchoolTableViewCell.swift
 //  homework
 //
 //  Created by Liu, Naitian on 7/9/16.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class DescriptionTableViewCell: UITableViewCell {
+class SchoolTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,14 +24,12 @@ class DescriptionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configure(title: String?, value: String?) {
-        if let title = title {
-            self.titleLabel.text = title
-        }
-        if let value = value {
-            self.descriptionLabel.text = value
+    func configurate(name: String, location: String?) {
+        nameLabel.text = name
+        if let location = location {
+            locationLabel.text = location
         } else {
-            self.descriptionLabel.text = "未设置"
+            locationLabel.text = "未设置地址"
         }
     }
 

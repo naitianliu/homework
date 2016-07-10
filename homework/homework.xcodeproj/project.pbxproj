@@ -61,6 +61,12 @@
 		46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C904091D0387A3005FC496 /* Homework.storyboard */; };
 		46C9040E1D0393D4005FC496 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 46C9040D1D0393D4005FC496 /* Podfile */; };
 		46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */; };
+		46F899761D320BA800DF870C /* SchoolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899751D320BA800DF870C /* SchoolTableViewCell.swift */; };
+		46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899771D320BDC00DF870C /* SelectSchoolViewController.swift */; };
+		46F8997A1D32159800DF870C /* AddSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899791D32159800DF870C /* AddSchoolViewController.swift */; };
+		46F8997C1D32173E00DF870C /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */; };
+		46F899811D32218400DF870C /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8997F1D32218400DF870C /* InputTableViewCell.swift */; };
+		46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F899801D32218400DF870C /* InputTableViewCell.xib */; };
 		ED11B44D6143FAE9B7946627 /* Pods_homework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD00A1623BA7A175528BC45 /* Pods_homework.framework */; };
 		F631999A7901BE4EAE86D209 /* Pods_homeworkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FE513E4A346D16FFD6E649 /* Pods_homeworkUITests.framework */; };
 		F756BCEB10D7883DEF675ADE /* Pods_homeworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3504548DA935ED75A24501 /* Pods_homeworkTests.framework */; };
@@ -150,6 +156,12 @@
 		46C904091D0387A3005FC496 /* Homework.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Homework.storyboard; sourceTree = "<group>"; };
 		46C9040D1D0393D4005FC496 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		46F899751D320BA800DF870C /* SchoolTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolTableViewCell.swift; sourceTree = "<group>"; };
+		46F899771D320BDC00DF870C /* SelectSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSchoolViewController.swift; sourceTree = "<group>"; };
+		46F899791D32159800DF870C /* AddSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSchoolViewController.swift; sourceTree = "<group>"; };
+		46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		46F8997F1D32218400DF870C /* InputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		46F899801D32218400DF870C /* InputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
 		4AD00A1623BA7A175528BC45 /* Pods_homework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_homework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7BED0303C9F9FB464F17D0 /* Pods-homeworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-homeworkTests/Pods-homeworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		5D194A4F43ADECD7A5049F66 /* Pods-homeworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-homeworkTests/Pods-homeworkTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -358,6 +370,8 @@
 				4612AF521D2482D100044E60 /* ClassroomViewController.swift */,
 				468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */,
 				468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */,
+				46F899771D320BDC00DF870C /* SelectSchoolViewController.swift */,
+				46F899791D32159800DF870C /* AddSchoolViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -367,6 +381,10 @@
 			children = (
 				468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */,
 				46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */,
+				46F899751D320BA800DF870C /* SchoolTableViewCell.swift */,
+				46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */,
+				46F8997F1D32218400DF870C /* InputTableViewCell.swift */,
+				46F899801D32218400DF870C /* InputTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -583,12 +601,14 @@
 				4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */,
 				4612AF621D2489E800044E60 /* Home.storyboard in Resources */,
 				46C9040E1D0393D4005FC496 /* Podfile in Resources */,
+				46F8997C1D32173E00DF870C /* DescriptionTableViewCell.xib in Resources */,
 				46C903E21D038619005FC496 /* LaunchScreen.storyboard in Resources */,
 				46C903DF1D038619005FC496 /* Assets.xcassets in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
 				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
 				4612AF581D2483BC00044E60 /* Me.storyboard in Resources */,
 				46C903DD1D038619005FC496 /* Main.storyboard in Resources */,
+				46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */,
 				4612AF5B1D2483F200044E60 /* Find.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,6 +757,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */,
 				4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
 				4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */,
@@ -758,12 +779,14 @@
 				4612AF841D2CD48D00044E60 /* SaveInputViewController.swift in Sources */,
 				4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
+				46F899761D320BA800DF870C /* SchoolTableViewCell.swift in Sources */,
 				466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */,
 				46C903D81D038619005FC496 /* AppDelegate.swift in Sources */,
 				4600BD031D0CD0D500BF460D /* RecorderHelper.swift in Sources */,
 				4612AF771D2A2BDB00044E60 /* ProfileEditTableViewCell.swift in Sources */,
 				466223001D1258830067F338 /* OSSHelper.swift in Sources */,
 				468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */,
+				46F8997A1D32159800DF870C /* AddSchoolViewController.swift in Sources */,
 				468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */,
 				4612AF791D2B0BCC00044E60 /* UpdateAvatarViewController.swift in Sources */,
 				4612AF6D1D24985B00044E60 /* ForgetPasswordViewController.swift in Sources */,
@@ -776,6 +799,7 @@
 				4612AF731D2A1FBF00044E60 /* UpdateProfileViewController.swift in Sources */,
 				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
+				46F899811D32218400DF870C /* InputTableViewCell.swift in Sources */,
 				4612AF6F1D24987900044E60 /* ResetPasswordViewController.swift in Sources */,
 				46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */,
 				4612AF7D1D2B74AE00044E60 /* ImageHelper.swift in Sources */,

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DescriptionTableViewCell" rowHeight="44" id="d4K-s6-lxd" customClass="DescriptionTableViewCell" customModule="homework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4K-s6-lxd" id="yNz-F6-PPB">
+                <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMA-3V-xzg">
+                        <rect key="frame" x="13" y="13" width="109" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="gAm-nN-Rrx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-JP-Fgf">
+                        <rect key="frame" x="511" y="13" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gSa-JP-Fgf" firstAttribute="top" secondItem="yNz-F6-PPB" secondAttribute="topMargin" constant="5" id="2uh-gM-Ulz"/>
+                    <constraint firstItem="gSa-JP-Fgf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kMA-3V-xzg" secondAttribute="trailing" priority="750" constant="20" id="2xU-3Z-dIC"/>
+                    <constraint firstItem="kMA-3V-xzg" firstAttribute="top" secondItem="yNz-F6-PPB" secondAttribute="topMargin" constant="5" id="5JU-cg-kia"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gSa-JP-Fgf" secondAttribute="trailing" id="8bc-s4-iGC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gSa-JP-Fgf" secondAttribute="bottom" constant="5" id="Een-bc-hMU"/>
+                    <constraint firstItem="kMA-3V-xzg" firstAttribute="leading" secondItem="yNz-F6-PPB" secondAttribute="leadingMargin" constant="8" id="Xgs-HK-VEu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="descriptionLabel" destination="gSa-JP-Fgf" id="2cp-PM-qkk"/>
+                <outlet property="titleLabel" destination="kMA-3V-xzg" id="3qE-yn-RhP"/>
+            </connections>
+            <point key="canvasLocation" x="845" y="453"/>
+        </tableViewCell>
+    </objects>
+</document>
