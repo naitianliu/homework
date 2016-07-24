@@ -125,7 +125,10 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
 
     private func showSelectSchoolVC() {
         let selectSchoolVC = self.storyboard?.instantiateViewControllerWithIdentifier("SelectSchoolViewController") as! SelectSchoolViewController
-        
+        selectSchoolVC.completeSelectionBlockSetter { (id, name) in
+            // select id, name
+        }
+        self.navigationController?.pushViewController(selectSchoolVC, animated: true)
     }
 
     func didFinishedInputToSave(input: String) {

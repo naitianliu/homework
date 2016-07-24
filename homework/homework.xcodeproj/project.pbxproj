@@ -50,6 +50,8 @@
 		468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */; };
 		468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */; };
 		468BBA181D31E63300C944C4 /* ParameterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */; };
+		46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D8E1D4495300056EA84 /* EditTextViewController.swift */; };
+		46B67D911D4495300056EA84 /* EditTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B67D8F1D4495300056EA84 /* EditTextViewController.xib */; };
 		46C903D81D038619005FC496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D71D038619005FC496 /* AppDelegate.swift */; };
 		46C903DA1D038619005FC496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D91D038619005FC496 /* ViewController.swift */; };
 		46C903DD1D038619005FC496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C903DB1D038619005FC496 /* Main.storyboard */; };
@@ -139,6 +141,8 @@
 		468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomViewController.swift; sourceTree = "<group>"; };
 		468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetClassroomNameViewController.swift; sourceTree = "<group>"; };
 		468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterTableViewCell.swift; sourceTree = "<group>"; };
+		46B67D8E1D4495300056EA84 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
+		46B67D8F1D4495300056EA84 /* EditTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewController.xib; sourceTree = "<group>"; };
 		46C903D41D038619005FC496 /* homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C903D71D038619005FC496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C903D91D038619005FC496 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 		466222F91D12385F0067F338 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				46B67D8D1D4494E00056EA84 /* Views */,
 				466222FE1D1258740067F338 /* Aliyun */,
 				4600BD051D0CFA9100BF460D /* DateUtility.swift */,
 				466222FA1D12387F0067F338 /* CallAPIHelper.swift */,
@@ -395,6 +400,15 @@
 			children = (
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		46B67D8D1D4494E00056EA84 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				46B67D8E1D4495300056EA84 /* EditTextViewController.swift */,
+				46B67D8F1D4495300056EA84 /* EditTextViewController.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		46C903CB1D038619005FC496 = {
@@ -611,6 +625,7 @@
 				46C9040E1D0393D4005FC496 /* Podfile in Resources */,
 				46F8997C1D32173E00DF870C /* DescriptionTableViewCell.xib in Resources */,
 				46C903E21D038619005FC496 /* LaunchScreen.storyboard in Resources */,
+				46B67D911D4495300056EA84 /* EditTextViewController.xib in Resources */,
 				46C903DF1D038619005FC496 /* Assets.xcassets in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
 				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
@@ -767,6 +782,7 @@
 			files = (
 				46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */,
 				4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */,
+				46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
 				4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */,
 				4612AF671D2497CD00044E60 /* PhoneLoginViewController.swift in Sources */,

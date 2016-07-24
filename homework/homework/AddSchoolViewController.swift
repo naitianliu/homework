@@ -85,6 +85,10 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if (indexPath.section, indexPath.row) == (1, 0) {
+            let editTextVC = EditTextViewController(nibName: "EditTextViewController", bundle: nil)
+            self.navigationController?.pushViewController(editTextVC, animated: true)
+        }
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
+    struct Constant {
+        struct EmptySet {
+            static let title = "还没有添加任何学校或机构"
+            static let description = "点击添加按钮，添加您的学校或机构"
+        }
+    }
     typealias CompleteSelectionClosureType = (id: String, name: String) -> Void
 
     @IBOutlet weak var tableView: UITableView!
@@ -21,7 +28,9 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +44,10 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+
+    func completeSelectionBlockSetter(completion: CompleteSelectionClosureType) {
+        self.completeSelectionBlock = completion
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +64,28 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+    }
+
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = Constant.EmptySet.title
+        let attributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(18),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = Constant.EmptySet.description
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        paragraph.alignment = NSTextAlignment.Center
+        let attributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(15),
+            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+            NSParagraphStyleAttributeName: paragraph
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
     }
 
     private func showAddSchoolNC() {
