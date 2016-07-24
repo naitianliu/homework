@@ -37,11 +37,15 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
     }
 
     @IBAction func cancelButtonOnClick(sender: AnyObject) {
-
+        self.dismissViewControllerAnimated(true) { 
+            self.reloadTable()
+        }
     }
 
     @IBAction func doneButtonOnClick(sender: AnyObject) {
-
+        self.dismissViewControllerAnimated(true) { 
+            self.reloadTable()
+        }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -105,7 +109,7 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
         case (0, 0):
             self.showSaveInputVCForName()
         case (1, 0):
-            self.showAddSchoolNC()
+            self.showSelectSchoolVC()
         default:
             break
         }
@@ -119,10 +123,9 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController?.pushViewController(saveInputVC, animated: true)
     }
 
-    private func showAddSchoolNC() {
-        let addSchoolNC = self.storyboard?.instantiateViewControllerWithIdentifier("AddSchoolNC") as! UINavigationController
-        addSchoolNC.modalTransitionStyle = .CoverVertical
-        self.presentViewController(addSchoolNC, animated: true, completion: nil)
+    private func showSelectSchoolVC() {
+        let selectSchoolVC = self.storyboard?.instantiateViewControllerWithIdentifier("SelectSchoolViewController") as! SelectSchoolViewController
+        
     }
 
     func didFinishedInputToSave(input: String) {

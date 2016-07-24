@@ -248,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				4612AF4D1D23803400044E60 /* Classroom.storyboard */,
+				46B67D8C1D4451780056EA84 /* Model */,
 				468BBA121D31C0F800C944C4 /* Views */,
 				468BBA111D31C0EC00C944C4 /* View Controllers */,
 			);
@@ -387,6 +388,13 @@
 				46F899801D32218400DF870C /* InputTableViewCell.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		46B67D8C1D4451780056EA84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		46C903CB1D038619005FC496 = {

@@ -38,6 +38,18 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
     }
 
+    @IBAction func cancelButtonOnClick(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true) { 
+            self.reloadTable()
+        }
+    }
+
+    @IBAction func confirmButtonOnClick(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true) { 
+            self.reloadTable()
+        }
+    }
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }

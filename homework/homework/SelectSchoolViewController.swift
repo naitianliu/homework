@@ -10,7 +10,11 @@ import UIKit
 
 class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    typealias CompleteSelectionClosureType = (id: String, name: String) -> Void
+
     @IBOutlet weak var tableView: UITableView!
+
+    var completeSelectionBlock: CompleteSelectionClosureType?
 
     var data = [String: String?]()
 
@@ -26,7 +30,7 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     @IBAction func addButtonOnClick(sender: AnyObject) {
-        
+        self.showAddSchoolNC()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,6 +47,16 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
         let location = data["location"]!
         cell.configurate(name, location: location)
         return cell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
+
+    private func showAddSchoolNC() {
+        let addSchoolNC = self.storyboard?.instantiateViewControllerWithIdentifier("AddSchoolNC") as! UINavigationController
+        addSchoolNC.modalTransitionStyle = .CoverVertical
+        self.presentViewController(addSchoolNC, animated: true, completion: nil)
     }
 
 }
