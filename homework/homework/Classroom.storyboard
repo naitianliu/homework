@@ -51,13 +51,10 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lr1-iM-LT3">
                                                             <rect key="frame" x="17" y="8" width="165" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="onP-46-FYJ"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwi-VJ-6Hy">
-                                                            <rect key="frame" x="17" y="59" width="68" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -110,6 +107,9 @@
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="全部学生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xor-J4-8mg">
                                                             <rect key="frame" x="17" y="237" width="68" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="PVZ-ui-bFs"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
@@ -122,14 +122,26 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xe7-hQ-jTe">
                                                             <rect key="frame" x="17" y="30" width="137" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="4w3-aN-hVT"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwi-VJ-6Hy">
+                                                            <rect key="frame" x="17" y="59" width="68" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="68" id="ls2-bg-0N2"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="7OP-sR-yig" secondAttribute="trailing" constant="15" id="4Kb-oA-8bt"/>
+                                                        <constraint firstAttribute="trailing" secondItem="7OP-sR-yig" secondAttribute="trailing" constant="20" id="4Kb-oA-8bt"/>
                                                         <constraint firstItem="tmn-Vb-Qyz" firstAttribute="leading" secondItem="1pT-IG-pIi" secondAttribute="leading" constant="15" id="4Qt-6k-MD2"/>
                                                         <constraint firstItem="xe7-hQ-jTe" firstAttribute="leading" secondItem="lr1-iM-LT3" secondAttribute="leading" id="6ZH-Ke-W7k"/>
                                                         <constraint firstItem="Xor-J4-8mg" firstAttribute="top" secondItem="tmn-Vb-Qyz" secondAttribute="bottom" constant="10" id="A9V-tb-EPa"/>
@@ -138,10 +150,10 @@
                                                         <constraint firstAttribute="trailing" secondItem="bIv-x1-tYH" secondAttribute="trailing" constant="10" id="FPc-Ed-3dh"/>
                                                         <constraint firstItem="7OP-sR-yig" firstAttribute="top" secondItem="Xor-J4-8mg" secondAttribute="top" id="GGM-9L-EX5"/>
                                                         <constraint firstAttribute="height" constant="160" id="IIN-zL-NYM"/>
-                                                        <constraint firstItem="xe7-hQ-jTe" firstAttribute="top" secondItem="lr1-iM-LT3" secondAttribute="bottom" constant="1" id="Ien-Cn-jOa"/>
+                                                        <constraint firstItem="xe7-hQ-jTe" firstAttribute="top" secondItem="lr1-iM-LT3" secondAttribute="bottom" id="Ien-Cn-jOa"/>
                                                         <constraint firstItem="jwi-VJ-6Hy" firstAttribute="leading" secondItem="xe7-hQ-jTe" secondAttribute="leading" id="K2A-Qf-RRW"/>
                                                         <constraint firstItem="Xor-J4-8mg" firstAttribute="leading" secondItem="jwi-VJ-6Hy" secondAttribute="leading" id="LYV-kr-dTA"/>
-                                                        <constraint firstItem="jwi-VJ-6Hy" firstAttribute="top" secondItem="xe7-hQ-jTe" secondAttribute="bottom" id="XNk-zu-ThM"/>
+                                                        <constraint firstItem="jwi-VJ-6Hy" firstAttribute="top" secondItem="xe7-hQ-jTe" secondAttribute="bottom" constant="10" id="XNk-zu-ThM"/>
                                                         <constraint firstAttribute="trailing" secondItem="tmn-Vb-Qyz" secondAttribute="trailing" constant="15" id="YuZ-SP-hNw"/>
                                                         <constraint firstItem="lr1-iM-LT3" firstAttribute="top" secondItem="1pT-IG-pIi" secondAttribute="top" constant="10" id="aly-8D-sPe"/>
                                                         <constraint firstItem="lr1-iM-LT3" firstAttribute="leading" secondItem="1pT-IG-pIi" secondAttribute="leading" constant="15" id="fXE-wE-fI6"/>

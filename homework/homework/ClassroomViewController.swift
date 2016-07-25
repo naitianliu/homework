@@ -13,19 +13,38 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
-    var data = [String: AnyObject]()
+    var data: [[String: AnyObject]] = []
+
+    let sampleData = [
+        "classroomName": "暑期英语集训班",
+        "schoolName": "Wonderland学科英语",
+        "profileImgURLs": [
+            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
+            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
+            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"
+        ],
+        "studentNumber": "6"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.data.append(sampleData)
+        self.data.append(sampleData)
+
         self.tableView.estimatedRowHeight = 120
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
+        self.reloadTable()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    private func reloadTable() {
+        self.tableView.reloadData()
     }
     
     @IBAction func actionButtonOnClick(sender: AnyObject) {
@@ -59,6 +78,12 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ClassroomTableViewCell") as! ClassroomTableViewCell
+        let rowData = self.data[indexPath.row]
+        let classroomName: String = rowData["classroomName"]! as! String
+        let schoolName: String? = rowData["schoolName"]! as? String
+        let profileImgURLs: [String] = rowData["profileImgURLs"]! as! [String]
+        let studentNumber: String = rowData["studentNumber"]! as! String
+        cell.configurate(classroomName, schoolName: schoolName, profileImgURLs: profileImgURLs, studentNumber: studentNumber)
         return cell
     }
 
