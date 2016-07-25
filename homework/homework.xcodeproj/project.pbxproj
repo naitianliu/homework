@@ -52,6 +52,7 @@
 		468BBA181D31E63300C944C4 /* ParameterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */; };
 		46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D8E1D4495300056EA84 /* EditTextViewController.swift */; };
 		46B67D911D4495300056EA84 /* EditTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B67D8F1D4495300056EA84 /* EditTextViewController.xib */; };
+		46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */; };
 		46C903D81D038619005FC496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D71D038619005FC496 /* AppDelegate.swift */; };
 		46C903DA1D038619005FC496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D91D038619005FC496 /* ViewController.swift */; };
 		46C903DD1D038619005FC496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C903DB1D038619005FC496 /* Main.storyboard */; };
@@ -143,6 +144,7 @@
 		468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterTableViewCell.swift; sourceTree = "<group>"; };
 		46B67D8E1D4495300056EA84 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		46B67D8F1D4495300056EA84 /* EditTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewController.xib; sourceTree = "<group>"; };
+		46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomTableViewCell.swift; sourceTree = "<group>"; };
 		46C903D41D038619005FC496 /* homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C903D71D038619005FC496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C903D91D038619005FC496 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */,
 				46F8997F1D32218400DF870C /* InputTableViewCell.swift */,
 				46F899801D32218400DF870C /* InputTableViewCell.xib */,
+				46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
 				46F899811D32218400DF870C /* InputTableViewCell.swift in Sources */,
 				4612AF6F1D24987900044E60 /* ResetPasswordViewController.swift in Sources */,
+				46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */,
 				46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */,
 				4612AF7D1D2B74AE00044E60 /* ImageHelper.swift in Sources */,
 			);

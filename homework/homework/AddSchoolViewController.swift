@@ -87,6 +87,10 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section, indexPath.row) == (1, 0) {
             let editTextVC = EditTextViewController(nibName: "EditTextViewController", bundle: nil)
+            editTextVC.completionEditBlockSetter({ (text) in
+                self.schoolDescription = text
+                self.reloadTable()
+            })
             self.navigationController?.pushViewController(editTextVC, animated: true)
         }
     }

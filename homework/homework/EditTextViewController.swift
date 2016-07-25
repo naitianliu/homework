@@ -15,6 +15,9 @@ class EditTextViewController: UIViewController {
     var placeholder: String?
     @IBOutlet weak var contentTextView: SZTextView!
 
+    typealias CompleteEditClosureType = (text: String) -> Void
+    var completionEditBlock: CompleteEditClosureType?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,11 +34,17 @@ class EditTextViewController: UIViewController {
         }
 
         self.initiateConfirmButton()
+
+        self.contentTextView.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func completionEditBlockSetter(completion: CompleteEditClosureType) {
+        self.completionEditBlock = completion
     }
 
     func initiateConfirmButton() {
@@ -45,6 +54,11 @@ class EditTextViewController: UIViewController {
 
     func confirmButtonOnClick(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+        let text = contentTextView.text!
+        if let completionEditBlock = self.completionEditBlock {
+            completionEditBlock(text: text)
+        }
+
     }
 
 }

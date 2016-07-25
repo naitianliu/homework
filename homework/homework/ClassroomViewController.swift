@@ -18,7 +18,9 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.tableView.estimatedRowHeight = 120
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,9 +58,12 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("ClassroomTableViewCell") as! ClassroomTableViewCell
         return cell
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 
 }
