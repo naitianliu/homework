@@ -87,6 +87,11 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let classroomDetailVC = self.storyboard?.instantiateViewControllerWithIdentifier("ClassroomDetailViewController") as! ClassroomDetailViewController
+        self.navigationController?.pushViewController(classroomDetailVC, animated: true)
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
