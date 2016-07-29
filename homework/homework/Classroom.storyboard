@@ -531,8 +531,8 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="homeworkCountLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boW-f5-g3N">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular" misplaced="YES">
                                             <rect key="frame" x="99" y="8" width="394" height="21"/>
@@ -581,12 +581,16 @@
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="boW-f5-g3N" secondAttribute="trailing" constant="20" id="8cn-ZM-M4U"/>
                                     <constraint firstItem="vnq-bP-1iA" firstAttribute="leading" secondItem="Yfk-Sj-FFf" secondAttribute="leading" constant="30" id="Nvp-48-OFA"/>
-                                    <constraint firstItem="boW-f5-g3N" firstAttribute="top" secondItem="Yfk-Sj-FFf" secondAttribute="top" constant="5" id="OCx-of-cdv"/>
+                                    <constraint firstItem="boW-f5-g3N" firstAttribute="top" secondItem="Yfk-Sj-FFf" secondAttribute="top" constant="5" id="OCx-of-cdv">
+                                        <variation key="heightClass=regular" constant="10"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="mQO-Y5-8zG" secondAttribute="trailing" id="XGV-aD-myR"/>
                                     <constraint firstItem="boW-f5-g3N" firstAttribute="leading" secondItem="Yfk-Sj-FFf" secondAttribute="leading" constant="20" id="ouO-Gh-hUN"/>
                                     <constraint firstItem="vnq-bP-1iA" firstAttribute="top" secondItem="mQO-Y5-8zG" secondAttribute="bottom" constant="30" id="sdb-R1-IBb"/>
                                     <constraint firstItem="mQO-Y5-8zG" firstAttribute="leading" secondItem="Yfk-Sj-FFf" secondAttribute="leading" id="tde-xz-I3G"/>
-                                    <constraint firstItem="mQO-Y5-8zG" firstAttribute="top" secondItem="boW-f5-g3N" secondAttribute="bottom" constant="5" id="vGe-kh-JEz"/>
+                                    <constraint firstItem="mQO-Y5-8zG" firstAttribute="top" secondItem="boW-f5-g3N" secondAttribute="bottom" constant="5" id="vGe-kh-JEz">
+                                        <variation key="heightClass=regular" constant="10"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">

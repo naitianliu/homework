@@ -19,14 +19,35 @@ class ClassroomDetailViewController: UIViewController {
 
     var numberOfLayoutCalls = 0
 
-    let sampleData = ["test1", "test2", "test3"]
+    let sampleData: [String: AnyObject] = [
+        "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
+        "teacher": "Ali",
+        "homeworkType": "朗读作业",
+        "time": "昨天 12:55pm",
+        "homeworkContent": "英语教材新概念英语第一册Lession 1阅读文章读三遍",
+        "dueDate": "6月1日 星期三"
+    ]
+
+    var cardDataArray = [[String: AnyObject]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        homeworkCountLabel.text = "当前作业"
+        self.cardDataArray.append(sampleData)
+        self.cardDataArray.append(sampleData)
+
+        self.countHomeworkNumber()
 
         numberOfLayoutCalls = 0
+
+        swipeView.didTap = {view, location in
+            // action when tap view
+        }
+
+        swipeView.didEnd = {view, location in
+            // count
+            self.countHomeworkNumber()
+        }
         
     }
 
@@ -38,7 +59,7 @@ class ClassroomDetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
         numberOfLayoutCalls += 1
         if numberOfLayoutCalls > 1 {
-            swipeView.numberOfActiveView = UInt(sampleData.count)
+            swipeView.numberOfActiveView = UInt(self.cardDataArray.count)
             swipeView.nextView = {
                 return self.nextCardView()
             }
@@ -50,20 +71,25 @@ class ClassroomDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    private func countHomeworkNumber() {
+        homeworkCountLabel.text = "当前作业 (\(currentIndex+1)/\(self.cardDataArray.count))"
+    }
+
     func nextCardView() -> UIView? {
-        if currentIndex >= sampleData.count {
-            currentIndex = 0
-        }
 
         let cardView = HomeworkCardView(frame: self.swipeView.bounds)
 
         let contentView = NSBundle.mainBundle().loadNibNamed("HomeworkCardContentView", owner: self, options: nil).first! as! HomewordCardContentView
-        contentView.configurate(sampleData[currentIndex])
+        contentView.configurate(self.cardDataArray[currentIndex])
         currentIndex += 1
         contentView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(contentView)
 
         self.constrain(cardView, view2: contentView)
+
+        if currentIndex >= cardDataArray.count {
+            currentIndex = 0
+        }
 
         return cardView
 
