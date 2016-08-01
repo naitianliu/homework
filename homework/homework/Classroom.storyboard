@@ -60,7 +60,7 @@
                                                         </label>
                                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tmn-Vb-Qyz" userLabel="LineView">
                                                             <rect key="frame" x="8" y="228" width="544" height="1"/>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="1" id="0yc-9g-Gxu"/>
                                                             </constraints>

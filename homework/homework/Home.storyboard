@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,7 +24,7 @@
         <!--首页-->
         <scene sceneID="jP5-CM-3pI">
             <objects>
-                <viewController id="Kls-JO-GLo" sceneMemberID="viewController">
+                <viewController id="Kls-JO-GLo" customClass="HomeViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V15-xP-cl9"/>
                         <viewControllerLayoutGuide type="bottom" id="nHV-NW-TFh"/>
@@ -34,7 +34,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="首页" id="IU1-2l-Vku"/>
+                    <navigationItem key="navigationItem" title="首页" id="IU1-2l-Vku">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4lG-Jx-F4a">
+                            <connections>
+                                <action selector="addButtonOnClick:" destination="Kls-JO-GLo" id="hFm-hq-Qw9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="4lG-Jx-F4a" id="l4x-nv-yqf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZuZ-5l-yi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

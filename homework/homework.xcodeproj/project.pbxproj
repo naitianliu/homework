@@ -60,6 +60,7 @@
 		46B67D9F1D4966DA0056EA84 /* ClassroomDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D9E1D4966DA0056EA84 /* ClassroomDetailViewController.swift */; };
 		46B67DA11D49BDC90056EA84 /* HomeworkCardContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B67DA01D49BDC90056EA84 /* HomeworkCardContentView.xib */; };
 		46B67DA31D49C2110056EA84 /* HomewordCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67DA21D49C2110056EA84 /* HomewordCardContentView.swift */; };
+		46B67DAA1D4F230B0056EA84 /* SelectHWTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67DA91D4F230B0056EA84 /* SelectHWTypeViewController.swift */; };
 		46C903D81D038619005FC496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D71D038619005FC496 /* AppDelegate.swift */; };
 		46C903DA1D038619005FC496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C903D91D038619005FC496 /* ViewController.swift */; };
 		46C903DD1D038619005FC496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C903DB1D038619005FC496 /* Main.storyboard */; };
@@ -159,6 +160,7 @@
 		46B67D9E1D4966DA0056EA84 /* ClassroomDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomDetailViewController.swift; sourceTree = "<group>"; };
 		46B67DA01D49BDC90056EA84 /* HomeworkCardContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeworkCardContentView.xib; sourceTree = "<group>"; };
 		46B67DA21D49C2110056EA84 /* HomewordCardContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomewordCardContentView.swift; sourceTree = "<group>"; };
+		46B67DA91D4F230B0056EA84 /* SelectHWTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectHWTypeViewController.swift; sourceTree = "<group>"; };
 		46C903D41D038619005FC496 /* homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C903D71D038619005FC496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46C903D91D038619005FC496 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				4600BCFA1D07D44F00BF460D /* TextHWCameraViewController.swift */,
 				4600BCFD1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift */,
 				4600BCFF1D0B8C4800BF460D /* AudioHWRecordViewController.swift */,
+				46B67DA91D4F230B0056EA84 /* SelectHWTypeViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */,
 				4612AF6B1D24982B00044E60 /* SetPasswordViewController.swift in Sources */,
+				46B67DAA1D4F230B0056EA84 /* SelectHWTypeViewController.swift in Sources */,
 				46C904081D03871F005FC496 /* TextHWViewController.swift in Sources */,
 				466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */,
 				4612AF711D29E5A400044E60 /* AlertHelper.swift in Sources */,
