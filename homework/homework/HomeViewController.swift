@@ -79,7 +79,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if indexPath.row == 1 {
                 let homeworkSB = UIStoryboard(name: "Homework", bundle: nil)
                 let selectHWTypeVC = homeworkSB.instantiateViewControllerWithIdentifier("SelectHWTypeViewController") as! SelectHWTypeViewController
-                selectHWTypeVC.modalTransitionStyle = .CrossDissolve
+                selectHWTypeVC.modalPresentationStyle = .OverFullScreen
                 self.presentViewController(selectHWTypeVC, animated: true, completion: nil)
             }
         }
