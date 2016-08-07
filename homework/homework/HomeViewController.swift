@@ -14,6 +14,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var popover: Popover!
     @IBOutlet weak var addButton: UIBarButtonItem!
 
+    typealias CreateClassroomClosureType = () -> Void
+    var createClassroomBlock: CreateClassroomClosureType?
+
     let popoverTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 140, height: 131))
     let popoverMenuData = [
         ["image": "icon-classroom", "title": "创建班级"],
@@ -76,11 +79,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if tableView == popoverTableView {
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
             self.popover.dismiss()
-            if indexPath.row == 1 {
+            if indexPath.row == 0 {
+                self.createClassroomBlock!()
+            } else if indexPath.row == 1 {
                 let homeworkSB = UIStoryboard(name: "Homework", bundle: nil)
                 let selectHWTypeVC = homeworkSB.instantiateViewControllerWithIdentifier("SelectHWTypeViewController") as! SelectHWTypeViewController
                 selectHWTypeVC.modalPresentationStyle = .OverFullScreen
                 self.presentViewController(selectHWTypeVC, animated: true, completion: nil)
+            } else if indexPath.row == 2 {
+
             }
         }
     }

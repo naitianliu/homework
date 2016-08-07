@@ -63,13 +63,24 @@ class SelectHWTypeViewController: UIViewController {
     }
 
     func homeworkTypeButtonOnClick(sender: UIButton!) {
-        print(sender.tag)
+        let index = sender.tag
+        self.performDidSelectHomewworkType(index)
     }
 
     @IBAction func cancelButtonOnClick(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { 
 
         }
+    }
+
+    private func performDidSelectHomewworkType(index: Int) {
+        self.dismissViewControllerAnimated(false, completion: nil)
+        let createHWNC = self.storyboard?.instantiateViewControllerWithIdentifier("CreateHWNC") as! UINavigationController
+        let createHWVC = createHWNC.viewControllers[0] as! CreateHWViewController
+        createHWVC.homeworkTypeIndex = index
+        createHWNC.modalTransitionStyle = .CoverVertical
+        let vc = self.view.window?.rootViewController
+        vc!.presentViewController(createHWNC, animated: true, completion: nil)
     }
 
 }

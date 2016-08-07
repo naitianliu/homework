@@ -30,6 +30,10 @@ class MainTabBarController: UITabBarController {
         homeNC = homeStoryboard.instantiateViewControllerWithIdentifier("HomeNC") as! UINavigationController
         homeNC.tabBarItem.title = "首页"
         homeNC.tabBarItem.image = UIImage(named: "tab-home")
+        let homeVC: HomeViewController = homeNC.viewControllers[0] as! HomeViewController
+        homeVC.createClassroomBlock = { () in
+            self.createClassroom()
+        }
         
         classroomNC = classroomStoryboard.instantiateViewControllerWithIdentifier("ClassroomNC") as! UINavigationController
         classroomNC.tabBarItem.title = "班级"
@@ -61,6 +65,12 @@ class MainTabBarController: UITabBarController {
         dispatch_async(dispatch_get_main_queue()) { 
             self.presentViewController(updateProfileNC, animated: true, completion: nil)
         }
+    }
+
+    private func createClassroom() {
+        self.selectedIndex = 1
+        let classroomVC = self.classroomNC.viewControllers[0] as! ClassroomViewController
+        classroomVC.willCreateClassroom = true
     }
 
 }

@@ -15,6 +15,8 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
 
     var data: [[String: AnyObject]] = []
 
+    var willCreateClassroom = false
+
     let sampleData = [
         "classroomName": "暑期英语集训班",
         "schoolName": "Wonderland学科英语",
@@ -41,6 +43,14 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if willCreateClassroom {
+            self.showSetNameVC()
+            willCreateClassroom = false
+        }
     }
 
     private func reloadTable() {
