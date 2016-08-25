@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460055841D6E57CE006AA8AA /* APISchoolCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460055831D6E57CE006AA8AA /* APISchoolCreate.swift */; };
+		460055861D6EA869006AA8AA /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460055851D6EA869006AA8AA /* MemberModel.swift */; };
+		460055881D6EA886006AA8AA /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460055871D6EA886006AA8AA /* ProfileModel.swift */; };
 		4600BCF21D04CD4000BF460D /* TextHWMarkViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF11D04CD4000BF460D /* TextHWMarkViewHelper.swift */; };
 		4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF31D04E5A200BF460D /* GlobalConstants.swift */; };
 		4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600BCF81D05222300BF460D /* TextHWMarkActionsView.swift */; };
@@ -105,6 +108,9 @@
 
 /* Begin PBXFileReference section */
 		33FE513E4A346D16FFD6E649 /* Pods_homeworkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_homeworkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		460055831D6E57CE006AA8AA /* APISchoolCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISchoolCreate.swift; sourceTree = "<group>"; };
+		460055851D6EA869006AA8AA /* MemberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
+		460055871D6EA886006AA8AA /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		4600BCF11D04CD4000BF460D /* TextHWMarkViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWMarkViewHelper.swift; sourceTree = "<group>"; };
 		4600BCF31D04E5A200BF460D /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		4600BCF81D05222300BF460D /* TextHWMarkActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHWMarkActionsView.swift; sourceTree = "<group>"; };
@@ -241,6 +247,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		460055821D6E578E006AA8AA /* API */ = {
+			isa = PBXGroup;
+			children = (
+				460055831D6E57CE006AA8AA /* APISchoolCreate.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		4600BCF01D04CCCB00BF460D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				4612AF4D1D23803400044E60 /* Classroom.storyboard */,
+				460055821D6E578E006AA8AA /* API */,
 				46B67D8C1D4451780056EA84 /* Model */,
 				468BBA121D31C0F800C944C4 /* Views */,
 				468BBA111D31C0EC00C944C4 /* View Controllers */,
@@ -432,6 +447,8 @@
 			children = (
 				46B67D981D4828FC0056EA84 /* SchoolModel.swift */,
 				46B67D9A1D4829120056EA84 /* ClassroomModel.swift */,
+				460055851D6EA869006AA8AA /* MemberModel.swift */,
+				460055871D6EA886006AA8AA /* ProfileModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -831,7 +848,9 @@
 				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
 				4612AF5D1D2483FE00044E60 /* FindViewController.swift in Sources */,
 				4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */,
+				460055861D6EA869006AA8AA /* MemberModel.swift in Sources */,
 				4612AF601D2489DE00044E60 /* HomeViewController.swift in Sources */,
+				460055881D6EA886006AA8AA /* ProfileModel.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */,
 				4612AF6B1D24982B00044E60 /* SetPasswordViewController.swift in Sources */,
@@ -856,6 +875,7 @@
 				4612AF791D2B0BCC00044E60 /* UpdateAvatarViewController.swift in Sources */,
 				4612AF6D1D24985B00044E60 /* ForgetPasswordViewController.swift in Sources */,
 				468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */,
+				460055841D6E57CE006AA8AA /* APISchoolCreate.swift in Sources */,
 				468BBA181D31E63300C944C4 /* ParameterTableViewCell.swift in Sources */,
 				4612AF7B1D2B4E5700044E60 /* FileHelper.swift in Sources */,
 				46B67D9B1D4829120056EA84 /* ClassroomModel.swift in Sources */,

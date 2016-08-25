@@ -13,9 +13,10 @@ class SchoolModel: Object {
     
     dynamic var uuid: String = ""
     dynamic var name: String = ""
-    dynamic var introduction: String = ""
-    dynamic var address: String = ""
+    dynamic var address: String?
     dynamic var creator: String = ""
+    dynamic var createdTimestamp: Int = 0
+    dynamic var updatedTimestamp: Int = 0
 
     override static func primaryKey() -> String {
         return "uuid"
@@ -29,13 +30,16 @@ class SchoolModelHelper {
 
     }
 
-    func add(uuid: String, name: String, introduction: String, address: String, creator: String) {
+    func add(uuid: String, name: String, address: String?, timestamp: Int) {
         let school = SchoolModel()
         school.uuid = uuid
         school.name = name
-        school.introduction = introduction
         school.address = address
-        school.creator = creator
+        if let creator = UserDefaultsHelper().getUsername() {
+            school.creator = creator
+        }
+        school.createdTimestamp = timestamp
+        school.updatedTimestamp = timestamp
         do {
             let realm = try Realm()
             try realm.write({ 
@@ -46,15 +50,14 @@ class SchoolModelHelper {
         }
     }
 
-    func getAll() -> [[String: String]] {
-        var schools: [[String: String]] = []
+    func getAll() -> [[String: String?]] {
+        var schools: [[String: String?]] = []
         do {
             let realm = try Realm()
             for item in realm.objects(SchoolModel) {
                 let rowDict = [
                     "uuid": item.uuid,
                     "name": item.name,
-                    "introduction": item.introduction,
                     "address": item.address,
                     "creator": item.creator
                 ]

@@ -24,10 +24,10 @@ class SchoolTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configurate(name: String, location: String?) {
+    func configurate(name: String, address: String?) {
         nameLabel.text = name
-        if let location = location {
-            locationLabel.text = location
+        if let address = address {
+            locationLabel.text = address
         } else {
             locationLabel.text = "未设置地址"
         }

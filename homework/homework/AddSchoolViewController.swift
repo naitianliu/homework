@@ -18,7 +18,7 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
 
     var schoolName: String?
-    var schoolDescription: String?
+    var schoolAddress: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +40,16 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBAction func cancelButtonOnClick(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { 
-            self.reloadTable()
+
         }
     }
 
     @IBAction func confirmButtonOnClick(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { 
-            self.reloadTable()
+        if self.schoolName == nil {
+            AlertHelper(viewController: self).showPromptAlertView("学校名称不能为空")
+            return
         }
+        APISchoolCreate(vc: self).run(self.schoolName!, address: self.schoolAddress)
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -70,7 +72,7 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
         case (1, 0):
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionTableViewCell") as! DescriptionTableViewCell
             let title = "详细地址"
-            cell.configure(title, value: schoolDescription)
+            cell.configure(title, value: self.schoolAddress)
             return cell
         default:
             let cell = UITableViewCell()
@@ -88,7 +90,7 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
         if (indexPath.section, indexPath.row) == (1, 0) {
             let editTextVC = EditTextViewController(nibName: "EditTextViewController", bundle: nil)
             editTextVC.completionEditBlockSetter({ (text) in
-                self.schoolDescription = text
+                self.schoolAddress = text
                 self.reloadTable()
             })
             self.navigationController?.pushViewController(editTextVC, animated: true)

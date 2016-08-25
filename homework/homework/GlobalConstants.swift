@@ -43,4 +43,6 @@ struct APIURL {
     static let authPhoneRegister = "\(APIEndpoint)/auth/phone/register/"
     static let authUserProfileUpdate = "\(APIEndpoint)/auth/user/profile/update/"
 
+    static let schoolCreate = "\(APIEndpoint)/school/create/"
+
 }

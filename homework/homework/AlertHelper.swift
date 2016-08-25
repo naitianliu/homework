@@ -11,10 +11,10 @@ import UIKit
 
 class AlertHelper {
 
-    let kAlertTitle = "提示"
-    let kAlertCancelButtonTitle = "知道了"
+    private let kAlertTitle = "提示"
+    private let kAlertCancelButtonTitle = "知道了"
 
-    var viewController: UIViewController
+    private var viewController: UIViewController
 
     init(viewController: UIViewController) {
         self.viewController = viewController

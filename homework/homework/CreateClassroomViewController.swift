@@ -15,7 +15,8 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
     var classroomName: String?
     var teacherNumber: Int = 1
     var studentNumber: Int = 0
-    var school: String?
+    var schoolUUID: String?
+    var schoolName: String?
     var classroomDescription: String?
 
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section, indexPath.row) == (2, 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionTableViewCell") as! DescriptionTableViewCell
-            let title = "班级描述"
+            let title = "班级介绍"
             let value = classroomDescription
             cell.configure(title, value: value)
             return cell
@@ -77,7 +78,7 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
             value = classroomName!
         case (1, 0):
             title = "所属学校或机构"
-            value = school
+            value = schoolName
         case (3, 0):
             title = "全部教师"
             value = String(teacherNumber)
@@ -110,6 +111,8 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
             self.showSaveInputVCForName()
         case (1, 0):
             self.showSelectSchoolVC()
+        case (2, 0):
+            self.showEditDescriptionVC()
         default:
             break
         }
@@ -127,8 +130,22 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
         let selectSchoolVC = self.storyboard?.instantiateViewControllerWithIdentifier("SelectSchoolViewController") as! SelectSchoolViewController
         selectSchoolVC.completeSelectionBlockSetter { (id, name) in
             // select id, name
+            self.schoolName = name
+            self.schoolUUID = id
+            self.reloadTable()
+
         }
         self.navigationController?.pushViewController(selectSchoolVC, animated: true)
+    }
+
+    private func showEditDescriptionVC() {
+        let editTextVC = EditTextViewController(nibName: "EditTextViewController", bundle: nil)
+        editTextVC.navbarTitle = "编辑班级介绍"
+        editTextVC.completionEditBlockSetter({ (text) in
+            self.classroomDescription = text
+            self.reloadTable()
+        })
+        self.navigationController?.pushViewController(editTextVC, animated: true)
     }
 
     func didFinishedInputToSave(input: String) {

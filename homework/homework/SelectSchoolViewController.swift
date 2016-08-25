@@ -23,7 +23,7 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
 
     var completeSelectionBlock: CompleteSelectionClosureType?
 
-    var data = [String: String?]()
+    var data: [[String: String?]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +31,23 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
 
+        self.reloadTable()
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadTable()
+    }
+
+    private func reloadTable() {
+        data = SchoolModelHelper().getAll()
+        tableView.reloadData()
     }
 
     @IBAction func addButtonOnClick(sender: AnyObject) {
@@ -56,14 +68,21 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SchoolTableViewCell") as! SchoolTableViewCell
-        let name = data["name"]!!
-        let location = data["location"]!
-        cell.configurate(name, location: location)
+        let rowDict = data[indexPath.row]
+        let name = rowDict["name"]!!
+        let address = rowDict["address"]!
+        cell.configurate(name, address: address)
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let rowDict = data[indexPath.row]
+        let schoolUUID: String = rowDict["uuid"]!!
+        let schoolName: String = rowDict["name"]!!
+        self.navigationController?.popViewControllerWithCompletion(true, complete: { 
+            self.completeSelectionBlock!(id: schoolUUID, name: schoolName)
+        })
     }
 
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

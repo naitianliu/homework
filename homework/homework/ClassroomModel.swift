@@ -11,6 +11,99 @@ import RealmSwift
 
 class ClassroomModel: Object {
     
-    
+    dynamic var uuid: String = ""
+    dynamic var name: String = ""
+    dynamic var introduction: String = ""
+    dynamic var creator: String = ""
+    dynamic var schoolUUID: String = ""
+    dynamic var code: String = ""
+    dynamic var acitve: Bool = true
+    dynamic var createdTimestamp: Int = 0
+    dynamic var updatedTimestamp: Int = 0
+
+    override static func primaryKey() -> String {
+        return "uuid"
+    }
 
 }
+
+class ClassroomModelHelper {
+
+    let memberModelHelper = MemberModelHelper()
+
+    init() {
+
+    }
+
+    func add(uuid: String, name: String, introduction: String, schoolUUID: String, code: String, timestamp: Int, members: [[String: String]]?) {
+        let classroom = ClassroomModel()
+        classroom.uuid = uuid
+        classroom.name = name
+        classroom.introduction = introduction
+        classroom.schoolUUID = schoolUUID
+        classroom.code = code
+        classroom.acitve = true
+        classroom.createdTimestamp = timestamp
+        classroom.updatedTimestamp = timestamp
+        if let creator = UserDefaultsHelper().getUsername() {
+            classroom.creator = creator
+        }
+        do {
+            let realm = try Realm()
+            try realm.write({ 
+                realm.add(classroom, update: true)
+            })
+        } catch {
+            print(error)
+        }
+        if let members = members {
+            self.memberModelHelper.addMembers(uuid, members: members)
+        }
+    }
+
+    func getList(active: Bool) -> [[String: String]] {
+        var classrooms: [[String: String]] = []
+        do {
+            let realm = try Realm()
+            for item in realm.objects(ClassroomModel).filter("active = \(active)") {
+                let rowDict = [
+                    "uuid": item.uuid,
+                    "name": item.name,
+                    "introduction": item.introduction,
+                    "creator": item.creator,
+                    "school_uuid": item.schoolUUID,
+                    "code": item.code,
+                ]
+                classrooms.append(rowDict)
+            }
+        } catch {
+            print(error)
+        }
+        return classrooms
+    }
+
+    func getClassroomInfo(uuid: String) -> [String: AnyObject]? {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(ClassroomModel.self, key: uuid) {
+                let classroomInfo: [String: AnyObject] = [
+                    "uuid": item.uuid,
+                    "name": item.name,
+                    "introduction": item.introduction,
+                    "creator": item.creator,
+                    "school_uuid": item.schoolUUID,
+                    "code": item.code,
+                    "active": item.acitve
+                ]
+                return classroomInfo
+            } else {
+                return nil
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+
+    }
+}
+

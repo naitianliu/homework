@@ -81,12 +81,22 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 1
+        } else {
+            return 10
+        }
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (1, 0):
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.view.endEditing(true)
         case (1, 1):
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.view.endEditing(true)
         default:
             break
         }
