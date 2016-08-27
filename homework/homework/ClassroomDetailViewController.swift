@@ -19,7 +19,7 @@ class ClassroomDetailViewController: UIViewController {
 
     var numberOfLayoutCalls = 0
 
-    let sampleData: [String: AnyObject] = [
+    let sampleData: [String: String] = [
         "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
         "teacher": "Ali",
         "homeworkType": "朗读作业",
@@ -42,6 +42,7 @@ class ClassroomDetailViewController: UIViewController {
 
         swipeView.didTap = {view, location in
             // action when tap view
+            self.showHomeworkDetailVC()
         }
 
         swipeView.didEnd = {view, location in
@@ -100,6 +101,12 @@ class ClassroomDetailViewController: UIViewController {
         let views = ["view2": view2, "view1": view1]
         view1.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view2(width)]", options: .AlignAllLeft, metrics: metrics, views: views))
         view1.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view2(height)]", options: .AlignAllLeft, metrics: metrics, views: views))
+    }
+
+    private func showHomeworkDetailVC() {
+        let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
+        homeworkDetailVC.homeworkData = self.sampleData
+        self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
     }
 
 }

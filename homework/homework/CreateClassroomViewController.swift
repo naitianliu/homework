@@ -113,6 +113,8 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
             self.showSelectSchoolVC()
         case (2, 0):
             self.showEditDescriptionVC()
+        case (3, 0):
+            self.showMembersPicker()
         default:
             break
         }
@@ -146,6 +148,13 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
             self.reloadTable()
         })
         self.navigationController?.pushViewController(editTextVC, animated: true)
+    }
+
+    private func showMembersPicker() {
+        let membersVC = MembersPickerViewController(nibName: "MembersPickerViewController", bundle: nil)
+
+        self.navigationController?.pushViewController(membersVC, animated: true)
+
     }
 
     func didFinishedInputToSave(input: String) {

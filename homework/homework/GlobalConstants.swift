@@ -28,6 +28,8 @@ struct GlobalConstants {
 
     static let kRealmSchemaVersion: UInt64 = 1
 
+    static let kProfileImagePlaceholder: UIImage = UIImage(named: "profile-placeholder")!
+
 }
 
 let APIEndpoint = "http://localhost:8000/api/v1"
