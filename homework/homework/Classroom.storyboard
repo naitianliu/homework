@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -40,7 +41,7 @@
                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClassroomTableViewCell" rowHeight="285" id="e80-iB-xbu" customClass="ClassroomTableViewCell" customModule="homework" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="285"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="285"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e80-iB-xbu" id="Qr3-iZ-b03">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="285"/>
@@ -55,7 +56,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="onP-46-FYJ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tmn-Vb-Qyz" userLabel="LineView">
@@ -80,7 +81,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="+1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8C-BT-WOM">
                                                                     <rect key="frame" x="330" y="15" width="111" height="123"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -111,13 +112,13 @@
                                                                 <constraint firstAttribute="height" constant="21" id="PVZ-ui-bFs"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OP-sR-yig">
                                                             <rect key="frame" x="510" y="238" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xe7-hQ-jTe">
@@ -135,7 +136,7 @@
                                                                 <constraint firstAttribute="width" constant="68" id="ls2-bg-0N2"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -281,7 +282,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9j-PM-bee" userLabel="ActionsView">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9j-PM-bee" userLabel="ActionsView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="79"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bhh-my-otL" userLabel="ActionView1">
@@ -289,9 +290,6 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab-homework" translatesAutoresizingMaskIntoConstraints="NO" id="7pY-5f-OYB">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="14" y="8" width="122" height="104"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -332,9 +330,6 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab-teacher" translatesAutoresizingMaskIntoConstraints="NO" id="FNv-7j-H5B">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="4" y="11" width="137" height="101"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -357,8 +352,7 @@
                                                 <exclude reference="pdp-ic-bW8"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="151" y="0.0" width="149" height="120"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="subviews">
                                                 <include reference="FNv-7j-H5B"/>
                                             </mask>
@@ -376,9 +370,6 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab-student" translatesAutoresizingMaskIntoConstraints="NO" id="C1p-Nf-jz7">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="7" y="8" width="123" height="104"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -401,8 +392,7 @@
                                                 <exclude reference="UHF-DN-KLb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="301" y="0.0" width="137" height="120"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="subviews">
                                                 <include reference="C1p-Nf-jz7"/>
                                             </mask>
@@ -420,9 +410,6 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab-notification" translatesAutoresizingMaskIntoConstraints="NO" id="FzU-DW-ouG">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="8" y="8" width="145" height="104"/>
-                                                </variation>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -445,8 +432,7 @@
                                                 <exclude reference="uf9-NO-ioP"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="439" y="0.0" width="161" height="120"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="subviews">
                                                 <include reference="FzU-DW-ouG"/>
                                             </mask>
@@ -489,9 +475,6 @@
                                         <exclude reference="4eH-Sk-shn"/>
                                         <exclude reference="hwz-70-8k4"/>
                                         <exclude reference="uxX-aN-Pee"/>
-                                        <exclude reference="Xol-Y8-ODT"/>
-                                        <exclude reference="uZn-EY-Goo"/>
-                                        <exclude reference="vT3-8E-4U1"/>
                                         <exclude reference="17h-vz-3ss"/>
                                         <exclude reference="PHL-nY-gKv"/>
                                         <exclude reference="gkJ-1s-V3d"/>
@@ -499,6 +482,9 @@
                                         <exclude reference="Ah9-ep-0zk"/>
                                         <exclude reference="Aom-E2-okf"/>
                                         <exclude reference="qxw-VA-Bfk"/>
+                                        <exclude reference="Xol-Y8-ODT"/>
+                                        <exclude reference="uZn-EY-Goo"/>
+                                        <exclude reference="vT3-8E-4U1"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
@@ -513,9 +499,6 @@
                                         <include reference="4eH-Sk-shn"/>
                                         <include reference="hwz-70-8k4"/>
                                         <include reference="uxX-aN-Pee"/>
-                                        <include reference="Xol-Y8-ODT"/>
-                                        <include reference="uZn-EY-Goo"/>
-                                        <include reference="vT3-8E-4U1"/>
                                         <include reference="17h-vz-3ss"/>
                                         <include reference="PHL-nY-gKv"/>
                                         <include reference="gkJ-1s-V3d"/>
@@ -523,6 +506,9 @@
                                         <include reference="Ah9-ep-0zk"/>
                                         <include reference="Aom-E2-okf"/>
                                         <exclude reference="qxw-VA-Bfk"/>
+                                        <include reference="Xol-Y8-ODT"/>
+                                        <include reference="uZn-EY-Goo"/>
+                                        <include reference="vT3-8E-4U1"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -534,9 +520,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="99" y="8" width="394" height="21"/>
-                                        </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQO-Y5-8zG" userLabel="LineView">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -549,8 +532,7 @@
                                                 <exclude reference="aBF-UQ-3xw"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="8" y="37" width="584" height="1"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="aBF-UQ-3xw"/>
                                             </mask>
@@ -566,8 +548,7 @@
                                                 <exclude reference="cGh-gr-q25"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="99" y="68" width="394" height="349"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="cGh-gr-q25"/>
                                             </mask>
@@ -599,31 +580,30 @@
                                         <exclude reference="vnq-bP-1iA"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="XGV-aD-myR"/>
-                                        <exclude reference="tde-xz-I3G"/>
-                                        <exclude reference="vGe-kh-JEz"/>
                                         <exclude reference="8cn-ZM-M4U"/>
                                         <exclude reference="OCx-of-cdv"/>
                                         <exclude reference="ouO-Gh-hUN"/>
+                                        <exclude reference="XGV-aD-myR"/>
+                                        <exclude reference="tde-xz-I3G"/>
+                                        <exclude reference="vGe-kh-JEz"/>
                                         <exclude reference="4H7-T9-wB5"/>
                                         <exclude reference="Nvp-48-OFA"/>
                                         <exclude reference="sdb-R1-IBb"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="208" width="600" height="592"/>
+                                <variation key="heightClass=regular">
                                     <mask key="subviews">
                                         <include reference="boW-f5-g3N"/>
                                         <include reference="mQO-Y5-8zG"/>
                                         <include reference="vnq-bP-1iA"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="XGV-aD-myR"/>
-                                        <include reference="tde-xz-I3G"/>
-                                        <include reference="vGe-kh-JEz"/>
                                         <include reference="8cn-ZM-M4U"/>
                                         <include reference="OCx-of-cdv"/>
                                         <include reference="ouO-Gh-hUN"/>
+                                        <include reference="XGV-aD-myR"/>
+                                        <include reference="tde-xz-I3G"/>
+                                        <include reference="vGe-kh-JEz"/>
                                         <include reference="4H7-T9-wB5"/>
                                         <include reference="Nvp-48-OFA"/>
                                         <include reference="sdb-R1-IBb"/>
@@ -646,12 +626,12 @@
                                 <exclude reference="Yfk-Sj-FFf"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="luV-wu-cVe"/>
-                                <exclude reference="rFb-QZ-WUj"/>
-                                <exclude reference="tSF-9v-CDu"/>
                                 <exclude reference="4p3-kq-cSE"/>
                                 <exclude reference="FpD-fe-giU"/>
                                 <exclude reference="Xm6-Kt-Sfl"/>
+                                <exclude reference="luV-wu-cVe"/>
+                                <exclude reference="rFb-QZ-WUj"/>
+                                <exclude reference="tSF-9v-CDu"/>
                                 <exclude reference="yEh-ou-Dkb"/>
                             </mask>
                         </variation>
@@ -660,12 +640,12 @@
                                 <include reference="Yfk-Sj-FFf"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="luV-wu-cVe"/>
-                                <include reference="rFb-QZ-WUj"/>
-                                <include reference="tSF-9v-CDu"/>
                                 <include reference="4p3-kq-cSE"/>
                                 <include reference="FpD-fe-giU"/>
                                 <include reference="Xm6-Kt-Sfl"/>
+                                <include reference="luV-wu-cVe"/>
+                                <include reference="rFb-QZ-WUj"/>
+                                <include reference="tSF-9v-CDu"/>
                                 <include reference="yEh-ou-Dkb"/>
                             </mask>
                         </variation>
@@ -699,10 +679,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SchoolTableViewCell" rowHeight="79" id="FOi-Pj-V9f" customClass="SchoolTableViewCell" customModule="homework" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="79"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FOi-Pj-V9f" id="aXY-Iq-cX7">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="78.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uax-yc-InQ">

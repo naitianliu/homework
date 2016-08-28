@@ -15,9 +15,11 @@ class HWStudentSubmitTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
 
+    var separatorHidden: Bool = false
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -27,6 +29,7 @@ class HWStudentSubmitTableViewCell: UITableViewCell {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         self.renderProfileImageView()
     }
 
@@ -50,15 +53,29 @@ class HWStudentSubmitTableViewCell: UITableViewCell {
         }
     }
 
+    private func hideSeparator() {
+        self.preservesSuperviewLayoutMargins = false
+        self.separatorInset = UIEdgeInsetsZero
+        self.layoutMargins = UIEdgeInsetsZero
+        self.selectionStyle = .None
+        self.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+    }
+
     func configurate(data: [String: String?]) {
         let profileImageURL: String = data["profileImgURL"]!!
         let name: String = data["name"]!!
         let time: String = data["time"]!!
         let score: String? = data["score"]!
+
         profileImageView.sd_setImageWithURL(NSURL(string: profileImageURL), placeholderImage: GlobalConstants.kProfileImagePlaceholder)
         nameLabel.text = name
         timeLabel.text = time
+
         self.setupScoreLabel(score)
+
+        if separatorHidden {
+            self.hideSeparator()
+        }
     }
 
 }

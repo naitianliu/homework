@@ -45,6 +45,11 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = false
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if willCreateClassroom {

@@ -92,6 +92,11 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let homeworkGradeVC = HomeworkGradeViewController(nibName: "HomeworkGradeViewController", bundle: nil)
+        self.navigationController?.pushViewController(homeworkGradeVC, animated: true)
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }

@@ -87,6 +87,12 @@
 		46CD10151D71472700023055 /* HomeworkInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10131D71472700023055 /* HomeworkInfoTableViewCell.xib */; };
 		46CD10181D71544200023055 /* HWStudentSubmitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10161D71544200023055 /* HWStudentSubmitTableViewCell.swift */; };
 		46CD10191D71544200023055 /* HWStudentSubmitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10171D71544200023055 /* HWStudentSubmitTableViewCell.xib */; };
+		46CD101C1D72512500023055 /* HomeworkGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD101A1D72512500023055 /* HomeworkGradeViewController.swift */; };
+		46CD101D1D72512500023055 /* HomeworkGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD101B1D72512500023055 /* HomeworkGradeViewController.xib */; };
+		46CD10201D728D9900023055 /* HWAudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD101E1D728D9900023055 /* HWAudioTableViewCell.swift */; };
+		46CD10211D728D9900023055 /* HWAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD101F1D728D9900023055 /* HWAudioTableViewCell.xib */; };
+		46CD10251D72D28A00023055 /* HWCommetTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10231D72D28A00023055 /* HWCommetTextTableViewCell.swift */; };
+		46CD10261D72D28A00023055 /* HWCommetTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10241D72D28A00023055 /* HWCommetTextTableViewCell.xib */; };
 		46E241CA1D55D71F00382394 /* CreateHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241C91D55D71F00382394 /* CreateHWViewController.swift */; };
 		46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */; };
 		46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */; };
@@ -215,6 +221,12 @@
 		46CD10131D71472700023055 /* HomeworkInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeworkInfoTableViewCell.xib; sourceTree = "<group>"; };
 		46CD10161D71544200023055 /* HWStudentSubmitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWStudentSubmitTableViewCell.swift; sourceTree = "<group>"; };
 		46CD10171D71544200023055 /* HWStudentSubmitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWStudentSubmitTableViewCell.xib; sourceTree = "<group>"; };
+		46CD101A1D72512500023055 /* HomeworkGradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeworkGradeViewController.swift; sourceTree = "<group>"; };
+		46CD101B1D72512500023055 /* HomeworkGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeworkGradeViewController.xib; sourceTree = "<group>"; };
+		46CD101E1D728D9900023055 /* HWAudioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWAudioTableViewCell.swift; sourceTree = "<group>"; };
+		46CD101F1D728D9900023055 /* HWAudioTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWAudioTableViewCell.xib; sourceTree = "<group>"; };
+		46CD10231D72D28A00023055 /* HWCommetTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCommetTextTableViewCell.swift; sourceTree = "<group>"; };
+		46CD10241D72D28A00023055 /* HWCommetTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWCommetTextTableViewCell.xib; sourceTree = "<group>"; };
 		46E241C91D55D71F00382394 /* CreateHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateHWViewController.swift; sourceTree = "<group>"; };
 		46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewTableViewCell.swift; sourceTree = "<group>"; };
 		46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -309,11 +321,14 @@
 		4600BCF01D04CCCB00BF460D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				46CD10221D72D25200023055 /* Comments */,
 				46CD100B1D71422100023055 /* Tools */,
 				46CD10121D71472700023055 /* HomeworkInfoTableViewCell.swift */,
 				46CD10131D71472700023055 /* HomeworkInfoTableViewCell.xib */,
 				46CD10161D71544200023055 /* HWStudentSubmitTableViewCell.swift */,
 				46CD10171D71544200023055 /* HWStudentSubmitTableViewCell.xib */,
+				46CD101E1D728D9900023055 /* HWAudioTableViewCell.swift */,
+				46CD101F1D728D9900023055 /* HWAudioTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -324,6 +339,8 @@
 				46CD100A1D71421300023055 /* Tools */,
 				46CD100C1D7142BD00023055 /* HomeworkDetailViewController.swift */,
 				46CD100D1D7142BD00023055 /* HomeworkDetailViewController.xib */,
+				46CD101A1D72512500023055 /* HomeworkGradeViewController.swift */,
+				46CD101B1D72512500023055 /* HomeworkGradeViewController.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -623,6 +640,15 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
+		46CD10221D72D25200023055 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				46CD10231D72D28A00023055 /* HWCommetTextTableViewCell.swift */,
+				46CD10241D72D28A00023055 /* HWCommetTextTableViewCell.xib */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
 		A7AFFCAF20A955B20D531EF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,7 +777,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				46CD100F1D7142BD00023055 /* HomeworkDetailViewController.xib in Resources */,
+				46CD10211D728D9900023055 /* HWAudioTableViewCell.xib in Resources */,
 				46B67DA11D49BDC90056EA84 /* HomeworkCardContentView.xib in Resources */,
+				46CD10261D72D28A00023055 /* HWCommetTextTableViewCell.xib in Resources */,
 				4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */,
 				46CD10151D71472700023055 /* HomeworkInfoTableViewCell.xib in Resources */,
 				4612AF621D2489E800044E60 /* Home.storyboard in Resources */,
@@ -770,6 +798,7 @@
 				46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */,
 				46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */,
 				4612AF5B1D2483F200044E60 /* Find.storyboard in Resources */,
+				46CD101D1D72512500023055 /* HomeworkGradeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,6 +957,7 @@
 				4612AF511D23815100044E60 /* MainTabBarController.swift in Sources */,
 				4612AF801D2B7C1C00044E60 /* UINavigationControllerExtension.swift in Sources */,
 				46E241CA1D55D71F00382394 /* CreateHWViewController.swift in Sources */,
+				46CD10201D728D9900023055 /* HWAudioTableViewCell.swift in Sources */,
 				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
 				4612AF5D1D2483FE00044E60 /* FindViewController.swift in Sources */,
 				4600559B1D6FFB15006AA8AA /* ChineseString.m in Sources */,
@@ -945,9 +975,11 @@
 				4612AF711D29E5A400044E60 /* AlertHelper.swift in Sources */,
 				4612AF561D2483A800044E60 /* MeViewController.swift in Sources */,
 				4612AF841D2CD48D00044E60 /* SaveInputViewController.swift in Sources */,
+				46CD10251D72D28A00023055 /* HWCommetTextTableViewCell.swift in Sources */,
 				4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
 				46F899761D320BA800DF870C /* SchoolTableViewCell.swift in Sources */,
+				46CD101C1D72512500023055 /* HomeworkGradeViewController.swift in Sources */,
 				466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */,
 				46C903D81D038619005FC496 /* AppDelegate.swift in Sources */,
 				4600BD031D0CD0D500BF460D /* RecorderHelper.swift in Sources */,
