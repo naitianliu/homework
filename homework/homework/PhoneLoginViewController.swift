@@ -48,6 +48,12 @@ class PhoneLoginViewController: UIViewController, UITextFieldDelegate {
             if errorCode == 0 {
                 let token: String = responseData["token"].stringValue
                 UserDefaultsHelper().updateToken(token)
+                if let profile = responseData["profile"].dictionary {
+                    let username = profile["username"]?.string
+                    let imgURL = profile["img_url"]?.string
+                    let nickname = profile["nickname"]?.string
+                    UserDefaultsHelper().updateProfile(username, profileImgURL: imgURL, nickname: nickname)
+                }
                 let mainTabBarController = MainTabBarController()
                 UIApplication.sharedApplication().keyWindow?.rootViewController = mainTabBarController
             } else {

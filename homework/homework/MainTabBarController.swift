@@ -49,8 +49,15 @@ class MainTabBarController: UITabBarController {
         
         self.viewControllers = [homeNC, classroomNC, findNC, meNC]
 
+        showSelectRoleVC()
+
         showUpdateProfileNC()
         
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +71,14 @@ class MainTabBarController: UITabBarController {
         updateProfileNC.modalTransitionStyle = .CoverVertical
         dispatch_async(dispatch_get_main_queue()) { 
             self.presentViewController(updateProfileNC, animated: true, completion: nil)
+        }
+    }
+
+    private func showSelectRoleVC() {
+        if let role = UserDefaultsHelper().getRole() {
+
+        } else {
+            ProfileUpdateHelper(vc: self).switchRole()
         }
     }
 

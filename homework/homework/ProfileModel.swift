@@ -23,7 +23,11 @@ class ProfileModel: Object {
 
 class ProfileModelHelper {
     init() {
-
+        let userInfoHelper = UserDefaultsHelper()
+        guard let userId = userInfoHelper.getUsername() else { return }
+        guard let nickname = userInfoHelper.getNickname() else { return }
+        guard let imgURL = userInfoHelper.getProfileImageURL() else { return }
+        self.add(userId, nickname: nickname, imgURL: imgURL)
     }
 
     func add(userId: String, nickname: String, imgURL: String) {

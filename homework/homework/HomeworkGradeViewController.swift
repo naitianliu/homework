@@ -24,7 +24,8 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
 
     var comments: [[String: AnyObject?]] = [
         ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "美国航天局所属的的朱诺号宇宙飞船上的探测器上个月进入环绕木星轨道，27日，朱诺号陆续传送回一些木星云层图片。这可说是人类有史以来，观察木星最近的距离。美国太空总署28日上午开始发布一些接近木星的图片，这些图片是目前为止，人类运用科技观测木星最为清晰的图片。", "audio": nil],
-        ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "朱诺号发回有史以来最清晰木星照片 画面震撼", "audio": nil]
+        ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "朱诺号发回有史以来最清晰木星照片 画面震撼", "audio": nil],
+        ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "朱诺号发回有史以来最清晰木星照片 画面震撼", "audio": ["duration": "5:40", "playing": false]]
     ]
 
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
         tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
         tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
 
     }
 
@@ -81,13 +83,15 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
             }
         } else if indexPath.section == 1 {
             let rowDict = comments[indexPath.row]
-            let audio: [String: String]? = rowDict["audio"]! as! [String: String]?
+            let audio: [String: AnyObject]? = rowDict["audio"]! as! [String: AnyObject]?
             if audio == nil {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWCommetTextTableViewCell") as! HWCommetTextTableViewCell
                 cell.configurate(rowDict)
                 return cell
             } else {
-                return UITableViewCell()
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWCommentTextAudioTableViewCell") as! HWCommentTextAudioTableViewCell
+                cell.configurate(rowDict)
+                return cell
             }
         } else {
             return UITableViewCell()

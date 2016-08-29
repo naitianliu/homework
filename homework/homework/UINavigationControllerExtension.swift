@@ -22,3 +22,7 @@ extension UINavigationController {
         CATransaction.commit()
     }
 }
+
+extension UIScrollView {
+    func dg_stopScrollingAnimation() {}
+}

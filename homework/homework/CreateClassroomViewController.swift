@@ -12,12 +12,14 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet weak var tableView: UITableView!
 
+    let myUserId = UserDefaultsHelper().getUsername()!
+
     var classroomName: String?
-    var teacherNumber: Int = 1
-    var studentNumber: Int = 0
     var schoolUUID: String?
     var schoolName: String?
     var classroomDescription: String?
+    var teachers: [String] = []
+    var students: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,9 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
 
+        if teachers.count == 0 {
+            teachers = [myUserId]
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,13 +44,22 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBAction func cancelButtonOnClick(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { 
-            self.reloadTable()
+
         }
     }
 
     @IBAction func doneButtonOnClick(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { 
-            self.reloadTable()
+        if self.checkInputs() {
+            var members: [[String: String]] = []
+            for userId in self.teachers {
+                let rowDict: [String: String] = ["role": "t", "user_id": userId]
+                members.append(rowDict)
+            }
+            for userId in self.students {
+                let rowDict: [String: String] = ["role": "s", "user_id": userId]
+                members.append(rowDict)
+            }
+            APIClassroomCreate(vc: self).run(classroomName!, schoolUUID: schoolUUID!, introduction: classroomDescription!, members: members)
         }
     }
 
@@ -81,16 +95,17 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
             value = schoolName
         case (3, 0):
             title = "全部教师"
-            value = String(teacherNumber)
+            value = String(teachers.count)
         case (3, 1):
             title = "全部学生"
-            value = String(studentNumber)
+            value = String(students.count)
         default:
             break
         }
         cell.configurate(title, value: value)
         return cell
     }
+
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -114,7 +129,9 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
         case (2, 0):
             self.showEditDescriptionVC()
         case (3, 0):
-            self.showMembersPicker()
+            self.showMembersPicker(true)
+        case (3, 1):
+            self.showMembersPicker(false)
         default:
             break
         }
@@ -150,11 +167,40 @@ class CreateClassroomViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController?.pushViewController(editTextVC, animated: true)
     }
 
-    private func showMembersPicker() {
+    private func showMembersPicker(teacher: Bool) {
         let membersVC = MembersPickerViewController(nibName: "MembersPickerViewController", bundle: nil)
-
+        if teacher {
+            membersVC.pickme = true
+            membersVC.selectedUserIdList = teachers
+            membersVC.completeSelectionBlockSetter({ (selectedUsers) in
+                self.teachers = selectedUsers
+                self.reloadTable()
+            })
+        } else {
+            membersVC.pickme = false
+            membersVC.selectedUserIdList = students
+            membersVC.completeSelectionBlockSetter({ (selectedUsers) in
+                self.students = selectedUsers
+                self.reloadTable()
+            })
+        }
         self.navigationController?.pushViewController(membersVC, animated: true)
+    }
 
+    private func checkInputs() -> Bool{
+        if classroomName == nil {
+            AlertHelper(viewController: self).showPromptAlertView("请输入班级名称")
+            return false
+        }
+        if classroomDescription == nil {
+            AlertHelper(viewController: self).showPromptAlertView("请输入班级介绍")
+            return false
+        }
+        if schoolUUID == nil {
+            AlertHelper(viewController: self).showPromptAlertView("请选择班级所属学校或机构")
+            return false
+        }
+        return true
     }
 
     func didFinishedInputToSave(input: String) {

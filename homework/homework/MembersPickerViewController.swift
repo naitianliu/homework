@@ -13,11 +13,9 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
 
-    let profiles = [
-        ["userId": "1", "nickname": "比尔盖茨", "imgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
-        ["userId": "2", "nickname": "乔布斯", "imgURL": ""],
-        ["userId": "3", "nickname": "Ali", "imgURL": ""],
-    ]
+    let profiles = ProfileModelHelper().getList()
+
+    let myUserId = UserDefaultsHelper().getUsername()!
 
     var tableData = []
     var indexArray = []
@@ -25,6 +23,11 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
     var selectedUserIdList: [String] = []
 
     var navbarTitle: String?
+
+    var pickme: Bool = false
+
+    typealias CompleteSelectionClosureType = (selectedUsers: [String]) -> Void
+    var completeSelectionBlock: CompleteSelectionClosureType?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,10 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
 
     private func reloadTable() {
         tableView.reloadData()
+    }
+
+    func completeSelectionBlockSetter(completion: CompleteSelectionClosureType) {
+        self.completeSelectionBlock = completion
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -88,7 +95,11 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
         let contactInfo: [String:String] = rowArray[indexPath.row] as! [String:String]
         let userId: String = contactInfo["userId"]!
         if selectedUserIdList.contains(userId) {
-            selectedUserIdList.removeObject(userId)
+            if pickme && userId == myUserId {
+                AlertHelper(viewController: self).showPromptAlertView("教师成员中需要包含自己")
+            } else {
+                selectedUserIdList.removeObject(userId)
+            }
         } else {
             selectedUserIdList.append(userId)
         }
@@ -105,7 +116,8 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func confirmButtonOnClick(sender: AnyObject) {
-
+        self.completeSelectionBlock!(selectedUsers: self.selectedUserIdList)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     private func initTableData() {

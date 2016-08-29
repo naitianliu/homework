@@ -93,6 +93,15 @@
 		46CD10211D728D9900023055 /* HWAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD101F1D728D9900023055 /* HWAudioTableViewCell.xib */; };
 		46CD10251D72D28A00023055 /* HWCommetTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10231D72D28A00023055 /* HWCommetTextTableViewCell.swift */; };
 		46CD10261D72D28A00023055 /* HWCommetTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10241D72D28A00023055 /* HWCommetTextTableViewCell.xib */; };
+		46CD10291D73775E00023055 /* HWCommentTextAudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10271D73775E00023055 /* HWCommentTextAudioTableViewCell.swift */; };
+		46CD102A1D73775E00023055 /* HWCommentTextAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10281D73775E00023055 /* HWCommentTextAudioTableViewCell.xib */; };
+		46CD102C1D738AFB00023055 /* APIClassroomCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD102B1D738AFB00023055 /* APIClassroomCreate.swift */; };
+		46CD10301D738F4400023055 /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD102E1D738F4400023055 /* RoleSelectionViewController.swift */; };
+		46CD10311D738F4400023055 /* RoleSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD102F1D738F4400023055 /* RoleSelectionViewController.xib */; };
+		46CD10341D73D9C600023055 /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10321D73D9C600023055 /* LogoutTableViewCell.swift */; };
+		46CD10351D73D9C600023055 /* LogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10331D73D9C600023055 /* LogoutTableViewCell.xib */; };
+		46CD10381D73E16B00023055 /* ProfileUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */; };
+		46CD103A1D73FB7D00023055 /* APIClassroomGetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */; };
 		46E241CA1D55D71F00382394 /* CreateHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241C91D55D71F00382394 /* CreateHWViewController.swift */; };
 		46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */; };
 		46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */; };
@@ -227,6 +236,15 @@
 		46CD101F1D728D9900023055 /* HWAudioTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWAudioTableViewCell.xib; sourceTree = "<group>"; };
 		46CD10231D72D28A00023055 /* HWCommetTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCommetTextTableViewCell.swift; sourceTree = "<group>"; };
 		46CD10241D72D28A00023055 /* HWCommetTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWCommetTextTableViewCell.xib; sourceTree = "<group>"; };
+		46CD10271D73775E00023055 /* HWCommentTextAudioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWCommentTextAudioTableViewCell.swift; sourceTree = "<group>"; };
+		46CD10281D73775E00023055 /* HWCommentTextAudioTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HWCommentTextAudioTableViewCell.xib; sourceTree = "<group>"; };
+		46CD102B1D738AFB00023055 /* APIClassroomCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomCreate.swift; sourceTree = "<group>"; };
+		46CD102E1D738F4400023055 /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
+		46CD102F1D738F4400023055 /* RoleSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoleSelectionViewController.xib; sourceTree = "<group>"; };
+		46CD10321D73D9C600023055 /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
+		46CD10331D73D9C600023055 /* LogoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoutTableViewCell.xib; sourceTree = "<group>"; };
+		46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUpdateHelper.swift; sourceTree = "<group>"; };
+		46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomGetList.swift; sourceTree = "<group>"; };
 		46E241C91D55D71F00382394 /* CreateHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateHWViewController.swift; sourceTree = "<group>"; };
 		46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewTableViewCell.swift; sourceTree = "<group>"; };
 		46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -292,6 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				460055831D6E57CE006AA8AA /* APISchoolCreate.swift */,
+				46CD102B1D738AFB00023055 /* APIClassroomCreate.swift */,
+				46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -369,6 +389,7 @@
 		4612AF4F1D2380E800044E60 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				46CD102D1D738F0E00023055 /* View Controllers */,
 				46C903DB1D038619005FC496 /* Main.storyboard */,
 				4612AF501D23815100044E60 /* MainTabBarController.swift */,
 			);
@@ -379,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				4612AF571D2483BC00044E60 /* Me.storyboard */,
+				46CD10361D73E0D800023055 /* View Model */,
 				4612AF751D2A2BB000044E60 /* view */,
 				4612AF741D2A1FC400044E60 /* View Controller */,
 			);
@@ -432,6 +454,8 @@
 			children = (
 				4612AF761D2A2BDB00044E60 /* ProfileEditTableViewCell.swift */,
 				468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */,
+				46CD10321D73D9C600023055 /* LogoutTableViewCell.swift */,
+				46CD10331D73D9C600023055 /* LogoutTableViewCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -645,8 +669,27 @@
 			children = (
 				46CD10231D72D28A00023055 /* HWCommetTextTableViewCell.swift */,
 				46CD10241D72D28A00023055 /* HWCommetTextTableViewCell.xib */,
+				46CD10271D73775E00023055 /* HWCommentTextAudioTableViewCell.swift */,
+				46CD10281D73775E00023055 /* HWCommentTextAudioTableViewCell.xib */,
 			);
 			name = Comments;
+			sourceTree = "<group>";
+		};
+		46CD102D1D738F0E00023055 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				46CD102E1D738F4400023055 /* RoleSelectionViewController.swift */,
+				46CD102F1D738F4400023055 /* RoleSelectionViewController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		46CD10361D73E0D800023055 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */,
+			);
+			name = "View Model";
 			sourceTree = "<group>";
 		};
 		A7AFFCAF20A955B20D531EF8 /* Frameworks */ = {
@@ -784,6 +827,7 @@
 				46CD10151D71472700023055 /* HomeworkInfoTableViewCell.xib in Resources */,
 				4612AF621D2489E800044E60 /* Home.storyboard in Resources */,
 				46C9040E1D0393D4005FC496 /* Podfile in Resources */,
+				46CD102A1D73775E00023055 /* HWCommentTextAudioTableViewCell.xib in Resources */,
 				460055A11D700345006AA8AA /* MemberTableViewCell.xib in Resources */,
 				4600558C1D6FEEDC006AA8AA /* MembersPickerViewController.xib in Resources */,
 				46F8997C1D32173E00DF870C /* DescriptionTableViewCell.xib in Resources */,
@@ -792,12 +836,14 @@
 				46C903DF1D038619005FC496 /* Assets.xcassets in Resources */,
 				46CD10191D71544200023055 /* HWStudentSubmitTableViewCell.xib in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
+				46CD10351D73D9C600023055 /* LogoutTableViewCell.xib in Resources */,
 				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
 				4612AF581D2483BC00044E60 /* Me.storyboard in Resources */,
 				46C903DD1D038619005FC496 /* Main.storyboard in Resources */,
 				46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */,
 				46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */,
 				4612AF5B1D2483F200044E60 /* Find.storyboard in Resources */,
+				46CD10311D738F4400023055 /* RoleSelectionViewController.xib in Resources */,
 				46CD101D1D72512500023055 /* HomeworkGradeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -952,6 +998,7 @@
 				46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
 				4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */,
+				46CD102C1D738AFB00023055 /* APIClassroomCreate.swift in Sources */,
 				4612AF671D2497CD00044E60 /* PhoneLoginViewController.swift in Sources */,
 				4612AF651D24919000044E60 /* LoginViewController.swift in Sources */,
 				4612AF511D23815100044E60 /* MainTabBarController.swift in Sources */,
@@ -966,6 +1013,7 @@
 				460055A01D700345006AA8AA /* MemberTableViewCell.swift in Sources */,
 				4612AF601D2489DE00044E60 /* HomeViewController.swift in Sources */,
 				460055881D6EA886006AA8AA /* ProfileModel.swift in Sources */,
+				46CD10291D73775E00023055 /* HWCommentTextAudioTableViewCell.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */,
 				4612AF6B1D24982B00044E60 /* SetPasswordViewController.swift in Sources */,
@@ -977,6 +1025,7 @@
 				4612AF841D2CD48D00044E60 /* SaveInputViewController.swift in Sources */,
 				46CD10251D72D28A00023055 /* HWCommetTextTableViewCell.swift in Sources */,
 				4600BD001D0B8C4800BF460D /* AudioHWRecordViewController.swift in Sources */,
+				46CD10301D738F4400023055 /* RoleSelectionViewController.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
 				46F899761D320BA800DF870C /* SchoolTableViewCell.swift in Sources */,
 				46CD101C1D72512500023055 /* HomeworkGradeViewController.swift in Sources */,
@@ -1011,9 +1060,12 @@
 				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
 				46B67D991D4828FC0056EA84 /* SchoolModel.swift in Sources */,
+				46CD10381D73E16B00023055 /* ProfileUpdateHelper.swift in Sources */,
 				46F899811D32218400DF870C /* InputTableViewCell.swift in Sources */,
+				46CD103A1D73FB7D00023055 /* APIClassroomGetList.swift in Sources */,
 				4612AF6F1D24987900044E60 /* ResetPasswordViewController.swift in Sources */,
 				46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */,
+				46CD10341D73D9C600023055 /* LogoutTableViewCell.swift in Sources */,
 				46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */,
 				46B67D971D4826310056EA84 /* PerformMigrations.swift in Sources */,
 				4612AF7D1D2B74AE00044E60 /* ImageHelper.swift in Sources */,

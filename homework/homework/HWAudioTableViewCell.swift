@@ -24,6 +24,7 @@ class HWAudioTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         self.separatorInset = UIEdgeInsetsMake(0, 80, 0, 0);
+        self.selectionStyle = .None
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

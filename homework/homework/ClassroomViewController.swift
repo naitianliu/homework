@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
 
 class ClassroomViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -38,6 +39,9 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
         self.reloadTable()
+
+        self.setupPullToRefresh()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +60,7 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
             self.showSetNameVC()
             willCreateClassroom = false
         }
+        self.reloadTable()
     }
 
     private func reloadTable() {
@@ -109,6 +114,26 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+
+    private func setupPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        tableView.dg_addPullToRefreshWithActionHandler({
+            // api call to get list
+            print(123)
+            // stop loading
+            self.reloadTable()
+            self.tableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(GlobalConstants.themeColor)
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+
+    
+
+    deinit {
+        tableView.dg_removePullToRefresh()
     }
 
 }

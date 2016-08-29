@@ -26,7 +26,7 @@ struct GlobalConstants {
         1051: "验证码错误或已过期，请返回重新获取验证码",
     ]
 
-    static let kRealmSchemaVersion: UInt64 = 1
+    static let kRealmSchemaVersion: UInt64 = 2
 
     static let kProfileImagePlaceholder: UIImage = UIImage(named: "profile-placeholder")!
 
@@ -46,5 +46,8 @@ struct APIURL {
     static let authUserProfileUpdate = "\(APIEndpoint)/auth/user/profile/update/"
 
     static let schoolCreate = "\(APIEndpoint)/school/create/"
+
+    static let classroomCreate = "\(APIEndpoint)/classroom/create/"
+    static let classroomGetList = "\(APIEndpoint)/classroom/get_list/"
 
 }

@@ -17,6 +17,7 @@ extension DefaultsKeys {
     static let token = DefaultsKey<String?>("token")
     static let deviceToken = DefaultsKey<String?>("deviceToken")
     static let timestamp = DefaultsKey<String?>("timestamp")
+    static let role = DefaultsKey<String?>("role")
     
     static let stsAccessKeySecret = DefaultsKey<String>("stsAccessKeySecret")
     static let stsSecurityToken = DefaultsKey<String>("stsSecurityToken")
@@ -123,6 +124,21 @@ class UserDefaultsHelper {
         return token
     }
 
+    func getRole() -> String? {
+        let role: String? = Defaults[.role]
+        return role
+    }
+
+    func updateProfile(username: String?, profileImgURL: String?, nickname: String?) {
+        Defaults[.username] = username
+        Defaults[.profileImageURL] = profileImgURL
+        Defaults[.nickname] = nickname
+    }
+
+    func updateRole(role: String) {
+        Defaults[.role] = role
+    }
+
     func updateToken(token: String) {
         Defaults[.token] = token
     }
@@ -143,6 +159,7 @@ class UserDefaultsHelper {
         Defaults[.profileImageURL] = nil
         Defaults[.nickname] = nil
         Defaults[.token] = nil
+        Defaults[.role] = nil
     }
     
     func checkIfLogin() -> Bool {

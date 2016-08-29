@@ -29,7 +29,7 @@ class MemberModelHelper {
         do {
             let realm = try Realm()
             for memberDict in members {
-                let userId: String = memberDict["userId"]!
+                let userId: String = memberDict["user_id"]!
                 let role: String = memberDict["role"]!
                 if realm.objects(MemberModel).filter("classroomUUID = '\(classroomUUID)' AND userId = '\(userId)' AND role = '\(role)'").count == 0 {
                     let member = MemberModel()
