@@ -40,7 +40,9 @@ class APIClassroomCreate {
             let classroomUUID: String = responseData["classroom_uuid"].stringValue
             let classroomCode: String = responseData["classroomCode"].stringValue
             if errorCode == 0 {
-                ClassroomModelHelper().add(classroomUUID, name: name, introduction: introduction, schoolUUID: schoolUUID, code: classroomCode, timestamp: timestamp, members: members)
+                ClassroomModelHelper().add(classroomUUID, name: name, introduction: introduction, creator: nil,
+                    schoolUUID: schoolUUID, code: classroomCode, active: true, createdTimestamp: timestamp,
+                    updatedTimestamp: timestamp, members: members)
                 self.vc.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 self.showErrorAlert()

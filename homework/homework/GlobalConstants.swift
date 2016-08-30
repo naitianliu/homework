@@ -26,7 +26,7 @@ struct GlobalConstants {
         1051: "验证码错误或已过期，请返回重新获取验证码",
     ]
 
-    static let kRealmSchemaVersion: UInt64 = 2
+    static let kRealmSchemaVersion: UInt64 = 3
 
     static let kProfileImagePlaceholder: UIImage = UIImage(named: "profile-placeholder")!
 

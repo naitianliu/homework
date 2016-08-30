@@ -14,6 +14,8 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
+    let classroomViewModel = ClassroomViewModel()
+
     var data: [[String: AnyObject]] = []
 
     var willCreateClassroom = false
@@ -31,9 +33,6 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.data.append(sampleData)
-        self.data.append(sampleData)
 
         self.tableView.estimatedRowHeight = 120
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -63,7 +62,8 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         self.reloadTable()
     }
 
-    private func reloadTable() {
+    func reloadTable() {
+        self.data = self.classroomViewModel.getTableViewData()
         self.tableView.reloadData()
     }
     
@@ -129,8 +129,6 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dg_setPullToRefreshFillColor(GlobalConstants.themeColor)
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
-
-    
 
     deinit {
         tableView.dg_removePullToRefresh()

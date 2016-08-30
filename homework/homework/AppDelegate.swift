@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Diplomat.sharedInstance().registerWithConfigurations([kDiplomatTypeWechat: [kDiplomatAppIdKey: GlobalConstants.Weixin.appId, kDiplomatAppSecretKey: GlobalConstants.Weixin.appSecret]])
         
         switchRootVC()
+
+        PerformMigrations().migrate()
         
         return true
     }

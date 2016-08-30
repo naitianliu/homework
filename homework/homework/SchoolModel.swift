@@ -69,5 +69,18 @@ class SchoolModelHelper {
         return schools
     }
 
+    func getSchoolNameByUUID(uuid: String) -> String? {
+        var schoolName: String? = nil
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(SchoolModel.self, key: uuid) {
+                schoolName = item.name
+            }
+        } catch {
+            print(error)
+        }
+        return schoolName
+    }
+
 
 }

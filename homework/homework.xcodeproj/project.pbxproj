@@ -102,6 +102,7 @@
 		46CD10351D73D9C600023055 /* LogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD10331D73D9C600023055 /* LogoutTableViewCell.xib */; };
 		46CD10381D73E16B00023055 /* ProfileUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */; };
 		46CD103A1D73FB7D00023055 /* APIClassroomGetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */; };
+		46CD103D1D75406000023055 /* ClassroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD103C1D75406000023055 /* ClassroomViewModel.swift */; };
 		46E241CA1D55D71F00382394 /* CreateHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241C91D55D71F00382394 /* CreateHWViewController.swift */; };
 		46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */; };
 		46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */; };
@@ -245,6 +246,7 @@
 		46CD10331D73D9C600023055 /* LogoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoutTableViewCell.xib; sourceTree = "<group>"; };
 		46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUpdateHelper.swift; sourceTree = "<group>"; };
 		46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomGetList.swift; sourceTree = "<group>"; };
+		46CD103C1D75406000023055 /* ClassroomViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomViewModel.swift; sourceTree = "<group>"; };
 		46E241C91D55D71F00382394 /* CreateHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateHWViewController.swift; sourceTree = "<group>"; };
 		46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewTableViewCell.swift; sourceTree = "<group>"; };
 		46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				4612AF4D1D23803400044E60 /* Classroom.storyboard */,
 				460055821D6E578E006AA8AA /* API */,
+				46CD103B1D75404400023055 /* View Models */,
 				46B67D8C1D4451780056EA84 /* Model */,
 				468BBA121D31C0F800C944C4 /* Views */,
 				468BBA111D31C0EC00C944C4 /* View Controllers */,
@@ -400,7 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				4612AF571D2483BC00044E60 /* Me.storyboard */,
-				46CD10361D73E0D800023055 /* View Model */,
+				46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */,
 				4612AF751D2A2BB000044E60 /* view */,
 				4612AF741D2A1FC400044E60 /* View Controller */,
 			);
@@ -684,12 +687,12 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		46CD10361D73E0D800023055 /* View Model */ = {
+		46CD103B1D75404400023055 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				46CD10371D73E16B00023055 /* ProfileUpdateHelper.swift */,
+				46CD103C1D75406000023055 /* ClassroomViewModel.swift */,
 			);
-			name = "View Model";
+			name = "View Models";
 			sourceTree = "<group>";
 		};
 		A7AFFCAF20A955B20D531EF8 /* Frameworks */ = {
@@ -1010,6 +1013,7 @@
 				4600559B1D6FFB15006AA8AA /* ChineseString.m in Sources */,
 				4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */,
 				460055861D6EA869006AA8AA /* MemberModel.swift in Sources */,
+				46CD103D1D75406000023055 /* ClassroomViewModel.swift in Sources */,
 				460055A01D700345006AA8AA /* MemberTableViewCell.swift in Sources */,
 				4612AF601D2489DE00044E60 /* HomeViewController.swift in Sources */,
 				460055881D6EA886006AA8AA /* ProfileModel.swift in Sources */,

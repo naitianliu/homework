@@ -17,7 +17,7 @@ class ClassroomModel: Object {
     dynamic var creator: String = ""
     dynamic var schoolUUID: String = ""
     dynamic var code: String = ""
-    dynamic var acitve: Bool = true
+    dynamic var active: Bool = true
     dynamic var createdTimestamp: Int = 0
     dynamic var updatedTimestamp: Int = 0
 
@@ -35,18 +35,20 @@ class ClassroomModelHelper {
 
     }
 
-    func add(uuid: String, name: String, introduction: String, schoolUUID: String, code: String, timestamp: Int, members: [[String: String]]?) {
+    func add(uuid: String, name: String, introduction: String, creator: String?, schoolUUID: String, code: String, active: Bool, createdTimestamp: Int, updatedTimestamp: Int, members: [[String: String]]?) {
         let classroom = ClassroomModel()
         classroom.uuid = uuid
         classroom.name = name
         classroom.introduction = introduction
         classroom.schoolUUID = schoolUUID
         classroom.code = code
-        classroom.acitve = true
-        classroom.createdTimestamp = timestamp
-        classroom.updatedTimestamp = timestamp
-        if let creator = UserDefaultsHelper().getUsername() {
+        classroom.active = active
+        classroom.createdTimestamp = createdTimestamp
+        classroom.updatedTimestamp = updatedTimestamp
+        if let creator = creator {
             classroom.creator = creator
+        } else {
+            classroom.creator = UserDefaultsHelper().getUsername()!
         }
         do {
             let realm = try Realm()
@@ -93,7 +95,7 @@ class ClassroomModelHelper {
                     "creator": item.creator,
                     "school_uuid": item.schoolUUID,
                     "code": item.code,
-                    "active": item.acitve
+                    "active": item.active
                 ]
                 return classroomInfo
             } else {
