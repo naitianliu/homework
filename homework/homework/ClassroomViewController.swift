@@ -71,6 +71,10 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         self.showSetNameVC()
     }
 
+    @IBAction func searchButtonOnClick(sender: AnyObject) {
+
+    }
+    
     private func showSetNameVC() {
         let setNameVC = self.storyboard?.instantiateViewControllerWithIdentifier("SetClassroomNameViewController") as! SetClassroomNameViewController
         setNameVC.completeDismissBlock = {(name: String) in
@@ -121,9 +125,8 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         loadingView.tintColor = UIColor.whiteColor()
         tableView.dg_addPullToRefreshWithActionHandler({
             // api call to get list
-            print(123)
+            APIClassroomGetList(vc: self).run()
             // stop loading
-            self.reloadTable()
             self.tableView.dg_stopLoading()
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(GlobalConstants.themeColor)

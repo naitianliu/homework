@@ -203,6 +203,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我的班级" id="4qo-Ms-aYZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="Dpc-Mb-spf">
+                            <connections>
+                                <action selector="searchButtonOnClick:" destination="B70-fg-cEr" id="kRC-Jz-obC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rAQ-Bc-y1u">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>

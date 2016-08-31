@@ -63,6 +63,19 @@ class ClassroomModelHelper {
         }
     }
 
+    func close(uuid: String) {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(ClassroomModel.self, key: uuid) {
+                try realm.write({ 
+                    item.setValue(false, forKey: "active")
+                })
+            }
+        } catch {
+            print(error)
+        }
+    }
+
     func getList(active: Bool) -> [[String: String]] {
         var classrooms: [[String: String]] = []
         do {
@@ -82,6 +95,19 @@ class ClassroomModelHelper {
             print(error)
         }
         return classrooms
+    }
+
+    func getUUIDList(active: Bool) -> [String] {
+        var uuidList: [String] = []
+        do {
+            let realm = try Realm()
+            for item in realm.objects(ClassroomModel).filter("active = \(active)") {
+                uuidList.append(item.uuid)
+            }
+        } catch {
+            print(error)
+        }
+        return uuidList
     }
 
     func getClassroomInfo(uuid: String) -> [String: AnyObject]? {
