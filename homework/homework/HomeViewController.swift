@@ -82,10 +82,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if indexPath.row == 0 {
                 self.createClassroomBlock!()
             } else if indexPath.row == 1 {
-                let homeworkSB = UIStoryboard(name: "Homework", bundle: nil)
-                let selectHWTypeVC = homeworkSB.instantiateViewControllerWithIdentifier("SelectHWTypeViewController") as! SelectHWTypeViewController
-                selectHWTypeVC.modalPresentationStyle = .OverFullScreen
-                self.presentViewController(selectHWTypeVC, animated: true, completion: nil)
+                PresentVCUtility(vc: self).showSelectHWTypeVC()
             } else if indexPath.row == 2 {
 
             }

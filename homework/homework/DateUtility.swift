@@ -86,5 +86,13 @@ class DateUtility {
         let epoch = self.convertDateToEpoch(date)
         return epoch
     }
+
+    func convertUTCDateToHumanFriendlyDateString(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        dateFormatter.dateFormat = "MM月dd日"
+        let dateString = dateFormatter.stringFromDate(date)
+        return dateString
+    }
 }
 

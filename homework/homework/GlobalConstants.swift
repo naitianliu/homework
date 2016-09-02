@@ -30,6 +30,22 @@ struct GlobalConstants {
 
     static let kProfileImagePlaceholder: UIImage = UIImage(named: "profile-placeholder")!
 
+    static let kScoresMap = [
+        0: " E  ",
+        1: " D- ",
+        2: " D  ",
+        3: " D+ ",
+        4: " C- ",
+        5: " C  ",
+        6: " C+ ",
+        7: " B- ",
+        8: " B  ",
+        9: " B+ ",
+        10: " A- ",
+        11: " A  ",
+        12: " A+ ",
+    ]
+
 }
 
 let APIEndpoint = "http://localhost:8000/api/v1"
@@ -49,5 +65,28 @@ struct APIURL {
 
     static let classroomCreate = "\(APIEndpoint)/classroom/create/"
     static let classroomGetList = "\(APIEndpoint)/classroom/get_list/"
+    static let classroomSearch = "\(APIEndpoint)/classroom/search/"
 
+    static let homeworkCreate = "\(APIEndpoint)/homework/create/"
+    static let homeworkSubmit = "\(APIEndpoint)/homework/submit/"
+    static let homeworkGrade = "\(APIEndpoint)/homework/grade/"
+    static let homeworkClose = "\(APIEndpoint)/homework/close/"
+    static let homeworkGetHomeworkList = "\(APIEndpoint)/homework/get_homework_list/"
+    static let homeworkGetSubmissionList = "\(APIEndpoint)/homework/get_submission_list/"
+
+
+}
+
+
+struct SampleData {
+    static let sampleData_Classroom = [
+        "classroomName": "暑期英语集训班",
+        "schoolName": "Wonderland学科英语",
+        "profileImgURLs": [
+            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
+            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
+            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"
+        ],
+        "studentNumber": "6"
+    ]
 }

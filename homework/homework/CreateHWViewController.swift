@@ -14,6 +14,10 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     var homeworkTypeIndex: Int = 0
 
+    var selectedClassroomUUID: String?
+    var selectedClassroomName: String?
+    var selectedDate: NSDate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +32,11 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadTable()
+    }
     
     @IBAction func cancelButtonOnClick(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -36,6 +45,10 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func submitButtonOnClick(sender: AnyObject) {
 
+    }
+
+    func reloadTable() {
+        self.tableView.reloadData()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -62,10 +75,14 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
             })
             return cell
         case (1, 0):
-            let cell = self.setupRightDetailCell("班级", detail: "", imageName: "icon-classroom-gray")
+            let cell = self.setupRightDetailCell("班级", detail: self.selectedClassroomName, imageName: "icon-classroom-gray")
             return cell
         case (1, 1):
-            let cell = self.setupRightDetailCell("截止时间", detail: "", imageName: "icon-clock-gray")
+            var dateString: String? = nil
+            if let date = self.selectedDate {
+                dateString = DateUtility().convertUTCDateToHumanFriendlyDateString(date)
+            }
+            let cell = self.setupRightDetailCell("截止时间", detail: dateString, imageName: "icon-clock-gray")
             return cell
         default:
             let cell = UITableViewCell()
@@ -91,24 +108,50 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.section, indexPath.row) {
+        case (0, 1):
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.view.endEditing(true)
         case (1, 0):
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             self.view.endEditing(true)
+            self.showClassroomPickerVC()
         case (1, 1):
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             self.view.endEditing(true)
+            self.showCalendarDatePickerVC()
         default:
             break
         }
     }
 
-    private func setupRightDetailCell(title: String, detail: String, imageName: String) -> UITableViewCell {
+    private func setupRightDetailCell(title: String, detail: String?, imageName: String) -> UITableViewCell {
         let cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)
         cell.accessoryType = .DisclosureIndicator
         cell.imageView?.image = UIImage(named: imageName)
         cell.textLabel?.text = title
-        cell.detailTextLabel?.text = detail
+        if let detail = detail {
+            cell.detailTextLabel?.text = detail
+        } else {
+            cell.detailTextLabel?.text = "未选择"
+        }
         return cell
+    }
+
+    private func showCalendarDatePickerVC() {
+        let calendarDatePickerVC = CalendarDatePickerViewController(nibName: "CalendarDatePickerViewController", bundle: nil)
+        calendarDatePickerVC.completeSelectionBlockSetter { (date) in
+            self.selectedDate = date
+        }
+        self.navigationController?.pushViewController(calendarDatePickerVC, animated: true)
+    }
+
+    private func showClassroomPickerVC() {
+        let classroomPickerVC = ClassroomPickerViewController(nibName: "ClassroomPickerViewController", bundle: nil)
+        classroomPickerVC.completeSelectionBlockSetter { (classroomUUID, classroomName) in
+            self.selectedClassroomUUID = classroomUUID
+            self.selectedClassroomName = classroomName
+        }
+        self.navigationController?.pushViewController(classroomPickerVC, animated: true)
     }
 
 }

@@ -20,17 +20,6 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
 
     var willCreateClassroom = false
 
-    let sampleData = [
-        "classroomName": "暑期英语集训班",
-        "schoolName": "Wonderland学科英语",
-        "profileImgURLs": [
-            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
-            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
-            "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"
-        ],
-        "studentNumber": "6"
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -138,3 +127,4 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
 }
+

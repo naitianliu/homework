@@ -15,6 +15,8 @@ class ClassroomDetailViewController: UIViewController {
 
     @IBOutlet weak var swipeView: ZLSwipeableView!
 
+    @IBOutlet weak var homeworkActionView: UIView!
+    
     var currentIndex = 0
 
     var numberOfLayoutCalls = 0
@@ -65,6 +67,7 @@ class ClassroomDetailViewController: UIViewController {
             swipeView.nextView = {
                 return self.nextCardView()
             }
+            self.renderHomeworkActionView()
         }
     }
 
@@ -108,6 +111,29 @@ class ClassroomDetailViewController: UIViewController {
         let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
         homeworkDetailVC.homeworkData = self.sampleData
         self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
+    }
+
+    private func renderHomeworkActionView() {
+        let viewWidth = self.homeworkActionView.frame.width
+        let viewHeight = self.homeworkActionView.frame.height
+        let btnWidth: CGFloat = 150
+        let btnHeight: CGFloat = 30
+        let x: CGFloat = (viewWidth - btnWidth) / 2
+        let y: CGFloat = (viewHeight - btnHeight) / 2
+        let btnFrame = CGRect(x: x, y: y, width: btnWidth, height: btnHeight)
+        let button = UIButton(type: .System)
+        button.frame = btnFrame
+        button.setTitle("发布新的作业", forState: .Normal)
+        button.setTitleColor(GlobalConstants.themeColor, forState: .Normal)
+        button.layer.borderColor = GlobalConstants.themeColor.CGColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(self.newHomeworkButtonOnClick), forControlEvents: .TouchUpInside)
+        self.homeworkActionView.addSubview(button)
+    }
+
+    func newHomeworkButtonOnClick(sender: AnyObject!) {
+        PresentVCUtility(vc: self).showSelectHWTypeVC()
     }
 
 }

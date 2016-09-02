@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import ASValueTrackingSlider
+import CustomizableActionSheet
 
-class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ASValueTrackingSliderDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var actionView: UIView!
+
+    var currentScoreLabel: UILabel?
+    var currentScore: String?
 
     var homeworkData: [String: String?] = ["name": "比尔盖茨4", "time": "今天 14:00", "score": nil, "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"]
 
@@ -161,14 +166,104 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     
     func gradeButtonOnClick(sender: AnyObject) {
         print("grade")
+        self.showGradeActionSheet()
     }
 
     func commentButtonOnClick(sender: AnyObject) {
         print("comment")
+        self.showHomeworkCommentVC()
     }
 
     func shareButtonOnClick(sender: AnyObject) {
         print("share")
     }
+
+    func showHomeworkCommentVC() {
+        let homeworkCommentVC = HomeworkCommentViewController(nibName: "HomeworkCommentViewController", bundle: nil)
+        homeworkCommentVC.modalTransitionStyle = .CoverVertical
+        self.presentViewController(homeworkCommentVC, animated: true, completion: nil)
+    }
+
+    private func showGradeActionSheet() {
+        // setup slider
+        let viewWidth = UIScreen.mainScreen().bounds.width
+        let sliderWidth = viewWidth - 40
+        let containerViewHeight: CGFloat = 150
+        let slider: ASValueTrackingSlider = ASValueTrackingSlider(frame: CGRect(x: 20, y: 80, width: sliderWidth, height: 30))
+        slider.maximumValue = 12
+        slider.popUpViewCornerRadius = 12
+        slider.setMaxFractionDigitsDisplayed(0)
+        slider.popUpViewColor = GlobalConstants.themeColor
+        slider.dataSource = self
+        slider.font = UIFont.boldSystemFontOfSize(30)
+        slider.textColor = UIColor.whiteColor()
+        slider.value = 11
+        slider.addTarget(self, action: #selector(self.sliderValueChanged), forControlEvents: .ValueChanged)
+        // setuo current score label
+        self.currentScoreLabel = UILabel(frame: CGRect(x: 20, y: 20, width: sliderWidth, height: 22))
+        self.currentScoreLabel?.textAlignment = .Center
+        self.currentScoreLabel?.textColor = UIColor.lightGrayColor()
+        self.changeCurrentScoreLabelValue(slider)
+        // setup view
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: viewWidth, height: containerViewHeight))
+        containerView.backgroundColor = UIColor.whiteColor()
+        containerView.addSubview(self.currentScoreLabel!)
+        containerView.addSubview(slider)
+        // setup action sheet
+        var items = [CustomizableActionSheetItem]()
+        let containerViewItem = CustomizableActionSheetItem()
+        containerViewItem.type = .View
+        containerViewItem.view = containerView
+        containerViewItem.height = containerViewHeight
+        items.append(containerViewItem)
+        // setup confirm button
+        let confirmItem = CustomizableActionSheetItem()
+        confirmItem.type = .Button
+        confirmItem.label = "确认并提交分数"
+        confirmItem.textColor = UIColor.whiteColor()
+        confirmItem.backgroundColor = GlobalConstants.themeColor
+        confirmItem.selectAction = { (actionSheet: CustomizableActionSheet) -> Void in
+            print("confirm")
+            actionSheet.dismiss()
+        }
+        items.append(confirmItem)
+        // setup close button
+        let closeItem = CustomizableActionSheetItem()
+        closeItem.type = .Button
+        closeItem.label = "取消"
+        closeItem.textColor = UIColor.grayColor()
+        closeItem.selectAction = { (actionSheet: CustomizableActionSheet) -> Void in
+            print("close")
+            actionSheet.dismiss()
+        }
+        items.append(closeItem)
+        // show action sheet
+        let actionSheet = CustomizableActionSheet()
+        actionSheet.showInView(self.view, items: items)
+
+    }
+
+    func slider(slider: ASValueTrackingSlider!, stringForValue value: Float) -> String! {
+        let key: Int = Int(value)
+        guard let score = GlobalConstants.kScoresMap[key] else {
+            return ""
+        }
+        return score
+    }
+
+    func sliderValueChanged(sender: AnyObject!) {
+        let slider = sender as! ASValueTrackingSlider
+        self.changeCurrentScoreLabelValue(slider)
+
+    }
+
+    private func changeCurrentScoreLabelValue(slider: ASValueTrackingSlider) {
+        let value: Int = Int(slider.value)
+        let score: String = GlobalConstants.kScoresMap[value]!
+        let trimmedScore: String = score.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        self.currentScoreLabel?.text = "当前设定分数：\(trimmedScore)"
+        self.currentScore = trimmedScore
+    }
+
 
 }
