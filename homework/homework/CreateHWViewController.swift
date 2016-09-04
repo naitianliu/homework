@@ -12,11 +12,13 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
 
-    var homeworkTypeIndex: Int = 0
-
     var selectedClassroomUUID: String?
     var selectedClassroomName: String?
     var selectedDate: NSDate?
+    var selectedType: String?
+    var content: String?
+
+    let homeworkKeys = GlobalKeys.HomeworkKeys.self
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,7 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func submitButtonOnClick(sender: AnyObject) {
-
+        self.performCreateHomework()
     }
 
     func reloadTable() {
@@ -72,6 +74,7 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCellWithIdentifier("EditTextViewTableViewCell") as! EditTextViewTableViewCell
             cell.configurate({ (text) in
                 print(text)
+                self.content = text
             })
             return cell
         case (1, 0):
@@ -152,6 +155,18 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
             self.selectedClassroomName = classroomName
         }
         self.navigationController?.pushViewController(classroomPickerVC, animated: true)
+    }
+
+    private func performCreateHomework() {
+        let classroomUUID: String = self.selectedClassroomUUID!
+        let type: String = self.selectedType!
+        let dueDateTimestamp: Int = DateUtility().convertDateToEpoch(self.selectedDate!)
+        let info: [String: AnyObject] = [
+            self.homeworkKeys.type: type,
+            self.homeworkKeys.content: content!,
+            self.homeworkKeys.dueDateTimestamp: dueDateTimestamp,
+        ]
+        APIHomeworkCreate(vc: self).run(classroomUUID, info: info)
     }
 
 }

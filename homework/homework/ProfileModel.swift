@@ -22,6 +22,9 @@ class ProfileModel: Object {
 }
 
 class ProfileModelHelper {
+
+    let Keys = GlobalKeys.ProfileKeys.self
+
     init() {
         let userInfoHelper = UserDefaultsHelper()
         guard let userId = userInfoHelper.getUsername() else { return }
@@ -50,9 +53,9 @@ class ProfileModelHelper {
             let realm = try Realm()
             if let item = realm.objectForPrimaryKey(ProfileModel.self, key: userId) {
                 let profileInfo: [String: String] = [
-                    "userId": userId,
-                    "nickname": item.nickname,
-                    "imgURL": item.imgURL
+                    self.Keys.userId: userId,
+                    self.Keys.nickname: item.nickname,
+                    self.Keys.imgURL: item.imgURL
                 ]
                 return profileInfo
             } else {
@@ -70,9 +73,9 @@ class ProfileModelHelper {
             let realm = try Realm()
             for item in realm.objects(ProfileModel.self) {
                 let rowDict = [
-                    "userId": item.userId,
-                    "nickname": item.nickname,
-                    "imgURL": item.imgURL
+                    self.Keys.userId: item.userId,
+                    self.Keys.nickname: item.nickname,
+                    self.Keys.imgURL: item.imgURL
                 ]
                 profiles.append(rowDict)
             }

@@ -557,8 +557,7 @@
                                                 <exclude reference="cGh-gr-q25"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="30" y="70" width="540" height="396"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="constraints">
                                                 <include reference="cGh-gr-q25"/>
                                             </mask>
@@ -566,9 +565,6 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xra-uU-2GC">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="30" y="468" width="540" height="128"/>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -704,6 +700,7 @@
                         <viewControllerLayoutGuide type="bottom" id="A2J-mV-xCI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zfv-Xy-5t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0a2-3i-DpN">
@@ -718,9 +715,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AS9-Dh-uyU" id="bmg-zC-lHw">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="207.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnX-wB-6Fj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnX-wB-6Fj">
                                                     <rect key="frame" x="17" y="8" width="165" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="mLu-uI-Ph9"/>
@@ -729,10 +727,10 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="42" y="8" width="165" height="21"/>
+                                                        <rect key="frame" x="18" y="18" width="204" height="21"/>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlT-HO-Bap">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlT-HO-Bap">
                                                     <rect key="frame" x="17" y="30" width="137" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1Sw-kH-e0Z"/>
@@ -740,11 +738,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="42" y="32" width="123" height="21"/>
-                                                    </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="621-sS-TRJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="621-sS-TRJ">
                                                     <rect key="frame" x="17" y="59" width="68" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="68" id="Oki-VF-jv3"/>
@@ -752,11 +747,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="42" y="61" width="68" height="18"/>
-                                                    </variation>
                                                 </label>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VSP-bF-unl" userLabel="ImageContainerView">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSP-bF-unl" userLabel="ImageContainerView">
                                                     <rect key="frame" x="84" y="59" width="449" height="153"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wEN-Hj-oBw">
@@ -799,8 +791,7 @@
                                                             <exclude reference="TjM-az-VWp"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="153" y="82" width="175.5" height="77.5"/>
+                                                    <variation key="heightClass=regular">
                                                         <mask key="constraints">
                                                             <exclude reference="XAw-hy-PsI"/>
                                                             <exclude reference="sAN-NR-Xfl"/>
@@ -894,13 +885,13 @@
                                 <exclude reference="AHZ-3I-T1E"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="gPe-PY-Hy7"/>
                                 <exclude reference="Acd-S7-ELm"/>
                                 <exclude reference="J1k-uj-b5x"/>
                                 <exclude reference="hRf-By-ytl"/>
                                 <exclude reference="HaI-g7-ohp"/>
                                 <exclude reference="ah5-Lh-1NS"/>
                                 <exclude reference="oCY-PM-3ol"/>
-                                <exclude reference="gPe-PY-Hy7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -909,13 +900,13 @@
                                 <include reference="AHZ-3I-T1E"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="gPe-PY-Hy7"/>
                                 <include reference="Acd-S7-ELm"/>
                                 <include reference="J1k-uj-b5x"/>
                                 <include reference="hRf-By-ytl"/>
                                 <include reference="HaI-g7-ohp"/>
                                 <include reference="ah5-Lh-1NS"/>
                                 <include reference="oCY-PM-3ol"/>
-                                <include reference="gPe-PY-Hy7"/>
                             </mask>
                         </variation>
                     </view>

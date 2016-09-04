@@ -63,8 +63,15 @@ class SelectHWTypeViewController: UIViewController {
     }
 
     func homeworkTypeButtonOnClick(sender: UIButton!) {
+        let typeKeys = GlobalKeys.HomeworkTypeKeys.self
+        let tagTypeMap: [Int: String] = [
+            0: typeKeys.normal,
+            1: typeKeys.reading,
+            2: typeKeys.recitation,
+            3: typeKeys.dictation
+        ]
         let index = sender.tag
-        self.performDidSelectHomewworkType(index)
+        self.performDidSelectHomewworkType(tagTypeMap[index]!)
     }
 
     @IBAction func cancelButtonOnClick(sender: AnyObject) {
@@ -73,11 +80,11 @@ class SelectHWTypeViewController: UIViewController {
         }
     }
 
-    private func performDidSelectHomewworkType(index: Int) {
+    private func performDidSelectHomewworkType(selectedType: String) {
         self.dismissViewControllerAnimated(false, completion: nil)
         let createHWNC = self.storyboard?.instantiateViewControllerWithIdentifier("CreateHWNC") as! UINavigationController
         let createHWVC = createHWNC.viewControllers[0] as! CreateHWViewController
-        createHWVC.homeworkTypeIndex = index
+        createHWVC.selectedType = selectedType
         createHWNC.modalTransitionStyle = .CoverVertical
         let vc = self.view.window?.rootViewController
         vc!.presentViewController(createHWNC, animated: true, completion: nil)

@@ -16,6 +16,10 @@ class ClassroomDetailViewController: UIViewController {
     @IBOutlet weak var swipeView: ZLSwipeableView!
 
     @IBOutlet weak var homeworkActionView: UIView!
+
+    var classroomUUID: String!
+
+    var homeworkViewModel: HomeworkViewModel!
     
     var currentIndex = 0
 
@@ -35,8 +39,8 @@ class ClassroomDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.cardDataArray.append(sampleData)
-        self.cardDataArray.append(sampleData)
+        self.homeworkViewModel = HomeworkViewModel(classroomUUID: classroomUUID)
+        self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData()
 
         self.countHomeworkNumber()
 

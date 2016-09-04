@@ -21,6 +21,8 @@ class MemberModelHelper {
 
     let profileModelHelper = ProfileModelHelper()
 
+    let profileKeys = GlobalKeys.ProfileKeys.self
+
     init() {
 
     }
@@ -59,8 +61,8 @@ class MemberModelHelper {
                     "role": role
                 ]
                 if let profileDict = self.profileModelHelper.getProfileInfo(userId) {
-                    rowDict["nickname"] = profileDict["nickname"]
-                    rowDict["imgURL"] = profileDict["imgURL"]
+                    rowDict["nickname"] = profileDict[self.profileKeys.nickname]
+                    rowDict["imgURL"] = profileDict[self.profileKeys.imgURL]
                 } else {
                     rowDict["nickname"] = "未知"
                     rowDict["imgURL"] = ""

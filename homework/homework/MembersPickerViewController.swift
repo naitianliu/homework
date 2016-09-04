@@ -17,6 +17,8 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
 
     let myUserId = UserDefaultsHelper().getUsername()!
 
+    let profileKeys = GlobalKeys.ProfileKeys.self
+
     var tableData = []
     var indexArray = []
 
@@ -81,9 +83,9 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("MemberTableViewCell") as! MemberTableViewCell
         let rowArray: [AnyObject] = self.tableData[indexPath.section] as! [AnyObject]
         let contactInfo: [String:String] = rowArray[indexPath.row] as! [String:String]
-        let nickname: String = contactInfo["nickname"]!
-        let imgURL: String = contactInfo["imgURL"]!
-        let userId: String = contactInfo["userId"]!
+        let nickname: String = contactInfo[self.profileKeys.nickname]!
+        let imgURL: String = contactInfo[self.profileKeys.imgURL]!
+        let userId: String = contactInfo[self.profileKeys.userId]!
         let selected: Bool = selectedUserIdList.contains(userId)
         cell.configurate(nickname, imgURL: imgURL, selected: selected)
         return cell
@@ -93,7 +95,7 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let rowArray: [AnyObject] = self.tableData[indexPath.section] as! [AnyObject]
         let contactInfo: [String:String] = rowArray[indexPath.row] as! [String:String]
-        let userId: String = contactInfo["userId"]!
+        let userId: String = contactInfo[self.profileKeys.userId]!
         if selectedUserIdList.contains(userId) {
             if pickme && userId == myUserId {
                 AlertHelper(viewController: self).showPromptAlertView("教师成员中需要包含自己")
@@ -125,7 +127,7 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
         var contactArray:[String] = []
         for  item in self.profiles {
             let contactInfo = item 
-            let name = contactInfo["nickname"]
+            let name = contactInfo[profileKeys.nickname]
             contactArray.append(name!)
             contactDict[name!] = item
         }

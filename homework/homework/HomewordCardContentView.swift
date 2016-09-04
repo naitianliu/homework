@@ -19,6 +19,8 @@ class HomewordCardContentView: UIView {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
 
+    let homeworkKeys = GlobalKeys.HomeworkKeys.self
+
     var data: [String: AnyObject]!
 
     func configurate(data: [String: AnyObject]) {
@@ -47,15 +49,15 @@ class HomewordCardContentView: UIView {
     private func setupProfileImageView() {
         let placeholder = UIImage(named: "profile-placeholder")
         var url: String = ""
-        if let value = self.data["profileImgURL"] {
+        if let value = self.data[self.homeworkKeys.teacherImgURL] {
             url = value as! String
             self.profileImageView.sd_setImageWithURL(NSURL(string: url), placeholderImage: placeholder)
         }
     }
 
     private func setupAttributedLabel() {
-        let teacher = self.data["teacher"] as! String
-        let homeworkType = self.data["homeworkType"] as! String
+        let teacher = self.data[self.homeworkKeys.teacherName] as! String
+        let homeworkType = self.data[self.homeworkKeys.type] as! String
         // redner label
         attributedLabel.font = UIFont.systemFontOfSize(15)
         attributedLabel.textColor = UIColor.darkGrayColor()
@@ -74,17 +76,17 @@ class HomewordCardContentView: UIView {
     }
 
     private func setupTimeLabel() {
-        let time = self.data["time"] as! String
+        let time = self.data[self.homeworkKeys.createdTimeString] as! String
         self.timeLabel.text = time
     }
 
     private func setupContentLabel() {
-        let homeworkContent = self.data["homeworkContent"] as! String
+        let homeworkContent = self.data[self.homeworkKeys.content] as! String
         self.contentLabel.text = homeworkContent
     }
 
     private func setupDueDateLabel() {
-        let dueDate = self.data["dueDate"] as! String
+        let dueDate = self.data[self.homeworkKeys.dueDateString] as! String
         self.dueDateLabel.text = dueDate
 
     }

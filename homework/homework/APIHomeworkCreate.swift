@@ -19,6 +19,8 @@ class APIHomeworkCreate {
 
     let Keys = GlobalKeys.HomeworkKeys.self
 
+    let homeworkModelHelper = HomeworkModelHelper()
+
     var vc: UIViewController!
     
     init(vc: UIViewController!) {
@@ -35,6 +37,14 @@ class APIHomeworkCreate {
         CallAPIHelper(url: url, data: data).POST({ (responseData) in
             // success
             MBProgressHUD.hideHUDForView(self.vc.view, animated: true)
+            let success = responseData["success"].boolValue
+            if success {
+                let timestamp = responseData["timestamp"].intValue
+                let homeworkUUID = responseData[self.Keys.homeworkUUID].stringValue
+                let infoData: NSData = NSKeyedArchiver.archivedDataWithRootObject(info)
+                self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: nil, active: true, createdTimestamp: timestamp, updatedTimestamp: timestamp, info: infoData)
+            }
+            self.vc.dismissViewControllerAnimated(true, completion: nil)
             }) { (error) in
                 // error
                 MBProgressHUD.hideHUDForView(self.vc.view, animated: true)

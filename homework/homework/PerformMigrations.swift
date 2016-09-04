@@ -28,6 +28,11 @@ class PerformMigrations {
                         newObject!["active"] = true
                     })
                 }
+                if (oldSchemaVersion < 4) {
+                    migration.enumerate(ClassroomModel.className(), { (oldObject, newObject) in
+
+                    })
+                }
             }
         )
         Realm.Configuration.defaultConfiguration = config

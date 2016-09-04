@@ -18,9 +18,7 @@ class HomeworkModel: Object {
     dynamic var createdTimestamp: Int = 0
     dynamic var updatedTimestamp: Int = 0
 
-    dynamic var type: String = ""
-    dynamic var content: String = ""
-    dynamic var dueDateTimestamp: Int = 0
+    dynamic var info: NSData = NSData()
 
     override static func primaryKey() -> String {
         return "uuid"
@@ -36,7 +34,7 @@ class HomeworkModelHelper {
 
     }
 
-    func add(homeworkUUID: String, classroomUUID: String, creator: String?, active: Bool, createdTimestamp: Int?, updatedTimestamp: Int, type: String, content: String, dueDateTimestamp: Int) {
+    func add(homeworkUUID: String, classroomUUID: String, creator: String?, active: Bool, createdTimestamp: Int?, updatedTimestamp: Int, info: NSData) {
         let homework = HomeworkModel()
         homework.uuid = homeworkUUID
         homework.classroomUUID = classroomUUID
@@ -50,9 +48,7 @@ class HomeworkModelHelper {
             homework.createdTimestamp = createdTimestamp
         }
         homework.updatedTimestamp = updatedTimestamp
-        homework.type = type
-        homework.content = content
-        homework.dueDateTimestamp = dueDateTimestamp
+        homework.info = info
         do {
             let realm = try Realm()
             try realm.write({ 
@@ -75,9 +71,7 @@ class HomeworkModelHelper {
                     Keys.active: item.active,
                     Keys.createdTimestamp: item.createdTimestamp,
                     Keys.updatedTimestamp: item.updatedTimestamp,
-                    Keys.type: item.type,
-                    Keys.content: item.content,
-                    Keys.dueDateTimestamp: item.dueDateTimestamp
+                    Keys.info: item.info
                 ]
                 homeworkArray.append(rowDict)
             }

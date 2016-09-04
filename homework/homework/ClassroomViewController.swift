@@ -101,12 +101,19 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let classroomDetailVC = self.storyboard?.instantiateViewControllerWithIdentifier("ClassroomDetailViewController") as! ClassroomDetailViewController
-        self.navigationController?.pushViewController(classroomDetailVC, animated: true)
+        let rowData = self.data[indexPath.row]
+        let classroomUUID: String = rowData["classroomUUID"]! as! String
+        self.showClassroomDetailVC(classroomUUID)
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+
+    private func showClassroomDetailVC(classroomUUID: String) {
+        let classroomDetailVC = self.storyboard?.instantiateViewControllerWithIdentifier("ClassroomDetailViewController") as! ClassroomDetailViewController
+        classroomDetailVC.classroomUUID = classroomUUID
+        self.navigationController?.pushViewController(classroomDetailVC, animated: true)
     }
 
     private func setupPullToRefresh() {
