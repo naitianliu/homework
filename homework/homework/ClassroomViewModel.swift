@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class ClassroomViewModel {
 
     let classroomModelHelper = ClassroomModelHelper()
     let schoolModelHelper = SchoolModelHelper()
     let memberModelHelper = MemberModelHelper()
+
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
 
     init() {
 
@@ -22,25 +25,40 @@ class ClassroomViewModel {
         var data: [[String: AnyObject]] = []
         let classrooms = self.classroomModelHelper.getList(true)
         for classroom in classrooms {
-            let classroomUUID: String = classroom["uuid"]!
-            // get school name
-            let schoolUUID: String = classroom["school_uuid"]!
-            let schoolName: String = self.getSchoolName(schoolUUID)
-            // get teacher profile image urls and student number
-            let result_tup = self.getTeacherProfileImgURLsAndStudentNumber(classroomUUID)
-            let profileImgURLs: [String] = result_tup.0
-            let studentNumberString: String = String(result_tup.1)
-            //
-            let rowDict: [String: AnyObject] = [
-                "classroomUUID": classroomUUID,
-                "classroomName": classroom["name"]!,
-                "schoolName": schoolName,
-                "profileImgURLs": profileImgURLs,
-                "studentNumber": studentNumberString
-            ]
+            let rowDict = self.getClassroomRowDict(classroom)
             data.append(rowDict)
         }
         return data
+    }
+
+    func getClassroomDataByUUID(classroomUUID: String) -> [String: AnyObject]? {
+        if let classroom = self.classroomModelHelper.getClassroomInfo(classroomUUID) {
+            let rowDict = self.getClassroomRowDict(classroom)
+            return rowDict
+        } else {
+            return nil
+        }
+    }
+
+    private func getClassroomRowDict(classroom: [String: AnyObject]) -> [String: AnyObject] {
+        let classroomJSON = JSON(classroom)
+        let classroomUUID: String = classroomJSON[self.classroomKeys.classroomUUID].stringValue
+        // get school name
+        let schoolUUID: String = classroomJSON[self.classroomKeys.schoolUUID].stringValue
+        let schoolName: String = self.getSchoolName(schoolUUID)
+        // get teacher profile image urls and student number
+        let result_tup = self.getTeacherProfileImgURLsAndStudentNumber(classroomUUID)
+        let profileImgURLs: [String] = result_tup.0
+        let studentNumberString: String = String(result_tup.1)
+        //
+        let rowDict: [String: AnyObject] = [
+            self.classroomKeys.classroomUUID: classroomUUID,
+            self.classroomKeys.classroomName: classroom[self.classroomKeys.classroomName]!,
+            self.classroomKeys.schoolName: schoolName,
+            self.classroomKeys.profileImgURLs: profileImgURLs,
+            self.classroomKeys.studentNumber: studentNumberString
+        ]
+        return rowDict
     }
 
     private func getSchoolName(schoolUUID: String) -> String {

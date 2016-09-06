@@ -33,6 +33,11 @@ class PerformMigrations {
 
                     })
                 }
+                if (oldSchemaVersion < 5) {
+                    migration.enumerate(UpdateModel.className(), { (oldObject, newObject) in
+                        newObject!["uuid"] = NSUUID().UUIDString
+                    })
+                }
             }
         )
         Realm.Configuration.defaultConfiguration = config
@@ -40,10 +45,10 @@ class PerformMigrations {
     }
 
     func setDefaultRealmForUser() {
-        if let username = UserDefaultsHelper().getUsername() {
+        if let username = UserDefaultsHelper().getUsername(), let role = UserDefaultsHelper().getRole() {
             var config = Realm.Configuration()
             // Use the default directory, but replace the filename with the username
-            config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("\(username).realm")
+            config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("\(username)-\(role).realm")
             // Set this as the configuration used for the default Realm
             config.schemaVersion = GlobalConstants.kRealmSchemaVersion
             Realm.Configuration.defaultConfiguration = config

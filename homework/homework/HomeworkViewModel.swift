@@ -19,43 +19,55 @@ class HomeworkViewModel {
 
     let dateUtility = DateUtility()
 
-    var classroomUUID: String!
+    init() {
 
-    init(classroomUUID: String) {
-        self.classroomUUID = classroomUUID
     }
 
-    func getCurrentHomeworksData() -> [[String: AnyObject]] {
+    func getCurrentHomeworksData(classroomUUID: String) -> [[String: AnyObject]] {
         var dataArray: [[String: AnyObject]] = []
-        let homeworks: [[String: AnyObject]] = self.homeworkModelHelper.getListByClassroom(self.classroomUUID, active: true)
+        let homeworks: [[String: AnyObject]] = self.homeworkModelHelper.getListByClassroom(classroomUUID, active: true)
         for homework in homeworks {
-            // time
-            let createdTimestamp: Int = homework[self.homeworkKeys.createdTimestamp]! as! Int
-            let createdTimeString: String = self.dateUtility.convertEpochToHumanFriendlyString(createdTimestamp)
-            // teacher
-            let creator: String = homework[self.homeworkKeys.creator]! as! String
-            let teacherInfoTup = self.getTeacherInfoByUserId(creator)
-            // info
-            let infoData: NSData = homework[self.homeworkKeys.info] as! NSData
-            let infoDict = NSKeyedUnarchiver.unarchiveObjectWithData(infoData)! as! [String: AnyObject]
-            let infoJSON = JSON(infoDict)
-            let content = infoJSON[self.homeworkKeys.content].stringValue
-            let type = infoJSON[self.homeworkKeys.type].stringValue
-            // due date
-            let dueDateTimestamp = infoJSON[self.homeworkKeys.dueDateTimestamp].intValue
-            let dueDate: NSDate = self.dateUtility.convertEpochToDate(dueDateTimestamp)
-            let dueDateString = self.dateUtility.convertUTCDateToHumanFriendlyDateString(dueDate)
-            let rowDict: [String: AnyObject] = [
-                self.homeworkKeys.teacherImgURL: teacherInfoTup.1,
-                self.homeworkKeys.teacherName: teacherInfoTup.0,
-                self.homeworkKeys.type: type,
-                self.homeworkKeys.content: content,
-                self.homeworkKeys.dueDateString: dueDateString,
-                self.homeworkKeys.createdTimeString: createdTimeString
-            ]
+            let rowDict = self.getRowDictByHomework(homework)
             dataArray.append(rowDict)
         }
         return dataArray
+    }
+
+    func getHomeworkInfo(homeworkUUID: String) -> [String: AnyObject] {
+        let homeworkDict = self.homeworkModelHelper.getHomewworkInfoByHomeworkUUID(homeworkUUID)
+        let rowDict = self.getRowDictByHomework(homeworkDict!)
+        return rowDict
+    }
+
+    private func getRowDictByHomework(homework: [String: AnyObject]) -> [String: AnyObject] {
+        // homework uuid
+        let homeworkUUID: String = homework[self.homeworkKeys.homeworkUUID]! as! String
+        // time
+        let createdTimestamp: Int = homework[self.homeworkKeys.createdTimestamp]! as! Int
+        let createdTimeString: String = self.dateUtility.convertEpochToHumanFriendlyString(createdTimestamp)
+        // teacher
+        let creator: String = homework[self.homeworkKeys.creator]! as! String
+        let teacherInfoTup = self.getTeacherInfoByUserId(creator)
+        // info
+        let infoData: NSData = homework[self.homeworkKeys.info] as! NSData
+        let infoDict = DataTypeConversionHelper().convertNSDataToDict(infoData)
+        let infoJSON = JSON(infoDict)
+        let content = infoJSON[self.homeworkKeys.content].stringValue
+        let type = infoJSON[self.homeworkKeys.type].stringValue
+        // due date
+        let dueDateTimestamp = infoJSON[self.homeworkKeys.dueDateTimestamp].intValue
+        let dueDate: NSDate = self.dateUtility.convertEpochToDate(dueDateTimestamp)
+        let dueDateString = self.dateUtility.convertUTCDateToHumanFriendlyDateString(dueDate)
+        let rowDict: [String: AnyObject] = [
+            self.homeworkKeys.homeworkUUID: homeworkUUID,
+            self.homeworkKeys.teacherImgURL: teacherInfoTup.1,
+            self.homeworkKeys.teacherName: teacherInfoTup.0,
+            self.homeworkKeys.type: type,
+            self.homeworkKeys.content: content,
+            self.homeworkKeys.dueDateString: dueDateString,
+            self.homeworkKeys.createdTimeString: createdTimeString
+        ]
+        return rowDict
     }
 
     private func getTeacherInfoByUserId(userId: String) -> (String, String) {

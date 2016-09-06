@@ -8,8 +8,12 @@
 
 import UIKit
 import Popover
+import DGElasticPullToRefresh
+import Toast
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var updatesTableView: UITableView!
 
     private var popover: Popover!
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -24,16 +28,44 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ["image": "icon-qrcode", "title": "扫二维码"]
     ]
 
+    var updateDataArray: [[String: AnyObject]] = []
+
+    let updateViewModel = UpdateViewModel()
+
+    let updateModelHelper = UpdateModelHelper()
+
+    let updateKeys = GlobalKeys.UpdateKeys.self
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupPopoverView()
+
+        self.initUpdateTableView()
+
+        self.reloadUpdateTable()
+
+        self.setupPullToRefresh()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadUpdateTable() {
+        self.updateDataArray = self.updateViewModel.getTableViewData()
+        self.updatesTableView.reloadData()
+    }
+
+    private func initUpdateTableView() {
+        self.updatesTableView.delegate = self
+        self.updatesTableView.dataSource = self
+        self.updatesTableView.registerNib(UINib(nibName: "UpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "UpdateTableViewCell")
+        self.updatesTableView.tableFooterView = UIView()
+        self.updatesTableView.estimatedRowHeight = 44
+        self.updatesTableView.rowHeight = UITableViewAutomaticDimension
     }
 
     @IBAction func addButtonOnClick(sender: AnyObject) {
@@ -58,7 +90,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if tableView == popoverTableView {
             return 3
         } else {
-            return 0
+            return self.updateDataArray.count
         }
     }
 
@@ -71,7 +103,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.imageView?.image = UIImage(named: rowData["image"]!)
             return cell
         } else {
-            return UITableViewCell()
+            let rowData = self.updateDataArray[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("UpdateTableViewCell") as! UpdateTableViewCell
+            cell.configurate(rowData)
+            return cell
         }
     }
 
@@ -86,7 +121,71 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else if indexPath.row == 2 {
 
             }
+        } else if tableView == updatesTableView {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            let rowData = self.updateDataArray[indexPath.row]
+            let type = rowData[self.updateKeys.type]! as! String
+            switch type {
+            case self.updateKeys.requests:
+                self.showUpdateRequestsVC(rowData)
+            default:
+                break
+            }
         }
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if tableView == updatesTableView {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .Delete
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == updatesTableView && editingStyle == .Delete {
+            let rowDict = self.updateDataArray[indexPath.row]
+            let uuid: String = rowDict["uuid"] as! String
+            self.updateModelHelper.delete(uuid)
+            self.updateDataArray.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+
+    private func showUpdateRequestsVC(updateData: [String: AnyObject]) {
+        let updateRequestsVC = UpdateRequestViewController(nibName: "UpdateRequestViewController", bundle: nil)
+        updateRequestsVC.updateData = updateData
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(updateRequestsVC, animated: true)
+        self.hidesBottomBarWhenPushed = false
+    }
+
+    func showToast(message: String) {
+        let style: CSToastStyle = CSToastStyle(defaultStyle: ())
+        style.backgroundColor = GlobalConstants.themeColor
+        style.messageColor = UIColor.whiteColor()
+        self.view.makeToast(message, duration: 3.0, position: CSToastPositionTop, style: style)
+    }
+
+    private func setupPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        updatesTableView.dg_addPullToRefreshWithActionHandler({
+            // api call to get list
+            APIUpdateGet(vc: self).run()
+            // stop loading
+            self.updatesTableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        updatesTableView.dg_setPullToRefreshFillColor(GlobalConstants.themeColor)
+        updatesTableView.dg_setPullToRefreshBackgroundColor(updatesTableView.backgroundColor!)
+    }
+
+    deinit {
+        updatesTableView.dg_removePullToRefresh()
     }
 
 

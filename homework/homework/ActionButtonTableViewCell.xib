@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionButtonTableViewCell" rowHeight="92" id="KGk-i7-Jjw" customClass="ActionButtonTableViewCell" customModule="homework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="446" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="446" height="91.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9i-f4-WWb">
+                        <rect key="frame" x="35" y="11" width="376" height="55.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-3t-tE9">
+                                <rect key="frame" x="0.0" y="0.0" width="376" height="55.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="LZg-3t-tE9" secondAttribute="bottom" id="0hF-u0-dBg"/>
+                            <constraint firstItem="LZg-3t-tE9" firstAttribute="top" secondItem="b9i-f4-WWb" secondAttribute="top" id="A9R-mO-GNR"/>
+                            <constraint firstAttribute="height" constant="40" id="Ihk-My-gNZ"/>
+                            <constraint firstAttribute="trailing" secondItem="LZg-3t-tE9" secondAttribute="trailing" id="MrQ-KS-Bwm"/>
+                            <constraint firstItem="LZg-3t-tE9" firstAttribute="leading" secondItem="b9i-f4-WWb" secondAttribute="leading" id="Ppm-0w-Wfd"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="b9i-f4-WWb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="TYE-4B-71K"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="b9i-f4-WWb" secondAttribute="trailing" constant="20" id="cgK-5F-CiA"/>
+                    <constraint firstItem="b9i-f4-WWb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="gMc-DO-G7r"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="b9i-f4-WWb" secondAttribute="bottom" constant="2" id="sR1-K4-CRl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="bgView" destination="b9i-f4-WWb" id="fWd-8G-ptX"/>
+                <outlet property="button" destination="LZg-3t-tE9" id="Zh3-s9-UZJ"/>
+            </connections>
+            <point key="canvasLocation" x="837" y="629"/>
+        </tableViewCell>
+    </objects>
+</document>

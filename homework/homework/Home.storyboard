@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -24,7 +25,7 @@
         <!--首页-->
         <scene sceneID="jP5-CM-3pI">
             <objects>
-                <viewController id="Kls-JO-GLo" customClass="HomeViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Kls-JO-GLo" customClass="HomeViewController" customModule="homework" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V15-xP-cl9"/>
                         <viewControllerLayoutGuide type="bottom" id="nHV-NW-TFh"/>
@@ -32,7 +33,19 @@
                     <view key="view" contentMode="scaleToFill" id="CyW-A2-cSp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S3f-b5-1ON">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="S3f-b5-1ON" secondAttribute="trailing" constant="-20" id="QTR-gn-RI4"/>
+                            <constraint firstItem="nHV-NW-TFh" firstAttribute="top" secondItem="S3f-b5-1ON" secondAttribute="bottom" id="Y6l-5J-xCn"/>
+                            <constraint firstItem="S3f-b5-1ON" firstAttribute="leading" secondItem="CyW-A2-cSp" secondAttribute="leadingMargin" constant="-20" id="hKs-JB-oBI"/>
+                            <constraint firstItem="S3f-b5-1ON" firstAttribute="top" secondItem="V15-xP-cl9" secondAttribute="bottom" id="iug-9Q-g6p"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="首页" id="IU1-2l-Vku">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4lG-Jx-F4a">
@@ -43,6 +56,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="4lG-Jx-F4a" id="l4x-nv-yqf"/>
+                        <outlet property="updatesTableView" destination="S3f-b5-1ON" id="Jn7-5X-0Ir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZuZ-5l-yi4" userLabel="First Responder" sceneMemberID="firstResponder"/>

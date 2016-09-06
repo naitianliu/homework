@@ -19,7 +19,9 @@ class ClassroomDetailViewController: UIViewController {
 
     var classroomUUID: String!
 
-    var homeworkViewModel: HomeworkViewModel!
+    let homeworkViewModel = HomeworkViewModel()
+
+    let homeworkKeys = GlobalKeys.HomeworkKeys.self
     
     var currentIndex = 0
 
@@ -39,8 +41,7 @@ class ClassroomDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.homeworkViewModel = HomeworkViewModel(classroomUUID: classroomUUID)
-        self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData()
+        self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
 
         self.countHomeworkNumber()
 
@@ -55,7 +56,9 @@ class ClassroomDetailViewController: UIViewController {
             // count
             self.countHomeworkNumber()
         }
-        
+
+        APIHomeworkGetHomeworkList(vc: self).run(self.classroomUUID)
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -78,6 +81,12 @@ class ClassroomDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadHomeworks() {
+        // self.swipeView.discardViews()
+        self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
+        self.swipeView.loadViews()
     }
 
     private func countHomeworkNumber() {
@@ -113,7 +122,9 @@ class ClassroomDetailViewController: UIViewController {
 
     private func showHomeworkDetailVC() {
         let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
-        homeworkDetailVC.homeworkData = self.sampleData
+        let rowDict = self.cardDataArray[currentIndex]
+        let homeworkUUID: String = rowDict[self.homeworkKeys.homeworkUUID]! as! String
+        homeworkDetailVC.homeworkUUID = homeworkUUID
         self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
     }
 

@@ -59,20 +59,25 @@ class HomeworkModelHelper {
         }
     }
 
+    func close(homeworkUUID: String) {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(HomeworkModel.self, key: homeworkUUID) {
+                try realm.write({
+                    item.setValue(false, forKey: "active")
+                })
+            }
+        } catch {
+            print(error)
+        }
+    }
+
     func getListByClassroom(classroomUUID: String, active: Bool) -> [[String: AnyObject]] {
         var homeworkArray: [[String: AnyObject]] = []
         do {
             let realm = try Realm()
             for item in realm.objects(HomeworkModel).filter("classroomUUID = '\(classroomUUID)' AND active = \(active)") {
-                let rowDict: [String: AnyObject] = [
-                    Keys.homeworkUUID: item.uuid,
-                    Keys.classroomUUID: item.classroomUUID,
-                    Keys.creator: item.creator,
-                    Keys.active: item.active,
-                    Keys.createdTimestamp: item.createdTimestamp,
-                    Keys.updatedTimestamp: item.updatedTimestamp,
-                    Keys.info: item.info
-                ]
+                let rowDict = self.getHomeworkDictByItem(item)
                 homeworkArray.append(rowDict)
             }
         } catch {
@@ -81,4 +86,47 @@ class HomeworkModelHelper {
 
         return homeworkArray
     }
+
+    func getHomewworkInfoByHomeworkUUID(homeworkUUID: String) -> [String: AnyObject]? {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(HomeworkModel.self, key: homeworkUUID) {
+                let homeworkDict: [String: AnyObject] = self.getHomeworkDictByItem(item)
+                return homeworkDict
+            } else {
+                return nil
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+
+    func getUUIDListByClassroom(classroomUUID: String, active: Bool) -> [String] {
+        var uuidArray: [String] = []
+        do {
+            let realm = try Realm()
+            for item in realm.objects(HomeworkModel).filter("classroomUUID = '\(classroomUUID)' AND active = \(active)") {
+                let homeworkUUID: String = item.uuid
+                uuidArray.append(homeworkUUID)
+            }
+        } catch {
+            print(error)
+        }
+        return uuidArray
+    }
+
+    private func getHomeworkDictByItem(item: HomeworkModel) -> [String: AnyObject] {
+        let rowDict: [String: AnyObject] = [
+            Keys.homeworkUUID: item.uuid,
+            Keys.classroomUUID: item.classroomUUID,
+            Keys.creator: item.creator,
+            Keys.active: item.active,
+            Keys.createdTimestamp: item.createdTimestamp,
+            Keys.updatedTimestamp: item.updatedTimestamp,
+            Keys.info: item.info
+        ]
+        return rowDict
+    }
+
 }

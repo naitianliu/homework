@@ -41,7 +41,7 @@ class APIHomeworkCreate {
             if success {
                 let timestamp = responseData["timestamp"].intValue
                 let homeworkUUID = responseData[self.Keys.homeworkUUID].stringValue
-                let infoData: NSData = NSKeyedArchiver.archivedDataWithRootObject(info)
+                let infoData: NSData = DataTypeConversionHelper().convertDictToNSData(info)
                 self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: nil, active: true, createdTimestamp: timestamp, updatedTimestamp: timestamp, info: infoData)
             }
             self.vc.dismissViewControllerAnimated(true, completion: nil)

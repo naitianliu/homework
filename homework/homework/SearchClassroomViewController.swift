@@ -14,6 +14,8 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet weak var tableView: UITableView!
 
+    let clasroomKeys = GlobalKeys.ClassroomKeys.self
+
     var data: [[String: AnyObject]] = []
 
     var confirmMessageTextField: UITextField?
@@ -25,8 +27,8 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
         tableView.dataSource = self
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
-
         tableView.tableFooterView = UIView()
+        tableView.registerNib(UINib(nibName: "SearchClassroomTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchClassroomTableViewCell")
 
         searchBar.delegate = self
 
@@ -62,10 +64,7 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SearchClassroomTableViewCell") as! SearchClassroomTableViewCell
         let rowData = self.data[indexPath.row]
-        let classroomName: String = rowData["classroomName"]! as! String
-        let schoolName: String? = rowData["schoolName"]! as? String
-        let profileImgURLs: [String] = rowData["profileImgURLs"]! as! [String]
-        cell.configurate(classroomName, schoolName: schoolName, profileImgURLs: profileImgURLs)
+        cell.configurate(rowData)
         return cell
     }
 
@@ -76,8 +75,8 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let rowData = self.data[indexPath.row]
-        let classroomName: String = rowData["classroomName"]! as! String
-        let classroomUUID: String = rowData["classroomUUID"]! as! String
+        let classroomName: String = rowData[self.clasroomKeys.classroomName]! as! String
+        let classroomUUID: String = rowData[self.clasroomKeys.classroomUUID]! as! String
         self.showSendRequestAlert(classroomName, classroomUUID: classroomUUID)
 
     }

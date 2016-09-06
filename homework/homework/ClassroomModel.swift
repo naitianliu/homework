@@ -31,6 +31,8 @@ class ClassroomModelHelper {
 
     let memberModelHelper = MemberModelHelper()
 
+    let Keys = GlobalKeys.ClassroomKeys.self
+
     init() {
 
     }
@@ -76,19 +78,12 @@ class ClassroomModelHelper {
         }
     }
 
-    func getList(active: Bool) -> [[String: String]] {
-        var classrooms: [[String: String]] = []
+    func getList(active: Bool) -> [[String: AnyObject]] {
+        var classrooms: [[String: AnyObject]] = []
         do {
             let realm = try Realm()
             for item in realm.objects(ClassroomModel).filter("active = \(active)") {
-                let rowDict = [
-                    "uuid": item.uuid,
-                    "name": item.name,
-                    "introduction": item.introduction,
-                    "creator": item.creator,
-                    "school_uuid": item.schoolUUID,
-                    "code": item.code,
-                ]
+                let rowDict = self.getRowDictByItem(item)
                 classrooms.append(rowDict)
             }
         } catch {
@@ -114,15 +109,7 @@ class ClassroomModelHelper {
         do {
             let realm = try Realm()
             if let item = realm.objectForPrimaryKey(ClassroomModel.self, key: uuid) {
-                let classroomInfo: [String: AnyObject] = [
-                    "uuid": item.uuid,
-                    "name": item.name,
-                    "introduction": item.introduction,
-                    "creator": item.creator,
-                    "school_uuid": item.schoolUUID,
-                    "code": item.code,
-                    "active": item.active
-                ]
+                let classroomInfo: [String: AnyObject] = self.getRowDictByItem(item)
                 return classroomInfo
             } else {
                 return nil
@@ -132,6 +119,19 @@ class ClassroomModelHelper {
             return nil
         }
 
+    }
+
+    private func getRowDictByItem(item: ClassroomModel) -> [String: AnyObject] {
+        let rowDict: [String: AnyObject] = [
+            self.Keys.classroomUUID: item.uuid,
+            self.Keys.classroomName: item.name,
+            self.Keys.introduction: item.introduction,
+            self.Keys.creator: item.creator,
+            self.Keys.schoolUUID: item.schoolUUID,
+            self.Keys.code: item.code,
+            self.Keys.active: item.active
+        ]
+        return rowDict
     }
 }
 

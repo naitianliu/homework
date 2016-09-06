@@ -12,7 +12,9 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var tableView: UITableView!
 
-    var homeworkData: [String: String]?
+    var homeworkUUID: String!
+
+    var homeworkData: [String: AnyObject]!
 
     var gradedHomeworkArray: [[String: String?]] = [
         ["name": "比尔盖茨1", "time": "今天 14:00", "score": "A", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
@@ -25,12 +27,16 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     ]
 
     var navbarTitle: String?
+
+    let homeworkViewModel = HomeworkViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "作业列表"
         self.initiateActionButton()
+
+        homeworkData = self.homeworkViewModel.getHomeworkInfo(self.homeworkUUID)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,9 +78,7 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
-            if let homeworkData = homeworkData {
-                cell.configurate(homeworkData)
-            }
+            cell.configurate(homeworkData)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("HWStudentSubmitTableViewCell") as! HWStudentSubmitTableViewCell
@@ -93,6 +97,7 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let homeworkGradeVC = HomeworkGradeViewController(nibName: "HomeworkGradeViewController", bundle: nil)
         self.navigationController?.pushViewController(homeworkGradeVC, animated: true)
     }

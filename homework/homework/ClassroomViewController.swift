@@ -14,6 +14,8 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
+
     let classroomViewModel = ClassroomViewModel()
 
     var data: [[String: AnyObject]] = []
@@ -25,6 +27,7 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
 
         self.tableView.estimatedRowHeight = 120
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.registerNib(UINib(nibName: "ClassroomTableViewCell", bundle: nil), forCellReuseIdentifier: "ClassroomTableViewCell")
 
         self.reloadTable()
 
@@ -92,17 +95,13 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ClassroomTableViewCell") as! ClassroomTableViewCell
         let rowData = self.data[indexPath.row]
-        let classroomName: String = rowData["classroomName"]! as! String
-        let schoolName: String? = rowData["schoolName"]! as? String
-        let profileImgURLs: [String] = rowData["profileImgURLs"]! as! [String]
-        let studentNumber: String = rowData["studentNumber"]! as! String
-        cell.configurate(classroomName, schoolName: schoolName, profileImgURLs: profileImgURLs, studentNumber: studentNumber)
+        cell.configurate(rowData)
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let rowData = self.data[indexPath.row]
-        let classroomUUID: String = rowData["classroomUUID"]! as! String
+        let classroomUUID: String = rowData[self.classroomKeys.classroomUUID]! as! String
         self.showClassroomDetailVC(classroomUUID)
     }
 

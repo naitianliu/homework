@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchClassroomTableViewCell" rowHeight="208" id="PkF-TG-mSh" customClass="SearchClassroomTableViewCell" customModule="homework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PkF-TG-mSh" id="WP5-h9-4xb">
+                <rect key="frame" x="0.0" y="0.0" width="240" height="207.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abn-5T-VKR">
+                        <rect key="frame" x="17" y="8" width="165" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="JLK-HF-wMc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="heightClass=regular" misplaced="YES">
+                            <rect key="frame" x="18" y="18" width="204" height="21"/>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfh-no-ZN9">
+                        <rect key="frame" x="17" y="30" width="137" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="mj4-wM-uMI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Up-ur-xvO">
+                        <rect key="frame" x="17" y="59" width="68" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="yas-gg-l8u"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eo8-OC-rnt" userLabel="ImageContainerView">
+                        <rect key="frame" x="84" y="59" width="449" height="153"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cX-hb-ToL">
+                                <rect key="frame" x="25" y="15" width="120" height="123"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3cX-hb-ToL" secondAttribute="height" multiplier="1:1" id="Hju-qb-Ror"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="+1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vx4-pM-yV4">
+                                <rect key="frame" x="330" y="15" width="111" height="123"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5Y-ze-MR0">
+                                <rect key="frame" x="177" y="15" width="130" height="123"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="p5Y-ze-MR0" firstAttribute="width" secondItem="3cX-hb-ToL" secondAttribute="width" id="3bQ-AS-swN"/>
+                            <constraint firstItem="vx4-pM-yV4" firstAttribute="top" secondItem="p5Y-ze-MR0" secondAttribute="top" id="4Dh-u7-xUh"/>
+                            <constraint firstItem="3cX-hb-ToL" firstAttribute="leading" secondItem="Eo8-OC-rnt" secondAttribute="leading" constant="10" id="Amt-c8-Ssr"/>
+                            <constraint firstAttribute="trailing" secondItem="vx4-pM-yV4" secondAttribute="trailing" constant="10" id="BJv-IZ-CIf"/>
+                            <constraint firstAttribute="width" secondItem="Eo8-OC-rnt" secondAttribute="height" multiplier="3:1" id="EOk-0d-1QE"/>
+                            <constraint firstAttribute="bottom" secondItem="3cX-hb-ToL" secondAttribute="bottom" constant="10" id="Npo-YP-JZ0"/>
+                            <constraint firstItem="p5Y-ze-MR0" firstAttribute="leading" secondItem="3cX-hb-ToL" secondAttribute="trailing" constant="20" id="Rdd-LO-xYg"/>
+                            <constraint firstItem="p5Y-ze-MR0" firstAttribute="height" secondItem="3cX-hb-ToL" secondAttribute="height" id="Xzg-Z2-3RY"/>
+                            <constraint firstItem="vx4-pM-yV4" firstAttribute="leading" secondItem="p5Y-ze-MR0" secondAttribute="trailing" constant="20" id="gq7-C0-P4E"/>
+                            <constraint firstItem="vx4-pM-yV4" firstAttribute="width" secondItem="p5Y-ze-MR0" secondAttribute="width" id="hN8-aJ-5gc"/>
+                            <constraint firstAttribute="width" secondItem="Eo8-OC-rnt" secondAttribute="height" multiplier="175:58" id="q1Z-oI-a1Z">
+                                <variation key="heightClass=regular" constant="3"/>
+                            </constraint>
+                            <constraint firstItem="p5Y-ze-MR0" firstAttribute="top" secondItem="3cX-hb-ToL" secondAttribute="top" id="u4k-Hl-Wga"/>
+                            <constraint firstItem="3cX-hb-ToL" firstAttribute="top" secondItem="Eo8-OC-rnt" secondAttribute="top" id="xrD-GZ-ojo"/>
+                            <constraint firstItem="vx4-pM-yV4" firstAttribute="height" secondItem="p5Y-ze-MR0" secondAttribute="height" id="zpG-Yu-67Q"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="q1Z-oI-a1Z"/>
+                                <exclude reference="hN8-aJ-5gc"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="EOk-0d-1QE"/>
+                                <exclude reference="q1Z-oI-a1Z"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="abn-5T-VKR" firstAttribute="leading" secondItem="WP5-h9-4xb" secondAttribute="leadingMargin" constant="10" id="927-2R-GTX"/>
+                    <constraint firstItem="Qfh-no-ZN9" firstAttribute="leading" secondItem="abn-5T-VKR" secondAttribute="leading" id="A7R-I6-sVA"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Eo8-OC-rnt" secondAttribute="bottom" id="F2V-bk-qdM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Eo8-OC-rnt" secondAttribute="trailing" constant="10" id="Iny-fV-VjN"/>
+                    <constraint firstItem="Eo8-OC-rnt" firstAttribute="leading" secondItem="4Up-ur-xvO" secondAttribute="trailing" constant="10" id="MA5-rX-SUO"/>
+                    <constraint firstItem="Eo8-OC-rnt" firstAttribute="top" secondItem="4Up-ur-xvO" secondAttribute="top" id="VQA-Tw-aCo"/>
+                    <constraint firstItem="abn-5T-VKR" firstAttribute="top" secondItem="WP5-h9-4xb" secondAttribute="topMargin" constant="10" id="VRm-9e-98f"/>
+                    <constraint firstItem="Qfh-no-ZN9" firstAttribute="top" secondItem="abn-5T-VKR" secondAttribute="bottom" id="YQQ-vr-Lob"/>
+                    <constraint firstItem="4Up-ur-xvO" firstAttribute="top" secondItem="Qfh-no-ZN9" secondAttribute="bottom" constant="10" id="Ygq-Cg-kRK"/>
+                    <constraint firstItem="Eo8-OC-rnt" firstAttribute="width" secondItem="Eo8-OC-rnt" secondAttribute="height" multiplier="3:1" id="Zae-ll-MWO"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="abn-5T-VKR" secondAttribute="trailing" constant="10" id="cIg-Ds-Son"/>
+                    <constraint firstItem="4Up-ur-xvO" firstAttribute="leading" secondItem="Qfh-no-ZN9" secondAttribute="leading" id="kXh-15-kw1"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="subviews">
+                        <exclude reference="abn-5T-VKR"/>
+                        <exclude reference="Qfh-no-ZN9"/>
+                        <exclude reference="4Up-ur-xvO"/>
+                        <exclude reference="Eo8-OC-rnt"/>
+                    </mask>
+                    <mask key="constraints">
+                        <exclude reference="927-2R-GTX"/>
+                        <exclude reference="cIg-Ds-Son"/>
+                        <exclude reference="VRm-9e-98f"/>
+                        <exclude reference="YQQ-vr-Lob"/>
+                        <exclude reference="A7R-I6-sVA"/>
+                        <exclude reference="Ygq-Cg-kRK"/>
+                        <exclude reference="kXh-15-kw1"/>
+                        <exclude reference="Zae-ll-MWO"/>
+                        <exclude reference="F2V-bk-qdM"/>
+                        <exclude reference="VQA-Tw-aCo"/>
+                        <exclude reference="MA5-rX-SUO"/>
+                        <exclude reference="Iny-fV-VjN"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular">
+                    <mask key="subviews">
+                        <include reference="abn-5T-VKR"/>
+                        <include reference="Qfh-no-ZN9"/>
+                        <include reference="4Up-ur-xvO"/>
+                        <include reference="Eo8-OC-rnt"/>
+                    </mask>
+                    <mask key="constraints">
+                        <include reference="927-2R-GTX"/>
+                        <include reference="cIg-Ds-Son"/>
+                        <include reference="VRm-9e-98f"/>
+                        <include reference="YQQ-vr-Lob"/>
+                        <include reference="A7R-I6-sVA"/>
+                        <include reference="Ygq-Cg-kRK"/>
+                        <include reference="kXh-15-kw1"/>
+                        <include reference="Zae-ll-MWO"/>
+                        <include reference="F2V-bk-qdM"/>
+                        <include reference="VQA-Tw-aCo"/>
+                        <include reference="MA5-rX-SUO"/>
+                        <include reference="Iny-fV-VjN"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="classroomNameLabel" destination="abn-5T-VKR" id="VuI-Hp-UFX"/>
+                <outlet property="countLabel" destination="vx4-pM-yV4" id="mz7-aF-nw7"/>
+                <outlet property="profileImageView1" destination="3cX-hb-ToL" id="QjG-LA-bSk"/>
+                <outlet property="profileImageView2" destination="p5Y-ze-MR0" id="e7P-Ls-Ow5"/>
+                <outlet property="schoolNameLabel" destination="Qfh-no-ZN9" id="2sC-P7-5Op"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

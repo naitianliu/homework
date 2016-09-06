@@ -17,6 +17,8 @@ class SearchClassroomTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView2: UIImageView!
 
     let placeholderImage = GlobalConstants.kProfileImagePlaceholder
+
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,7 +43,10 @@ class SearchClassroomTableViewCell: UITableViewCell {
         imageView.layer.masksToBounds = true
     }
 
-    func configurate(classroomName: String, schoolName: String?, profileImgURLs: [String]) {
+    func configurate(rowData: [String: AnyObject]) {
+        let classroomName: String = rowData[self.classroomKeys.classroomName]! as! String
+        let schoolName: String? = rowData[self.classroomKeys.schoolName]! as? String
+        let profileImgURLs: [String] = rowData[self.classroomKeys.profileImgURLs]! as! [String]
         self.classroomNameLabel.text = classroomName
         if let schoolName = schoolName {
             self.schoolNameLabel.text = schoolName

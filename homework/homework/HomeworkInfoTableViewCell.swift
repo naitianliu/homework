@@ -19,6 +19,8 @@ class HomeworkInfoTableViewCell: UITableViewCell {
 
     private let placeholder = UIImage(named: "profile-placeholder")
 
+    private let Keys = GlobalKeys.HomeworkKeys.self
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,6 +38,7 @@ class HomeworkInfoTableViewCell: UITableViewCell {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         self.renderProfileImageView()
     }
 
@@ -63,13 +66,13 @@ class HomeworkInfoTableViewCell: UITableViewCell {
         
     }
 
-    func configurate(data: [String: String]) {
-        let teacherName: String = data["teacher"]!
-        let homeworkType: String = data["homeworkType"]!
-        let profileImageURL: String = data["profileImgURL"]!
-        let time: String = data["time"]!
-        let homeworkContent: String = data["homeworkContent"]!
-        let dueDate: String = data["dueDate"]!
+    func configurate(data: [String: AnyObject]) {
+        let teacherName: String = data[self.Keys.teacherName]! as! String
+        let homeworkType: String = data[self.Keys.type]! as! String
+        let profileImageURL: String = data[self.Keys.teacherImgURL]! as! String
+        let time: String = data[self.Keys.createdTimeString]! as! String
+        let homeworkContent: String = data[self.Keys.content]! as! String
+        let dueDate: String = data[self.Keys.dueDateString]! as! String
         self.setupAttributedLabel(teacherName, homeworkType: homeworkType)
         self.profileImageView.sd_setImageWithURL(NSURL(string: profileImageURL), placeholderImage: placeholder)
         timeLabel.text = time

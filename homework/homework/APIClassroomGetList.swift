@@ -18,6 +18,8 @@ class APIClassroomGetList {
 
     let classroomModelHelper = ClassroomModelHelper()
 
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
+
     var vc: ClassroomViewController!
 
     var newUUIDArray: [String] = []
@@ -27,7 +29,7 @@ class APIClassroomGetList {
     }
 
     func run() {
-        let data = ["role": "t"]
+        let data = ["role": role]
         CallAPIHelper(url: url, data: data).GET({ (responseData) in
             // success
             let errorCode = responseData["error"].intValue

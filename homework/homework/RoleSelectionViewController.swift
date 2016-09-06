@@ -37,6 +37,7 @@ class RoleSelectionViewController: UIViewController {
     }
 
     func reloadApplication() {
+        PerformMigrations().setDefaultRealmForUser()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
