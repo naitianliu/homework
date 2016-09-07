@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StudentHomeworkDetailViewController" customModule="homework" customModuleProvider="target">
+            <connections>
+                <outlet property="actionView" destination="4P9-gf-1Wa" id="nAu-a2-7jk"/>
+                <outlet property="tableView" destination="e7v-aN-vB3" id="vvU-Wi-Xog"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="e7v-aN-vB3">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="512"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4P9-gf-1Wa">
+                    <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="Okk-zg-DKx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="e7v-aN-vB3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1MU-JG-EjN"/>
+                <constraint firstAttribute="trailing" secondItem="e7v-aN-vB3" secondAttribute="trailing" id="5bS-nS-fyN"/>
+                <constraint firstAttribute="bottom" secondItem="e7v-aN-vB3" secondAttribute="bottom" id="8Ah-jn-FTT"/>
+                <constraint firstAttribute="bottom" secondItem="4P9-gf-1Wa" secondAttribute="bottom" id="9qx-Ml-INu"/>
+                <constraint firstItem="e7v-aN-vB3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PrX-OF-oaw"/>
+                <constraint firstItem="4P9-gf-1Wa" firstAttribute="top" secondItem="e7v-aN-vB3" secondAttribute="bottom" id="fj8-cm-Qsy"/>
+                <constraint firstItem="4P9-gf-1Wa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jJ6-dF-30G"/>
+                <constraint firstAttribute="trailing" secondItem="4P9-gf-1Wa" secondAttribute="trailing" id="lU8-B8-5Qe"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="8Ah-jn-FTT"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

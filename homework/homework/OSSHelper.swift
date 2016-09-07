@@ -13,6 +13,7 @@ class OSSHelper {
     
     typealias TokenObtainedClosureType = (stsToken: [String: String]) -> Void
     typealias UploadCompleteClosureType = (success: Bool, objectURL: String?) -> Void
+    typealias UploadProgressClosureType = (progress: Float) -> Void
     
     struct Constant {
         static let bucketName = "hw-audio"
@@ -48,7 +49,7 @@ class OSSHelper {
         }
     }
     
-    func uploadFile(filepath: String, objectKey: String, complete: UploadCompleteClosureType) {
+    func uploadFile(filepath: String, objectKey: String, complete: UploadCompleteClosureType, uploadProgress: UploadProgressClosureType?) {
         self.getSTSToken { (stsToken) in
             let credential = OSSStsTokenCredentialProvider(accessKeyId: stsToken["accessKeyId"], secretKeyId: stsToken["accessKeySecret"], securityToken: stsToken["securityToken"])
             self.client = OSSClient(endpoint: Constant.OSS_Endpoint, credentialProvider: credential)
@@ -57,6 +58,12 @@ class OSSHelper {
             put.bucketName = Constant.bucketName
             put.objectKey = objectKey
             put.uploadingFileURL = NSURL(fileURLWithPath: filepath)
+            if let uploadProgress = uploadProgress {
+                put.uploadProgress = { (current, uploaded, total) in
+                    let progress = Float(uploaded / total)
+                    uploadProgress(progress: progress)
+                }
+            }
             let putTask: OSSTask? = self.client?.putObject(put)
             putTask?.continueWithBlock({ (task) -> AnyObject? in
                 if (task.error == nil) {

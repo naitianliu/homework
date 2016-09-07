@@ -126,7 +126,7 @@ class UpdateAvatarViewController: UIViewController, UIImagePickerControllerDeleg
                 } else {
                     self.progressHUD.hide()
                 }
-            })
+            }, uploadProgress: nil)
         }
     }
 

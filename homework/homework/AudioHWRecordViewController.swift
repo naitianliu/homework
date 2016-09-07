@@ -8,6 +8,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import MBProgressHUD
 
 class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     struct Constant {
@@ -20,8 +21,8 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
             static let emptyDataSet = "headset"
         }
         struct Identifier {
-            static let recordItemCell = "recordItemCell"
-            static let playingRecordItemCell = "playingRecordItemCell"
+            static let recordItemCell = "RecordItemTableViewCell"
+            static let playingRecordItemCell = "PlayingRecordItemTableViewCell"
         }
         struct EmptySet {
             static let title = "还没有任何录音"
@@ -46,14 +47,22 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     
     var recorderHelper: RecorderHelper!
-    
-    
+
+    let ossHelper = OSSHelper()
+
+    typealias AudioUploadedCompletionClosureType = (duration: NSTimeInterval, filename: String, audioURL: String) -> Void
+    var audioUploadedCompletionBlock:AudioUploadedCompletionClosureType!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
+        self.tableView.registerNib(UINib(nibName: "PlayingRecordItemTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayingRecordItemTableViewCell")
+        self.tableView.registerNib(UINib(nibName: "RecordItemTableViewCell", bundle: nil), forCellReuseIdentifier: "RecordItemTableViewCell")
         
     }
 
@@ -80,6 +89,10 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidDisappear(animated)
         self.navigationController?.navigationBar.shadowImage = originalNavbarShadowImage
         recorderHelper.closeRecordingSession()
+    }
+
+    func audioUploadedCompletionBlockSetter(completion: AudioUploadedCompletionClosureType) {
+        self.audioUploadedCompletionBlock = completion
     }
     
     func reloadTable() {
@@ -186,10 +199,21 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.playingRecordItemCell) as! PlayingRecordItemTableViewCell
             cell.configurate(filename, duration: duration, submitOnClick: {
                 // submit button event
-                OSSHelper().uploadFile(filename, objectKey: uuid, complete: { (success, objectURL) in
+                let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                hud.mode = MBProgressHUDMode.DeterminateHorizontalBar
+                hud.label.text = "上传语音..."
+                self.ossHelper.uploadFile(filename, objectKey: uuid, complete: { (success, objectURL) in
                     if success {
                         // upload url to server
+                        self.hideProgressHUD()
+                        self.audioUploadedCompletionBlock(duration: duration, filename: filename, audioURL: objectURL!)
+
+                    } else {
+
                     }
+                    }, uploadProgress: { (progress) in
+                        // upload progress
+                        hud.progress = progress
                 })
                 }, playBackNextOnClick: { (type) in
                     if type == "next" {
@@ -220,6 +244,13 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         if playingRow != indexPath.row {
             playingRow = indexPath.row
             self.reloadTable()
+        }
+    }
+
+    private func hideProgressHUD() {
+        dispatch_async(dispatch_get_main_queue()) {
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
 }

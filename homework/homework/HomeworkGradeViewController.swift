@@ -131,7 +131,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
 
     private func setupActionView() {
         let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
-        let kRadio: CGFloat = 104/136
+        let kRadio: CGFloat = 1
         let kOffsetX: CGFloat = 50
         let kOffsetY: CGFloat = 10
         let kBtnWidth: CGFloat = 60 * kRadio

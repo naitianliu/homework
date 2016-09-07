@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AudioHWRecordViewController" customModule="homework" customModuleProvider="target">
+            <connections>
+                <outlet property="recordButton" destination="kaA-JJ-E4J" id="xsc-bF-2yb"/>
+                <outlet property="recordLabel" destination="daF-bq-QTr" id="ybM-eU-cCL"/>
+                <outlet property="recordView" destination="E6S-c8-bgX" id="AQ2-lf-2L9"/>
+                <outlet property="tableView" destination="gIu-jP-gkP" id="wKl-Uu-u5y"/>
+                <outlet property="view" destination="dXP-W6-qOX" id="m3L-jb-rOK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dXP-W6-qOX">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6S-c8-bgX">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="开始录音" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daF-bq-QTr">
+                            <rect key="frame" x="113" y="203" width="317" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaA-JJ-E4J">
+                            <rect key="frame" x="208" y="52" width="127" height="127"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="D21-H8-3ij"/>
+                                <constraint firstAttribute="height" constant="100" id="nxg-vL-KYv"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="record-button"/>
+                            <state key="selected" backgroundImage="recording-button"/>
+                            <connections>
+                                <action selector="recordButtonToggle:" destination="-1" eventType="touchUpInside" id="l8a-in-2LH"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="daF-bq-QTr" firstAttribute="top" secondItem="kaA-JJ-E4J" secondAttribute="bottom" constant="20" id="G0r-xh-1Pf"/>
+                        <constraint firstItem="kaA-JJ-E4J" firstAttribute="centerX" secondItem="E6S-c8-bgX" secondAttribute="centerX" id="QLk-LV-C4q"/>
+                        <constraint firstItem="kaA-JJ-E4J" firstAttribute="top" secondItem="E6S-c8-bgX" secondAttribute="top" constant="60" id="SlC-HB-4Mz"/>
+                        <constraint firstItem="daF-bq-QTr" firstAttribute="centerX" secondItem="E6S-c8-bgX" secondAttribute="centerX" id="rRo-P4-oRb"/>
+                        <constraint firstAttribute="height" constant="250" id="uoV-2T-w2Z"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gIu-jP-gkP">
+                    <rect key="frame" x="0.0" y="275" width="600" height="325"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="325" id="J57-i3-j6j"/>
+                    </constraints>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="E6S-c8-bgX" secondAttribute="trailing" constant="-20" id="7WC-cZ-U99"/>
+                <constraint firstAttribute="trailingMargin" secondItem="gIu-jP-gkP" secondAttribute="trailing" constant="-20" id="Lay-FX-IFV"/>
+                <constraint firstItem="gIu-jP-gkP" firstAttribute="leading" secondItem="dXP-W6-qOX" secondAttribute="leadingMargin" constant="-20" id="Oxc-HL-2Sl"/>
+                <constraint firstItem="E6S-c8-bgX" firstAttribute="top" secondItem="dXP-W6-qOX" secondAttribute="top" id="Vm6-TI-n2u"/>
+                <constraint firstAttribute="bottom" secondItem="gIu-jP-gkP" secondAttribute="bottom" id="iN3-GM-v7V"/>
+                <constraint firstItem="E6S-c8-bgX" firstAttribute="leading" secondItem="dXP-W6-qOX" secondAttribute="leadingMargin" constant="-20" id="tkd-vy-UHU"/>
+                <constraint firstItem="gIu-jP-gkP" firstAttribute="top" secondItem="E6S-c8-bgX" secondAttribute="bottom" id="xXa-CA-Hob"/>
+            </constraints>
+            <point key="canvasLocation" x="830" y="384"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="record-button" width="127" height="127"/>
+        <image name="recording-button" width="127" height="127"/>
+    </resources>
+</document>

@@ -22,6 +22,8 @@ class ClassroomDetailViewController: UIViewController {
     let homeworkViewModel = HomeworkViewModel()
 
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
+
+    let role = UserDefaultsHelper().getRole()!
     
     var currentIndex = 0
 
@@ -121,11 +123,18 @@ class ClassroomDetailViewController: UIViewController {
     }
 
     private func showHomeworkDetailVC() {
-        let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
         let rowDict = self.cardDataArray[currentIndex]
         let homeworkUUID: String = rowDict[self.homeworkKeys.homeworkUUID]! as! String
-        homeworkDetailVC.homeworkUUID = homeworkUUID
-        self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
+        if self.role == "t" {
+            let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
+            homeworkDetailVC.homeworkUUID = homeworkUUID
+            self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
+        } else if self.role == "s" {
+            let studentHWDetailVC = StudentHomeworkDetailViewController(nibName: "StudentHomeworkDetailViewController", bundle: nil)
+            studentHWDetailVC.homeworkUUID = homeworkUUID
+            self.navigationController?.pushViewController(studentHWDetailVC, animated: true)
+        }
+
     }
 
     private func renderHomeworkActionView() {
