@@ -17,6 +17,8 @@ class ClassroomPickerViewController: UIViewController, UITableViewDelegate, UITa
     typealias CompleteSelectionClosureType = (classroomUUID: String, classroomName: String) -> Void
     var completeSelectionBlock: CompleteSelectionClosureType?
 
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,8 +53,8 @@ class ClassroomPickerViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
         let rowDict: [String: AnyObject] = dataArray[indexPath.row]
-        let classroomName: String = rowDict["classroomName"]! as! String
-        let schoolName: String = rowDict["schoolName"]! as! String
+        let classroomName: String = rowDict[self.classroomKeys.classroomName]! as! String
+        let schoolName: String = rowDict[self.classroomKeys.schoolName]! as! String
         cell.textLabel?.text = classroomName
         cell.detailTextLabel?.text = schoolName
         return cell
@@ -61,8 +63,8 @@ class ClassroomPickerViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let rowDict: [String: AnyObject] = dataArray[indexPath.row]
-        let classroomName: String = rowDict["classroomName"]! as! String
-        let classroomUUID: String = rowDict["classroomUUID"]! as! String
+        let classroomName: String = rowDict[self.classroomKeys.classroomName]! as! String
+        let classroomUUID: String = rowDict[self.classroomKeys.classroomUUID]! as! String
         self.completeSelectionBlock!(classroomUUID: classroomUUID, classroomName: classroomName)
         self.navigationController?.popViewControllerAnimated(true)
 

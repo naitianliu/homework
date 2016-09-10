@@ -15,7 +15,9 @@ class HWStudentSubmitTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
 
-    var separatorHidden: Bool = false
+    var separatorHidden: Bool = true
+
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,11 +63,11 @@ class HWStudentSubmitTableViewCell: UITableViewCell {
         self.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
     }
 
-    func configurate(data: [String: String?]) {
-        let profileImageURL: String = data["profileImgURL"]!!
-        let name: String = data["name"]!!
-        let time: String = data["time"]!!
-        let score: String? = data["score"]!
+    func configurate(data: [String: AnyObject?]) {
+        let profileImageURL: String = data[self.submissionKeys.submitterImgURL]! as! String
+        let name: String = data[self.submissionKeys.submitterName]! as! String
+        let time: String = data[self.submissionKeys.time]! as! String
+        let score: String? = data[self.submissionKeys.score] as? String
 
         profileImageView.sd_setImageWithURL(NSURL(string: profileImageURL), placeholderImage: GlobalConstants.kProfileImagePlaceholder)
         nameLabel.text = name

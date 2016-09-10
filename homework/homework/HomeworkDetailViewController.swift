@@ -16,19 +16,15 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
 
     var homeworkData: [String: AnyObject]!
 
-    var gradedHomeworkArray: [[String: String?]] = [
-        ["name": "比尔盖茨1", "time": "今天 14:00", "score": "A", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
-        ["name": "比尔盖茨2", "time": "今天 14:00", "score": "B", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
-        ["name": "比尔盖茨3", "time": "今天 14:00", "score": "A", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
-    ]
-    var ungradedHomeworkArray: [[String: String?]] = [
-        ["name": "比尔盖茨4", "time": "今天 14:00", "score": nil, "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
-        ["name": "比尔盖茨5", "time": "今天 14:00", "score": nil, "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"],
-    ]
+    var gradedHomeworkArray: [[String: AnyObject?]] = []
+    var ungradedHomeworkArray: [[String: AnyObject?]] = []
 
     var navbarTitle: String?
 
     let homeworkViewModel = HomeworkViewModel()
+    let submissionViewModel = SubmissionViewModel()
+
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +46,20 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         tableView.registerNib(UINib(nibName: "HomeworkInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeworkInfoTableViewCell")
         tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
 
+        APIHomeworkGetSubmissionList(vc: self).run(self.homeworkUUID)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadTable() {
+        let submissionsTup = self.submissionViewModel.getSubmissionList(self.homeworkUUID)
+        self.ungradedHomeworkArray = submissionsTup.0
+        self.gradedHomeworkArray = submissionsTup.1
+        tableView.reloadData()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -98,8 +103,14 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let homeworkGradeVC = HomeworkGradeViewController(nibName: "HomeworkGradeViewController", bundle: nil)
-        self.navigationController?.pushViewController(homeworkGradeVC, animated: true)
+        if indexPath.section == 1 {
+            let submissionUUID = self.ungradedHomeworkArray[indexPath.row][self.submissionKeys.submissionUUID] as! String
+            self.showHomeworkGradeVC(submissionUUID)
+        } else {
+            let submissionUUID = self.gradedHomeworkArray[indexPath.row][self.submissionKeys.submissionUUID] as! String
+            self.showHomeworkGradeVC(submissionUUID)
+        }
+
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -130,6 +141,12 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         default:
             return nil
         }
+    }
+
+    private func showHomeworkGradeVC(submissionUUID: String) {
+        let homeworkGradeVC = HomeworkGradeViewController(nibName: "HomeworkGradeViewController", bundle: nil)
+        homeworkGradeVC.submissionUUID = submissionUUID
+        self.navigationController?.pushViewController(homeworkGradeVC, animated: true)
     }
 
     func initiateActionButton() {

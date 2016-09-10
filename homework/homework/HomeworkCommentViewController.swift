@@ -12,19 +12,19 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet weak var tableView: UITableView!
 
-    var audioDuration: String?
+    var audioDuration: NSTimeInterval?
+    var audioURL: String?
+
+    var commentText: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        initTableView()
 
-        tableView.registerNib(UINib(nibName: "EditTextViewTableViewCell", bundle: nil), forCellReuseIdentifier: "EditTextViewTableViewCell")
-        tableView.registerNib(UINib(nibName: "AudioRecordTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioRecordTableViewCell")
-        tableView.keyboardDismissMode = .OnDrag
+        initBarItems()
+
+        self.navigationItem.title = "编辑评论"
 
     }
 
@@ -33,11 +33,29 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func cancelButtonOnClick(sender: AnyObject) {
+    private func initTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
+
+        tableView.registerNib(UINib(nibName: "EditTextViewTableViewCell", bundle: nil), forCellReuseIdentifier: "EditTextViewTableViewCell")
+        tableView.registerNib(UINib(nibName: "AudioRecordTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioRecordTableViewCell")
+        tableView.keyboardDismissMode = .OnDrag
+    }
+
+    private func initBarItems() {
+        let cancelButton = UIBarButtonItem(title: "取消", style: .Plain, target: self, action: #selector(self.cancelButtonOnClick))
+        self.navigationItem.leftBarButtonItem = cancelButton
+        let confirmButton = UIBarButtonItem(title: "发送", style: .Plain, target: self, action: #selector(self.confirmButtonOnClick))
+        self.navigationItem.rightBarButtonItem = confirmButton
+    }
+
+    @objc private func cancelButtonOnClick(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    @IBAction func confirmButtonOnClick(sender: AnyObject) {
+    @objc private func confirmButtonOnClick(sender: AnyObject) {
 
     }
 
@@ -56,6 +74,7 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
             cell.placeholder = "编辑评论内容"
             cell.configurate({ (text) in
                 print(text)
+                self.commentText = text
             })
             return cell
         case (0, 1):
@@ -68,7 +87,10 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row == 1 {
+            self.showAudioRecordVC()
+        }
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -77,6 +99,27 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
+    }
+
+    private func showAudioRecordVC() {
+        if audioDuration == nil {
+            let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
+            audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
+                self.audioDuration = duration
+                self.audioURL = audioURL
+                self.tableView.reloadData()
+            }
+            self.navigationController?.pushViewController(audioHWRecordVC, animated: true)
+        } else {
+            let alertController = UIAlertController(title: "提示", message: "已有录音，确定要放弃并重新录音吗", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "重新录音", style: .Destructive, handler: { (action) in
+                self.audioDuration = nil
+                self.audioURL = nil
+                self.showAudioRecordVC()
+            }))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
 
 }

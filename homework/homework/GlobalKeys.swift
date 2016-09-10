@@ -49,6 +49,36 @@ struct GlobalKeys {
         static let dictation = "听写作业"
     }
 
+    struct SubmissionKeys {
+        static let submissionUUID = "submission_uuid"
+        static let homeworkUUID = "homework_uuid"
+        static let submitter = "submitter"
+        static let score = "score"
+        static let createdTimestamp = "created_timestamp"
+        static let updatedTimestamp = "updated_timestamp"
+        static let info = "info"
+
+        static let timestamp = "timestamp"
+
+        static let duration = "duration"
+        static let audioList = "audio_list"
+        static let audioURL = "audio_url"
+
+        static let submitterName = "submitter_name"
+        static let submitterImgURL = "submitter_img_url"
+        static let time = "time"
+        static let submissionType = "submission_type"
+
+        struct AudioStatus {
+            static let pending = "pending"
+            static let working = "working"
+            static let complete = "complete"
+            static let hidden = "hidden"
+
+        }
+
+    }
+
     struct ProfileKeys {
         static let imgURL = "img_url"
         static let userId = "user_id"

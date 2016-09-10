@@ -29,10 +29,10 @@ class AudioRecordTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configurate(audioDuration: String?) {
+    func configurate(audioDuration: NSTimeInterval?) {
         if let audioDuration = audioDuration {
             self.iconImageView.image = playImage
-            self.contentLabel.text = audioDuration
+            self.contentLabel.text = DateUtility().convertTimeIntervalToHumanFriendlyTime(audioDuration)
         } else {
             self.iconImageView.image = microphoneImage
             self.contentLabel.text = "添加语音内容"

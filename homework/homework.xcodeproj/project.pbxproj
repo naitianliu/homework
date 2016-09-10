@@ -73,6 +73,12 @@
 		467679421D7FD18500A83DA2 /* AudioHWRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467679411D7FD18500A83DA2 /* AudioHWRecordViewController.xib */; };
 		467679461D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467679451D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib */; };
 		467679481D7FD2E000A83DA2 /* RecordItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467679471D7FD2E000A83DA2 /* RecordItemTableViewCell.xib */; };
+		4676794B1D82289B00A83DA2 /* EmptySectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679491D82289B00A83DA2 /* EmptySectionTableViewCell.swift */; };
+		4676794C1D82289B00A83DA2 /* EmptySectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4676794A1D82289B00A83DA2 /* EmptySectionTableViewCell.xib */; };
+		4676794E1D823A6800A83DA2 /* SubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676794D1D823A6800A83DA2 /* SubmissionViewModel.swift */; };
+		467679501D82437500A83DA2 /* APIHomeworkSubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676794F1D82437500A83DA2 /* APIHomeworkSubmit.swift */; };
+		467679521D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679511D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift */; };
+		467679541D83E15B00A83DA2 /* APICommentCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679531D83E15B00A83DA2 /* APICommentCreate.swift */; };
 		468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */; };
 		468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */; };
 		468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */; };
@@ -136,7 +142,7 @@
 		46CD105D1D78E73200023055 /* ClassroomPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD105B1D78E73200023055 /* ClassroomPickerViewController.swift */; };
 		46CD105E1D78E73200023055 /* ClassroomPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46CD105C1D78E73200023055 /* ClassroomPickerViewController.xib */; };
 		46CD10611D7944E900023055 /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10601D7944E900023055 /* HomeworkModel.swift */; };
-		46CD10631D79450900023055 /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10621D79450900023055 /* Submission.swift */; };
+		46CD10631D79450900023055 /* SubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10621D79450900023055 /* SubmissionModel.swift */; };
 		46CD10651D794FAA00023055 /* GlobalKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10641D794FAA00023055 /* GlobalKeys.swift */; };
 		46CD106A1D79583600023055 /* APIHomeworkCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD10691D79583600023055 /* APIHomeworkCreate.swift */; };
 		46CD106E1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD106D1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift */; };
@@ -249,6 +255,12 @@
 		467679411D7FD18500A83DA2 /* AudioHWRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioHWRecordViewController.xib; sourceTree = "<group>"; };
 		467679451D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayingRecordItemTableViewCell.xib; sourceTree = "<group>"; };
 		467679471D7FD2E000A83DA2 /* RecordItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordItemTableViewCell.xib; sourceTree = "<group>"; };
+		467679491D82289B00A83DA2 /* EmptySectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptySectionTableViewCell.swift; sourceTree = "<group>"; };
+		4676794A1D82289B00A83DA2 /* EmptySectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptySectionTableViewCell.xib; sourceTree = "<group>"; };
+		4676794D1D823A6800A83DA2 /* SubmissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionViewModel.swift; sourceTree = "<group>"; };
+		4676794F1D82437500A83DA2 /* APIHomeworkSubmit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkSubmit.swift; sourceTree = "<group>"; };
+		467679511D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkGetSubmissionList.swift; sourceTree = "<group>"; };
+		467679531D83E15B00A83DA2 /* APICommentCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommentCreate.swift; sourceTree = "<group>"; };
 		468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomViewController.swift; sourceTree = "<group>"; };
 		468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetClassroomNameViewController.swift; sourceTree = "<group>"; };
@@ -318,7 +330,7 @@
 		46CD105B1D78E73200023055 /* ClassroomPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomPickerViewController.swift; sourceTree = "<group>"; };
 		46CD105C1D78E73200023055 /* ClassroomPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassroomPickerViewController.xib; sourceTree = "<group>"; };
 		46CD10601D7944E900023055 /* HomeworkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
-		46CD10621D79450900023055 /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
+		46CD10621D79450900023055 /* SubmissionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionModel.swift; sourceTree = "<group>"; };
 		46CD10641D794FAA00023055 /* GlobalKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalKeys.swift; sourceTree = "<group>"; };
 		46CD10691D79583600023055 /* APIHomeworkCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkCreate.swift; sourceTree = "<group>"; };
 		46CD106D1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkGetHomeworkList.swift; sourceTree = "<group>"; };
@@ -453,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				46CD10701D7B9CD500023055 /* HomeworkViewModel.swift */,
+				4676794D1D823A6800A83DA2 /* SubmissionViewModel.swift */,
 			);
 			name = "View Model";
 			sourceTree = "<group>";
@@ -671,6 +684,8 @@
 				4600559F1D700345006AA8AA /* MemberTableViewCell.xib */,
 				467679331D7EA11100A83DA2 /* ActionButtonTableViewCell.swift */,
 				467679341D7EA11100A83DA2 /* ActionButtonTableViewCell.xib */,
+				467679491D82289B00A83DA2 /* EmptySectionTableViewCell.swift */,
+				4676794A1D82289B00A83DA2 /* EmptySectionTableViewCell.xib */,
 			);
 			name = "Table View Cell";
 			sourceTree = "<group>";
@@ -898,7 +913,7 @@
 			isa = PBXGroup;
 			children = (
 				46CD10601D7944E900023055 /* HomeworkModel.swift */,
-				46CD10621D79450900023055 /* Submission.swift */,
+				46CD10621D79450900023055 /* SubmissionModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -908,6 +923,9 @@
 			children = (
 				46CD10691D79583600023055 /* APIHomeworkCreate.swift */,
 				46CD106D1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift */,
+				4676794F1D82437500A83DA2 /* APIHomeworkSubmit.swift */,
+				467679511D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift */,
+				467679531D83E15B00A83DA2 /* APICommentCreate.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1057,6 +1075,7 @@
 				46CD104F1D780DDE00023055 /* HomeworkCommentViewController.xib in Resources */,
 				4676792F1D7E95A900A83DA2 /* ClassroomTableViewCell.xib in Resources */,
 				4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */,
+				4676794C1D82289B00A83DA2 /* EmptySectionTableViewCell.xib in Resources */,
 				4676792B1D7E831C00A83DA2 /* UpdateRequestViewController.xib in Resources */,
 				46CD10151D71472700023055 /* HomeworkInfoTableViewCell.xib in Resources */,
 				4612AF621D2489E800044E60 /* Home.storyboard in Resources */,
@@ -1236,6 +1255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				460055A31D701021006AA8AA /* SwiftClassExtension.swift in Sources */,
+				467679541D83E15B00A83DA2 /* APICommentCreate.swift in Sources */,
 				46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */,
 				4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */,
 				46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */,
@@ -1262,6 +1282,7 @@
 				46CD10451D77A27D00023055 /* APIClassroomSearch.swift in Sources */,
 				460055881D6EA886006AA8AA /* ProfileModel.swift in Sources */,
 				467679231D7E2D6C00A83DA2 /* UpdateModel.swift in Sources */,
+				467679521D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift in Sources */,
 				46CD10651D794FAA00023055 /* GlobalKeys.swift in Sources */,
 				46CD10291D73775E00023055 /* HWCommentTextAudioTableViewCell.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
@@ -1271,6 +1292,7 @@
 				46C904081D03871F005FC496 /* TextHWViewController.swift in Sources */,
 				466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */,
 				46CD10411D779C6300023055 /* SearchClassroomTableViewCell.swift in Sources */,
+				4676794B1D82289B00A83DA2 /* EmptySectionTableViewCell.swift in Sources */,
 				467679251D7E3CD200A83DA2 /* UpdateViewModel.swift in Sources */,
 				4612AF711D29E5A400044E60 /* AlertHelper.swift in Sources */,
 				4612AF561D2483A800044E60 /* MeViewController.swift in Sources */,
@@ -1291,6 +1313,7 @@
 				466223001D1258830067F338 /* OSSHelper.swift in Sources */,
 				468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */,
 				46F8997A1D32159800DF870C /* AddSchoolViewController.swift in Sources */,
+				467679501D82437500A83DA2 /* APIHomeworkSubmit.swift in Sources */,
 				46CD104E1D780DDE00023055 /* HomeworkCommentViewController.swift in Sources */,
 				468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */,
 				4676792A1D7E831C00A83DA2 /* UpdateRequestViewController.swift in Sources */,
@@ -1318,9 +1341,10 @@
 				46CD100E1D7142BD00023055 /* HomeworkDetailViewController.swift in Sources */,
 				4600BD081D0D26E600BF460D /* PlayerHelper.swift in Sources */,
 				46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */,
+				4676794E1D823A6800A83DA2 /* SubmissionViewModel.swift in Sources */,
 				46CD10491D77EC9500023055 /* HWGradeView.swift in Sources */,
 				4612AF731D2A1FBF00044E60 /* UpdateProfileViewController.swift in Sources */,
-				46CD10631D79450900023055 /* Submission.swift in Sources */,
+				46CD10631D79450900023055 /* SubmissionModel.swift in Sources */,
 				46CD10181D71544200023055 /* HWStudentSubmitTableViewCell.swift in Sources */,
 				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,

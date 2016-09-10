@@ -76,7 +76,9 @@ class ClassroomDetailViewController: UIViewController {
             swipeView.nextView = {
                 return self.nextCardView()
             }
-            self.renderHomeworkActionView()
+            if self.role == "t" {
+                self.renderHomeworkActionView()
+            }
         }
     }
 

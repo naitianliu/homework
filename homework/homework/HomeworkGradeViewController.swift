@@ -16,16 +16,13 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var actionView: UIView!
 
+
     var currentScoreLabel: UILabel?
     var currentScore: String?
 
-    var homeworkData: [String: String?] = ["name": "比尔盖茨4", "time": "今天 14:00", "score": nil, "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg"]
-
-    var submissionArray: [[String: String]] = [
-        ["duration": "5:40", "status": "pending"],
-        ["duration": "0:46", "status": "working"],
-        ["duration": "0:46", "status": "complete"]
-    ]
+    var submissionUUID: String?
+    var submissionData: [String: AnyObject?]?
+    var submissionArray: [[String: AnyObject]] = []
 
     var comments: [[String: AnyObject?]] = [
         ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "美国航天局所属的的朱诺号宇宙飞船上的探测器上个月进入环绕木星轨道，27日，朱诺号陆续传送回一些木星云层图片。这可说是人类有史以来，观察木星最近的距离。美国太空总署28日上午开始发布一些接近木星的图片，这些图片是目前为止，人类运用科技观测木星最为清晰的图片。", "audio": nil],
@@ -33,27 +30,46 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "朱诺号发回有史以来最清晰木星照片 画面震撼", "audio": ["duration": "5:40", "playing": false]]
     ]
 
+    var playingIndex: Int = -1
+    var playingStatus: String = ""
+
+    let submissionViewModel = SubmissionViewModel()
+
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.renderActionView()
         self.setupActionView()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
-
-        tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
-        tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
-        tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
-        tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
+        self.initTableView()
+        self.reloadTable()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadTable() {
+        if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
+            self.submissionData = submissionTup.0
+            self.submissionArray = submissionTup.1
+        }
+        tableView.reloadData()
+    }
+
+    private func initTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,16 +90,26 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("HWStudentSubmitTableViewCell") as! HWStudentSubmitTableViewCell
-                cell.separatorHidden = true
-                cell.configurate(homeworkData)
-                return cell
+                if let submissionData = self.submissionData {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWStudentSubmitTableViewCell") as! HWStudentSubmitTableViewCell
+                    cell.separatorHidden = true
+                    cell.configurate(submissionData)
+                    return cell
+                } else {
+                    return UITableViewCell()
+                }
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
-                let rowDict = submissionArray[indexPath.row - 1]
-                let duration: String = rowDict["duration"]!
-                let status: String = rowDict["status"]!
-                cell.configurate(duration, status: status)
+                let currentIndex = indexPath.row - 1
+                var status = self.submissionKeys.AudioStatus.hidden
+                if currentIndex == self.playingIndex {
+                    status = self.playingStatus
+                }
+                let rowDict = self.submissionArray[indexPath.row - 1]
+                cell.configurate(rowDict, status: status, completePlay: {
+                    self.playingIndex = -1
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                })
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -100,6 +126,23 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
             }
         } else {
             return UITableViewCell()
+        }
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row > 0 {
+            if self.playingIndex == indexPath.row - 1 {
+                self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                self.playingIndex = -1
+            } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
+                self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                self.playingIndex = indexPath.row - 1
+            } else {
+                self.playingStatus = self.submissionKeys.AudioStatus.working
+                self.playingIndex = indexPath.row - 1
+            }
+            tableView.reloadData()
         }
     }
 
@@ -180,8 +223,9 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
 
     func showHomeworkCommentVC() {
         let homeworkCommentVC = HomeworkCommentViewController(nibName: "HomeworkCommentViewController", bundle: nil)
-        homeworkCommentVC.modalTransitionStyle = .CoverVertical
-        self.presentViewController(homeworkCommentVC, animated: true, completion: nil)
+        let commentNC = UINavigationController(rootViewController: homeworkCommentVC)
+        commentNC.modalTransitionStyle = .CoverVertical
+        self.presentViewController(commentNC, animated: true, completion: nil)
     }
 
     private func showGradeActionSheet() {

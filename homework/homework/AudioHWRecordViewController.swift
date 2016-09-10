@@ -195,6 +195,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         let currentTime = rowDict["currentTime"] as! String
         let filename = rowDict["filename"] as! String
         let uuid = rowDict["uuid"] as! String
+        let objectKey = "\(uuid).m4a"
         if indexPath.row == playingRow {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.playingRecordItemCell) as! PlayingRecordItemTableViewCell
             cell.configurate(filename, duration: duration, submitOnClick: {
@@ -202,7 +203,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
                 let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 hud.mode = MBProgressHUDMode.DeterminateHorizontalBar
                 hud.label.text = "上传语音..."
-                self.ossHelper.uploadFile(filename, objectKey: uuid, complete: { (success, objectURL) in
+                self.ossHelper.uploadFile(filename, objectKey: objectKey, complete: { (success, objectURL) in
                     if success {
                         // upload url to server
                         self.hideProgressHUD()
@@ -236,6 +237,15 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
             return 160
         } else {
             return 60
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 1
+        default:
+            return 10
         }
     }
     

@@ -75,8 +75,6 @@ class PlayingRecordItemTableViewCell: UITableViewCell {
         if currentDuration <= self.durationTime {
             let currentDurationString: String = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(currentDuration)
             self.currentTimeLabel.text = currentDurationString
-            print(currentDuration)
-            print(self.durationTime)
             let sliderValue = Float(currentDuration/self.durationTime)
             self.playSlider.value = sliderValue
         } else {

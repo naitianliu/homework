@@ -14,33 +14,70 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     @IBOutlet weak var actionView: UIView!
 
     var homeworkUUID: String!
-
     var homeworkData: [String: AnyObject]!
+
+    var submissionUUID: String?
+    var submissionData: [String: AnyObject?]?
+    var submissionArray: [[String: AnyObject]] = []
+    var comments: [[String: AnyObject?]] = []
+
+    var playingIndex: Int = -1
+    var playingStatus: String = ""
 
     var navbarTitle: String?
 
     let homeworkViewModel = HomeworkViewModel()
+    let submissionViewModel = SubmissionViewModel()
+
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView()
-        tableView.registerNib(UINib(nibName: "HomeworkInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeworkInfoTableViewCell")
-
-        homeworkData = self.homeworkViewModel.getHomeworkInfo(self.homeworkUUID)
+        self.initTableView()
 
         self.setupActionView()
         self.renderActionView()
+
+        if let navbarTitle = navbarTitle {
+            self.navigationItem.title = navbarTitle
+        } else {
+            self.navigationItem.title = "我的作业"
+        }
+
+        self.submissionUUID = self.submissionViewModel.getSubmissionUUIDByHomeworkUUID(self.homeworkUUID)
+
+        self.reloadTable()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    private func initTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.registerNib(UINib(nibName: "HomeworkInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeworkInfoTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
+        tableView.registerNib(UINib(nibName: "EmptySectionTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptySectionTableViewCell")
+
+    }
+
+    func reloadTable() {
+        homeworkData = self.homeworkViewModel.getHomeworkInfo(self.homeworkUUID)
+        if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
+            self.submissionData = submissionTup.0
+            self.submissionArray = submissionTup.1
+        }
+        tableView.reloadData()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -52,23 +89,94 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         case 0:
             return 1
         case 1:
-            return 1
+            return self.submissionArray.count + 1
         case 2:
-            return 1
+            return self.comments.count + 1
         default:
             return 0
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
+        switch indexPath.section {
+        case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
             cell.selectionStyle = .None
             cell.configurate(homeworkData)
             return cell
+        case 1:
+            if let submissionData = self.submissionData {
+                if indexPath.row == 0 {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWStudentSubmitTableViewCell") as! HWStudentSubmitTableViewCell
+                    cell.configurate(submissionData)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
+                    let currentIndex = indexPath.row - 1
+                    var status = self.submissionKeys.AudioStatus.hidden
+                    if currentIndex == self.playingIndex {
+                        status = self.playingStatus
+                    }
+                    let rowDict = self.submissionArray[indexPath.row - 1]
+                    cell.configurate(rowDict, status: status, completePlay: { 
+                        self.playingIndex = -1
+                        self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    })
+                    return cell
+                }
+
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("EmptySectionTableViewCell") as! EmptySectionTableViewCell
+                cell.configurate("目前还未提交作业")
+                return cell
+            }
+        case 2:
+            if comments.count == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("EmptySectionTableViewCell") as! EmptySectionTableViewCell
+                cell.configurate("还没有任何评论")
+                return cell
+            } else {
+                return UITableViewCell()
+            }
         default:
             return UITableViewCell()
+        }
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.section == 1 && indexPath.row > 0 {
+            if self.playingIndex == indexPath.row - 1 {
+                self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                self.playingIndex = -1
+            } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
+                self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                self.playingIndex = indexPath.row - 1
+            } else {
+                self.playingStatus = self.submissionKeys.AudioStatus.working
+                self.playingIndex = indexPath.row - 1
+            }
+            tableView.reloadData()
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 1
+        default:
+            return 20
+        }
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1:
+            return "我提交的作业"
+        case 2:
+            return "全部评论"
+        default:
+            return nil
         }
     }
 
@@ -112,13 +220,26 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     }
 
     private func showAudioWHRecordVC() {
-        let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
-        audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
-            print(duration)
-            print(filename)
-            print(audioURL)
+        if self.submissionUUID == nil {
+            let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
+            audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
+                let durationInt = Int(duration)
+                var audioList: [[String: AnyObject]] = []
+                let audioInfo: [String: AnyObject] = [
+                    self.submissionKeys.duration: durationInt,
+                    self.submissionKeys.audioURL: audioURL
+                ]
+                audioList.append(audioInfo)
+                let info: [String: AnyObject] = [
+                    self.submissionKeys.audioList: audioList
+                ]
+                APIHomeworkSubmit(vc: self).run(self.homeworkUUID, info: info)
+            }
+            self.navigationController?.pushViewController(audioHWRecordVC, animated: true)
+        } else {
+            AlertHelper(viewController: self).showPromptAlertView("作业已提交，请勿重复提交")
         }
-        self.navigationController?.pushViewController(audioHWRecordVC, animated: true)
+
     }
 
 
