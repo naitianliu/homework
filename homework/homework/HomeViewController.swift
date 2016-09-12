@@ -54,8 +54,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadUpdateTable()
+    }
+
     func reloadUpdateTable() {
         self.updateDataArray = self.updateViewModel.getTableViewData()
+        print(self.updateDataArray)
         self.updatesTableView.reloadData()
     }
 
@@ -124,6 +130,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if tableView == updatesTableView {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             let rowData = self.updateDataArray[indexPath.row]
+            let uuid = rowData[self.updateKeys.uuid] as! String
+            self.updateViewModel.markAsRead(uuid)
             let type = rowData[self.updateKeys.type]! as! String
             switch type {
             case self.updateKeys.requests:

@@ -48,7 +48,7 @@ struct GlobalConstants {
 
 }
 
-let APIEndpoint = "http://localhost:8000/api/v1"
+let APIEndpoint = "http://192.168.1.82:8000/api/v1"
 
 struct APIURL {
     
@@ -59,6 +59,12 @@ struct APIURL {
     static let authPhoneVerifyCodeVerify = "\(APIEndpoint)/auth/phone/verification_code/verify/"
     static let authPhoneResetPassword = "\(APIEndpoint)/auth/phone/reset_password/"
     static let authPhoneRegister = "\(APIEndpoint)/auth/phone/register/"
+
+    static let authWechatLogin = "\(APIEndpoint)/auth/wechat/login/"
+
+    static let authInvitationCodeGenerate = "\(APIEndpoint)/auth/invitation_code/generate/"
+    static let authInvitationCodeValidate = "\(APIEndpoint)/auth/invitation_code/validate/"
+
     static let authUserProfileUpdate = "\(APIEndpoint)/auth/user/profile/update/"
 
     static let schoolCreate = "\(APIEndpoint)/school/create/"
@@ -74,11 +80,13 @@ struct APIURL {
     static let homeworkGetHomeworkList = "\(APIEndpoint)/homework/get_homework_list/"
     static let homeworkGetSubmissionList = "\(APIEndpoint)/homework/get_submission_list/"
 
+    static let commentCreate = "\(APIEndpoint)/comment/create/"
+    static let commentGetList = "\(APIEndpoint)/comment/get_list/"
+
     static let updateGet = "\(APIEndpoint)/updates/get/"
 
 
 }
-
 
 struct SampleData {
     static let sampleData_Classroom = [

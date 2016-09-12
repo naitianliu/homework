@@ -44,6 +44,12 @@ class UpdateTableViewCell: UITableViewCell {
 
     func configurate(data: [String: AnyObject]) {
         let dataJSON = JSON(data)
+        let read = dataJSON[self.updateKeys.read].boolValue
+        if read {
+            self.titleLabel.textColor = UIColor.grayColor()
+        } else {
+            self.titleLabel.textColor = UIColor.blackColor()
+        }
         let type = dataJSON[self.updateKeys.type].stringValue
         switch type {
         case self.updateKeys.requests:
@@ -58,11 +64,9 @@ class UpdateTableViewCell: UITableViewCell {
         let title = data[self.updateKeys.title].stringValue
         let subtitle = data[self.updateKeys.subtitle].stringValue
         let timeString = data[self.updateKeys.timeString].stringValue
-        let read = data[self.updateKeys.read].boolValue
         self.iconImageView.sd_setImageWithURL(NSURL(string: imgURL), placeholderImage: placeholderImage)
         self.titleLabel.text = title
         self.subtitleLabel.text = subtitle
         self.timeLabel.text = timeString
     }
-    
 }

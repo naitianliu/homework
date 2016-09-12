@@ -24,18 +24,16 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     var submissionData: [String: AnyObject?]?
     var submissionArray: [[String: AnyObject]] = []
 
-    var comments: [[String: AnyObject?]] = [
-        ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "美国航天局所属的的朱诺号宇宙飞船上的探测器上个月进入环绕木星轨道，27日，朱诺号陆续传送回一些木星云层图片。这可说是人类有史以来，观察木星最近的距离。美国太空总署28日上午开始发布一些接近木星的图片，这些图片是目前为止，人类运用科技观测木星最为清晰的图片。", "audio": nil],
-        ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "朱诺号发回有史以来最清晰木星照片 画面震撼", "audio": nil],
-        ["name": "比尔盖茨4", "time": "今天 14:00", "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg", "content": "朱诺号发回有史以来最清晰木星照片 画面震撼", "audio": ["duration": "5:40", "playing": false]]
-    ]
+    var comments: [[String: AnyObject]] = []
 
     var playingIndex: Int = -1
     var playingStatus: String = ""
 
     let submissionViewModel = SubmissionViewModel()
+    let commentViewModel = CommentViewModel()
 
     let submissionKeys = GlobalKeys.SubmissionKeys.self
+    let commentKeys = GlobalKeys.CommentKeys.self
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +44,8 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         self.initTableView()
         self.reloadTable()
 
+        self.navigationItem.title = "批改作业"
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,10 +53,16 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadTable()
+    }
+
     func reloadTable() {
         if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
             self.submissionData = submissionTup.0
             self.submissionArray = submissionTup.1
+            self.comments = self.commentViewModel.getCommentsList(submissionUUID)
         }
         tableView.reloadData()
     }
@@ -114,13 +120,13 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
             }
         } else if indexPath.section == 1 {
             let rowDict = comments[indexPath.row]
-            let audio: [String: AnyObject]? = rowDict["audio"]! as! [String: AnyObject]?
-            if audio == nil {
-                let cell = tableView.dequeueReusableCellWithIdentifier("HWCommetTextTableViewCell") as! HWCommetTextTableViewCell
+            let hasAudio = rowDict[self.commentKeys.hasAudio] as! Bool
+            if hasAudio {
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWCommentTextAudioTableViewCell") as! HWCommentTextAudioTableViewCell
                 cell.configurate(rowDict)
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("HWCommentTextAudioTableViewCell") as! HWCommentTextAudioTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWCommetTextTableViewCell") as! HWCommetTextTableViewCell
                 cell.configurate(rowDict)
                 return cell
             }
@@ -222,10 +228,15 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func showHomeworkCommentVC() {
-        let homeworkCommentVC = HomeworkCommentViewController(nibName: "HomeworkCommentViewController", bundle: nil)
-        let commentNC = UINavigationController(rootViewController: homeworkCommentVC)
-        commentNC.modalTransitionStyle = .CoverVertical
-        self.presentViewController(commentNC, animated: true, completion: nil)
+        if let submissionUUID = submissionUUID {
+            let homeworkCommentVC = HomeworkCommentViewController(nibName: "HomeworkCommentViewController", bundle: nil)
+            homeworkCommentVC.submissionUUID = submissionUUID
+            let commentNC = UINavigationController(rootViewController: homeworkCommentVC)
+            commentNC.modalTransitionStyle = .CoverVertical
+            self.presentViewController(commentNC, animated: true, completion: nil)
+        } else {
+            AlertHelper(viewController: self).showPromptAlertView("必须先提交作业才能评论")
+        }
     }
 
     private func showGradeActionSheet() {

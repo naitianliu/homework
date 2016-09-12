@@ -106,7 +106,7 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == 1 {
             let submissionUUID = self.ungradedHomeworkArray[indexPath.row][self.submissionKeys.submissionUUID] as! String
             self.showHomeworkGradeVC(submissionUUID)
-        } else {
+        } else if indexPath.section == 2 {
             let submissionUUID = self.gradedHomeworkArray[indexPath.row][self.submissionKeys.submissionUUID] as! String
             self.showHomeworkGradeVC(submissionUUID)
         }

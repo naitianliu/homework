@@ -40,7 +40,7 @@ class UpdateViewModel {
             switch type {
             case self.updateKeys.requests:
                 let rowDict = self.getRequestRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
-                dataArray.append(rowDict)
+                dataArray.insert(rowDict, atIndex: 0)
             default:
                 break
             }
@@ -71,6 +71,10 @@ class UpdateViewModel {
             self.classroomKeys.classroomUUID: classroomUUID
         ]
         return rowDict
+    }
+
+    func markAsRead(uuid: String) {
+        self.updateModelHelper.markAsRead(uuid)
     }
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class HWCommetTextTableViewCell: UITableViewCell {
 
@@ -14,6 +15,8 @@ class HWCommetTextTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+
+    let commentKeys = GlobalKeys.CommentKeys.self
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,11 +41,12 @@ class HWCommetTextTableViewCell: UITableViewCell {
         profileImageView.layer.masksToBounds = true
     }
 
-    func configurate(data: [String: AnyObject?]) {
-        let profileImageURL: String = data["profileImgURL"]! as! String
-        let name: String = data["name"]! as! String
-        let time: String = data["time"]! as! String
-        let content: String = data["content"]! as! String
+    func configurate(data: [String: AnyObject]) {
+        let infoJSON = JSON(data)
+        let profileImageURL: String = infoJSON[self.commentKeys.authorImgURL].stringValue
+        let name: String = infoJSON[self.commentKeys.authorName].stringValue
+        let time: String = infoJSON[self.commentKeys.time].stringValue
+        let content: String = infoJSON[self.commentKeys.text].stringValue
         profileImageView.sd_setImageWithURL(NSURL(string: profileImageURL), placeholderImage: GlobalConstants.kProfileImagePlaceholder)
         nameLabel.text = name
         timeLabel.text = time

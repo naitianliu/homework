@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -41,6 +41,9 @@
                                     <constraint firstAttribute="width" secondItem="984-kf-AfI" secondAttribute="height" multiplier="217:49" id="ZxO-Ti-chX"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="weixin-button"/>
+                                <connections>
+                                    <action selector="wechatLoginButtonOnClick:" destination="yPj-9W-VeA" eventType="touchUpInside" id="vCn-94-9gr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLh-UA-seL">
                                 <rect key="frame" x="249" y="461" width="102" height="34"/>
@@ -52,15 +55,38 @@
                                     <segue destination="013-R8-yhk" kind="show" id="jDZ-HJ-tea"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Nkm-qD-cgo">
+                                <rect key="frame" x="236" y="134" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="LI7-gb-d40"/>
+                                    <constraint firstAttribute="width" secondItem="Nkm-qD-cgo" secondAttribute="height" multiplier="1:1" id="NEP-06-Sf5"/>
+                                    <constraint firstAttribute="height" constant="160" id="Sd2-bX-U7m"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NEP-06-Sf5"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Nkm-qD-cgo" firstAttribute="top" secondItem="PL2-KY-LIY" secondAttribute="bottom" constant="80" id="0DR-59-v4J"/>
                             <constraint firstItem="ZLh-UA-seL" firstAttribute="top" secondItem="984-kf-AfI" secondAttribute="bottom" constant="20" id="0iX-NO-RH6"/>
                             <constraint firstItem="ZLh-UA-seL" firstAttribute="centerX" secondItem="Smk-gu-gf8" secondAttribute="centerX" id="6sz-lA-dsJ"/>
+                            <constraint firstItem="Nkm-qD-cgo" firstAttribute="leading" secondItem="Smk-gu-gf8" secondAttribute="leadingMargin" constant="50" id="EjN-XR-8dL"/>
+                            <constraint firstItem="Nkm-qD-cgo" firstAttribute="centerX" secondItem="Smk-gu-gf8" secondAttribute="centerX" id="LmA-PT-tZ9"/>
                             <constraint firstItem="by5-Hz-cV8" firstAttribute="top" secondItem="984-kf-AfI" secondAttribute="bottom" constant="100" id="N1y-ps-8JJ"/>
                             <constraint firstItem="984-kf-AfI" firstAttribute="leading" secondItem="Smk-gu-gf8" secondAttribute="leadingMargin" constant="50" id="Ps7-Zv-vKq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nkm-qD-cgo" secondAttribute="trailing" constant="50" id="kgA-7f-lai"/>
                             <constraint firstAttribute="trailingMargin" secondItem="984-kf-AfI" secondAttribute="trailing" constant="50" id="sQh-sA-fA4"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EjN-XR-8dL"/>
+                                <exclude reference="kgA-7f-lai"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="选择登录方式" id="wxF-Pw-sFQ"/>
                 </viewController>
@@ -690,6 +716,7 @@
     </scenes>
     <resources>
         <image name="button-block-bg" width="316" height="47"/>
+        <image name="login-icon" width="250" height="250"/>
         <image name="weixin-button" width="217" height="49"/>
     </resources>
 </document>

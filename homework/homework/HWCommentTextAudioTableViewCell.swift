@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class HWCommentTextAudioTableViewCell: UITableViewCell {
 
@@ -23,6 +24,8 @@ class HWCommentTextAudioTableViewCell: UITableViewCell {
     @IBOutlet weak var playImageView: UIImageView!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var audioView: UIView!
+
+    let commentKeys = GlobalKeys.CommentKeys.self
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,25 +56,22 @@ class HWCommentTextAudioTableViewCell: UITableViewCell {
         audioView.layer.cornerRadius = 5
     }
 
-    func configurate(data: [String: AnyObject?]) {
-        let profileImageURL: String = data["profileImgURL"]! as! String
-        let name: String = data["name"]! as! String
-        let time: String = data["time"]! as! String
-        let content: String = data["content"]! as! String
+    func configurate(data: [String: AnyObject]) {
+        let dataJSON = JSON(data)
+        let profileImageURL: String = dataJSON[self.commentKeys.authorImgURL].stringValue
+        let name: String = dataJSON[self.commentKeys.authorName].stringValue
+        let time: String = dataJSON[self.commentKeys.time].stringValue
+        let content: String = dataJSON[self.commentKeys.text].stringValue
         profileImageView.sd_setImageWithURL(NSURL(string: profileImageURL), placeholderImage: GlobalConstants.kProfileImagePlaceholder)
         nameLabel.text = name
         timeLabel.text = time
         contentLabel.text = content
         // audio view
-        let audioData: [String: AnyObject] = data["audio"] as! [String: AnyObject]
-        let duration: String = audioData["duration"]! as! String
-        durationLabel.text = duration
-        let playing: Bool = audioData["playing"]! as! Bool
-        if playing {
-            playImageView.image = UIImage(named: kImageName.pause)
-        } else {
-            playImageView.image = UIImage(named: kImageName.play)
-        }
+        let audioInfoJSON = dataJSON[self.commentKeys.audioInfo]
+        let durationInt: Int = audioInfoJSON[self.commentKeys.duration].intValue
+        let durationNSTimeInterval = NSTimeInterval(durationInt)
+        durationLabel.text = DateUtility().convertTimeIntervalToHumanFriendlyTime(durationNSTimeInterval)
+        playImageView.image = UIImage(named: kImageName.play)
     }
     
     

@@ -53,7 +53,7 @@ class UpdateModelHelper {
             let realm = try Realm()
             for item in realm.objects(UpdateModel) {
                 let rowDict = self.getUpdateRowDict(item)
-                dataArray.insert(rowDict, atIndex: 0)
+                dataArray.append(rowDict)
             }
         } catch {
             print(error)
@@ -78,6 +78,19 @@ class UpdateModelHelper {
             if let item = realm.objectForPrimaryKey(UpdateModel.self, key: uuid) {
                 try realm.write({ 
                     realm.delete(item)
+                })
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+    func markAsRead(uuid: String) {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(UpdateModel.self, key: uuid) {
+                try realm.write({
+                    item.setValue(true, forKey: "read")
                 })
             }
         } catch {

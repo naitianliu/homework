@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Diplomat
+import MBProgressHUD
 
 class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
 
     let kRoleMap = ["t": "教师", "s": "学生"]
+
+    let role = UserDefaultsHelper().getRole()!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +48,11 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         case 0:
             return 1
         case 1:
-            return 1
+            if role == "t" {
+                return 2
+            } else {
+                return 1
+            }
         case 2:
             return 1
         default:
@@ -64,6 +72,10 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             if let role = UserDefaultsHelper().getRole() {
                 cell.detailTextLabel?.text = kRoleMap[role]!
             }
+            return cell
+        case (1, 1):
+            let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+            cell.textLabel?.text = "生成并发送邀请码"
             return cell
         case (2, 0):
             let cell = tableView.dequeueReusableCellWithIdentifier("LogoutTableViewCell") as! LogoutTableViewCell
@@ -92,6 +104,8 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.presentViewController(updateProfileNC, animated: true, completion: nil)
         case (1, 0):
             self.showConfirmRoleSelectionAlertView()
+        case (1, 1):
+            self.apiGenerateCode()
         case (2, 0):
             self.showLogoutActionSheet()
         default:
@@ -120,4 +134,56 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+    private func apiGenerateCode() {
+        self.showHUD()
+        let url = APIURL.authInvitationCodeGenerate
+        CallAPIHelper(url: url, data: nil).GET({ (responseData) in
+            // success
+            self.hideHUD()
+            let errorCode = responseData["error"].intValue
+            if errorCode == 0 {
+                let code = responseData["code"].stringValue
+                self.showInvitationCodeAlert(code)
+            }
+            }) { (error) in
+                // error
+                self.hideHUD()
+        }
+    }
+
+    private func showInvitationCodeAlert(code: String) {
+        let alertMessage = "生成的邀请码：\(code)"
+        let alertController = UIAlertController(title: "邀请码已生成", message: alertMessage, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "发送给微信好友", style: .Destructive, handler: { (action) in
+            //
+            self.forwardMessageViaWechat(code)
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    private func forwardMessageViaWechat(code: String) {
+        let message = "窗外APP邀请码：\(code)"
+        let dtMessage = DTTextMessage()
+        dtMessage.text = message
+        dtMessage.userInfo = [kWechatSceneTypeKey: Int(WXSceneSession.rawValue)]
+        Diplomat.sharedInstance().share(dtMessage, name: kDiplomatTypeWechat) { (result, error) in
+            print(result)
+        }
+    }
+
+    private func showHUD() {
+        dispatch_async(dispatch_get_main_queue()) {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        }
+
+    }
+
+    private func hideHUD() {
+        dispatch_async(dispatch_get_main_queue()) {
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+        }
+    }
+
 }
+

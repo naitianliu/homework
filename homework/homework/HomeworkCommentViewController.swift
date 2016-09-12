@@ -17,6 +17,10 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
 
     var commentText: String?
 
+    var submissionUUID: String!
+
+    let commentKeys = GlobalKeys.CommentKeys.self
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,7 +60,22 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
     }
 
     @objc private func confirmButtonOnClick(sender: AnyObject) {
-
+        guard let submissionUUID = submissionUUID else { return }
+        guard let commentText = commentText else {
+            AlertHelper(viewController: self).showPromptAlertView("评论内容不能为空")
+            return
+        }
+        var info: [String: AnyObject] = [
+            self.commentKeys.text: commentText
+        ]
+        if let audioDuration = audioDuration, let audioURL = audioURL {
+            let audioInfo: [String: AnyObject] = [
+                self.commentKeys.duration: Int(audioDuration),
+                self.commentKeys.audioURL: audioURL
+            ]
+            info[self.commentKeys.audioInfo] = audioInfo
+        }
+        APICommentCreate(vc: self).run(submissionUUID, info: info)
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

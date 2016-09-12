@@ -79,6 +79,25 @@ struct GlobalKeys {
 
     }
 
+    struct CommentKeys {
+        static let commentUUID = "comment_uuid"
+        static let submissionUUID = "submission_uuid"
+        static let author = "author"
+        static let info = "info"
+        static let createdTimestamp = "created_timestamp"
+
+        static let text = "text"
+        static let audioInfo = "audio_info"
+        static let duration = "duration"
+        static let audioURL = "audio_url"
+
+        static let authorName = "author_name"
+        static let authorImgURL = "author_img_url"
+        static let time = "time"
+        static let hasAudio = "has_audio"
+
+    }
+
     struct ProfileKeys {
         static let imgURL = "img_url"
         static let userId = "user_id"
