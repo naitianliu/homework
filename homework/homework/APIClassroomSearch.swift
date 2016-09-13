@@ -18,6 +18,8 @@ class APIClassroomSearch {
 
     var vc: SearchClassroomViewController!
 
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
+
     init(vc: SearchClassroomViewController) {
         self.vc = vc
     }
@@ -46,11 +48,12 @@ class APIClassroomSearch {
         var dataArray: [[String: AnyObject]] = []
         let classrooms = responseData["classrooms"].arrayValue
         for classroom in classrooms {
-            let code = classroom["code"].stringValue
-            let classroomName = classroom["name"].stringValue
-            let schoolInfo = classroom["school_info"].dictionaryValue
-            let schoolName = schoolInfo["name"]?.stringValue
-            let classroomUUID = classroom["classroom_uuid"].stringValue
+            print(classroom)
+            let code = classroom[self.classroomKeys.code].stringValue
+            let classroomName = classroom[self.classroomKeys.classroomName].stringValue
+            let schoolInfo = classroom[self.classroomKeys.schoolInfo]
+            let schoolName = schoolInfo[self.classroomKeys.schoolName].stringValue
+            let classroomUUID = classroom[self.classroomKeys.classroomUUID].stringValue
             // get profile image urls
             let members = classroom["members"].arrayValue
             var profileImgURLs: [String] = []
@@ -60,11 +63,11 @@ class APIClassroomSearch {
                 profileImgURLs.append(imgURL)
             }
             let rowDict: [String: AnyObject] = [
-                "classroomName": classroomName,
-                "schoolName": schoolName!,
-                "classroomUUID": classroomUUID,
-                "profileImgURLs": profileImgURLs,
-                "code": code
+                self.classroomKeys.classroomName: classroomName,
+                self.classroomKeys.schoolName: schoolName,
+                self.classroomKeys.classroomUUID: classroomUUID,
+                self.classroomKeys.profileImgURLs: profileImgURLs,
+                self.classroomKeys.code: code
             ]
             dataArray.append(rowDict)
         }

@@ -16,6 +16,7 @@ class ClassroomViewModel {
     let memberModelHelper = MemberModelHelper()
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
+    let profilesKeys = GlobalKeys.ProfileKeys.self
 
     init() {
 
@@ -35,6 +36,36 @@ class ClassroomViewModel {
         if let classroom = self.classroomModelHelper.getClassroomInfo(classroomUUID) {
             let rowDict = self.getClassroomRowDict(classroom)
             return rowDict
+        } else {
+            return nil
+        }
+    }
+
+    func getClassroomDetailedInfoByUUID(classroomUUID: String) -> [String: AnyObject]? {
+        // classroom info view controller
+        if let classroom = self.classroomModelHelper.getClassroomInfo(classroomUUID) {
+            let classroomJSON = JSON(classroom)
+            let classroomName = classroomJSON[self.classroomKeys.classroomName].stringValue
+            let schoolUUID: String = classroomJSON[self.classroomKeys.schoolUUID].stringValue
+            let schoolName: String = self.getSchoolName(schoolUUID)
+            let classroomIntroduction = classroomJSON[self.classroomKeys.introduction].stringValue
+            let classroomCode = classroomJSON[self.classroomKeys.code].stringValue
+            let result_tup = self.getTeachersAndStudents(classroomUUID)
+            let teachers = result_tup.0
+            let students = result_tup.1
+            let teacherNumberString = String(teachers.count)
+            let studentNumberString = String(students.count)
+            let infoDict: [String: AnyObject] = [
+                self.classroomKeys.classroomName: classroomName,
+                self.classroomKeys.schoolName: schoolName,
+                self.classroomKeys.introduction: classroomIntroduction,
+                self.classroomKeys.code: classroomCode,
+                self.classroomKeys.studentNumber: studentNumberString,
+                self.classroomKeys.teacherNumber: teacherNumberString,
+                self.classroomKeys.teachers: teachers,
+                self.classroomKeys.students: students
+            ]
+            return infoDict
         } else {
             return nil
         }
@@ -76,15 +107,31 @@ class ClassroomViewModel {
         var studentNumber: Int = 0
         let members = self.memberModelHelper.getMembersByClassroom(classroomUUID)
         for memberDict in members {
-            let role: String = memberDict["role"]!
+            let role: String = memberDict[self.profilesKeys.role]!
             if role == "t" {
-                let imgURL: String = memberDict["imgURL"]!
+                let imgURL: String = memberDict[self.profilesKeys.imgURL]!
                 profileImgURLs.append(imgURL)
             } else if role == "s" {
                 studentNumber += 1
             }
         }
         return (profileImgURLs, studentNumber)
+    }
+
+    private func getTeachersAndStudents(classroomUUID: String) -> ([String], [String]) {
+        var teachers: [String] = []
+        var students: [String] = []
+        let members = self.memberModelHelper.getMembersByClassroom(classroomUUID)
+        for memberDict in members {
+            let role: String = memberDict[self.profilesKeys.role]!
+            let userId: String = memberDict[self.profilesKeys.userId]!
+            if role == "t" {
+                teachers.append(userId)
+            } else if role == "s" {
+                students.append(userId)
+            }
+        }
+        return (teachers, students)
     }
 
 }

@@ -19,6 +19,7 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
     let classroomModelHelper = ClassroomViewModel()
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
+    let updateKeys = GlobalKeys.UpdateKeys.self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.registerNib(UINib(nibName: "ActionButtonTableViewCell", bundle: nil), forCellReuseIdentifier: "ActionButtonTableViewCell")
 
         if let updateData = updateData {
-            let classroomUUID: String = updateData[self.classroomKeys.classroomUUID]! as! String
+            let classroomUUID = updateData[self.classroomKeys.classroomUUID]! as! String
             self.classroomData = self.classroomModelHelper.getClassroomDataByUUID(classroomUUID)
         }
 
@@ -81,6 +82,7 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionButtonTableViewCell") as! ActionButtonTableViewCell
             cell.configurate("同意并添加为班级成员", bgColor: GlobalConstants.themeColor, action: {
                 // approve action
+                self.performApproveRequest()
             })
             return cell
         case (2, 1):
@@ -95,6 +97,17 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
+
+    func performApproveRequest() {
+        if let updateData = updateData {
+            let classroomUUID = updateData[self.classroomKeys.classroomUUID]! as! String
+            let requestUUID = updateData[self.updateKeys.requestUUID]! as! String
+            let requesterRole = updateData[self.updateKeys.requesterRole]! as! String
+            let requesterProfile = updateData[self.updateKeys.requesterProfile]! as! [String: String]
+            APIClassroomApproveRequest(vc: self).run(requestUUID, classroomUUID: classroomUUID, requesterRole: requesterRole, requesterProfileInfo: requesterProfile)
+        }
 
     }
 

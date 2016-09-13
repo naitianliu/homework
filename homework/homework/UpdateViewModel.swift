@@ -53,6 +53,7 @@ class UpdateViewModel {
         let classroomInfo = self.classroomModelHelper.getClassroomInfo(classroomUUID)!
         let classroomName = classroomInfo[self.classroomKeys.classroomName]! as! String
         let requestUUID = info[self.updateKeys.requestUUID].stringValue
+        let requesterRole = info[self.updateKeys.requesterRole].stringValue
         let requesterProfile = info[self.updateKeys.requesterProfile]
         let nickname = requesterProfile[self.profileKeys.nickname].stringValue
         let imgURL = requesterProfile[self.profileKeys.imgURL].stringValue
@@ -65,6 +66,8 @@ class UpdateViewModel {
             self.updateKeys.imgURL: imgURL,
             self.updateKeys.title: title,
             self.updateKeys.subtitle: subtitle,
+            self.updateKeys.requesterRole: requesterRole,
+            self.updateKeys.requesterProfile: requesterProfile.dictionaryObject! as! [String: String],
             self.updateKeys.timeString: timeString,
             self.updateKeys.read: read,
             self.updateKeys.requestUUID: requestUUID,

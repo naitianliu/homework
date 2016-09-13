@@ -60,16 +60,16 @@ class APIClassroomGetList {
     }
 
     private func addUpdateClassroom(classroomData: JSON) {
-        let name = classroomData["name"].stringValue
-        let code = classroomData["code"].stringValue
-        let creator = classroomData["creator"].stringValue
-        let introduction = classroomData["introduction"].stringValue
-        let schoolUUID = classroomData["school_uuid"].stringValue
-        let classroomUUID = classroomData["classroom_uuid"].stringValue
+        let name = classroomData[self.classroomKeys.classroomName].stringValue
+        let code = classroomData[self.classroomKeys.code].stringValue
+        let creator = classroomData[self.classroomKeys.creator].stringValue
+        let introduction = classroomData[self.classroomKeys.introduction].stringValue
+        let schoolUUID = classroomData[self.classroomKeys.schoolUUID].stringValue
+        let classroomUUID = classroomData[self.classroomKeys.classroomUUID].stringValue
         self.newUUIDArray.append(classroomUUID)
-        let active = classroomData["active"].boolValue
-        let createdTimestamp = classroomData["created_timestamp"].intValue
-        let updatedTimestamp = classroomData["updated_timestamp"].intValue
+        let active = classroomData[self.classroomKeys.active].boolValue
+        let createdTimestamp = classroomData[self.classroomKeys.createdTimestamp].intValue
+        let updatedTimestamp = classroomData[self.classroomKeys.updatedTimestamp].intValue
         var members: [[String: String]] = []
         for item in classroomData["members"].arrayValue {
             let memberJSON = item.dictionaryValue

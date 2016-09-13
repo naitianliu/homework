@@ -81,6 +81,12 @@
 		467679541D83E15B00A83DA2 /* APICommentCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679531D83E15B00A83DA2 /* APICommentCreate.swift */; };
 		467679561D8516B500A83DA2 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679551D8516B500A83DA2 /* CommentModel.swift */; };
 		467679581D8523F900A83DA2 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679571D8523F900A83DA2 /* CommentViewModel.swift */; };
+		4676795B1D864FBF00A83DA2 /* ClassroomInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679591D864FBF00A83DA2 /* ClassroomInfoViewController.swift */; };
+		4676795C1D864FBF00A83DA2 /* ClassroomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4676795A1D864FBF00A83DA2 /* ClassroomInfoViewController.xib */; };
+		4676795E1D8670E600A83DA2 /* APIClassroomUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676795D1D8670E600A83DA2 /* APIClassroomUpdate.swift */; };
+		467679601D8678C100A83DA2 /* APIClassroomSendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676795F1D8678C100A83DA2 /* APIClassroomSendRequest.swift */; };
+		467679621D86831200A83DA2 /* APIClassroomApproveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679611D86831200A83DA2 /* APIClassroomApproveRequest.swift */; };
+		467679641D87DA3100A83DA2 /* APIDeviceTokenUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679631D87DA3100A83DA2 /* APIDeviceTokenUpdate.swift */; };
 		468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */; };
 		468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */; };
 		468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */; };
@@ -265,6 +271,12 @@
 		467679531D83E15B00A83DA2 /* APICommentCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommentCreate.swift; sourceTree = "<group>"; };
 		467679551D8516B500A83DA2 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		467679571D8523F900A83DA2 /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		467679591D864FBF00A83DA2 /* ClassroomInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomInfoViewController.swift; sourceTree = "<group>"; };
+		4676795A1D864FBF00A83DA2 /* ClassroomInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassroomInfoViewController.xib; sourceTree = "<group>"; };
+		4676795D1D8670E600A83DA2 /* APIClassroomUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomUpdate.swift; sourceTree = "<group>"; };
+		4676795F1D8678C100A83DA2 /* APIClassroomSendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomSendRequest.swift; sourceTree = "<group>"; };
+		467679611D86831200A83DA2 /* APIClassroomApproveRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomApproveRequest.swift; sourceTree = "<group>"; };
+		467679631D87DA3100A83DA2 /* APIDeviceTokenUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDeviceTokenUpdate.swift; sourceTree = "<group>"; };
 		468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomViewController.swift; sourceTree = "<group>"; };
 		468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetClassroomNameViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +419,9 @@
 				46CD102B1D738AFB00023055 /* APIClassroomCreate.swift */,
 				46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */,
 				46CD10441D77A27D00023055 /* APIClassroomSearch.swift */,
+				4676795D1D8670E600A83DA2 /* APIClassroomUpdate.swift */,
+				4676795F1D8678C100A83DA2 /* APIClassroomSendRequest.swift */,
+				467679611D86831200A83DA2 /* APIClassroomApproveRequest.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -642,6 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				467679261D7E3CED00A83DA2 /* APIUpdateGet.swift */,
+				467679631D87DA3100A83DA2 /* APIDeviceTokenUpdate.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -723,6 +739,8 @@
 				46F899791D32159800DF870C /* AddSchoolViewController.swift */,
 				46B67D9E1D4966DA0056EA84 /* ClassroomDetailViewController.swift */,
 				46CD103E1D7796BA00023055 /* SearchClassroomViewController.swift */,
+				467679591D864FBF00A83DA2 /* ClassroomInfoViewController.swift */,
+				4676795A1D864FBF00A83DA2 /* ClassroomInfoViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1036,6 +1054,7 @@
 				TargetAttributes = {
 					46C903D31D038619005FC496 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7QF59FN54B;
 					};
 					46C903E71D03861A005FC496 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1106,6 +1125,7 @@
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
 				46CD10351D73D9C600023055 /* LogoutTableViewCell.xib in Resources */,
 				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
+				4676795C1D864FBF00A83DA2 /* ClassroomInfoViewController.xib in Resources */,
 				4612AF581D2483BC00044E60 /* Me.storyboard in Resources */,
 				46C903DD1D038619005FC496 /* Main.storyboard in Resources */,
 				46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */,
@@ -1268,6 +1288,7 @@
 				46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
 				4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */,
+				467679621D86831200A83DA2 /* APIClassroomApproveRequest.swift in Sources */,
 				46CD102C1D738AFB00023055 /* APIClassroomCreate.swift in Sources */,
 				4612AF671D2497CD00044E60 /* PhoneLoginViewController.swift in Sources */,
 				4612AF651D24919000044E60 /* LoginViewController.swift in Sources */,
@@ -1316,6 +1337,7 @@
 				46C903D81D038619005FC496 /* AppDelegate.swift in Sources */,
 				4600BD031D0CD0D500BF460D /* RecorderHelper.swift in Sources */,
 				46B67DA31D49C2110056EA84 /* HomewordCardContentView.swift in Sources */,
+				467679601D8678C100A83DA2 /* APIClassroomSendRequest.swift in Sources */,
 				4612AF771D2A2BDB00044E60 /* ProfileEditTableViewCell.swift in Sources */,
 				466223001D1258830067F338 /* OSSHelper.swift in Sources */,
 				468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */,
@@ -1331,6 +1353,7 @@
 				467679351D7EA11100A83DA2 /* ActionButtonTableViewCell.swift in Sources */,
 				46CD103F1D7796BA00023055 /* SearchClassroomViewController.swift in Sources */,
 				4600558B1D6FEEDC006AA8AA /* MembersPickerViewController.swift in Sources */,
+				4676795E1D8670E600A83DA2 /* APIClassroomUpdate.swift in Sources */,
 				46CD10141D71472700023055 /* HomeworkInfoTableViewCell.swift in Sources */,
 				468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */,
 				4600559C1D6FFB15006AA8AA /* pinyin.c in Sources */,
@@ -1350,6 +1373,7 @@
 				46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */,
 				4676794E1D823A6800A83DA2 /* SubmissionViewModel.swift in Sources */,
 				46CD10491D77EC9500023055 /* HWGradeView.swift in Sources */,
+				467679641D87DA3100A83DA2 /* APIDeviceTokenUpdate.swift in Sources */,
 				4612AF731D2A1FBF00044E60 /* UpdateProfileViewController.swift in Sources */,
 				46CD10631D79450900023055 /* SubmissionModel.swift in Sources */,
 				46CD10181D71544200023055 /* HWStudentSubmitTableViewCell.swift in Sources */,
@@ -1358,6 +1382,7 @@
 				46CD106E1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift in Sources */,
 				46CD106A1D79583600023055 /* APIHomeworkCreate.swift in Sources */,
 				46B67D991D4828FC0056EA84 /* SchoolModel.swift in Sources */,
+				4676795B1D864FBF00A83DA2 /* ClassroomInfoViewController.swift in Sources */,
 				467679561D8516B500A83DA2 /* CommentModel.swift in Sources */,
 				46CD10381D73E16B00023055 /* ProfileUpdateHelper.swift in Sources */,
 				46F899811D32218400DF870C /* InputTableViewCell.swift in Sources */,
@@ -1512,6 +1537,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = homework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1520,6 +1547,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.naitianliu.homework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "homework/homework-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1531,6 +1559,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = homework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1539,6 +1569,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.naitianliu.homework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "homework/homework-Bridging-Header.h";
 			};
 			name = Release;

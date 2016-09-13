@@ -18,6 +18,8 @@ class APIClassroomCreate {
 
     let role: String = UserDefaultsHelper().getRole()!
 
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
+
     init(vc: CreateClassroomViewController) {
         self.vc = vc
     }
@@ -36,9 +38,9 @@ class APIClassroomCreate {
         CallAPIHelper(url: url, data: data).POST({ (responseData) in
             // return response
             let errorCode: Int = responseData["error"].intValue
-            let timestamp: Int = responseData["timestamp"].intValue
-            let classroomUUID: String = responseData["classroom_uuid"].stringValue
-            let classroomCode: String = responseData["classroomCode"].stringValue
+            let timestamp: Int = responseData[self.classroomKeys.timestamp].intValue
+            let classroomUUID: String = responseData[self.classroomKeys.classroomUUID].stringValue
+            let classroomCode: String = responseData[self.classroomKeys.code].stringValue
             if errorCode == 0 {
                 ClassroomModelHelper().add(classroomUUID, name: name, introduction: introduction, creator: nil,
                     schoolUUID: schoolUUID, code: classroomCode, active: true, createdTimestamp: timestamp,

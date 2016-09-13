@@ -527,7 +527,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="班级详情" id="T4K-kQ-1av">
-                        <barButtonItem key="rightBarButtonItem" image="more" id="34H-Yi-Z6V"/>
+                        <barButtonItem key="rightBarButtonItem" image="more" id="34H-Yi-Z6V">
+                            <connections>
+                                <action selector="moreInfoButtonOnClick:" destination="VLN-xS-spg" id="cWt-Qg-UKc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="homeworkActionView" destination="xra-uU-2GC" id="QEH-zm-EoY"/>

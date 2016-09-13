@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast
 
 class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UITextFieldDelegate {
 
@@ -91,14 +92,23 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
         }
         alertController.addAction(UIAlertAction(title: "发送申请", style: .Destructive, handler: { (action) in
             // send request
-            print(self.confirmMessageTextField?.text)
+            let comment: String? = self.confirmMessageTextField?.text
+            APIClassroomSendRequest(vc: self).run(classroomUUID, comment: comment)
+            self.confirmMessageTextField?.resignFirstResponder()
         }))
-        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: { (action) in
+            // send request
+            self.confirmMessageTextField?.resignFirstResponder()
+        }))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     func textFieldDidEndEditing(textField: UITextField) {
         textField.resignFirstResponder()
+    }
+
+    func showRequestSentToast() {
+        self.view.makeToast("加入申请发送成功", duration: 3.0, position: CSToastPositionCenter)
     }
 
 }

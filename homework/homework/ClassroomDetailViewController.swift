@@ -29,15 +29,6 @@ class ClassroomDetailViewController: UIViewController {
 
     var numberOfLayoutCalls = 0
 
-    let sampleData: [String: String] = [
-        "profileImgURL": "https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg",
-        "teacher": "Ali",
-        "homeworkType": "朗读作业",
-        "time": "昨天 12:55pm",
-        "homeworkContent": "英语教材新概念英语第一册Lession 1阅读文章读三遍",
-        "dueDate": "6月1日 星期三"
-    ]
-
     var cardDataArray = [[String: AnyObject]]()
 
     override func viewDidLoad() {
@@ -162,4 +153,10 @@ class ClassroomDetailViewController: UIViewController {
         PresentVCUtility(vc: self).showSelectHWTypeVC()
     }
 
+    @IBAction func moreInfoButtonOnClick(sender: AnyObject) {
+        let classroomInfoVC = ClassroomInfoViewController(nibName: "ClassroomInfoViewController", bundle: nil)
+        classroomInfoVC.classroomUUID = classroomUUID
+        self.navigationController?.pushViewController(classroomInfoVC, animated: true)
+    }
 }
+

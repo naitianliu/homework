@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switchRootVC()
 
         PerformMigrations().migrate()
+
+        APIDeviceTokenUpdate().run()
         
         return true
     }
@@ -48,6 +50,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    }
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let deviceTokenString = self.dataToHex(deviceToken)
+        print(deviceTokenString)
+        UserDefaultsHelper().updateDeviceToken(deviceTokenString)
+        APIDeviceTokenUpdate().run()
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -72,6 +82,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let authNC = authStoryboard.instantiateViewControllerWithIdentifier("AuthNC") as! UINavigationController
             self.window?.rootViewController = authNC
         }
+    }
+
+    private func dataToHex(data: NSData) -> String {
+        var str: String = String()
+        let p = UnsafePointer<UInt8>(data.bytes)
+        let len = data.length
+        for i in 0 ..< len {
+            str += String(format: "%02.2X", p[i])
+        }
+        return str
     }
 
 }

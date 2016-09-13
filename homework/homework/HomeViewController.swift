@@ -61,7 +61,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func reloadUpdateTable() {
         self.updateDataArray = self.updateViewModel.getTableViewData()
-        print(self.updateDataArray)
         self.updatesTableView.reloadData()
     }
 

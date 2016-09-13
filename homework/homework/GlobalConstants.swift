@@ -49,6 +49,7 @@ struct GlobalConstants {
 }
 
 let APIEndpoint = "http://192.168.1.82:8000/api/v1"
+// let APIEndpoint = "https://hw.knockfuture.com/api/v1"
 
 struct APIURL {
     
@@ -67,11 +68,17 @@ struct APIURL {
 
     static let authUserProfileUpdate = "\(APIEndpoint)/auth/user/profile/update/"
 
+    static let authDeviceTokenUpdate = "\(APIEndpoint)/auth/device_token/update/"
+
     static let schoolCreate = "\(APIEndpoint)/school/create/"
 
     static let classroomCreate = "\(APIEndpoint)/classroom/create/"
     static let classroomGetList = "\(APIEndpoint)/classroom/get_list/"
     static let classroomSearch = "\(APIEndpoint)/classroom/search/"
+    static let classroomUpdate = "\(APIEndpoint)/classroom/update/"
+    static let classroomClose = "\(APIEndpoint)/classroom/close/"
+    static let classroomSendRequest = "\(APIEndpoint)/classroom/send_request/"
+    static let classroomApproveRequest = "\(APIEndpoint)/classroom/approve_request/"
 
     static let homeworkCreate = "\(APIEndpoint)/homework/create/"
     static let homeworkSubmit = "\(APIEndpoint)/homework/submit/"

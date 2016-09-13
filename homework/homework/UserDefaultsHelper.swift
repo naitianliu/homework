@@ -27,6 +27,7 @@ extension DefaultsKeys {
 }
 
 class UserDefaultsHelper {
+
     init() {
         
     }
@@ -133,6 +134,7 @@ class UserDefaultsHelper {
         Defaults[.username] = username
         Defaults[.profileImageURL] = profileImgURL
         Defaults[.nickname] = nickname
+        ProfileModelHelper().add(username!, nickname: nickname!, imgURL: profileImgURL!)
     }
 
     func updateRole(role: String) {

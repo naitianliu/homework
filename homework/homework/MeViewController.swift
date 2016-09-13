@@ -75,6 +75,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             return cell
         case (1, 1):
             let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+            cell.accessoryType = .DisclosureIndicator
             cell.textLabel?.text = "生成并发送邀请码"
             return cell
         case (2, 0):

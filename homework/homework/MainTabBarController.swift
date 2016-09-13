@@ -52,7 +52,10 @@ class MainTabBarController: UITabBarController {
         showSelectRoleVC()
 
         showUpdateProfileNC()
-        
+
+        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil))
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+
     }
 
     override func viewDidAppear(animated: Bool) {

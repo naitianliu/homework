@@ -14,14 +14,22 @@ struct GlobalKeys {
     struct ClassroomKeys {
         static let classroomUUID = "classroom_uuid"
         static let classroomName = "classroom_name"
+        static let schoolInfo = "school_info"
         static let schoolName = "school_name"
         static let schoolUUID = "school_uuid"
         static let profileImgURLs = "profile_img_urls"
         static let studentNumber = "student_number"
+        static let teacherNumber = "teacher_number"
+        static let teachers = "teachers"
+        static let students = "students"
+        static let members = "members"
         static let code = "code"
         static let introduction = "introduction"
         static let active = "active"
         static let creator = "creator"
+        static let timestamp = "timestamp"
+        static let createdTimestamp = "created_timestamp"
+        static let updatedTimestamp = "updated_timestamp"
     }
 
     struct HomeworkKeys {
@@ -102,6 +110,8 @@ struct GlobalKeys {
         static let imgURL = "img_url"
         static let userId = "user_id"
         static let nickname = "nickname"
+        static let role = "role"
+        static let classroomUUID = "classroom_uuid"
     }
 
     struct UpdateKeys {
@@ -121,6 +131,7 @@ struct GlobalKeys {
 
         static let requestUUID = "request_uuid"
         static let requesterProfile = "requester_profile"
+        static let requesterRole = "requester_role"
 
         static let imgURL = "img_url"
         static let timeString = "time_string"
