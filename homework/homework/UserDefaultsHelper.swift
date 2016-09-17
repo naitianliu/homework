@@ -167,7 +167,9 @@ class UserDefaultsHelper {
     func checkIfLogin() -> Bool {
         var result = false
         let token: String? = Defaults[.token]
-        if token != nil {
+        print(token)
+        let username: String? = self.getUsername()
+        if token != nil && username != nil {
             result = true
         }
         return result

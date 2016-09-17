@@ -125,6 +125,7 @@ struct GlobalKeys {
 
         static let homeworks = "homeworks"
         static let requests = "requests"
+        static let approvals = "approvals"
         static let submissions = "submissions"
         static let classrooms = "classrooms"
         static let members = "members"
@@ -132,6 +133,9 @@ struct GlobalKeys {
         static let requestUUID = "request_uuid"
         static let requesterProfile = "requester_profile"
         static let requesterRole = "requester_role"
+
+        static let approverProfileInfo = "approver_profile_info"
+        static let classroomInfo = "classroom_info"
 
         static let imgURL = "img_url"
         static let timeString = "time_string"

@@ -66,7 +66,6 @@ class AddSchoolViewController: UIViewController, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCellWithIdentifier("InputTableViewCell") as! InputTableViewCell
             cell.configurate("输入学校或机构名称", returnValueBlock: { (value) in
                 self.schoolName = value
-                self.reloadTable()
             })
             return cell
         case (1, 0):

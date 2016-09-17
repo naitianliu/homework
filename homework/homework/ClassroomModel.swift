@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftyJSON
 
 class ClassroomModel: Object {
     
@@ -31,7 +32,7 @@ class ClassroomModelHelper {
 
     let memberModelHelper = MemberModelHelper()
 
-    let Keys = GlobalKeys.ClassroomKeys.self
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
 
     init() {
 
@@ -123,15 +124,39 @@ class ClassroomModelHelper {
 
     private func getRowDictByItem(item: ClassroomModel) -> [String: AnyObject] {
         let rowDict: [String: AnyObject] = [
-            self.Keys.classroomUUID: item.uuid,
-            self.Keys.classroomName: item.name,
-            self.Keys.introduction: item.introduction,
-            self.Keys.creator: item.creator,
-            self.Keys.schoolUUID: item.schoolUUID,
-            self.Keys.code: item.code,
-            self.Keys.active: item.active
+            self.classroomKeys.classroomUUID: item.uuid,
+            self.classroomKeys.classroomName: item.name,
+            self.classroomKeys.introduction: item.introduction,
+            self.classroomKeys.creator: item.creator,
+            self.classroomKeys.schoolUUID: item.schoolUUID,
+            self.classroomKeys.code: item.code,
+            self.classroomKeys.active: item.active
         ]
         return rowDict
+    }
+
+    func addUpdateClassroom(classroomData: JSON) {
+        let name = classroomData[self.classroomKeys.classroomName].stringValue
+        let code = classroomData[self.classroomKeys.code].stringValue
+        let creator = classroomData[self.classroomKeys.creator].stringValue
+        let introduction = classroomData[self.classroomKeys.introduction].stringValue
+        let schoolUUID = classroomData[self.classroomKeys.schoolUUID].stringValue
+        let classroomUUID = classroomData[self.classroomKeys.classroomUUID].stringValue
+        let active = classroomData[self.classroomKeys.active].boolValue
+        let createdTimestamp = classroomData[self.classroomKeys.createdTimestamp].intValue
+        let updatedTimestamp = classroomData[self.classroomKeys.updatedTimestamp].intValue
+        var members: [[String: String]] = []
+        for item in classroomData["members"].arrayValue {
+            let memberJSON = item.dictionaryValue
+            let memberDict: [String: String] = [
+                "user_id": memberJSON["user_id"]!.stringValue,
+                "role": memberJSON["role"]!.stringValue
+            ]
+            members.append(memberDict)
+        }
+        self.add(classroomUUID, name:name, introduction: introduction, creator: creator,
+                                      schoolUUID: schoolUUID, code: code, active: active, createdTimestamp: createdTimestamp, updatedTimestamp: updatedTimestamp,
+                                      members: members)
     }
 }
 

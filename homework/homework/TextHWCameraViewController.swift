@@ -155,7 +155,7 @@ class TextHWCameraViewController: UIViewController {
             stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { (sampleBuffer, error) in
                 let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
                 let dataProvider = CGDataProviderCreateWithCFData(imageData)
-                let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, .RenderingIntentDefault)
+                let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider!, nil, true, .RenderingIntentDefault)
                 let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: .Right)
                 self.showPreviewVC(image)
             })

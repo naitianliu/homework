@@ -32,7 +32,7 @@ class ImageHelper {
             image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            return newImage
+            return newImage!
         } else {
             return image
         }

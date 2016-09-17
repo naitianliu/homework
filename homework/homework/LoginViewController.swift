@@ -83,6 +83,10 @@ class LoginViewController: UIViewController {
     }
 
     private func performLogin() {
+        print(self.token)
+        print(self.username)
+        print(self.imgURL)
+        print(self.nickname)
         self.userDefaultHelper.updateToken(self.token!)
         self.userDefaultHelper.updateProfile(self.username!, profileImgURL: self.imgURL!, nickname: self.nickname!)
         let mainTabBarController = MainTabBarController()

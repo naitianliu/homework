@@ -12,12 +12,12 @@ class MainTabBarController: UITabBarController {
     
     let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
     let classroomStoryboard = UIStoryboard(name: "Classroom", bundle: nil)
-    let findStoryboard = UIStoryboard(name: "Find", bundle: nil)
+    let qaStoryboard = UIStoryboard(name: "QA", bundle: nil)
     let meStoryboard = UIStoryboard(name: "Me", bundle: nil)
     
     var homeNC: UINavigationController!
     var classroomNC: UINavigationController!
-    var findNC: UINavigationController!
+    var qaNC: UINavigationController!
     var meNC: UINavigationController!
 
     override func viewDidLoad() {
@@ -39,15 +39,15 @@ class MainTabBarController: UITabBarController {
         classroomNC.tabBarItem.title = "班级"
         classroomNC.tabBarItem.image = UIImage(named: "tab-classroom")
         
-        findNC = findStoryboard.instantiateViewControllerWithIdentifier("FindNC") as! UINavigationController
-        findNC.tabBarItem.title = "查找"
-        findNC.tabBarItem.image = UIImage(named: "tab-find")
+        qaNC = qaStoryboard.instantiateViewControllerWithIdentifier("QANavigationController") as! UINavigationController
+        qaNC.tabBarItem.title = "问答"
+        qaNC.tabBarItem.image = UIImage(named: "tab-question")
         
         meNC = meStoryboard.instantiateViewControllerWithIdentifier("MeNC") as! UINavigationController
         meNC.tabBarItem.title = "我"
         meNC.tabBarItem.image = UIImage(named: "tab-me")
         
-        self.viewControllers = [homeNC, classroomNC, findNC, meNC]
+        self.viewControllers = [homeNC, classroomNC, qaNC, meNC]
 
         showSelectRoleVC()
 

@@ -17,10 +17,12 @@ class APIUpdateGet {
     let role = UserDefaultsHelper().getRole()!
 
     let updateModelHelper = UpdateModelHelper()
+    let classroomModelHelper = ClassroomModelHelper()
 
     let vc: HomeViewController!
 
     let updateKeys = GlobalKeys.UpdateKeys.self
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
     let profileKeys = GlobalKeys.ProfileKeys.self
 
@@ -39,6 +41,8 @@ class APIUpdateGet {
                 self.addHomeworks(homeworks)
                 let requests = updatesDict[self.updateKeys.requests]!.arrayValue
                 self.addRequests(requests)
+                let approvals = updatesDict[self.updateKeys.approvals]!.arrayValue
+                self.addApprovals(approvals)
                 let submissions = updatesDict[self.updateKeys.submissions]!.arrayValue
                 self.addSubmissions(submissions)
                 let classrooms = updatesDict[self.updateKeys.classrooms]!.arrayValue
@@ -77,6 +81,26 @@ class APIUpdateGet {
             ]
             let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
             self.updateModelHelper.add(timestamp, type: type, info: infoData)
+        }
+    }
+
+    private func addApprovals(approvals: [JSON]) {
+        let type = self.updateKeys.approvals
+        for item in approvals {
+            let timestamp = item[self.updateKeys.timestamp].intValue
+            let classroomInfo = item[self.updateKeys.classroomInfo]
+            let classroomUUID = item[self.classroomKeys.classroomUUID].stringValue
+            let classroomName = item[self.classroomKeys.classroomName].stringValue
+            let approverProfileInfo = item[self.updateKeys.approverProfileInfo]
+            let infoDict: [String: AnyObject] = [
+                self.classroomKeys.classroomUUID: classroomUUID,
+                self.classroomKeys.classroomName: classroomName,
+                self.updateKeys.approverProfileInfo: approverProfileInfo.dictionaryObject!
+            ]
+            let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
+            self.updateModelHelper.add(timestamp, type: type, info: infoData)
+            self.classroomModelHelper.addUpdateClassroom(classroomInfo)
+
         }
     }
 

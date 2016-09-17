@@ -92,7 +92,7 @@ class ClassroomDetailViewController: UIViewController {
 
         let cardView = HomeworkCardView(frame: self.swipeView.bounds)
 
-        let contentView = NSBundle.mainBundle().loadNibNamed("HomeworkCardContentView", owner: self, options: nil).first! as! HomewordCardContentView
+        let contentView = NSBundle.mainBundle().loadNibNamed("HomeworkCardContentView", owner: self, options: nil)!.first! as! HomewordCardContentView
         contentView.configurate(self.cardDataArray[currentIndex])
         currentIndex += 1
         contentView.translatesAutoresizingMaskIntoConstraints = false

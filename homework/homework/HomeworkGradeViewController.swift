@@ -8,14 +8,12 @@
 
 import UIKit
 import ASValueTrackingSlider
-import CustomizableActionSheet
 
 class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ASValueTrackingSliderDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var actionView: UIView!
-
 
     var currentScoreLabel: UILabel?
     var currentScore: String?
@@ -242,8 +240,8 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     private func showGradeActionSheet() {
         // setup slider
         let viewWidth = UIScreen.mainScreen().bounds.width
-        let sliderWidth = viewWidth - 40
-        let containerViewHeight: CGFloat = 150
+        let sliderWidth = viewWidth - 40 - 36
+        let containerViewHeight: CGFloat = 130
         let slider: ASValueTrackingSlider = ASValueTrackingSlider(frame: CGRect(x: 20, y: 80, width: sliderWidth, height: 30))
         slider.maximumValue = 12
         slider.popUpViewCornerRadius = 12
@@ -259,42 +257,23 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         self.currentScoreLabel?.textAlignment = .Center
         self.currentScoreLabel?.textColor = UIColor.lightGrayColor()
         self.changeCurrentScoreLabelValue(slider)
-        // setup view
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: viewWidth, height: containerViewHeight))
-        containerView.backgroundColor = UIColor.whiteColor()
+        // setup view and setup action sheet
+
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
+        // view
+        let containerView = UIView(frame: CGRect(x: 8, y: 8, width: viewWidth - 36, height: containerViewHeight))
+        containerView.backgroundColor = UIColor.clearColor()
         containerView.addSubview(self.currentScoreLabel!)
         containerView.addSubview(slider)
-        // setup action sheet
-        var items = [CustomizableActionSheetItem]()
-        let containerViewItem = CustomizableActionSheetItem()
-        containerViewItem.type = .View
-        containerViewItem.view = containerView
-        containerViewItem.height = containerViewHeight
-        items.append(containerViewItem)
-        // setup confirm button
-        let confirmItem = CustomizableActionSheetItem()
-        confirmItem.type = .Button
-        confirmItem.label = "确认并提交分数"
-        confirmItem.textColor = UIColor.whiteColor()
-        confirmItem.backgroundColor = GlobalConstants.themeColor
-        confirmItem.selectAction = { (actionSheet: CustomizableActionSheet) -> Void in
-            print("confirm")
-            actionSheet.dismiss()
-        }
-        items.append(confirmItem)
-        // setup close button
-        let closeItem = CustomizableActionSheetItem()
-        closeItem.type = .Button
-        closeItem.label = "取消"
-        closeItem.textColor = UIColor.grayColor()
-        closeItem.selectAction = { (actionSheet: CustomizableActionSheet) -> Void in
-            print("close")
-            actionSheet.dismiss()
-        }
-        items.append(closeItem)
-        // show action sheet
-        let actionSheet = CustomizableActionSheet()
-        actionSheet.showInView(self.view, items: items)
+        // action sheet
+        let confirmAction = UIAlertAction(title: "确定并打分", style: .Destructive, handler: { (action) in
+
+        })
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        alertController.view.addSubview(containerView)
+        self.presentViewController(alertController, animated: true, completion: nil)
 
     }
 

@@ -16,7 +16,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     let kRoleMap = ["t": "教师", "s": "学生"]
 
-    let role = UserDefaultsHelper().getRole()!
+    let role = UserDefaultsHelper().getRole()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,12 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         case 0:
             return 1
         case 1:
-            if role == "t" {
-                return 2
+            if let role = role {
+                if role == "t" {
+                    return 2
+                } else {
+                    return 1
+                }
             } else {
                 return 1
             }

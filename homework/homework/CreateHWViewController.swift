@@ -158,9 +158,16 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     private func performCreateHomework() {
-        let classroomUUID: String = self.selectedClassroomUUID!
+        guard let classroomUUID = self.selectedClassroomUUID else {
+            AlertHelper(viewController: self).showPromptAlertView("请选择班级")
+            return
+        }
+        guard let dueDate = self.selectedDate else {
+            AlertHelper(viewController: self).showPromptAlertView("请选择截止日期")
+            return
+        }
         let type: String = self.selectedType!
-        let dueDateTimestamp: Int = DateUtility().convertDateToEpoch(self.selectedDate!)
+        let dueDateTimestamp: Int = DateUtility().convertDateToEpoch(dueDate)
         let info: [String: AnyObject] = [
             self.homeworkKeys.type: type,
             self.homeworkKeys.content: content!,

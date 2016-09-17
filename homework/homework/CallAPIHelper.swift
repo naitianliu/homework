@@ -37,7 +37,11 @@ class CallAPIHelper: NSObject {
         configuration.timeoutIntervalForRequest = 20
         configuration.timeoutIntervalForResource = 20
         let serverTrustPolicy = ServerTrustPolicy.DisableEvaluation
-        self.manager = Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(policies: ["localhost" : serverTrustPolicy, "192.168.1.82" : serverTrustPolicy]))
+        self.manager = Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(
+            policies: [
+                "localhost" : serverTrustPolicy,
+                "192.168.1.82" : serverTrustPolicy,
+                "hw.knockfuture.com" : serverTrustPolicy]))
         
     }
     

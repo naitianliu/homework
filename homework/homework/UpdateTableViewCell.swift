@@ -54,12 +54,25 @@ class UpdateTableViewCell: UITableViewCell {
         switch type {
         case self.updateKeys.requests:
             self.setupRequestCell(dataJSON)
+        case self.updateKeys.approvals:
+            self.setupRequestCell(dataJSON)
         default:
             break
         }
     }
 
     private func setupRequestCell(data: JSON) {
+        let imgURL = data[self.updateKeys.imgURL].stringValue
+        let title = data[self.updateKeys.title].stringValue
+        let subtitle = data[self.updateKeys.subtitle].stringValue
+        let timeString = data[self.updateKeys.timeString].stringValue
+        self.iconImageView.sd_setImageWithURL(NSURL(string: imgURL), placeholderImage: placeholderImage)
+        self.titleLabel.text = title
+        self.subtitleLabel.text = subtitle
+        self.timeLabel.text = timeString
+    }
+
+    private func setupApprovalCell(data: JSON) {
         let imgURL = data[self.updateKeys.imgURL].stringValue
         let title = data[self.updateKeys.title].stringValue
         let subtitle = data[self.updateKeys.subtitle].stringValue

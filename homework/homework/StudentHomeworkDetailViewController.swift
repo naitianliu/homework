@@ -19,7 +19,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     var submissionUUID: String?
     var submissionData: [String: AnyObject?]?
     var submissionArray: [[String: AnyObject]] = []
-    var comments: [[String: AnyObject?]] = []
+    var comments: [[String: AnyObject]] = []
 
     var playingIndex: Int = -1
     var playingStatus: String = ""
@@ -28,8 +28,10 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
 
     let homeworkViewModel = HomeworkViewModel()
     let submissionViewModel = SubmissionViewModel()
+    let commentViewModel = CommentViewModel()
 
     let submissionKeys = GlobalKeys.SubmissionKeys.self
+    let commentKeys = GlobalKeys.CommentKeys.self
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,11 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadTable()
+    }
+
     private func initTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -76,6 +83,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
             self.submissionData = submissionTup.0
             self.submissionArray = submissionTup.1
+            self.comments = self.commentViewModel.getCommentsList(submissionUUID)
         }
         tableView.reloadData()
     }
@@ -91,7 +99,11 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         case 1:
             return self.submissionArray.count + 1
         case 2:
-            return self.comments.count + 1
+            if self.comments.count == 0 {
+                return 1
+            } else {
+                return self.comments.count
+            }
         default:
             return 0
         }
@@ -124,7 +136,6 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                     })
                     return cell
                 }
-
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("EmptySectionTableViewCell") as! EmptySectionTableViewCell
                 cell.configurate("目前还未提交作业")
@@ -136,7 +147,17 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 cell.configurate("还没有任何评论")
                 return cell
             } else {
-                return UITableViewCell()
+                let rowDict = comments[indexPath.row]
+                let hasAudio = rowDict[self.commentKeys.hasAudio] as! Bool
+                if hasAudio {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWCommentTextAudioTableViewCell") as! HWCommentTextAudioTableViewCell
+                    cell.configurate(rowDict)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWCommetTextTableViewCell") as! HWCommetTextTableViewCell
+                    cell.configurate(rowDict)
+                    return cell
+                }
             }
         default:
             return UITableViewCell()
@@ -210,13 +231,11 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     }
 
     func submitButtonOnClick(sender: AnyObject) {
-        print("submit")
         self.showAudioWHRecordVC()
     }
 
     func commentButtonOnClick(sender: AnyObject) {
-        print("comment")
-
+        self.showHomeworkCommentVC()
     }
 
     private func showAudioWHRecordVC() {
@@ -240,6 +259,18 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             AlertHelper(viewController: self).showPromptAlertView("作业已提交，请勿重复提交")
         }
 
+    }
+
+    func showHomeworkCommentVC() {
+        if let submissionUUID = submissionUUID {
+            let homeworkCommentVC = HomeworkCommentViewController(nibName: "HomeworkCommentViewController", bundle: nil)
+            homeworkCommentVC.submissionUUID = submissionUUID
+            let commentNC = UINavigationController(rootViewController: homeworkCommentVC)
+            commentNC.modalTransitionStyle = .CoverVertical
+            self.presentViewController(commentNC, animated: true, completion: nil)
+        } else {
+            AlertHelper(viewController: self).showPromptAlertView("必须先提交作业才能评论")
+        }
     }
 
 

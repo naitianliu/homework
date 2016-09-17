@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     typealias CreateClassroomClosureType = () -> Void
     var createClassroomBlock: CreateClassroomClosureType?
 
-    let popoverTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 140, height: 131))
+    let popoverTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 160, height: 131))
     let popoverMenuData = [
         ["image": "icon-classroom", "title": "创建班级"],
         ["image": "icon-homework", "title": "发布作业"],

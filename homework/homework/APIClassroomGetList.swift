@@ -36,7 +36,9 @@ class APIClassroomGetList {
             let classrooms = responseData["classrooms"].arrayValue
             if errorCode == 0 {
                 for classroomData in classrooms {
-                    self.addUpdateClassroom(classroomData)
+                    let classroomUUID = classroomData[self.classroomKeys.classroomUUID].stringValue
+                    self.newUUIDArray.append(classroomUUID)
+                    self.classroomModelHelper.addUpdateClassroom(classroomData)
                 }
                 self.checkConsistence()
                 self.vc.reloadTable()
@@ -57,31 +59,6 @@ class APIClassroomGetList {
                 self.classroomModelHelper.close(uuid)
             }
         }
-    }
-
-    private func addUpdateClassroom(classroomData: JSON) {
-        let name = classroomData[self.classroomKeys.classroomName].stringValue
-        let code = classroomData[self.classroomKeys.code].stringValue
-        let creator = classroomData[self.classroomKeys.creator].stringValue
-        let introduction = classroomData[self.classroomKeys.introduction].stringValue
-        let schoolUUID = classroomData[self.classroomKeys.schoolUUID].stringValue
-        let classroomUUID = classroomData[self.classroomKeys.classroomUUID].stringValue
-        self.newUUIDArray.append(classroomUUID)
-        let active = classroomData[self.classroomKeys.active].boolValue
-        let createdTimestamp = classroomData[self.classroomKeys.createdTimestamp].intValue
-        let updatedTimestamp = classroomData[self.classroomKeys.updatedTimestamp].intValue
-        var members: [[String: String]] = []
-        for item in classroomData["members"].arrayValue {
-            let memberJSON = item.dictionaryValue
-            let memberDict: [String: String] = [
-                "user_id": memberJSON["user_id"]!.stringValue,
-                "role": memberJSON["role"]!.stringValue
-            ]
-            members.append(memberDict)
-        }
-        self.classroomModelHelper.add(classroomUUID, name:name, introduction: introduction, creator: creator,
-                                      schoolUUID: schoolUUID, code: code, active: active, createdTimestamp: createdTimestamp, updatedTimestamp: updatedTimestamp,
-                                      members: members)
     }
 
 }

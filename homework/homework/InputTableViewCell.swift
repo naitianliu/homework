@@ -19,6 +19,7 @@ class InputTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         // Initialization code
         inputTextField.delegate = self
+        inputTextField.addTarget(self, action: #selector(textFieldDidChange), forControlEvents: .EditingChanged)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -41,6 +42,12 @@ class InputTableViewCell: UITableViewCell, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.performReturn()
         return true
+    }
+
+    func textFieldDidChange(textField: UITextField) {
+        let text = inputTextField.text!
+        print(text)
+        self.returnValueBlock!(value: text)
     }
 
     private func performReturn() {

@@ -30,14 +30,14 @@ class APIHomeworkGetHomeworkList {
     }
 
     func run(classroomUUID: String) {
-        MBProgressHUD.showHUDAddedTo(self.vc.view, animated: true)
+        self.showHUD()
         let data = [
             "role": role,
             self.Keys.classroomUUID: classroomUUID
         ]
         CallAPIHelper(url: url, data: data).GET({ (responseData) in
             // success
-            MBProgressHUD.hideHUDForView(self.vc.view, animated: true)
+            self.hideHUD()
             let errorCode = responseData["error"].intValue
             if errorCode == 0 {
                 let homeworks = responseData["homeworks"].arrayValue
@@ -49,7 +49,7 @@ class APIHomeworkGetHomeworkList {
             }
             }) { (error) in
                 // error
-                MBProgressHUD.hideHUDForView(self.vc.view, animated: true)
+                self.hideHUD()
 
         }
 
@@ -77,5 +77,18 @@ class APIHomeworkGetHomeworkList {
         self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: creator, active: active,
                                      createdTimestamp: createdTimestamp, updatedTimestamp: updatedTimestamp,
                                      info: infoData)
+    }
+
+    private func showHUD() {
+        dispatch_async(dispatch_get_main_queue()) {
+            MBProgressHUD.showHUDAddedTo(self.vc.view, animated: true)
+        }
+
+    }
+
+    private func hideHUD() {
+        dispatch_async(dispatch_get_main_queue()) {
+            MBProgressHUD.hideHUDForView(self.vc.view, animated: true)
+        }
     }
 }
