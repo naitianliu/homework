@@ -40,11 +40,16 @@
                                 <action selector="searchButtonOnClick:" destination="EfX-Xt-APM" id="NN3-Jw-uOj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="提问" id="jbh-0q-Zzd">
+                            <connections>
+                                <action selector="askQuestionButtonOnClick:" destination="EfX-Xt-APM" id="acb-dg-A6p"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dj-Pb-JHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="520"/>
+            <point key="canvasLocation" x="774" y="521"/>
         </scene>
     </scenes>
 </document>

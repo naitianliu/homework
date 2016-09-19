@@ -24,7 +24,6 @@ class EditTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
         // Initialization code
         self.selectionStyle = .None
 
-        textView.placeholder = placeholder
         if let contentText = contentText {
             textView.text = contentText
         }
@@ -38,6 +37,7 @@ class EditTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     }
 
     func configurate(completeEdit: CompleteEditClosureType) {
+        textView.placeholder = placeholder
         self.completeEditBlock = completeEdit
     }
 

@@ -82,5 +82,18 @@ class SchoolModelHelper {
         return schoolName
     }
 
+    func getSchoolUUIDList() -> [String] {
+        var schoolUUIDList: [String] = []
+        do {
+            let realm = try Realm()
+            for item in realm.objects(SchoolModel) {
+                schoolUUIDList.append(item.uuid)
+            }
+        } catch {
+            print(error)
+        }
+        return schoolUUIDList
+    }
+
 
 }

@@ -143,6 +143,24 @@ struct GlobalKeys {
         static let subtitle = "subtitle"
         static let nickname = "nickname"
 
+    }
 
+    struct QAKeys {
+        static let questionUUID = "question_uuid"
+        static let creator = "creator"
+        static let nickname = "nickname"
+        static let imgURL = "img_url"
+        static let role = "role"
+        static let anonymous = "anonymous"
+        static let content = "content"
+        static let answerCount = "answer_count"
+        static let schoolUUID = "school_uuid"
+        static let classroomUUID = "classroom_uuid"
+        static let classroomName = "classroom_name"
+        static let createdTimestamp = "created_timestamp"
+        static let updatedTimestamp = "updated_timestamp"
+
+        static let pageNumber = "page_number"
     }
 }
+

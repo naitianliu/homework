@@ -54,6 +54,21 @@
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
+		466D62321D8E00B10021AF33 /* QASearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62301D8E00B10021AF33 /* QASearchResultsViewController.swift */; };
+		466D62331D8E00B10021AF33 /* QASearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D62311D8E00B10021AF33 /* QASearchResultsViewController.xib */; };
+		466D62361D8E05B20021AF33 /* QASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62341D8E05B20021AF33 /* QASearchViewController.swift */; };
+		466D62371D8E05B20021AF33 /* QASearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D62351D8E05B20021AF33 /* QASearchViewController.xib */; };
+		466D623B1D8F5ADB0021AF33 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62391D8F5ADB0021AF33 /* QuestionTableViewCell.swift */; };
+		466D623C1D8F5ADB0021AF33 /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D623A1D8F5ADB0021AF33 /* QuestionTableViewCell.xib */; };
+		466D62451D8F6C750021AF33 /* QAAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62431D8F6C750021AF33 /* QAAnswerViewController.swift */; };
+		466D62461D8F6C750021AF33 /* QAAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D62441D8F6C750021AF33 /* QAAnswerViewController.xib */; };
+		466D62491D8F6CA60021AF33 /* QAAnswerCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62471D8F6CA60021AF33 /* QAAnswerCreateViewController.swift */; };
+		466D624A1D8F6CA60021AF33 /* QAAnswerCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D62481D8F6CA60021AF33 /* QAAnswerCreateViewController.xib */; };
+		466D624D1D8F6E060021AF33 /* QAQuestionCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D624B1D8F6E060021AF33 /* QAQuestionCreateViewController.swift */; };
+		466D624E1D8F6E060021AF33 /* QAQuestionCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D624C1D8F6E060021AF33 /* QAQuestionCreateViewController.xib */; };
+		466D62541D8F71D50021AF33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62531D8F71D50021AF33 /* SwitchTableViewCell.swift */; };
+		466D62571D8F82940021AF33 /* APIQAQuestionCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62561D8F82940021AF33 /* APIQAQuestionCreate.swift */; };
+		466D62591D8FB4900021AF33 /* APIQAQuestionGetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62581D8FB4900021AF33 /* APIQAQuestionGetList.swift */; };
 		467679181D7BEB3400A83DA2 /* DataTypeConversionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679171D7BEB3400A83DA2 /* DataTypeConversionHelper.swift */; };
 		467679201D7E29FA00A83DA2 /* UpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676791E1D7E29FA00A83DA2 /* UpdateTableViewCell.swift */; };
 		467679211D7E29FA00A83DA2 /* UpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4676791F1D7E29FA00A83DA2 /* UpdateTableViewCell.xib */; };
@@ -250,6 +265,21 @@
 		466222FA1D12387F0067F338 /* CallAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallAPIHelper.swift; sourceTree = "<group>"; };
 		466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		466222FF1D1258830067F338 /* OSSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSSHelper.swift; sourceTree = "<group>"; };
+		466D62301D8E00B10021AF33 /* QASearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QASearchResultsViewController.swift; sourceTree = "<group>"; };
+		466D62311D8E00B10021AF33 /* QASearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QASearchResultsViewController.xib; sourceTree = "<group>"; };
+		466D62341D8E05B20021AF33 /* QASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QASearchViewController.swift; sourceTree = "<group>"; };
+		466D62351D8E05B20021AF33 /* QASearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QASearchViewController.xib; sourceTree = "<group>"; };
+		466D62391D8F5ADB0021AF33 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		466D623A1D8F5ADB0021AF33 /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
+		466D62431D8F6C750021AF33 /* QAAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QAAnswerViewController.swift; sourceTree = "<group>"; };
+		466D62441D8F6C750021AF33 /* QAAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAAnswerViewController.xib; sourceTree = "<group>"; };
+		466D62471D8F6CA60021AF33 /* QAAnswerCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QAAnswerCreateViewController.swift; sourceTree = "<group>"; };
+		466D62481D8F6CA60021AF33 /* QAAnswerCreateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAAnswerCreateViewController.xib; sourceTree = "<group>"; };
+		466D624B1D8F6E060021AF33 /* QAQuestionCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QAQuestionCreateViewController.swift; sourceTree = "<group>"; };
+		466D624C1D8F6E060021AF33 /* QAQuestionCreateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAQuestionCreateViewController.xib; sourceTree = "<group>"; };
+		466D62531D8F71D50021AF33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		466D62561D8F82940021AF33 /* APIQAQuestionCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAQuestionCreate.swift; sourceTree = "<group>"; };
+		466D62581D8FB4900021AF33 /* APIQAQuestionGetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAQuestionGetList.swift; sourceTree = "<group>"; };
 		467679171D7BEB3400A83DA2 /* DataTypeConversionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeConversionHelper.swift; sourceTree = "<group>"; };
 		4676791E1D7E29FA00A83DA2 /* UpdateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTableViewCell.swift; sourceTree = "<group>"; };
 		4676791F1D7E29FA00A83DA2 /* UpdateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateTableViewCell.xib; sourceTree = "<group>"; };
@@ -631,6 +661,62 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
+		466D622F1D8DFECC0021AF33 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				466D62301D8E00B10021AF33 /* QASearchResultsViewController.swift */,
+				466D62311D8E00B10021AF33 /* QASearchResultsViewController.xib */,
+				466D62341D8E05B20021AF33 /* QASearchViewController.swift */,
+				466D62351D8E05B20021AF33 /* QASearchViewController.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		466D62381D8F5ABE0021AF33 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				466D62391D8F5ADB0021AF33 /* QuestionTableViewCell.swift */,
+				466D623A1D8F5ADB0021AF33 /* QuestionTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		466D623D1D8F6BFF0021AF33 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				4691949C1D8CFA0400456322 /* QAViewController.swift */,
+				4691949E1D8D102900456322 /* QANewViewController.swift */,
+				4691949F1D8D102900456322 /* QANewViewController.xib */,
+				469194A21D8D104100456322 /* QAPopularViewController.swift */,
+				469194A31D8D104100456322 /* QAPopularViewController.xib */,
+				469194A61D8D105300456322 /* QAFavoriteViewController.swift */,
+				469194A71D8D105300456322 /* QAFavoriteViewController.xib */,
+				466D624B1D8F6E060021AF33 /* QAQuestionCreateViewController.swift */,
+				466D624C1D8F6E060021AF33 /* QAQuestionCreateViewController.xib */,
+			);
+			name = Question;
+			sourceTree = "<group>";
+		};
+		466D62421D8F6C5B0021AF33 /* Answer */ = {
+			isa = PBXGroup;
+			children = (
+				466D62431D8F6C750021AF33 /* QAAnswerViewController.swift */,
+				466D62441D8F6C750021AF33 /* QAAnswerViewController.xib */,
+				466D62471D8F6CA60021AF33 /* QAAnswerCreateViewController.swift */,
+				466D62481D8F6CA60021AF33 /* QAAnswerCreateViewController.xib */,
+			);
+			name = Answer;
+			sourceTree = "<group>";
+		};
+		466D62551D8F82750021AF33 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				466D62561D8F82940021AF33 /* APIQAQuestionCreate.swift */,
+				466D62581D8FB4900021AF33 /* APIQAQuestionGetList.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		467679191D7E295200A83DA2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +796,7 @@
 				467679341D7EA11100A83DA2 /* ActionButtonTableViewCell.xib */,
 				467679491D82289B00A83DA2 /* EmptySectionTableViewCell.swift */,
 				4676794A1D82289B00A83DA2 /* EmptySectionTableViewCell.xib */,
+				466D62531D8F71D50021AF33 /* SwitchTableViewCell.swift */,
 			);
 			name = "Table View Cell";
 			sourceTree = "<group>";
@@ -762,6 +849,8 @@
 		469194961D8CF9C100456322 /* QA */ = {
 			isa = PBXGroup;
 			children = (
+				466D62551D8F82750021AF33 /* API */,
+				466D62381D8F5ABE0021AF33 /* View */,
 				4691949B1D8CF9F100456322 /* View Controller */,
 				469194991D8CF9EA00456322 /* QA.storyboard */,
 			);
@@ -771,13 +860,9 @@
 		4691949B1D8CF9F100456322 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4691949C1D8CFA0400456322 /* QAViewController.swift */,
-				4691949E1D8D102900456322 /* QANewViewController.swift */,
-				4691949F1D8D102900456322 /* QANewViewController.xib */,
-				469194A21D8D104100456322 /* QAPopularViewController.swift */,
-				469194A31D8D104100456322 /* QAPopularViewController.xib */,
-				469194A61D8D105300456322 /* QAFavoriteViewController.swift */,
-				469194A71D8D105300456322 /* QAFavoriteViewController.xib */,
+				466D62421D8F6C5B0021AF33 /* Answer */,
+				466D623D1D8F6BFF0021AF33 /* Question */,
+				466D622F1D8DFECC0021AF33 /* Search */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1127,6 +1212,7 @@
 				467679421D7FD18500A83DA2 /* AudioHWRecordViewController.xib in Resources */,
 				46CD10261D72D28A00023055 /* HWCommetTextTableViewCell.xib in Resources */,
 				467679311D7E9C3900A83DA2 /* SearchClassroomTableViewCell.xib in Resources */,
+				466D624A1D8F6CA60021AF33 /* QAAnswerCreateViewController.xib in Resources */,
 				46CD104F1D780DDE00023055 /* HomeworkCommentViewController.xib in Resources */,
 				4676792F1D7E95A900A83DA2 /* ClassroomTableViewCell.xib in Resources */,
 				4612AF4B1D22372500044E60 /* Auth.storyboard in Resources */,
@@ -1136,11 +1222,13 @@
 				4612AF621D2489E800044E60 /* Home.storyboard in Resources */,
 				46C9040E1D0393D4005FC496 /* Podfile in Resources */,
 				4691949A1D8CF9EA00456322 /* QA.storyboard in Resources */,
+				466D62461D8F6C750021AF33 /* QAAnswerViewController.xib in Resources */,
 				46CD10561D78BDFF00023055 /* AudioRecordTableViewCell.xib in Resources */,
 				46CD102A1D73775E00023055 /* HWCommentTextAudioTableViewCell.xib in Resources */,
 				460055A11D700345006AA8AA /* MemberTableViewCell.xib in Resources */,
 				4676793C1D7FB80D00A83DA2 /* StudentHomeworkDetailViewController.xib in Resources */,
 				467679361D7EA11100A83DA2 /* ActionButtonTableViewCell.xib in Resources */,
+				466D623C1D8F5ADB0021AF33 /* QuestionTableViewCell.xib in Resources */,
 				467679461D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib in Resources */,
 				46CD104B1D77ECB000023055 /* HWGradeView.xib in Resources */,
 				4600558C1D6FEEDC006AA8AA /* MembersPickerViewController.xib in Resources */,
@@ -1162,8 +1250,11 @@
 				4612AF581D2483BC00044E60 /* Me.storyboard in Resources */,
 				46C903DD1D038619005FC496 /* Main.storyboard in Resources */,
 				46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */,
+				466D62331D8E00B10021AF33 /* QASearchResultsViewController.xib in Resources */,
+				466D62371D8E05B20021AF33 /* QASearchViewController.xib in Resources */,
 				46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */,
 				46CD10311D738F4400023055 /* RoleSelectionViewController.xib in Resources */,
+				466D624E1D8F6E060021AF33 /* QAQuestionCreateViewController.xib in Resources */,
 				46CD101D1D72512500023055 /* HomeworkGradeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1332,6 +1423,7 @@
 				46E241CA1D55D71F00382394 /* CreateHWViewController.swift in Sources */,
 				46CD10201D728D9900023055 /* HWAudioTableViewCell.swift in Sources */,
 				4600BCFB1D07D44F00BF460D /* TextHWCameraViewController.swift in Sources */,
+				466D624D1D8F6E060021AF33 /* QAQuestionCreateViewController.swift in Sources */,
 				4600559B1D6FFB15006AA8AA /* ChineseString.m in Sources */,
 				4600BD061D0CFA9100BF460D /* DateUtility.swift in Sources */,
 				460055861D6EA869006AA8AA /* MemberModel.swift in Sources */,
@@ -1345,8 +1437,10 @@
 				467679521D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift in Sources */,
 				46CD10651D794FAA00023055 /* GlobalKeys.swift in Sources */,
 				46CD10291D73775E00023055 /* HWCommentTextAudioTableViewCell.swift in Sources */,
+				466D62491D8F6CA60021AF33 /* QAAnswerCreateViewController.swift in Sources */,
 				46C903DA1D038619005FC496 /* ViewController.swift in Sources */,
 				4600BD0C1D0E540A00BF460D /* RecordItemTableViewCell.swift in Sources */,
+				466D62361D8E05B20021AF33 /* QASearchViewController.swift in Sources */,
 				4612AF6B1D24982B00044E60 /* SetPasswordViewController.swift in Sources */,
 				46B67DAA1D4F230B0056EA84 /* SelectHWTypeViewController.swift in Sources */,
 				46C904081D03871F005FC496 /* TextHWViewController.swift in Sources */,
@@ -1363,6 +1457,7 @@
 				467679181D7BEB3400A83DA2 /* DataTypeConversionHelper.swift in Sources */,
 				4600BCF41D04E5A200BF460D /* GlobalConstants.swift in Sources */,
 				46F899761D320BA800DF870C /* SchoolTableViewCell.swift in Sources */,
+				466D62451D8F6C750021AF33 /* QAAnswerViewController.swift in Sources */,
 				46CD10611D7944E900023055 /* HomeworkModel.swift in Sources */,
 				46CD101C1D72512500023055 /* HomeworkGradeViewController.swift in Sources */,
 				466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */,
@@ -1371,12 +1466,14 @@
 				46B67DA31D49C2110056EA84 /* HomewordCardContentView.swift in Sources */,
 				467679601D8678C100A83DA2 /* APIClassroomSendRequest.swift in Sources */,
 				4612AF771D2A2BDB00044E60 /* ProfileEditTableViewCell.swift in Sources */,
+				466D62571D8F82940021AF33 /* APIQAQuestionCreate.swift in Sources */,
 				466223001D1258830067F338 /* OSSHelper.swift in Sources */,
 				468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */,
 				46F8997A1D32159800DF870C /* AddSchoolViewController.swift in Sources */,
 				467679501D82437500A83DA2 /* APIHomeworkSubmit.swift in Sources */,
 				46CD104E1D780DDE00023055 /* HomeworkCommentViewController.swift in Sources */,
 				468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */,
+				466D62321D8E00B10021AF33 /* QASearchResultsViewController.swift in Sources */,
 				4676792A1D7E831C00A83DA2 /* UpdateRequestViewController.swift in Sources */,
 				469194A81D8D105300456322 /* QAFavoriteViewController.swift in Sources */,
 				4612AF791D2B0BCC00044E60 /* UpdateAvatarViewController.swift in Sources */,
@@ -1391,6 +1488,7 @@
 				468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */,
 				4600559C1D6FFB15006AA8AA /* pinyin.c in Sources */,
 				4691949D1D8CFA0400456322 /* QAViewController.swift in Sources */,
+				466D623B1D8F5ADB0021AF33 /* QuestionTableViewCell.swift in Sources */,
 				46CD10711D7B9CD500023055 /* HomeworkViewModel.swift in Sources */,
 				460055841D6E57CE006AA8AA /* APISchoolCreate.swift in Sources */,
 				467679271D7E3CED00A83DA2 /* APIUpdateGet.swift in Sources */,
@@ -1404,9 +1502,11 @@
 				46B67D9F1D4966DA0056EA84 /* ClassroomDetailViewController.swift in Sources */,
 				46CD100E1D7142BD00023055 /* HomeworkDetailViewController.swift in Sources */,
 				4600BD081D0D26E600BF460D /* PlayerHelper.swift in Sources */,
+				466D62591D8FB4900021AF33 /* APIQAQuestionGetList.swift in Sources */,
 				46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */,
 				4676794E1D823A6800A83DA2 /* SubmissionViewModel.swift in Sources */,
 				46CD10491D77EC9500023055 /* HWGradeView.swift in Sources */,
+				466D62541D8F71D50021AF33 /* SwitchTableViewCell.swift in Sources */,
 				467679641D87DA3100A83DA2 /* APIDeviceTokenUpdate.swift in Sources */,
 				4612AF731D2A1FBF00044E60 /* UpdateProfileViewController.swift in Sources */,
 				469194A01D8D102900456322 /* QANewViewController.swift in Sources */,
