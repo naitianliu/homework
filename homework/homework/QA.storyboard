@@ -35,11 +35,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="问答" id="jHD-xU-bCz">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="PZi-xX-OEH">
-                            <connections>
-                                <action selector="searchButtonOnClick:" destination="EfX-Xt-APM" id="NN3-Jw-uOj"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="提问" id="jbh-0q-Zzd">
                             <connections>
                                 <action selector="askQuestionButtonOnClick:" destination="EfX-Xt-APM" id="acb-dg-A6p"/>

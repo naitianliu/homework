@@ -125,26 +125,35 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
     private func initTableData() {
         var contactDict:[String:AnyObject] = [:]
         var contactArray:[String] = []
+        var nameUserIdArrayDict: [String: [String]] = [:]
         for  item in self.profiles {
             let contactInfo = item 
             let name = contactInfo[profileKeys.nickname]
-            contactArray.append(name!)
-            contactDict[name!] = item
+            let userId = contactInfo[profileKeys.userId]
+            if let userIdArray = nameUserIdArrayDict[name!] {
+                var tempArray = userIdArray
+                tempArray.append(userId!)
+                nameUserIdArrayDict[name!] = tempArray
+            } else {
+                nameUserIdArrayDict[name!] = [userId!]
+            }
+            if !contactArray.contains(name!) {
+                contactArray.append(name!)
+            }
+            contactDict[userId!] = item
         }
-        print(contactDict)
         self.indexArray = ChineseString.IndexArray(contactArray)
-        print(indexArray)
         let letterResultArray = ChineseString.LetterSortArray(contactArray)
-        print(letterResultArray)
-        var newArray:[[AnyObject]] = []
+        var newArray: [[AnyObject]] = []
         for letterRow in letterResultArray {
             let rowArray:[String] = letterRow as! [String]
-            print(rowArray)
             var tempArray:[AnyObject] = []
             for item in rowArray {
                 let name:String = item
-                let info = contactDict[name]
-                tempArray.append(info!)
+                for userId in nameUserIdArrayDict[name]! {
+                    let info = contactDict[userId]
+                    tempArray.append(info!)
+                }
             }
             newArray.append(tempArray)
         }

@@ -47,6 +47,11 @@ class CallAPIHelper: NSObject {
     
     func POST(completion: CompletionClosureType, errorOccurs: ErrorClosureType) {
         self.manager!.request(.POST, self.url, parameters: self.data, encoding: .JSON, headers: self.headers).responseJSON(options: NSJSONReadingOptions.AllowFragments) { (response) -> Void in
+            if let statusCode = response.response?.statusCode {
+                if statusCode == 401 {
+                    self.handleError401()
+                }
+            }
             let result = response.result
             switch result {
             case .Success:
@@ -64,6 +69,11 @@ class CallAPIHelper: NSObject {
     
     func GET(completion: CompletionClosureType, errorOccurs: ErrorClosureType) {
         self.manager!.request(.GET, self.url, parameters: self.data, headers: self.headers).responseJSON(options: NSJSONReadingOptions.AllowFragments) { (response) -> Void in
+            if let statusCode = response.response?.statusCode {
+                if statusCode == 401 {
+                    self.handleError401()
+                }
+            }
             let result = response.result
             switch result {
             case .Success:
@@ -77,5 +87,11 @@ class CallAPIHelper: NSObject {
                 errorOccurs(error: error)
             }
         }
+    }
+
+    private func handleError401() {
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        UserDefaultsHelper().removeUserInfo()
+        appDelegate.switchRootVC()
     }
 }

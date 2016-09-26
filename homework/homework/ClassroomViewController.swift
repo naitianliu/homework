@@ -7,12 +7,23 @@
 //
 
 import UIKit
-import DGElasticPullToRefresh
+import SVPullToRefresh
+import DZNEmptyDataSet
 
-class ClassroomViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ClassroomViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+
+    struct Constant {
+        struct EmptySet {
+            static let title = "目前还没有加入任何班级"
+            static let description = "尝试下拉刷新以更新班级状态"
+        }
+        struct ImageName {
+            static let emptyDataSet = "classroom"
+        }
+    }
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
 
@@ -28,10 +39,14 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.estimatedRowHeight = 120
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.registerNib(UINib(nibName: "ClassroomTableViewCell", bundle: nil), forCellReuseIdentifier: "ClassroomTableViewCell")
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
 
         self.reloadTable()
 
         self.setupPullToRefresh()
+
+        self.tableView.triggerPullToRefresh()
 
     }
 
@@ -68,12 +83,19 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     private func showSetNameVC() {
-        let setNameVC = self.storyboard?.instantiateViewControllerWithIdentifier("SetClassroomNameViewController") as! SetClassroomNameViewController
-        setNameVC.completeDismissBlock = {(name: String) in
-            self.showCreateClassroomNC(name)
+        if let role = UserDefaultsHelper().getRole() {
+            if role == "t" {
+                let setNameVC = self.storyboard?.instantiateViewControllerWithIdentifier("SetClassroomNameViewController") as! SetClassroomNameViewController
+                setNameVC.completeDismissBlock = {(name: String) in
+                    self.showCreateClassroomNC(name)
+                }
+                setNameVC.modalTransitionStyle = .CoverVertical
+                self.presentViewController(setNameVC, animated: true, completion: nil)
+            } else {
+                AlertHelper(viewController: self).showPromptAlertView("当前角色为学生，只有教师才能创建班级")
+            }
         }
-        setNameVC.modalTransitionStyle = .CoverVertical
-        self.presentViewController(setNameVC, animated: true, completion: nil)
+
     }
 
     private func showCreateClassroomNC(name: String) {
@@ -116,20 +138,45 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     private func setupPullToRefresh() {
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.whiteColor()
-        tableView.dg_addPullToRefreshWithActionHandler({
-            // api call to get list
+        tableView.addPullToRefreshWithActionHandler {
             APIClassroomGetList(vc: self).run()
             // stop loading
-            self.tableView.dg_stopLoading()
-            }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(GlobalConstants.themeColor)
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+            self.tableView.pullToRefreshView.stopAnimating()
+        }
+        tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
+        tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))
+        tableView.pullToRefreshView.setTitle("正在载入...", forState: UInt(SVPullToRefreshStateLoading))
     }
 
-    deinit {
-        tableView.dg_removePullToRefresh()
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        let image = UIImage(named: Constant.ImageName.emptyDataSet)
+        return image
+    }
+
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = Constant.EmptySet.title
+        let attributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(18),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = Constant.EmptySet.description
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        paragraph.alignment = NSTextAlignment.Center
+        let attributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+            NSParagraphStyleAttributeName: paragraph
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
     }
 
 }

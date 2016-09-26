@@ -45,10 +45,10 @@ class APIClassroomGetList {
             } else {
                 // handle error
             }
-            self.vc.tableView.dg_stopLoading()
+            self.vc.tableView.pullToRefreshView.stopAnimating()
             }) { (error) in
                 // error
-                self.vc.tableView.dg_stopLoading()
+                self.vc.tableView.pullToRefreshView.stopAnimating()
         }
     }
 

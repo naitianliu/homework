@@ -57,6 +57,19 @@ class SubmissionModelHelper {
         }
     }
 
+    func updateScore(submissionUUID: String, score: String) {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(SubmissionModel.self, key: submissionUUID) {
+                try realm.write({ 
+                    item.setValue(score, forKey: "score")
+                })
+            }
+        } catch {
+            print(error)
+        }
+    }
+
     func getListByHomework(homeworkUUID: String) -> [[String: AnyObject?]] {
         var submissionArray: [[String: AnyObject?]] = []
         do {

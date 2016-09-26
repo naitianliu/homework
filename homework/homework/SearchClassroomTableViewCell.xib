@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PkF-TG-mSh" id="WP5-h9-4xb">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="207.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="207.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abn-5T-VKR">
@@ -121,17 +121,17 @@
                     </mask>
                     <mask key="constraints">
                         <exclude reference="927-2R-GTX"/>
-                        <exclude reference="cIg-Ds-Son"/>
                         <exclude reference="VRm-9e-98f"/>
-                        <exclude reference="YQQ-vr-Lob"/>
+                        <exclude reference="cIg-Ds-Son"/>
                         <exclude reference="A7R-I6-sVA"/>
+                        <exclude reference="YQQ-vr-Lob"/>
                         <exclude reference="Ygq-Cg-kRK"/>
                         <exclude reference="kXh-15-kw1"/>
-                        <exclude reference="Zae-ll-MWO"/>
                         <exclude reference="F2V-bk-qdM"/>
-                        <exclude reference="VQA-Tw-aCo"/>
-                        <exclude reference="MA5-rX-SUO"/>
                         <exclude reference="Iny-fV-VjN"/>
+                        <exclude reference="MA5-rX-SUO"/>
+                        <exclude reference="VQA-Tw-aCo"/>
+                        <exclude reference="Zae-ll-MWO"/>
                     </mask>
                 </variation>
                 <variation key="heightClass=regular">
@@ -143,17 +143,17 @@
                     </mask>
                     <mask key="constraints">
                         <include reference="927-2R-GTX"/>
-                        <include reference="cIg-Ds-Son"/>
                         <include reference="VRm-9e-98f"/>
-                        <include reference="YQQ-vr-Lob"/>
+                        <include reference="cIg-Ds-Son"/>
                         <include reference="A7R-I6-sVA"/>
+                        <include reference="YQQ-vr-Lob"/>
                         <include reference="Ygq-Cg-kRK"/>
                         <include reference="kXh-15-kw1"/>
-                        <include reference="Zae-ll-MWO"/>
                         <include reference="F2V-bk-qdM"/>
-                        <include reference="VQA-Tw-aCo"/>
-                        <include reference="MA5-rX-SUO"/>
                         <include reference="Iny-fV-VjN"/>
+                        <include reference="MA5-rX-SUO"/>
+                        <include reference="VQA-Tw-aCo"/>
+                        <include reference="Zae-ll-MWO"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

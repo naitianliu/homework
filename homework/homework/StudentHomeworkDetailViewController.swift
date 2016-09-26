@@ -24,6 +24,9 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     var playingIndex: Int = -1
     var playingStatus: String = ""
 
+    var commentPlayingIndex: Int = -1
+    var commentPlayingStatus: String = ""
+
     var navbarTitle: String?
 
     let homeworkViewModel = HomeworkViewModel()
@@ -151,7 +154,15 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 let hasAudio = rowDict[self.commentKeys.hasAudio] as! Bool
                 if hasAudio {
                     let cell = tableView.dequeueReusableCellWithIdentifier("HWCommentTextAudioTableViewCell") as! HWCommentTextAudioTableViewCell
-                    cell.configurate(rowDict)
+                    let currentIndex = indexPath.row
+                    var status = self.submissionKeys.AudioStatus.hidden
+                    if currentIndex == self.commentPlayingIndex {
+                        status = self.commentPlayingStatus
+                    }
+                    cell.configurate(rowDict, status: status, completePlay: {
+                        self.commentPlayingIndex = -1
+                        self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                    })
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier("HWCommetTextTableViewCell") as! HWCommetTextTableViewCell
@@ -167,6 +178,8 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row > 0 {
+            self.commentPlayingIndex = -1
+            self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
             if self.playingIndex == indexPath.row - 1 {
                 self.playingStatus = self.submissionKeys.AudioStatus.hidden
                 self.playingIndex = -1
@@ -176,6 +189,20 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             } else {
                 self.playingStatus = self.submissionKeys.AudioStatus.working
                 self.playingIndex = indexPath.row - 1
+            }
+            tableView.reloadData()
+        } else if indexPath.section == 2 {
+            self.playingIndex = -1
+            self.playingStatus = self.submissionKeys.AudioStatus.hidden
+            if self.commentPlayingIndex == indexPath.row {
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                self.commentPlayingIndex = -1
+            } else if self.commentPlayingStatus == self.submissionKeys.AudioStatus.working {
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                self.commentPlayingIndex = indexPath.row
+            } else {
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.working
+                self.commentPlayingIndex = indexPath.row
             }
             tableView.reloadData()
         }

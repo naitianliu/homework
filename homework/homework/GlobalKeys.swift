@@ -22,6 +22,7 @@ struct GlobalKeys {
         static let teacherNumber = "teacher_number"
         static let teachers = "teachers"
         static let students = "students"
+        static let teacherProfiles = "teacher_profiles"
         static let members = "members"
         static let code = "code"
         static let introduction = "introduction"
@@ -157,10 +158,15 @@ struct GlobalKeys {
         static let schoolUUID = "school_uuid"
         static let classroomUUID = "classroom_uuid"
         static let classroomName = "classroom_name"
+        static let answerUUID = "answer_uuid"
+        static let agree = "agree"
+        static let agreeCount = "agree_count"
+        static let disagreeCount = "disagree_count"
         static let createdTimestamp = "created_timestamp"
         static let updatedTimestamp = "updated_timestamp"
 
         static let pageNumber = "page_number"
+        static let filterType = "filter_type"
     }
 }
 

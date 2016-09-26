@@ -8,10 +8,11 @@
 
 import UIKit
 import Popover
-import DGElasticPullToRefresh
 import Toast
+import DZNEmptyDataSet
+import SVPullToRefresh
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 
     @IBOutlet weak var updatesTableView: UITableView!
 
@@ -27,6 +28,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ["image": "icon-homework", "title": "发布作业"],
         ["image": "icon-qrcode", "title": "扫二维码"]
     ]
+
+    struct Constant {
+        struct EmptySet {
+            static let title = "暂时还没有任何新的动态"
+            static let description = "尝试下拉刷新以获取新的动态"
+        }
+        struct ImageName {
+            static let emptyDataSet = "megaphone"
+        }
+    }
 
     var updateDataArray: [[String: AnyObject]] = []
 
@@ -46,6 +57,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.reloadUpdateTable()
 
         self.setupPullToRefresh()
+
+        self.updatesTableView.triggerPullToRefresh()
 
     }
 
@@ -71,6 +84,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.updatesTableView.tableFooterView = UIView()
         self.updatesTableView.estimatedRowHeight = 44
         self.updatesTableView.rowHeight = UITableViewAutomaticDimension
+        self.updatesTableView.emptyDataSetSource = self
+        self.updatesTableView.emptyDataSetDelegate = self
     }
 
     @IBAction func addButtonOnClick(sender: AnyObject) {
@@ -179,20 +194,44 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func setupPullToRefresh() {
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.whiteColor()
-        updatesTableView.dg_addPullToRefreshWithActionHandler({
-            // api call to get list
+        updatesTableView.addPullToRefreshWithActionHandler {
             APIUpdateGet(vc: self).run()
-            // stop loading
-            self.updatesTableView.dg_stopLoading()
-            }, loadingView: loadingView)
-        updatesTableView.dg_setPullToRefreshFillColor(GlobalConstants.themeColor)
-        updatesTableView.dg_setPullToRefreshBackgroundColor(updatesTableView.backgroundColor!)
+            self.updatesTableView.pullToRefreshView.stopAnimating()
+        }
+        updatesTableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
+        updatesTableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))
+        updatesTableView.pullToRefreshView.setTitle("正在载入...", forState: UInt(SVPullToRefreshStateLoading))
     }
 
-    deinit {
-        updatesTableView.dg_removePullToRefresh()
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        let image = UIImage(named: Constant.ImageName.emptyDataSet)
+        return image
+    }
+
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = Constant.EmptySet.title
+        let attributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(18),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = Constant.EmptySet.description
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        paragraph.alignment = NSTextAlignment.Center
+        let attributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+            NSParagraphStyleAttributeName: paragraph
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+
+    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+        return true
     }
 
 

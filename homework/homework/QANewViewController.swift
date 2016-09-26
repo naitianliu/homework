@@ -17,6 +17,10 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var pageNumber: Int = 1
     var scrollToBottom: Bool = false
 
+    var filterType: String!
+
+    var parentVC: QAViewController!
+
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,8 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.setupPullToRefresh()
         self.setupInfiniteScrolling()
         self.initTableView()
+
+        self.tableView.triggerPullToRefresh()
 
     }
 
@@ -57,13 +63,17 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCellWithIdentifier("QuestionTableViewCell") as! QuestionTableViewCell
         let rowDict = self.tableData[indexPath.row]
         cell.configurate(rowDict) { (questionUUID) in
-            print(questionUUID)
+            self.showQAAnswerCreateVC(questionUUID)
         }
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let questionData = self.tableData[indexPath.row]
+        let qaAnswerVC = QAAnswerViewController(nibName: "QAAnswerViewController", bundle: nil)
+        qaAnswerVC.questionData = questionData
+        self.parentVC.navigationController?.pushViewController(qaAnswerVC, animated: true)
     }
 
     private func showScrollToButtonToast() {
@@ -73,6 +83,12 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.makeToast("没有更多的问题了", duration: 2.0, position: CSToastPositionCenter, style: style)
     }
 
+    private func showQAAnswerCreateVC(questionUUID: String) {
+        let qaAnswerCreateVC = QAAnswerCreateViewController(nibName: "QAAnswerCreateViewController", bundle: nil)
+        qaAnswerCreateVC.questionUUID = questionUUID
+        self.parentVC.navigationController?.pushViewController(qaAnswerCreateVC, animated: true)
+    }
+
     private func setupInfiniteScrolling() {
         self.tableView.addInfiniteScrollingWithActionHandler {
             if self.scrollToBottom {
@@ -80,7 +96,7 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.tableView.infiniteScrollingView.stopAnimating()
             } else {
                 self.pageNumber += 1
-                APIQAQuestionGetList().run(self.pageNumber, beginBlock: {
+                APIQAQuestionGetList().run(self.filterType, pageNumber: self.pageNumber, beginBlock: {
                     // begin
                     }, completeBlock: { (dataArray) in
                         // complete
@@ -102,6 +118,7 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     private func setupPullToRefresh() {
+        /*
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = GlobalConstants.themeColor
         tableView.dg_addPullToRefreshWithActionHandler({
@@ -122,6 +139,25 @@ class QANewViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.whiteColor())
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        */
+        tableView.addPullToRefreshWithActionHandler { 
+            self.scrollToBottom = false
+            self.pageNumber = 1
+            APIQAQuestionGetList().run(self.filterType, pageNumber: self.pageNumber, beginBlock: {
+                // begin
+                }, completeBlock: { (dataArray) in
+                    // complete
+                    self.tableData = dataArray
+                    self.reloadTable()
+                    self.tableView.pullToRefreshView.stopAnimating()
+                }, errorBlock: {
+                    // error
+                    self.tableView.pullToRefreshView.stopAnimating()
+            })
+        }
+        tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
+        tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))
+        tableView.pullToRefreshView.setTitle("正在载入...", forState: UInt(SVPullToRefreshStateLoading))
     }
 
     deinit {

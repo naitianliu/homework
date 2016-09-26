@@ -12,61 +12,91 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClassroomTableViewCell" rowHeight="285" id="lf2-Kt-elV" customClass="ClassroomTableViewCell" customModule="homework" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="285"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lf2-Kt-elV" id="txU-MM-10U">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="lf2-Kt-elV" id="txU-MM-10U">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="284.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEQ-s9-rWW">
-                        <rect key="frame" x="16" y="22" width="569" height="326"/>
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEQ-s9-rWW">
+                        <rect key="frame" x="16" y="15" width="569" height="326"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qe-qR-0wl" userLabel="LineView">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qe-qR-0wl" userLabel="LineView">
                                 <rect key="frame" x="8" y="228" width="544" height="1"/>
                                 <color key="backgroundColor" red="0.81568627449999997" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="bKY-um-qpF"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-y0-Il1" userLabel="ImageContainerView">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-y0-Il1" userLabel="ImageContainerView">
                                 <rect key="frame" x="84" y="59" width="449" height="153"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7W-65-5ox">
-                                        <rect key="frame" x="25" y="15" width="120" height="123"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="K7W-65-5ox" secondAttribute="height" multiplier="1:1" id="3SZ-Pv-vl3"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Rp-dU-piz">
+                                        <rect key="frame" x="177" y="15" width="130" height="99"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Rp-dU-piz">
-                                        <rect key="frame" x="177" y="15" width="130" height="123"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APt-pl-UfM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="+1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APt-pl-UfM">
                                         <rect key="frame" x="330" y="15" width="111" height="123"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="teacherLabel1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVb-gw-mof">
+                                        <rect key="frame" x="25" y="132" width="120" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="teacherLabel2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxY-Tf-V4l">
+                                        <rect key="frame" x="177" y="131" width="130" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7W-65-5ox">
+                                        <rect key="frame" x="25" y="15" width="120" height="99"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="K7W-65-5ox" secondAttribute="height" multiplier="1:1" id="3SZ-Pv-vl3"/>
+                                            <constraint firstAttribute="height" constant="60" id="6pp-Uu-KS5"/>
+                                            <constraint firstAttribute="width" constant="60" id="eNR-bo-dls"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="3SZ-Pv-vl3"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="xxY-Tf-V4l" firstAttribute="leading" secondItem="6Rp-dU-piz" secondAttribute="leading" id="31C-lK-zUC"/>
                                     <constraint firstItem="6Rp-dU-piz" firstAttribute="width" secondItem="K7W-65-5ox" secondAttribute="width" id="3u7-nZ-4Y2"/>
+                                    <constraint firstItem="xxY-Tf-V4l" firstAttribute="top" secondItem="6Rp-dU-piz" secondAttribute="bottom" constant="5" id="40x-5J-A1G"/>
                                     <constraint firstItem="6Rp-dU-piz" firstAttribute="height" secondItem="K7W-65-5ox" secondAttribute="height" id="6Ih-of-ueB"/>
                                     <constraint firstItem="APt-pl-UfM" firstAttribute="leading" secondItem="6Rp-dU-piz" secondAttribute="trailing" constant="20" id="6f6-fP-fO1"/>
                                     <constraint firstAttribute="width" secondItem="2zg-y0-Il1" secondAttribute="height" multiplier="3:1" id="9yD-kB-cNx"/>
+                                    <constraint firstItem="vVb-gw-mof" firstAttribute="width" secondItem="K7W-65-5ox" secondAttribute="width" id="A0b-oy-8Qc"/>
                                     <constraint firstAttribute="trailing" secondItem="APt-pl-UfM" secondAttribute="trailing" constant="10" id="Axa-qV-SMs"/>
                                     <constraint firstItem="6Rp-dU-piz" firstAttribute="leading" secondItem="K7W-65-5ox" secondAttribute="trailing" constant="20" id="DEX-EQ-MsI"/>
                                     <constraint firstItem="APt-pl-UfM" firstAttribute="height" secondItem="6Rp-dU-piz" secondAttribute="height" id="J2n-Jx-Lkg"/>
+                                    <constraint firstAttribute="bottom" secondItem="xxY-Tf-V4l" secondAttribute="bottom" id="Jsq-Nl-g4e"/>
                                     <constraint firstItem="6Rp-dU-piz" firstAttribute="top" secondItem="K7W-65-5ox" secondAttribute="top" id="Qqs-A0-GcQ"/>
+                                    <constraint firstItem="xxY-Tf-V4l" firstAttribute="width" secondItem="6Rp-dU-piz" secondAttribute="width" id="a9i-XR-ZfE"/>
+                                    <constraint firstAttribute="bottom" secondItem="vVb-gw-mof" secondAttribute="bottom" id="b9P-xe-amy"/>
+                                    <constraint firstAttribute="height" constant="80" id="dax-0L-iiY"/>
                                     <constraint firstItem="APt-pl-UfM" firstAttribute="top" secondItem="6Rp-dU-piz" secondAttribute="top" id="jd1-wi-2zM"/>
                                     <constraint firstItem="APt-pl-UfM" firstAttribute="width" secondItem="6Rp-dU-piz" secondAttribute="width" id="kJD-Iv-bIU"/>
                                     <constraint firstItem="K7W-65-5ox" firstAttribute="leading" secondItem="2zg-y0-Il1" secondAttribute="leading" constant="10" id="mq0-1V-DI3"/>
+                                    <constraint firstItem="vVb-gw-mof" firstAttribute="leading" secondItem="K7W-65-5ox" secondAttribute="leading" id="myA-Fv-mEG"/>
+                                    <constraint firstItem="vVb-gw-mof" firstAttribute="top" secondItem="K7W-65-5ox" secondAttribute="bottom" constant="5" id="puW-fL-eTU"/>
                                     <constraint firstItem="K7W-65-5ox" firstAttribute="top" secondItem="2zg-y0-Il1" secondAttribute="top" id="w56-hQ-1Oe"/>
                                     <constraint firstAttribute="bottom" secondItem="K7W-65-5ox" secondAttribute="bottom" constant="10" id="ydL-tX-eTk"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="9yD-kB-cNx"/>
+                                        <exclude reference="ydL-tX-eTk"/>
                                         <exclude reference="kJD-Iv-bIU"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="全部学生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5h-nr-VIl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="全部学生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5h-nr-VIl">
                                 <rect key="frame" x="17" y="237" width="68" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="sf7-MX-BkD"/>
@@ -75,13 +105,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuD-c9-dGi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuD-c9-dGi">
                                 <rect key="frame" x="510" y="238" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jE-kX-HV2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="schoolNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jE-kX-HV2">
                                 <rect key="frame" x="17" y="30" width="137" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="4fA-om-ptg"/>
@@ -90,7 +120,7 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZH-pe-XDC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="授课教师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZH-pe-XDC">
                                 <rect key="frame" x="17" y="59" width="68" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="Ilm-rb-i3J"/>
@@ -99,7 +129,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rs3-ym-qfz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="classroomNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rs3-ym-qfz">
                                 <rect key="frame" x="17" y="8" width="165" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="irE-xP-T6l"/>
@@ -143,10 +173,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="WEQ-s9-rWW" firstAttribute="top" secondItem="txU-MM-10U" secondAttribute="topMargin" constant="20" id="JUH-1p-oEw"/>
+                    <constraint firstItem="WEQ-s9-rWW" firstAttribute="top" secondItem="txU-MM-10U" secondAttribute="topMargin" constant="10" id="JUH-1p-oEw"/>
                     <constraint firstItem="WEQ-s9-rWW" firstAttribute="leading" secondItem="txU-MM-10U" secondAttribute="leadingMargin" constant="20" id="Zww-15-QaD"/>
                     <constraint firstAttribute="trailingMargin" secondItem="WEQ-s9-rWW" secondAttribute="trailing" constant="20" id="hiJ-ro-OD7"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="WEQ-s9-rWW" secondAttribute="bottom" constant="20" id="yGl-fS-ZCp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="WEQ-s9-rWW" secondAttribute="bottom" constant="10" id="yGl-fS-ZCp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -157,6 +187,8 @@
                 <outlet property="profileImageView2" destination="6Rp-dU-piz" id="9d8-w8-vqN"/>
                 <outlet property="schoolNameLabel" destination="1jE-kX-HV2" id="Ag5-OQ-SIr"/>
                 <outlet property="studentNumberLabel" destination="DuD-c9-dGi" id="Z2f-or-sNw"/>
+                <outlet property="teacherNameLabel1" destination="vVb-gw-mof" id="t4T-FM-tt8"/>
+                <outlet property="teacherNameLabel2" destination="xxY-Tf-V4l" id="EgQ-BA-tfL"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -1,8 +1,8 @@
 //
-//  APIQAQuestionGetList.swift
+//  APIQAAnswerGetList.swift
 //  homework
 //
-//  Created by Liu, Naitian on 9/18/16.
+//  Created by Liu, Naitian on 9/23/16.
 //  Copyright © 2016 naitianliu. All rights reserved.
 //
 
@@ -10,13 +10,11 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class APIQAQuestionGetList {
+class APIQAAnswerGetList {
 
-    let url = APIURL.qaQestionGetList
+    let url = APIURL.qaAnswerGetList
 
     let role = UserDefaultsHelper().getRole()!
-
-    var schoolUUID: String = ""
 
     typealias BeginClosureType = () -> Void
     typealias CompleteClosureType = (dataArray: [[String: AnyObject]]) -> Void
@@ -25,33 +23,31 @@ class APIQAQuestionGetList {
     let qaKeys = GlobalKeys.QAKeys.self
 
     init() {
-        let schoolUUIDList = SchoolModelHelper().getSchoolUUIDList()
-        if schoolUUIDList.count > 0 {
-            self.schoolUUID = schoolUUIDList[0]
-        }
+
     }
 
-    func run(filterType: String, pageNumber: Int, beginBlock: BeginClosureType, completeBlock: CompleteClosureType, errorBlock: ErrorClosureType) {
+    func run(questionUUID: String, pageNumber: Int, beginBlock: BeginClosureType, completeBlock: CompleteClosureType, errorBlock: ErrorClosureType) {
         let data: [String: AnyObject] = [
             self.qaKeys.role: role,
             self.qaKeys.pageNumber: pageNumber,
-            self.qaKeys.schoolUUID: self.schoolUUID,
-            self.qaKeys.filterType: filterType
+            self.qaKeys.questionUUID: questionUUID
         ]
         beginBlock()
         CallAPIHelper(url: url, data: data).GET({ (responseData) in
+            // success
             let errorCode = responseData["error"].intValue
             if errorCode == 0 {
                 var dataArray: [[String: AnyObject]] = []
-                let questions = responseData["questions"].arrayValue
-                for question in questions {
-                    dataArray.append(question.dictionaryObject!)
+                let answers = responseData["answers"].arrayValue
+                for answer in answers {
+                    dataArray.append(answer.dictionaryObject!)
                 }
                 completeBlock(dataArray: dataArray)
             } else {
                 errorBlock()
             }
             }) { (error) in
+                // error
                 errorBlock()
         }
     }

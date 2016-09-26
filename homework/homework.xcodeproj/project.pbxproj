@@ -69,6 +69,8 @@
 		466D62541D8F71D50021AF33 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62531D8F71D50021AF33 /* SwitchTableViewCell.swift */; };
 		466D62571D8F82940021AF33 /* APIQAQuestionCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62561D8F82940021AF33 /* APIQAQuestionCreate.swift */; };
 		466D62591D8FB4900021AF33 /* APIQAQuestionGetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D62581D8FB4900021AF33 /* APIQAQuestionGetList.swift */; };
+		466D625C1D910DB60021AF33 /* QuestionActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D625A1D910DB60021AF33 /* QuestionActionTableViewCell.swift */; };
+		466D625D1D910DB60021AF33 /* QuestionActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466D625B1D910DB60021AF33 /* QuestionActionTableViewCell.xib */; };
 		467679181D7BEB3400A83DA2 /* DataTypeConversionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467679171D7BEB3400A83DA2 /* DataTypeConversionHelper.swift */; };
 		467679201D7E29FA00A83DA2 /* UpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4676791E1D7E29FA00A83DA2 /* UpdateTableViewCell.swift */; };
 		467679211D7E29FA00A83DA2 /* UpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4676791F1D7E29FA00A83DA2 /* UpdateTableViewCell.xib */; };
@@ -112,6 +114,13 @@
 		469194A51D8D104100456322 /* QAPopularViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469194A31D8D104100456322 /* QAPopularViewController.xib */; };
 		469194A81D8D105300456322 /* QAFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469194A61D8D105300456322 /* QAFavoriteViewController.swift */; };
 		469194A91D8D105300456322 /* QAFavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469194A71D8D105300456322 /* QAFavoriteViewController.xib */; };
+		46A1733D1D96319D001255C6 /* QAAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1733B1D96319D001255C6 /* QAAnswerTableViewCell.swift */; };
+		46A1733E1D96319D001255C6 /* QAAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A1733C1D96319D001255C6 /* QAAnswerTableViewCell.xib */; };
+		46A173401D964CFB001255C6 /* APIQAAnswerGetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1733F1D964CFB001255C6 /* APIQAAnswerGetList.swift */; };
+		46A173421D979709001255C6 /* APIQAAnswerCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173411D979709001255C6 /* APIQAAnswerCreate.swift */; };
+		46A173441D987D26001255C6 /* APIHomeworkGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173431D987D26001255C6 /* APIHomeworkGrade.swift */; };
+		46A173461D988F36001255C6 /* APIHomeworkClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173451D988F36001255C6 /* APIHomeworkClose.swift */; };
+		46A173481D98A1F3001255C6 /* APIQAAnswerAgree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173471D98A1F3001255C6 /* APIQAAnswerAgree.swift */; };
 		46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D8E1D4495300056EA84 /* EditTextViewController.swift */; };
 		46B67D911D4495300056EA84 /* EditTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B67D8F1D4495300056EA84 /* EditTextViewController.xib */; };
 		46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */; };
@@ -280,6 +289,8 @@
 		466D62531D8F71D50021AF33 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		466D62561D8F82940021AF33 /* APIQAQuestionCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAQuestionCreate.swift; sourceTree = "<group>"; };
 		466D62581D8FB4900021AF33 /* APIQAQuestionGetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAQuestionGetList.swift; sourceTree = "<group>"; };
+		466D625A1D910DB60021AF33 /* QuestionActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionActionTableViewCell.swift; sourceTree = "<group>"; };
+		466D625B1D910DB60021AF33 /* QuestionActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionActionTableViewCell.xib; sourceTree = "<group>"; };
 		467679171D7BEB3400A83DA2 /* DataTypeConversionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeConversionHelper.swift; sourceTree = "<group>"; };
 		4676791E1D7E29FA00A83DA2 /* UpdateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTableViewCell.swift; sourceTree = "<group>"; };
 		4676791F1D7E29FA00A83DA2 /* UpdateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateTableViewCell.xib; sourceTree = "<group>"; };
@@ -323,6 +334,13 @@
 		469194A31D8D104100456322 /* QAPopularViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAPopularViewController.xib; sourceTree = "<group>"; };
 		469194A61D8D105300456322 /* QAFavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QAFavoriteViewController.swift; sourceTree = "<group>"; };
 		469194A71D8D105300456322 /* QAFavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAFavoriteViewController.xib; sourceTree = "<group>"; };
+		46A1733B1D96319D001255C6 /* QAAnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QAAnswerTableViewCell.swift; sourceTree = "<group>"; };
+		46A1733C1D96319D001255C6 /* QAAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAAnswerTableViewCell.xib; sourceTree = "<group>"; };
+		46A1733F1D964CFB001255C6 /* APIQAAnswerGetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAAnswerGetList.swift; sourceTree = "<group>"; };
+		46A173411D979709001255C6 /* APIQAAnswerCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAAnswerCreate.swift; sourceTree = "<group>"; };
+		46A173431D987D26001255C6 /* APIHomeworkGrade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkGrade.swift; sourceTree = "<group>"; };
+		46A173451D988F36001255C6 /* APIHomeworkClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkClose.swift; sourceTree = "<group>"; };
+		46A173471D98A1F3001255C6 /* APIQAAnswerAgree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAAnswerAgree.swift; sourceTree = "<group>"; };
 		46B67D8E1D4495300056EA84 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		46B67D8F1D4495300056EA84 /* EditTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewController.xib; sourceTree = "<group>"; };
 		46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomTableViewCell.swift; sourceTree = "<group>"; };
@@ -677,6 +695,10 @@
 			children = (
 				466D62391D8F5ADB0021AF33 /* QuestionTableViewCell.swift */,
 				466D623A1D8F5ADB0021AF33 /* QuestionTableViewCell.xib */,
+				466D625A1D910DB60021AF33 /* QuestionActionTableViewCell.swift */,
+				466D625B1D910DB60021AF33 /* QuestionActionTableViewCell.xib */,
+				46A1733B1D96319D001255C6 /* QAAnswerTableViewCell.swift */,
+				46A1733C1D96319D001255C6 /* QAAnswerTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -713,6 +735,9 @@
 			children = (
 				466D62561D8F82940021AF33 /* APIQAQuestionCreate.swift */,
 				466D62581D8FB4900021AF33 /* APIQAQuestionGetList.swift */,
+				46A1733F1D964CFB001255C6 /* APIQAAnswerGetList.swift */,
+				46A173411D979709001255C6 /* APIQAAnswerCreate.swift */,
+				46A173471D98A1F3001255C6 /* APIQAAnswerAgree.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1061,6 +1086,8 @@
 				4676794F1D82437500A83DA2 /* APIHomeworkSubmit.swift */,
 				467679511D83B0B400A83DA2 /* APIHomeworkGetSubmissionList.swift */,
 				467679531D83E15B00A83DA2 /* APICommentCreate.swift */,
+				46A173431D987D26001255C6 /* APIHomeworkGrade.swift */,
+				46A173451D988F36001255C6 /* APIHomeworkClose.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1211,6 +1238,7 @@
 				46B67DA11D49BDC90056EA84 /* HomeworkCardContentView.xib in Resources */,
 				467679421D7FD18500A83DA2 /* AudioHWRecordViewController.xib in Resources */,
 				46CD10261D72D28A00023055 /* HWCommetTextTableViewCell.xib in Resources */,
+				46A1733E1D96319D001255C6 /* QAAnswerTableViewCell.xib in Resources */,
 				467679311D7E9C3900A83DA2 /* SearchClassroomTableViewCell.xib in Resources */,
 				466D624A1D8F6CA60021AF33 /* QAAnswerCreateViewController.xib in Resources */,
 				46CD104F1D780DDE00023055 /* HomeworkCommentViewController.xib in Resources */,
@@ -1254,6 +1282,7 @@
 				466D62371D8E05B20021AF33 /* QASearchViewController.xib in Resources */,
 				46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */,
 				46CD10311D738F4400023055 /* RoleSelectionViewController.xib in Resources */,
+				466D625D1D910DB60021AF33 /* QuestionActionTableViewCell.xib in Resources */,
 				466D624E1D8F6E060021AF33 /* QAQuestionCreateViewController.xib in Resources */,
 				46CD101D1D72512500023055 /* HomeworkGradeViewController.xib in Resources */,
 			);
@@ -1404,15 +1433,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				460055A31D701021006AA8AA /* SwiftClassExtension.swift in Sources */,
+				466D625C1D910DB60021AF33 /* QuestionActionTableViewCell.swift in Sources */,
 				467679541D83E15B00A83DA2 /* APICommentCreate.swift in Sources */,
 				46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */,
 				4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */,
 				467679581D8523F900A83DA2 /* CommentViewModel.swift in Sources */,
 				46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
+				46A173401D964CFB001255C6 /* APIQAAnswerGetList.swift in Sources */,
 				4600BD0A1D0DE72700BF460D /* PlayingRecordItemTableViewCell.swift in Sources */,
 				467679621D86831200A83DA2 /* APIClassroomApproveRequest.swift in Sources */,
 				46CD102C1D738AFB00023055 /* APIClassroomCreate.swift in Sources */,
+				46A173481D98A1F3001255C6 /* APIQAAnswerAgree.swift in Sources */,
 				4612AF671D2497CD00044E60 /* PhoneLoginViewController.swift in Sources */,
 				4612AF651D24919000044E60 /* LoginViewController.swift in Sources */,
 				46CD10431D77A1EB00023055 /* SearchClassroomViewModel.swift in Sources */,
@@ -1447,6 +1479,7 @@
 				466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */,
 				46CD10411D779C6300023055 /* SearchClassroomTableViewCell.swift in Sources */,
 				4676794B1D82289B00A83DA2 /* EmptySectionTableViewCell.swift in Sources */,
+				46A173441D987D26001255C6 /* APIHomeworkGrade.swift in Sources */,
 				467679251D7E3CD200A83DA2 /* UpdateViewModel.swift in Sources */,
 				4612AF711D29E5A400044E60 /* AlertHelper.swift in Sources */,
 				4612AF561D2483A800044E60 /* MeViewController.swift in Sources */,
@@ -1513,8 +1546,10 @@
 				46CD10631D79450900023055 /* SubmissionModel.swift in Sources */,
 				46CD10181D71544200023055 /* HWStudentSubmitTableViewCell.swift in Sources */,
 				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
+				46A173461D988F36001255C6 /* APIHomeworkClose.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
 				46CD106E1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift in Sources */,
+				46A173421D979709001255C6 /* APIQAAnswerCreate.swift in Sources */,
 				46CD106A1D79583600023055 /* APIHomeworkCreate.swift in Sources */,
 				46B67D991D4828FC0056EA84 /* SchoolModel.swift in Sources */,
 				4676795B1D864FBF00A83DA2 /* ClassroomInfoViewController.swift in Sources */,
@@ -1525,6 +1560,7 @@
 				4612AF6F1D24987900044E60 /* ResetPasswordViewController.swift in Sources */,
 				46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */,
 				46CD10341D73D9C600023055 /* LogoutTableViewCell.swift in Sources */,
+				46A1733D1D96319D001255C6 /* QAAnswerTableViewCell.swift in Sources */,
 				46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */,
 				46B67D971D4826310056EA84 /* PerformMigrations.swift in Sources */,
 				46CD105D1D78E73200023055 /* ClassroomPickerViewController.swift in Sources */,

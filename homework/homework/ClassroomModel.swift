@@ -34,6 +34,10 @@ class ClassroomModelHelper {
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
 
+    let profileModelHelper = ProfileModelHelper()
+
+    let profileKeys = GlobalKeys.ProfileKeys.self
+
     init() {
 
     }
@@ -62,6 +66,7 @@ class ClassroomModelHelper {
             print(error)
         }
         if let members = members {
+            self.memberModelHelper.deleteMembers(uuid)
             self.memberModelHelper.addMembers(uuid, members: members)
         }
     }
@@ -153,6 +158,13 @@ class ClassroomModelHelper {
                 "role": memberJSON["role"]!.stringValue
             ]
             members.append(memberDict)
+            // add or update profile
+            let profile = memberJSON["profile"]!
+            let userId = profile[self.profileKeys.userId].stringValue
+            let imgURL = profile[self.profileKeys.imgURL].stringValue
+            let nickname = profile[self.profileKeys.nickname].stringValue
+            self.profileModelHelper.add(userId, nickname: nickname, imgURL: imgURL)
+
         }
         self.add(classroomUUID, name:name, introduction: introduction, creator: creator,
                                       schoolUUID: schoolUUID, code: code, active: active, createdTimestamp: createdTimestamp, updatedTimestamp: updatedTimestamp,

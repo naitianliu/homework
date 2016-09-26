@@ -35,6 +35,8 @@ class QAQuestionCreateViewController: UIViewController, UITableViewDelegate, UIT
         }
         self.tableView.reloadData()
 
+        self.navigationItem.title = "提问"
+
     }
 
     override func didReceiveMemoryWarning() {

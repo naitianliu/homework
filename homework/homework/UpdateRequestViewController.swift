@@ -16,7 +16,7 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
 
     var classroomData: [String: AnyObject]?
 
-    let classroomModelHelper = ClassroomViewModel()
+    let classroomViewModel = ClassroomViewModel()
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
     let updateKeys = GlobalKeys.UpdateKeys.self
@@ -29,13 +29,13 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .None
-        tableView.registerNib(UINib(nibName: "SearchClassroomTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchClassroomTableViewCell")
+        tableView.registerNib(UINib(nibName: "ClassroomTableViewCell", bundle: nil), forCellReuseIdentifier: "ClassroomTableViewCell")
         tableView.registerNib(UINib(nibName: "UpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "UpdateTableViewCell")
         tableView.registerNib(UINib(nibName: "ActionButtonTableViewCell", bundle: nil), forCellReuseIdentifier: "ActionButtonTableViewCell")
 
         if let updateData = updateData {
             let classroomUUID = updateData[self.classroomKeys.classroomUUID]! as! String
-            self.classroomData = self.classroomModelHelper.getClassroomDataByUUID(classroomUUID)
+            self.classroomData = self.classroomViewModel.getClassroomDataByUUID(classroomUUID)
         }
 
     }
@@ -72,7 +72,7 @@ class UpdateRequestViewController: UIViewController, UITableViewDelegate, UITabl
             }
             return cell
         case (1, 0):
-            let cell = tableView.dequeueReusableCellWithIdentifier("SearchClassroomTableViewCell") as! SearchClassroomTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ClassroomTableViewCell") as! ClassroomTableViewCell
             cell.selectionStyle = .None
             if let rowData = self.classroomData {
                 cell.configurate(rowData)

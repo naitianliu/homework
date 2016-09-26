@@ -34,6 +34,7 @@ class APIClassroomUpdate {
             self.profileKeys.role: role,
             self.classroomKeys.members: members
         ]
+        print(data)
         self.showHUD()
         CallAPIHelper(url: self.url, data: data).POST({ (responseData) in
             // success

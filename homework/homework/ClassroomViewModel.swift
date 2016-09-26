@@ -78,15 +78,15 @@ class ClassroomViewModel {
         let schoolUUID: String = classroomJSON[self.classroomKeys.schoolUUID].stringValue
         let schoolName: String = self.getSchoolName(schoolUUID)
         // get teacher profile image urls and student number
-        let result_tup = self.getTeacherProfileImgURLsAndStudentNumber(classroomUUID)
-        let profileImgURLs: [String] = result_tup.0
+        let result_tup = self.getTeacherProfilesAndStudentNumber(classroomUUID)
+        let profiles: [[String: String]] = result_tup.0
         let studentNumberString: String = String(result_tup.1)
         //
         let rowDict: [String: AnyObject] = [
             self.classroomKeys.classroomUUID: classroomUUID,
             self.classroomKeys.classroomName: classroom[self.classroomKeys.classroomName]!,
             self.classroomKeys.schoolName: schoolName,
-            self.classroomKeys.profileImgURLs: profileImgURLs,
+            self.classroomKeys.teacherProfiles: profiles,
             self.classroomKeys.studentNumber: studentNumberString
         ]
         return rowDict
@@ -102,20 +102,19 @@ class ClassroomViewModel {
         return schoolName
     }
 
-    private func getTeacherProfileImgURLsAndStudentNumber(classroomUUID: String) -> ([String], Int) {
-        var profileImgURLs: [String] = []
+    private func getTeacherProfilesAndStudentNumber(classroomUUID: String) -> ([[String: String]], Int) {
+        var profiles: [[String: String]] = []
         var studentNumber: Int = 0
         let members = self.memberModelHelper.getMembersByClassroom(classroomUUID)
         for memberDict in members {
             let role: String = memberDict[self.profilesKeys.role]!
             if role == "t" {
-                let imgURL: String = memberDict[self.profilesKeys.imgURL]!
-                profileImgURLs.append(imgURL)
+                profiles.append(memberDict)
             } else if role == "s" {
                 studentNumber += 1
             }
         }
-        return (profileImgURLs, studentNumber)
+        return (profiles, studentNumber)
     }
 
     private func getTeachersAndStudents(classroomUUID: String) -> ([String], [String]) {

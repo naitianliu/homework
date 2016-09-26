@@ -27,6 +27,9 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     var playingIndex: Int = -1
     var playingStatus: String = ""
 
+    var commentPlayingIndex: Int = -1
+    var commentPlayingStatus: String = ""
+
     let submissionViewModel = SubmissionViewModel()
     let commentViewModel = CommentViewModel()
 
@@ -121,7 +124,15 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
             let hasAudio = rowDict[self.commentKeys.hasAudio] as! Bool
             if hasAudio {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWCommentTextAudioTableViewCell") as! HWCommentTextAudioTableViewCell
-                cell.configurate(rowDict)
+                let currentIndex = indexPath.row
+                var status = self.submissionKeys.AudioStatus.hidden
+                if currentIndex == self.commentPlayingIndex {
+                    status = self.commentPlayingStatus
+                }
+                cell.configurate(rowDict, status: status, completePlay: {
+                    self.commentPlayingIndex = -1
+                    self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                })
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWCommetTextTableViewCell") as! HWCommetTextTableViewCell
@@ -267,7 +278,10 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         containerView.addSubview(slider)
         // action sheet
         let confirmAction = UIAlertAction(title: "确定并打分", style: .Destructive, handler: { (action) in
-
+            let value: Int = Int(slider.value)
+            let score: String = GlobalConstants.kScoresMap[value]!
+            let trimmedScore: String = score.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            APIHomeworkGrade(vc: self).run(self.submissionUUID!, score: trimmedScore)
         })
         let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
         alertController.addAction(confirmAction)

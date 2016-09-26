@@ -12,18 +12,22 @@ import PageMenu
 class QAViewController: UIViewController {
 
     var pageMenu: CAPSPageMenu?
-
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let qaNewVC = QANewViewController(nibName: "QANewViewController", bundle: nil)
         qaNewVC.title = "最新"
-        let qaPopularVC = QAPopularViewController(nibName: "QAPopularViewController", bundle: nil)
+        qaNewVC.parentVC = self
+        qaNewVC.filterType = "new"
+        let qaPopularVC = QANewViewController(nibName: "QANewViewController", bundle: nil)
         qaPopularVC.title = "热门"
-        let qaFavoriteVC = QAFavoriteViewController(nibName: "QAFavoriteViewController", bundle: nil)
-        qaFavoriteVC.title = "收藏"
+        qaPopularVC.parentVC = self
+        qaPopularVC.filterType = "popular"
+        let qaFavoriteVC = QANewViewController(nibName: "QANewViewController", bundle: nil)
+        qaFavoriteVC.title = "我的提问"
+        qaFavoriteVC.parentVC = self
+        qaFavoriteVC.filterType = "me"
         let controllerArray: [UIViewController] = [qaNewVC, qaPopularVC, qaFavoriteVC]
         let parameters: [CAPSPageMenuOption] = [
             .ScrollMenuBackgroundColor(UIColor.whiteColor()),

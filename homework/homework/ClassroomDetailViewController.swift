@@ -73,19 +73,35 @@ class ClassroomDetailViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadHomeworks()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     func reloadHomeworks() {
-        // self.swipeView.discardViews()
+        print(12345)
+        self.swipeView.discardViews()
         self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
-        self.swipeView.loadViews()
+        swipeView.numberOfActiveView = UInt(self.cardDataArray.count)
+        self.currentIndex = 0
+        if self.cardDataArray.count > 0 {
+            self.swipeView.loadViews()
+        }
+        self.countHomeworkNumber()
     }
 
     private func countHomeworkNumber() {
-        homeworkCountLabel.text = "当前作业 (\(currentIndex+1)/\(self.cardDataArray.count))"
+        if self.cardDataArray.count > 0 {
+            homeworkCountLabel.text = "当前作业 (\(currentIndex+1)/\(self.cardDataArray.count))"
+        } else {
+            homeworkCountLabel.text = "当前作业: 暂无"
+        }
+
     }
 
     func nextCardView() -> UIView? {

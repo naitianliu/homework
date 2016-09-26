@@ -55,10 +55,10 @@ class APIUpdateGet {
                 let toastMessage = self.getToastMessge(updateCount)
                 self.vc.showToast(toastMessage)
             }
-            self.vc.updatesTableView.dg_stopLoading()
+            self.vc.updatesTableView.pullToRefreshView.stopAnimating()
             }) { (error) in
                 // error
-                self.vc.updatesTableView.dg_stopLoading()
+                self.vc.updatesTableView.pullToRefreshView.stopAnimating()
 
         }
     }

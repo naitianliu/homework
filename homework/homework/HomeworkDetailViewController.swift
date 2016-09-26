@@ -155,7 +155,16 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     func actionButtonOnClick(sender: AnyObject) {
+        self.showHomeworkActionSheet()
+    }
 
+    private func showHomeworkActionSheet() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "关闭当前作业", style: .Destructive, handler: { (action) in
+            APIHomeworkClose(vc: self).run(self.homeworkUUID)
+        }))
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
 
