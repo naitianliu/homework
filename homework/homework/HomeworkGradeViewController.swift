@@ -8,6 +8,7 @@
 
 import UIKit
 import ASValueTrackingSlider
+import SVPullToRefresh
 
 class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ASValueTrackingSliderDataSource {
 
@@ -45,7 +46,11 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         self.initTableView()
         self.reloadTable()
 
+        self.setupPullToRefresh()
+
         self.navigationItem.title = "批改作业"
+
+        self.tableView.triggerPullToRefresh()
 
     }
 
@@ -156,6 +161,20 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
             } else {
                 self.playingStatus = self.submissionKeys.AudioStatus.working
                 self.playingIndex = indexPath.row - 1
+            }
+            tableView.reloadData()
+        } else if indexPath.section == 1 {
+            self.playingIndex = -1
+            self.playingStatus = self.submissionKeys.AudioStatus.hidden
+            if self.commentPlayingIndex == indexPath.row {
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                self.commentPlayingIndex = -1
+            } else if self.commentPlayingStatus == self.submissionKeys.AudioStatus.working {
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                self.commentPlayingIndex = indexPath.row
+            } else {
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.working
+                self.commentPlayingIndex = indexPath.row
             }
             tableView.reloadData()
         }
@@ -311,6 +330,18 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         let trimmedScore: String = score.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         self.currentScoreLabel?.text = "当前设定分数：\(trimmedScore)"
         self.currentScore = trimmedScore
+    }
+
+    private func setupPullToRefresh() {
+        tableView.addPullToRefreshWithActionHandler {
+            if let submissionUUID = self.submissionUUID {
+                APICommentGetList(vc: self).run(submissionUUID)
+            }
+
+        }
+        tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
+        tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))
+        tableView.pullToRefreshView.setTitle("正在载入...", forState: UInt(SVPullToRefreshStateLoading))
     }
 
 

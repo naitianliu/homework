@@ -38,6 +38,8 @@ class ClassroomModelHelper {
 
     let profileKeys = GlobalKeys.ProfileKeys.self
 
+    let schoolModelHelper = SchoolModelHelper()
+
     init() {
 
     }
@@ -146,6 +148,7 @@ class ClassroomModelHelper {
         let creator = classroomData[self.classroomKeys.creator].stringValue
         let introduction = classroomData[self.classroomKeys.introduction].stringValue
         let schoolUUID = classroomData[self.classroomKeys.schoolUUID].stringValue
+        let schoolInfo = classroomData[self.classroomKeys.schoolInfo]
         let classroomUUID = classroomData[self.classroomKeys.classroomUUID].stringValue
         let active = classroomData[self.classroomKeys.active].boolValue
         let createdTimestamp = classroomData[self.classroomKeys.createdTimestamp].intValue
@@ -169,6 +172,12 @@ class ClassroomModelHelper {
         self.add(classroomUUID, name:name, introduction: introduction, creator: creator,
                                       schoolUUID: schoolUUID, code: code, active: active, createdTimestamp: createdTimestamp, updatedTimestamp: updatedTimestamp,
                                       members: members)
+        // add school
+        let schoolName = schoolInfo[self.classroomKeys.schoolName].stringValue
+        let schoolAddress = schoolInfo[self.classroomKeys.schoolAddress].string
+        let schoolTimestamp = schoolInfo[self.classroomKeys.createdTimestamp].intValue
+        self.schoolModelHelper.add(schoolUUID, name: schoolName, address: schoolAddress, active: true, timestamp: schoolTimestamp)
+
     }
 }
 

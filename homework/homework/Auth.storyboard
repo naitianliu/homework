@@ -209,13 +209,14 @@
                         <barButtonItem key="rightBarButtonItem" title="注册" id="bBy-uf-Gs7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="4eL-jc-m7w" kind="show" id="rfm-Yg-hyI"/>
+                                <action selector="registerButtonOnClick:" destination="013-R8-yhk" id="MQ3-hS-S29"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="passwordTextField" destination="w0Q-Xx-w4k" id="s8j-8M-f2X"/>
                         <outlet property="phoneNumberTextField" destination="VNH-pM-Rie" id="zlR-JX-bUg"/>
+                        <segue destination="4eL-jc-m7w" kind="show" identifier="PhoneRegisterSegue" id="zz7-pM-nwE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHg-c7-OfE" userLabel="First Responder" sceneMemberID="firstResponder"/>

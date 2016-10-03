@@ -77,16 +77,11 @@ class LoginViewController: UIViewController {
                         self.hideHUD()
                         AlertHelper(viewController: self).showPromptAlertView("登录出现异常，请稍后重试")
                 })
-
             }
         }
     }
 
     private func performLogin() {
-        print(self.token)
-        print(self.username)
-        print(self.imgURL)
-        print(self.nickname)
         self.userDefaultHelper.updateToken(self.token!)
         self.userDefaultHelper.updateProfile(self.username!, profileImgURL: self.imgURL!, nickname: self.nickname!)
         let mainTabBarController = MainTabBarController()
@@ -117,7 +112,8 @@ class LoginViewController: UIViewController {
         let data: [String: AnyObject] = [
             "uid": self.uid!,
             "code": code,
-            "username": self.username!
+            "username": self.username!,
+            "vendor": "wechat"
         ]
         self.showHUD()
         CallAPIHelper(url: url, data: data).POST({ (responseData) in

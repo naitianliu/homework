@@ -16,6 +16,7 @@ struct GlobalKeys {
         static let classroomName = "classroom_name"
         static let schoolInfo = "school_info"
         static let schoolName = "school_name"
+        static let schoolAddress = "address"
         static let schoolUUID = "school_uuid"
         static let profileImgURLs = "profile_img_urls"
         static let studentNumber = "student_number"

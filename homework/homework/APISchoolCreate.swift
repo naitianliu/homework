@@ -32,7 +32,7 @@ class APISchoolCreate {
             let timestamp: Int = responseData["timestamp"].intValue
             let schoolUUID: String = responseData["school_uuid"].stringValue
             if errorCode == 0 {
-                SchoolModelHelper().add(schoolUUID, name: name, address: address, timestamp: timestamp)
+                SchoolModelHelper().add(schoolUUID, name: name, address: address, active: true, timestamp: timestamp)
                 self.vc.dismissViewControllerAnimated(true, completion: nil)
             }
             MBProgressHUD.hideHUDForView(self.vc.view, animated: true)

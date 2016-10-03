@@ -15,6 +15,7 @@ class SchoolModel: Object {
     dynamic var name: String = ""
     dynamic var address: String?
     dynamic var creator: String = ""
+    dynamic var active: Bool = true
     dynamic var createdTimestamp: Int = 0
     dynamic var updatedTimestamp: Int = 0
 
@@ -30,11 +31,12 @@ class SchoolModelHelper {
 
     }
 
-    func add(uuid: String, name: String, address: String?, timestamp: Int) {
+    func add(uuid: String, name: String, address: String?, active: Bool, timestamp: Int) {
         let school = SchoolModel()
         school.uuid = uuid
         school.name = name
         school.address = address
+        school.active = true
         if let creator = UserDefaultsHelper().getUsername() {
             school.creator = creator
         }
@@ -43,8 +45,21 @@ class SchoolModelHelper {
         do {
             let realm = try Realm()
             try realm.write({ 
-                realm.add(school)
+                realm.add(school, update: true)
             })
+        } catch {
+            print(error)
+        }
+    }
+
+    func close(uuid: String) {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(SchoolModel.self, key: uuid) {
+                try realm.write({ 
+                    item.setValue(false, forKey: "active")
+                })
+            }
         } catch {
             print(error)
         }
@@ -54,7 +69,7 @@ class SchoolModelHelper {
         var schools: [[String: String?]] = []
         do {
             let realm = try Realm()
-            for item in realm.objects(SchoolModel) {
+            for item in realm.objects(SchoolModel).filter("active = true") {
                 let rowDict = [
                     "uuid": item.uuid,
                     "name": item.name,
@@ -86,7 +101,7 @@ class SchoolModelHelper {
         var schoolUUIDList: [String] = []
         do {
             let realm = try Realm()
-            for item in realm.objects(SchoolModel) {
+            for item in realm.objects(SchoolModel).filter("active = true") {
                 schoolUUIDList.append(item.uuid)
             }
         } catch {

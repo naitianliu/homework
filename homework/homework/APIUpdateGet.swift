@@ -14,7 +14,7 @@ class APIUpdateGet {
 
     let url = APIURL.updateGet
 
-    let role = UserDefaultsHelper().getRole()!
+    let role = UserDefaultsHelper().getRole()
 
     let updateModelHelper = UpdateModelHelper()
     let classroomModelHelper = ClassroomModelHelper()
@@ -31,35 +31,37 @@ class APIUpdateGet {
     }
 
     func run() {
-        let data = ["role": role]
-        CallAPIHelper(url: url, data: data).GET({ (responseData) in
-            // success
-            let errorCode = responseData["error"].intValue
-            if errorCode == 0 {
-                let updatesDict = responseData[self.updateKeys.updates].dictionaryValue
-                let homeworks = updatesDict[self.updateKeys.homeworks]!.arrayValue
-                self.addHomeworks(homeworks)
-                let requests = updatesDict[self.updateKeys.requests]!.arrayValue
-                self.addRequests(requests)
-                let approvals = updatesDict[self.updateKeys.approvals]!.arrayValue
-                self.addApprovals(approvals)
-                let submissions = updatesDict[self.updateKeys.submissions]!.arrayValue
-                self.addSubmissions(submissions)
-                let classrooms = updatesDict[self.updateKeys.classrooms]!.arrayValue
-                self.addClassrooms(classrooms)
-                let members = updatesDict[self.updateKeys.members]!.arrayValue
-                self.addMembers(members)
-                self.vc.reloadUpdateTable()
-                // show toast
-                let updateCount: Int = homeworks.count + requests.count + submissions.count + classrooms.count + members.count
-                let toastMessage = self.getToastMessge(updateCount)
-                self.vc.showToast(toastMessage)
-            }
-            self.vc.updatesTableView.pullToRefreshView.stopAnimating()
+        if let role = role {
+            let data = ["role": role]
+            CallAPIHelper(url: url, data: data).GET({ (responseData) in
+                // success
+                let errorCode = responseData["error"].intValue
+                if errorCode == 0 {
+                    let updatesDict = responseData[self.updateKeys.updates].dictionaryValue
+                    let homeworks = updatesDict[self.updateKeys.homeworks]!.arrayValue
+                    self.addHomeworks(homeworks)
+                    let requests = updatesDict[self.updateKeys.requests]!.arrayValue
+                    self.addRequests(requests)
+                    let approvals = updatesDict[self.updateKeys.approvals]!.arrayValue
+                    self.addApprovals(approvals)
+                    let submissions = updatesDict[self.updateKeys.submissions]!.arrayValue
+                    self.addSubmissions(submissions)
+                    let classrooms = updatesDict[self.updateKeys.classrooms]!.arrayValue
+                    self.addClassrooms(classrooms)
+                    let members = updatesDict[self.updateKeys.members]!.arrayValue
+                    self.addMembers(members)
+                    self.vc.reloadUpdateTable()
+                    // show toast
+                    let updateCount: Int = homeworks.count + requests.count + submissions.count + classrooms.count + members.count
+                    let toastMessage = self.getToastMessge(updateCount)
+                    self.vc.showToast(toastMessage)
+                }
+                self.vc.updatesTableView.pullToRefreshView.stopAnimating()
             }) { (error) in
                 // error
                 self.vc.updatesTableView.pullToRefreshView.stopAnimating()
-
+                
+            }
         }
     }
 

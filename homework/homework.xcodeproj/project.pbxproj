@@ -121,6 +121,10 @@
 		46A173441D987D26001255C6 /* APIHomeworkGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173431D987D26001255C6 /* APIHomeworkGrade.swift */; };
 		46A173461D988F36001255C6 /* APIHomeworkClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173451D988F36001255C6 /* APIHomeworkClose.swift */; };
 		46A173481D98A1F3001255C6 /* APIQAAnswerAgree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A173471D98A1F3001255C6 /* APIQAAnswerAgree.swift */; };
+		46A4DB3E1DA207CA003B9D07 /* APICommentGetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4DB3D1DA207CA003B9D07 /* APICommentGetList.swift */; };
+		46A4DB401DA21526003B9D07 /* APIHomeworkGetSubmissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4DB3F1DA21526003B9D07 /* APIHomeworkGetSubmissionInfo.swift */; };
+		46A4DB421DA22403003B9D07 /* SchoolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A4DB411DA22403003B9D07 /* SchoolTableViewCell.xib */; };
+		46A4DB461DA22D65003B9D07 /* APISchoolClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4DB451DA22D65003B9D07 /* APISchoolClose.swift */; };
 		46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D8E1D4495300056EA84 /* EditTextViewController.swift */; };
 		46B67D911D4495300056EA84 /* EditTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B67D8F1D4495300056EA84 /* EditTextViewController.xib */; };
 		46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */; };
@@ -341,6 +345,10 @@
 		46A173431D987D26001255C6 /* APIHomeworkGrade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkGrade.swift; sourceTree = "<group>"; };
 		46A173451D988F36001255C6 /* APIHomeworkClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkClose.swift; sourceTree = "<group>"; };
 		46A173471D98A1F3001255C6 /* APIQAAnswerAgree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAAnswerAgree.swift; sourceTree = "<group>"; };
+		46A4DB3D1DA207CA003B9D07 /* APICommentGetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommentGetList.swift; sourceTree = "<group>"; };
+		46A4DB3F1DA21526003B9D07 /* APIHomeworkGetSubmissionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHomeworkGetSubmissionInfo.swift; sourceTree = "<group>"; };
+		46A4DB411DA22403003B9D07 /* SchoolTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SchoolTableViewCell.xib; sourceTree = "<group>"; };
+		46A4DB451DA22D65003B9D07 /* APISchoolClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISchoolClose.swift; sourceTree = "<group>"; };
 		46B67D8E1D4495300056EA84 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		46B67D8F1D4495300056EA84 /* EditTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewController.xib; sourceTree = "<group>"; };
 		46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassroomTableViewCell.swift; sourceTree = "<group>"; };
@@ -476,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				460055831D6E57CE006AA8AA /* APISchoolCreate.swift */,
+				46A4DB451DA22D65003B9D07 /* APISchoolClose.swift */,
 				46CD102B1D738AFB00023055 /* APIClassroomCreate.swift */,
 				46CD10391D73FB7D00023055 /* APIClassroomGetList.swift */,
 				46CD10441D77A27D00023055 /* APIClassroomSearch.swift */,
@@ -799,6 +808,7 @@
 				468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */,
 				46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */,
 				46F899751D320BA800DF870C /* SchoolTableViewCell.swift */,
+				46A4DB411DA22403003B9D07 /* SchoolTableViewCell.xib */,
 				46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */,
 				46F8997F1D32218400DF870C /* InputTableViewCell.swift */,
 				46F899801D32218400DF870C /* InputTableViewCell.xib */,
@@ -1088,6 +1098,8 @@
 				467679531D83E15B00A83DA2 /* APICommentCreate.swift */,
 				46A173431D987D26001255C6 /* APIHomeworkGrade.swift */,
 				46A173451D988F36001255C6 /* APIHomeworkClose.swift */,
+				46A4DB3D1DA207CA003B9D07 /* APICommentGetList.swift */,
+				46A4DB3F1DA21526003B9D07 /* APIHomeworkGetSubmissionInfo.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1257,6 +1269,7 @@
 				4676793C1D7FB80D00A83DA2 /* StudentHomeworkDetailViewController.xib in Resources */,
 				467679361D7EA11100A83DA2 /* ActionButtonTableViewCell.xib in Resources */,
 				466D623C1D8F5ADB0021AF33 /* QuestionTableViewCell.xib in Resources */,
+				46A4DB421DA22403003B9D07 /* SchoolTableViewCell.xib in Resources */,
 				467679461D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib in Resources */,
 				46CD104B1D77ECB000023055 /* HWGradeView.xib in Resources */,
 				4600558C1D6FEEDC006AA8AA /* MembersPickerViewController.xib in Resources */,
@@ -1523,6 +1536,7 @@
 				4691949D1D8CFA0400456322 /* QAViewController.swift in Sources */,
 				466D623B1D8F5ADB0021AF33 /* QuestionTableViewCell.swift in Sources */,
 				46CD10711D7B9CD500023055 /* HomeworkViewModel.swift in Sources */,
+				46A4DB401DA21526003B9D07 /* APIHomeworkGetSubmissionInfo.swift in Sources */,
 				460055841D6E57CE006AA8AA /* APISchoolCreate.swift in Sources */,
 				467679271D7E3CED00A83DA2 /* APIUpdateGet.swift in Sources */,
 				468BBA181D31E63300C944C4 /* ParameterTableViewCell.swift in Sources */,
@@ -1545,10 +1559,12 @@
 				469194A01D8D102900456322 /* QANewViewController.swift in Sources */,
 				46CD10631D79450900023055 /* SubmissionModel.swift in Sources */,
 				46CD10181D71544200023055 /* HWStudentSubmitTableViewCell.swift in Sources */,
+				46A4DB3E1DA207CA003B9D07 /* APICommentGetList.swift in Sources */,
 				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
 				46A173461D988F36001255C6 /* APIHomeworkClose.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
 				46CD106E1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift in Sources */,
+				46A4DB461DA22D65003B9D07 /* APISchoolClose.swift in Sources */,
 				46A173421D979709001255C6 /* APIQAAnswerCreate.swift in Sources */,
 				46CD106A1D79583600023055 /* APIHomeworkCreate.swift in Sources */,
 				46B67D991D4828FC0056EA84 /* SchoolModel.swift in Sources */,

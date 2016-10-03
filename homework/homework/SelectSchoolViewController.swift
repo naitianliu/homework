@@ -25,13 +25,21 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
 
     var data: [[String: String?]] = []
 
+    var forSelect: Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
 
+        self.tableView.registerNib(UINib(nibName: "SchoolTableViewCell", bundle: nil), forCellReuseIdentifier: "SchoolTableViewCell")
+
         self.reloadTable()
+
+        if !self.forSelect {
+            self.navigationItem.title = "我的学校或机构"
+        }
 
     }
 
@@ -77,12 +85,43 @@ class SelectSchoolViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let rowDict = data[indexPath.row]
-        let schoolUUID: String = rowDict["uuid"]!!
-        let schoolName: String = rowDict["name"]!!
-        self.navigationController?.popViewControllerWithCompletion(true, complete: { 
-            self.completeSelectionBlock!(id: schoolUUID, name: schoolName)
-        })
+        if self.forSelect {
+            let rowDict = data[indexPath.row]
+            let schoolUUID: String = rowDict["uuid"]!!
+            let schoolName: String = rowDict["name"]!!
+            self.navigationController?.popViewControllerWithCompletion(true, complete: {
+                self.completeSelectionBlock!(id: schoolUUID, name: schoolName)
+            })
+        }
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return !self.forSelect
+    }
+
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .Delete
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let rowDict = data[indexPath.row]
+            let schoolUUID: String = rowDict["uuid"]!!
+            let schoolName: String = rowDict["name"]!!
+            self.showSchoolCloseConformAlert(schoolUUID, schoolName: schoolName, indexPath: indexPath)
+        }
+    }
+
+    private func showSchoolCloseConformAlert(schoolUUID: String, schoolName: String, indexPath: NSIndexPath) {
+        let alertController = UIAlertController(title: "确认关闭学校", message: "确定要关闭学校：\(schoolName) 吗？该学校下的所有班级都将被关闭。", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "确认关闭学校", style: .Destructive, handler: { (action) in
+            APISchoolClose(vc: self).run(schoolUUID, completion: {
+                self.data.removeAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            })
+        }))
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

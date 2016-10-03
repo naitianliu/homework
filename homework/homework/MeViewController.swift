@@ -50,7 +50,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         case 1:
             if let role = role {
                 if role == "t" {
-                    return 2
+                    return 3
                 } else {
                     return 1
                 }
@@ -82,6 +82,11 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.accessoryType = .DisclosureIndicator
             cell.textLabel?.text = "生成并发送邀请码"
             return cell
+        case (1, 2):
+            let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+            cell.accessoryType = .DisclosureIndicator
+            cell.textLabel?.text = "管理我的学校或机构"
+            return cell
         case (2, 0):
             let cell = tableView.dequeueReusableCellWithIdentifier("LogoutTableViewCell") as! LogoutTableViewCell
             return cell
@@ -111,12 +116,20 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.showConfirmRoleSelectionAlertView()
         case (1, 1):
             self.apiGenerateCode()
+        case (1, 2):
+            self.showSchoolVC()
         case (2, 0):
             self.showLogoutActionSheet()
         default:
             break
         }
+    }
 
+    private func showSchoolVC() {
+        let classroomSB = UIStoryboard(name: "Classroom", bundle: nil)
+        let schoolVC = classroomSB.instantiateViewControllerWithIdentifier("SelectSchoolViewController") as! SelectSchoolViewController
+        schoolVC.forSelect = false
+        self.navigationController?.pushViewController(schoolVC, animated: true)
     }
 
     private func showLogoutActionSheet() {

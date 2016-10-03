@@ -38,6 +38,11 @@ class PerformMigrations {
                         newObject!["uuid"] = NSUUID().UUIDString
                     })
                 }
+                if (oldSchemaVersion < 6) {
+                    migration.enumerate(SchoolModel.className(), { (oldObject, newObject) in
+                        newObject!["active"] = true
+                    })
+                }
             }
         )
         Realm.Configuration.defaultConfiguration = config

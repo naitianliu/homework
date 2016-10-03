@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVPullToRefresh
 
 class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
@@ -50,9 +51,13 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             self.navigationItem.title = "我的作业"
         }
 
+        self.setupPullToRefresh()
+
         self.submissionUUID = self.submissionViewModel.getSubmissionUUIDByHomeworkUUID(self.homeworkUUID)
 
         self.reloadTable()
+
+        self.tableView.triggerPullToRefresh()
 
     }
 
@@ -300,5 +305,16 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         }
     }
 
+    private func setupPullToRefresh() {
+        tableView.addPullToRefreshWithActionHandler {
+            if let submissionUUID = self.submissionUUID {
+                APIHomeworkGetSubmissionInfo(vc: self).run(submissionUUID)
+            }
+
+        }
+        tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
+        tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))
+        tableView.pullToRefreshView.setTitle("正在载入...", forState: UInt(SVPullToRefreshStateLoading))
+    }
 
 }

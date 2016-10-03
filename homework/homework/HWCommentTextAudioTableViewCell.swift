@@ -135,6 +135,7 @@ class HWCommentTextAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
             playImageView.image = UIImage(named: kImageName.play)
         case .Stopped:
             playImageView.image = UIImage(named: kImageName.play)
+            self.completePlayBlock()
         case .WaitingForConnection:
             self.durationLabel.text = "正在连接"
             playImageView.image = UIImage(named: kImageName.pause)

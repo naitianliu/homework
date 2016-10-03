@@ -33,7 +33,7 @@ class UpdateProfileViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     @IBAction func confirmButtonOnClick(sender: AnyObject) {
-
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     private func reloadTable() {

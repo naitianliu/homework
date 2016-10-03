@@ -66,7 +66,6 @@ class APIHomeworkGetSubmissionList {
         dispatch_async(dispatch_get_main_queue()) {
             MBProgressHUD.showHUDAddedTo(self.vc.view, animated: true)
         }
-
     }
 
     private func hideHUD() {

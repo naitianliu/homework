@@ -47,15 +47,8 @@
                             <constraint firstItem="S3f-b5-1ON" firstAttribute="top" secondItem="V15-xP-cl9" secondAttribute="bottom" id="iug-9Q-g6p"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="首页" id="IU1-2l-Vku">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4lG-Jx-F4a">
-                            <connections>
-                                <action selector="addButtonOnClick:" destination="Kls-JO-GLo" id="hFm-hq-Qw9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="首页" id="IU1-2l-Vku"/>
                     <connections>
-                        <outlet property="addButton" destination="4lG-Jx-F4a" id="l4x-nv-yqf"/>
                         <outlet property="updatesTableView" destination="S3f-b5-1ON" id="Jn7-5X-0Ir"/>
                     </connections>
                 </viewController>

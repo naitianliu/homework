@@ -17,7 +17,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var updatesTableView: UITableView!
 
     private var popover: Popover!
-    @IBOutlet weak var addButton: UIBarButtonItem!
 
     typealias CreateClassroomClosureType = () -> Void
     var createClassroomBlock: CreateClassroomClosureType?
@@ -60,6 +59,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.updatesTableView.triggerPullToRefresh()
 
+        if let role = UserDefaultsHelper().getRole() {
+            if role == "t" {
+                self.initiateAddButton()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,17 +92,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.updatesTableView.emptyDataSetDelegate = self
     }
 
-    @IBAction func addButtonOnClick(sender: AnyObject) {
-        let popoverOptions: [PopoverOption] = [
-            .Type(.Down),
-            .CornerRadius(0),
-            .SideEdge(0)
-        ]
-        let startPoint = CGPoint(x: self.view.frame.width - 25, y: 55)
-        self.popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: nil)
-        self.popover.show(popoverTableView, point: startPoint)
+    private func initiateAddButton() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(self.addButtonOnClick))
+        self.navigationItem.rightBarButtonItem = addButton
     }
 
+    func addButtonOnClick(sender: AnyObject) {
+        if let role = UserDefaultsHelper().getRole() {
+            if role == "t" {
+                let popoverOptions: [PopoverOption] = [
+                    .Type(.Down),
+                    .CornerRadius(0),
+                    .SideEdge(0)
+                ]
+                let startPoint = CGPoint(x: self.view.frame.width - 25, y: 55)
+                self.popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: nil)
+                self.popover.show(popoverTableView, point: startPoint)
+            }
+        }
+    }
 
     private func setupPopoverView() {
         popoverTableView.delegate = self
