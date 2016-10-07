@@ -48,7 +48,6 @@ class APIClassroomSearch {
         var dataArray: [[String: AnyObject]] = []
         let classrooms = responseData["classrooms"].arrayValue
         for classroom in classrooms {
-            print(classroom)
             let code = classroom[self.classroomKeys.code].stringValue
             let classroomName = classroom[self.classroomKeys.classroomName].stringValue
             let schoolInfo = classroom[self.classroomKeys.schoolInfo]
@@ -56,17 +55,19 @@ class APIClassroomSearch {
             let classroomUUID = classroom[self.classroomKeys.classroomUUID].stringValue
             // get profile image urls
             let members = classroom["members"].arrayValue
-            var profileImgURLs: [String] = []
+            var teacherProfiles: [[String: String]] = []
             for member in members {
-                let profile = member["profile"].dictionaryValue
-                let imgURL = profile["img_url"]!.stringValue
-                profileImgURLs.append(imgURL)
+                let role = member["role"].stringValue
+                if role == "t" {
+                    let profile = member["profile"].dictionaryObject as! [String: String]
+                    teacherProfiles.append(profile)
+                }
             }
             let rowDict: [String: AnyObject] = [
                 self.classroomKeys.classroomName: classroomName,
                 self.classroomKeys.schoolName: schoolName,
                 self.classroomKeys.classroomUUID: classroomUUID,
-                self.classroomKeys.profileImgURLs: profileImgURLs,
+                self.classroomKeys.teacherProfiles: teacherProfiles,
                 self.classroomKeys.code: code
             ]
             dataArray.append(rowDict)

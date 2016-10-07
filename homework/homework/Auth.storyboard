@@ -280,7 +280,7 @@
                                         <rect key="frame" x="517" y="0.0" width="75" height="62"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="获取">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
@@ -518,7 +518,7 @@
                                         <rect key="frame" x="517" y="0.0" width="75" height="62"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="获取">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="obtainCodeButtonOnClick:" destination="4eL-jc-m7w" eventType="touchUpInside" id="bS0-vy-dhs"/>

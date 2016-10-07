@@ -32,6 +32,7 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
         tableView.registerNib(UINib(nibName: "SearchClassroomTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchClassroomTableViewCell")
 
         searchBar.delegate = self
+        searchBar.placeholder = "输入班级代码搜索班级"
 
     }
 
@@ -43,6 +44,11 @@ class SearchClassroomViewController: UIViewController, UITableViewDelegate, UITa
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = true
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.searchBar.becomeFirstResponder()
     }
 
     func reloadTable() {

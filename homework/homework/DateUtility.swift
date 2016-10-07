@@ -57,11 +57,6 @@ class DateUtility {
         return endOfToday!
     }
     
-    func getDateStartOfToday() -> NSDate {
-        let startOfToday = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
-        return startOfToday
-    }
-    
     func convertEpochToHumanFriendlyString(epoch: Int) -> String {
         let date: NSDate = self.convertEpochToDate(epoch)
         var result: String = ""
@@ -69,10 +64,17 @@ class DateUtility {
             let formatter = NSDateFormatter()
             formatter.timeStyle = NSDateFormatterStyle.ShortStyle
             result = formatter.stringFromDate(date)
+        } else if date.isLaterThanOrEqualTo(self.getDateStartOfYesterday()) {
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            result = formatter.stringFromDate(date)
+            result = "昨天 \(result)"
+        } else if date.isLaterThanOrEqualTo(self.getDateStartOfOneWeekAgo()) {
+            let timeAgo = date.shortTimeAgoSinceNow()
+            result = "\(timeAgo.characters.first!)天前"
         } else {
             let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            formatter.dateFormat = "MM月dd日"
             result = formatter.stringFromDate(date)
         }
         return result
@@ -93,6 +95,23 @@ class DateUtility {
         dateFormatter.dateFormat = "MM月dd日"
         let dateString = dateFormatter.stringFromDate(date)
         return dateString
+    }
+
+    private func getDateStartOfToday() -> NSDate {
+        let startOfToday = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
+        return startOfToday
+    }
+
+    private func getDateStartOfYesterday() -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let date = calendar.dateByAddingUnit(.Day, value: -1, toDate: NSDate(), options: [])!
+        return date
+    }
+
+    private func getDateStartOfOneWeekAgo() -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let date = calendar.dateByAddingUnit(.Day, value: -7, toDate: NSDate(), options: [])!
+        return date
     }
 }
 
