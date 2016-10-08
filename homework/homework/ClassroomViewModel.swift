@@ -14,6 +14,7 @@ class ClassroomViewModel {
     let classroomModelHelper = ClassroomModelHelper()
     let schoolModelHelper = SchoolModelHelper()
     let memberModelHelper = MemberModelHelper()
+    let profileModelHelper = ProfileModelHelper()
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
     let profilesKeys = GlobalKeys.ProfileKeys.self
@@ -131,6 +132,21 @@ class ClassroomViewModel {
             }
         }
         return (teachers, students)
+    }
+
+    func getTeacherAndStudentProfiles(classroomUUID: String) -> ([[String: String]], [[String: String]]) {
+        let tsTup = self.getTeachersAndStudents(classroomUUID)
+        var teacherProfiles: [[String: String]] = []
+        var studentProfiles: [[String: String]] = []
+        for teacherUserId in tsTup.0 {
+            let profileDict = self.profileModelHelper.getProfileInfo(teacherUserId)!
+            teacherProfiles.append(profileDict)
+        }
+        for studentUserId in tsTup.1 {
+            let profileDict = self.profileModelHelper.getProfileInfo(studentUserId)!
+            studentProfiles.append(profileDict)
+        }
+        return (teacherProfiles, studentProfiles)
     }
 
 }

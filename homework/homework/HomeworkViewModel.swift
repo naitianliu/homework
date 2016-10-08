@@ -33,6 +33,20 @@ class HomeworkViewModel {
         return dataArray
     }
 
+    func getAllHomeworkList(classroomUUID: String) -> ([[String: AnyObject]], [[String: AnyObject]]) {
+        var openArray: [[String: AnyObject]] = []
+        var closedArray: [[String: AnyObject]] = []
+        for homework in self.homeworkModelHelper.getListByClassroom(classroomUUID, active: true) {
+            let rowDict = self.getRowDictByHomework(homework)
+            openArray.append(rowDict)
+        }
+        for homework in self.homeworkModelHelper.getListByClassroom(classroomUUID, active: false) {
+            let rowDict = self.getRowDictByHomework(homework)
+            closedArray.append(rowDict)
+        }
+        return (openArray, closedArray)
+    }
+
     func getHomeworkInfo(homeworkUUID: String) -> [String: AnyObject] {
         let homeworkDict = self.homeworkModelHelper.getHomewworkInfoByHomeworkUUID(homeworkUUID)
         let rowDict = self.getRowDictByHomework(homeworkDict!)

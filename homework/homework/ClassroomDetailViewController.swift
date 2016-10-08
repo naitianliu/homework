@@ -84,7 +84,6 @@ class ClassroomDetailViewController: UIViewController {
     }
 
     func reloadHomeworks() {
-        print(12345)
         self.swipeView.discardViews()
         self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
         swipeView.numberOfActiveView = UInt(self.cardDataArray.count)
@@ -174,5 +173,33 @@ class ClassroomDetailViewController: UIViewController {
         classroomInfoVC.classroomUUID = classroomUUID
         self.navigationController?.pushViewController(classroomInfoVC, animated: true)
     }
+
+    @IBAction func homeworkButtonOnClick(sender: AnyObject) {
+        let homeworkListVC = HomeworkListViewController(nibName: "HomeworkListViewController", bundle: nil)
+        homeworkListVC.classroomUUID = classroomUUID
+        self.navigationController?.pushViewController(homeworkListVC, animated: true)
+    }
+
+    @IBAction func teacherButtonOnClick(sender: AnyObject) {
+        self.showMemberListVC("t")
+    }
+
+    @IBAction func studentButtonOnClick(sender: AnyObject) {
+        self.showMemberListVC("s")
+    }
+
+    @IBAction func notificationButtonOnClick(sender: AnyObject) {
+        let notificationListVC = NotificationListViewController(nibName: "NotificationListViewController", bundle: nil)
+        self.navigationController?.pushViewController(notificationListVC, animated: true)
+    }
+
+    private func showMemberListVC(type: String) {
+        let memberListVC = MemberListViewController(nibName: "MemberListViewController", bundle: nil)
+        memberListVC.classroomUUID = classroomUUID
+        memberListVC.type = type
+        self.navigationController?.pushViewController(memberListVC, animated: true)
+    }
+    
+
 }
 

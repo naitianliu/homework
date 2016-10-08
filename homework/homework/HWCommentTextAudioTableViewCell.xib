@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,13 +19,13 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sl9-v6-Ffp">
                         <rect key="frame" x="8" y="8" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="tYB-Zc-8kj"/>
-                            <constraint firstAttribute="height" constant="50" id="vmS-f6-FxY"/>
+                            <constraint firstAttribute="width" constant="40" id="tYB-Zc-8kj"/>
+                            <constraint firstAttribute="height" constant="40" id="vmS-f6-FxY"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-nr-4vi">
                         <rect key="frame" x="89" y="14" width="84" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -74,7 +74,7 @@
                     <constraint firstItem="Sl9-v6-Ffp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="N4p-eD-j3a"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rxv-nr-4vi" secondAttribute="trailing" constant="20" id="NV1-Et-3CI"/>
                     <constraint firstItem="prG-8B-Bvj" firstAttribute="leading" secondItem="rxv-nr-4vi" secondAttribute="leading" id="RhJ-wi-xP0"/>
-                    <constraint firstItem="Hsq-qB-sSa" firstAttribute="top" secondItem="rxv-nr-4vi" secondAttribute="bottom" constant="1" id="Ts1-R9-Lzq"/>
+                    <constraint firstItem="Hsq-qB-sSa" firstAttribute="top" secondItem="rxv-nr-4vi" secondAttribute="bottom" constant="3" id="Ts1-R9-Lzq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ciX-gd-52u" secondAttribute="trailing" constant="30" id="ZFz-ju-TxX"/>
                     <constraint firstItem="prG-8B-Bvj" firstAttribute="trailing" secondItem="rxv-nr-4vi" secondAttribute="trailing" id="bW7-X1-kri"/>
                     <constraint firstItem="Sl9-v6-Ffp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="ia3-Mh-a1u"/>
@@ -83,7 +83,7 @@
                     <constraint firstItem="ciX-gd-52u" firstAttribute="leading" secondItem="prG-8B-Bvj" secondAttribute="leading" id="n3H-Ro-HdH"/>
                     <constraint firstItem="ciX-gd-52u" firstAttribute="top" secondItem="prG-8B-Bvj" secondAttribute="bottom" constant="20" id="nU3-Dk-VQ5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ciX-gd-52u" secondAttribute="bottom" constant="20" id="ttb-PL-ORw"/>
-                    <constraint firstItem="rxv-nr-4vi" firstAttribute="top" secondItem="Sl9-v6-Ffp" secondAttribute="top" constant="5" id="u2U-cR-x1H"/>
+                    <constraint firstItem="rxv-nr-4vi" firstAttribute="top" secondItem="Sl9-v6-Ffp" secondAttribute="top" id="u2U-cR-x1H"/>
                     <constraint firstItem="Hsq-qB-sSa" firstAttribute="leading" secondItem="rxv-nr-4vi" secondAttribute="leading" id="yx5-8K-cZa"/>
                     <constraint firstItem="ciX-gd-52u" firstAttribute="trailing" secondItem="prG-8B-Bvj" secondAttribute="trailing" id="zD2-ue-QMg"/>
                 </constraints>

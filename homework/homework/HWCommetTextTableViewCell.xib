@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,12 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="518" height="108.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdm-hY-hmC">
-                        <rect key="frame" x="101" y="16" width="84" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-hf-ljf">
                         <rect key="frame" x="101" y="39" width="75" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -36,18 +30,24 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Rz-X8-DUQ">
                         <rect key="frame" x="20" y="10" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="DxH-S6-tNx"/>
-                            <constraint firstAttribute="width" constant="50" id="SZI-OD-5IU"/>
+                            <constraint firstAttribute="height" constant="40" id="DxH-S6-tNx"/>
+                            <constraint firstAttribute="width" constant="40" id="SZI-OD-5IU"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdm-hY-hmC">
+                        <rect key="frame" x="101" y="10" width="84" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="1Rz-X8-DUQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="7Ib-p8-jxY"/>
-                    <constraint firstItem="Y3U-hf-ljf" firstAttribute="top" secondItem="Pdm-hY-hmC" secondAttribute="bottom" constant="1" id="8Kp-fZ-NKV"/>
+                    <constraint firstItem="Y3U-hf-ljf" firstAttribute="top" secondItem="Pdm-hY-hmC" secondAttribute="bottom" constant="3" id="8Kp-fZ-NKV"/>
                     <constraint firstItem="qDT-WE-qWQ" firstAttribute="trailing" secondItem="Pdm-hY-hmC" secondAttribute="trailing" id="CEl-XZ-rGP"/>
                     <constraint firstItem="1Rz-X8-DUQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="OGJ-kJ-n0b"/>
                     <constraint firstItem="qDT-WE-qWQ" firstAttribute="top" secondItem="Y3U-hf-ljf" secondAttribute="bottom" constant="10" id="Ycd-bR-V9C"/>
-                    <constraint firstItem="Pdm-hY-hmC" firstAttribute="top" secondItem="1Rz-X8-DUQ" secondAttribute="top" constant="5" id="aCa-UO-jaq"/>
+                    <constraint firstItem="Pdm-hY-hmC" firstAttribute="top" secondItem="1Rz-X8-DUQ" secondAttribute="top" id="aCa-UO-jaq"/>
                     <constraint firstItem="qDT-WE-qWQ" firstAttribute="leading" secondItem="Pdm-hY-hmC" secondAttribute="leading" id="oxn-38-UKs"/>
                     <constraint firstItem="Y3U-hf-ljf" firstAttribute="trailing" secondItem="Pdm-hY-hmC" secondAttribute="trailing" id="pJC-X8-CTi"/>
                     <constraint firstItem="Y3U-hf-ljf" firstAttribute="leading" secondItem="Pdm-hY-hmC" secondAttribute="leading" id="sBa-LO-Vig"/>

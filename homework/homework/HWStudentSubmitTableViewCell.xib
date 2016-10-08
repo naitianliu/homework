@@ -18,19 +18,19 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpR-D4-G0o">
                         <rect key="frame" x="20" y="10" width="58" height="58"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="61b-tE-4Im"/>
-                            <constraint firstAttribute="width" constant="50" id="oRK-0z-sG7"/>
+                            <constraint firstAttribute="height" constant="40" id="61b-tE-4Im"/>
+                            <constraint firstAttribute="width" constant="40" id="oRK-0z-sG7"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOJ-Qy-Ie9">
                         <rect key="frame" x="105" y="10" width="216" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdk-4Y-T5d">
                         <rect key="frame" x="105" y="39" width="216" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -54,9 +54,9 @@
                     <constraint firstItem="sQN-3j-bhW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YTG-nB-W5r"/>
                     <constraint firstItem="bpR-D4-G0o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="aJ6-cv-Kgi"/>
                     <constraint firstItem="bpR-D4-G0o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="aKb-fZ-ze8"/>
-                    <constraint firstItem="sQN-3j-bhW" firstAttribute="top" secondItem="bpR-D4-G0o" secondAttribute="top" constant="10" id="aVt-4E-yH8"/>
-                    <constraint firstItem="Hdk-4Y-T5d" firstAttribute="top" secondItem="HOJ-Qy-Ie9" secondAttribute="bottom" constant="2" id="dOQ-jf-XEX"/>
-                    <constraint firstItem="HOJ-Qy-Ie9" firstAttribute="top" secondItem="bpR-D4-G0o" secondAttribute="top" constant="5" id="dUa-pR-1Bm"/>
+                    <constraint firstItem="sQN-3j-bhW" firstAttribute="top" secondItem="bpR-D4-G0o" secondAttribute="top" constant="5" id="aVt-4E-yH8"/>
+                    <constraint firstItem="Hdk-4Y-T5d" firstAttribute="top" secondItem="HOJ-Qy-Ie9" secondAttribute="bottom" constant="3" id="dOQ-jf-XEX"/>
+                    <constraint firstItem="HOJ-Qy-Ie9" firstAttribute="top" secondItem="bpR-D4-G0o" secondAttribute="top" id="dUa-pR-1Bm"/>
                     <constraint firstItem="sQN-3j-bhW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iJq-rt-x6p"/>
                     <constraint firstItem="Hdk-4Y-T5d" firstAttribute="leading" secondItem="HOJ-Qy-Ie9" secondAttribute="leading" id="kSn-XS-pIf"/>
                     <constraint firstAttribute="bottomMargin" secondItem="bpR-D4-G0o" secondAttribute="bottom" constant="5" id="mrz-la-C1j"/>
