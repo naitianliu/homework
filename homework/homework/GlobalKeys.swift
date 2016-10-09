@@ -145,6 +145,9 @@ struct GlobalKeys {
         static let subtitle = "subtitle"
         static let nickname = "nickname"
 
+        static let studentUserId = "student_user_id"
+        static let studentNickname = "student_nickname"
+
     }
 
     struct QAKeys {

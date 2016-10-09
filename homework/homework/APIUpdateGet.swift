@@ -65,8 +65,36 @@ class APIUpdateGet {
         }
     }
 
-    private func addHomeworks(homeworks: [JSON]) {
+    private func addSubmissions(submissions: [JSON]) {
+        let type = self.updateKeys.submissions
+        for item in submissions {
+            let timestamp = item[self.updateKeys.timestamp].intValue
+            let studentUserId = item[self.updateKeys.studentUserId].stringValue
+            let studentNickname = item[self.updateKeys.studentNickname].stringValue
+            let homeworkUUID = item[self.homeworkKeys.homeworkUUID].stringValue
+            let infoDict: [String: AnyObject] = [
+                self.homeworkKeys.homeworkUUID: homeworkUUID,
+                self.updateKeys.studentUserId: studentUserId,
+                self.updateKeys.studentNickname: studentNickname
+            ]
+            let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
+            self.updateModelHelper.add(timestamp, type: type, info: infoData)
+        }
+    }
 
+    private func addHomeworks(homeworks: [JSON]) {
+        let type = self.updateKeys.homeworks
+        for item in homeworks {
+            let timestamp = item[self.updateKeys.timestamp].intValue
+            let classroomUUID = item[self.homeworkKeys.classroomUUID].stringValue
+            let classroomName = item[self.classroomKeys.classroomName].stringValue
+            let infoDict: [String: AnyObject] = [
+                self.homeworkKeys.classroomUUID: classroomUUID,
+                self.classroomKeys.classroomName: classroomName
+            ]
+            let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
+            self.updateModelHelper.add(timestamp, type: type, info: infoData)
+        }
     }
 
     private func addRequests(requests: [JSON]) {
@@ -104,10 +132,6 @@ class APIUpdateGet {
             self.classroomModelHelper.addUpdateClassroom(classroomInfo)
 
         }
-    }
-
-    private func addSubmissions(submissions: [JSON]) {
-
     }
 
     private func addClassrooms(classrooms: [JSON]) {

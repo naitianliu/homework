@@ -45,6 +45,12 @@ class UpdateViewModel {
             case self.updateKeys.approvals:
                 let rowDict = self.getApprovalRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
                 dataArray.insert(rowDict, atIndex: 0)
+            case self.updateKeys.homeworks:
+                let rowDict = self.getHomeworkRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
+                dataArray.insert(rowDict, atIndex: 0)
+            case self.updateKeys.submissions:
+                let rowDict = self.getSubmissionRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
+                dataArray.insert(rowDict, atIndex: 0)
             default:
                 break
             }
@@ -106,12 +112,50 @@ class UpdateViewModel {
         return rowDict
     }
 
+    func getHomeworkRowDict(uuid: String, type: String, timestamp: Int, info: JSON, read: Bool) -> [String: AnyObject] {
+        let classroomUUID = info[self.classroomKeys.classroomUUID].stringValue
+        let classroomName = info[self.classroomKeys.classroomName].stringValue
+        let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
+        let title = "收到新的作业"
+        let subtitle = "来自于班级：\(classroomName)"
+        let rowDict: [String: AnyObject] = [
+            self.updateKeys.type: type,
+            self.updateKeys.uuid: uuid,
+            self.classroomKeys.classroomUUID: classroomUUID,
+            self.updateKeys.title: title,
+            self.updateKeys.subtitle: subtitle,
+            self.updateKeys.timeString: timeString,
+            self.updateKeys.read: read,
+            ]
+        return rowDict
+    }
+
+    func getSubmissionRowDict(uuid: String, type: String, timestamp: Int, info: JSON, read: Bool) -> [String: AnyObject] {
+        let homeworkUUID = info[self.homeworkKeys.homeworkUUID].stringValue
+        let studentNickname = info[self.updateKeys.studentNickname].stringValue
+        let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
+        let title = "收到作业提交"
+        let subtitle = "学生：\(studentNickname)"
+        let rowDict: [String: AnyObject] = [
+            self.updateKeys.type: type,
+            self.updateKeys.uuid: uuid,
+            self.homeworkKeys.homeworkUUID: homeworkUUID,
+            self.updateKeys.title: title,
+            self.updateKeys.subtitle: subtitle,
+            self.updateKeys.timeString: timeString,
+            self.updateKeys.read: read,
+            ]
+        return rowDict
+    }
+
+    /*
     func getApproveRowDict(uuid: String, type: String, timestamp: Int, info: JSON, read: Bool) -> [String: AnyObject] {
         let rowDict: [String: AnyObject] = [
             self.updateKeys.type: type
         ]
         return rowDict
     }
+    */
 
     func markAsRead(uuid: String) {
         self.updateModelHelper.markAsRead(uuid)

@@ -43,18 +43,24 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="QJy-ja-rjR" secondAttribute="bottom" constant="5" id="0ty-ax-cnK"/>
+                    <constraint firstItem="HfY-Nf-kvD" firstAttribute="leading" secondItem="apG-pg-YLh" secondAttribute="trailing" constant="20" id="21K-GS-bNm"/>
                     <constraint firstAttribute="trailingMargin" secondItem="HfY-Nf-kvD" secondAttribute="trailing" constant="10" id="FqU-ua-sf8"/>
                     <constraint firstItem="apG-pg-YLh" firstAttribute="leading" secondItem="QJy-ja-rjR" secondAttribute="trailing" constant="20" id="PWD-n7-nwW"/>
                     <constraint firstItem="oWM-EC-q87" firstAttribute="top" secondItem="apG-pg-YLh" secondAttribute="bottom" constant="3" id="S4G-hZ-H7K"/>
                     <constraint firstItem="apG-pg-YLh" firstAttribute="top" secondItem="QJy-ja-rjR" secondAttribute="top" id="SlA-yc-zee"/>
                     <constraint firstItem="HfY-Nf-kvD" firstAttribute="leading" secondItem="apG-pg-YLh" secondAttribute="trailing" id="cNw-Ss-CxY"/>
                     <constraint firstItem="QJy-ja-rjR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="kcY-Mi-kty"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="apG-pg-YLh" secondAttribute="trailing" constant="100" id="nVa-qu-JLI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="apG-pg-YLh" secondAttribute="trailing" constant="120" id="nVa-qu-JLI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="oWM-EC-q87" secondAttribute="trailing" constant="20" id="qjH-d6-obI"/>
                     <constraint firstItem="QJy-ja-rjR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="qxB-33-2do"/>
                     <constraint firstItem="HfY-Nf-kvD" firstAttribute="top" secondItem="apG-pg-YLh" secondAttribute="top" id="rNt-Qy-h6t"/>
                     <constraint firstItem="oWM-EC-q87" firstAttribute="leading" secondItem="apG-pg-YLh" secondAttribute="leading" id="yW6-hh-c8I"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="21K-GS-bNm"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="iconImageView" destination="QJy-ja-rjR" id="FNM-lb-W3V"/>

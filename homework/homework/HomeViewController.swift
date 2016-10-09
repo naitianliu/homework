@@ -45,6 +45,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let updateModelHelper = UpdateModelHelper()
 
     let updateKeys = GlobalKeys.UpdateKeys.self
+    let classroomKeys = GlobalKeys.ClassroomKeys.self
+    let homeworkKeys = GlobalKeys.HomeworkKeys.self
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +66,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.initiateAddButton()
             }
         }
+
+        self.navigationItem.title = "动态"
     }
 
     override func didReceiveMemoryWarning() {
@@ -162,6 +166,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             switch type {
             case self.updateKeys.requests:
                 self.showUpdateRequestsVC(rowData)
+            case self.updateKeys.homeworks:
+                self.showClassroomDetailsVC(rowData)
+            case self.updateKeys.submissions:
+                self.showHomeworkDetailVC(rowData)
             default:
                 break
             }
@@ -196,6 +204,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(updateRequestsVC, animated: true)
         self.hidesBottomBarWhenPushed = false
+    }
+
+    private func showClassroomDetailsVC(updateData: [String: AnyObject]) {
+        let classroomUUID = updateData[self.classroomKeys.classroomUUID] as! String
+        let storyboard = UIStoryboard(name: "Classroom", bundle: nil)
+        let classroomDetailVC = storyboard.instantiateViewControllerWithIdentifier("ClassroomDetailViewController") as! ClassroomDetailViewController
+        classroomDetailVC.classroomUUID = classroomUUID
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(classroomDetailVC, animated: true)
+        self.hidesBottomBarWhenPushed = false
+    }
+
+    private func showHomeworkDetailVC(updateData: [String: AnyObject]) {
+        let homeworkUUID: String = updateData[self.homeworkKeys.homeworkUUID]! as! String
+        let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
+        homeworkDetailVC.homeworkUUID = homeworkUUID
+        self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
     }
 
     func showToast(message: String) {
