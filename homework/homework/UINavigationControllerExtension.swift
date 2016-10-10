@@ -20,7 +20,15 @@ extension UINavigationController {
         }
         self.popViewControllerAnimated(animated)
         CATransaction.commit()
+
     }
+
+    func pushViewControllerBottomBarHidden(target: UIViewController, viewController: UIViewController, animated: Bool) {
+        target.hidesBottomBarWhenPushed = true
+        self.pushViewController(viewController, animated: animated)
+        target.hidesBottomBarWhenPushed = false
+    }
+
 }
 
 extension UIScrollView {

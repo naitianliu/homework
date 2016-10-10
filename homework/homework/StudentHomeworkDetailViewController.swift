@@ -57,7 +57,11 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
 
         self.reloadTable()
 
-        self.tableView.triggerPullToRefresh()
+        self.tabBarController?.tabBar.hidden = true
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.triggerPullToRefresh()
+        }
 
     }
 

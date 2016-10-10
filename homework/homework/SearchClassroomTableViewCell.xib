@@ -22,9 +22,6 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guI-ku-Bm7" userLabel="ImageContainerView">
                                 <rect key="frame" x="84" y="59" width="449" height="153"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqV-q5-ANz">
-                                        <rect key="frame" x="177" y="15" width="130" height="99"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="+1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onV-fC-CdN">
                                         <rect key="frame" x="330" y="15" width="111" height="123"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -55,6 +52,9 @@
                                                 <exclude reference="aTD-NT-RFh"/>
                                             </mask>
                                         </variation>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqV-q5-ANz">
+                                        <rect key="frame" x="177" y="15" width="130" height="99"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>

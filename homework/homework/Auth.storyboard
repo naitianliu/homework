@@ -89,6 +89,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="选择登录方式" id="wxF-Pw-sFQ"/>
+                    <connections>
+                        <outlet property="weixinLoginButton" destination="984-kf-AfI" id="2GA-Ff-wL3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg2-Qb-xKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

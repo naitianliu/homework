@@ -48,6 +48,8 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
 
         APIHomeworkGetSubmissionList(vc: self).run(self.homeworkUUID)
 
+        self.tabBarController?.tabBar.hidden = true
+
     }
 
     override func didReceiveMemoryWarning() {

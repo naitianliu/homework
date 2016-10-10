@@ -30,6 +30,10 @@ struct GlobalConstants {
 
     static let kProfileImagePlaceholder: UIImage = UIImage(named: "profile-placeholder")!
 
+    static let kProfileImageViewWidthLg: CGFloat = 30
+    static let kProfileImageViewWidthMd: CGFloat = 25
+    static let kProfileImageViewWidthSm: CGFloat = 20
+
     static let kScoresMap = [
         0: " E  ",
         1: " D- ",
@@ -48,8 +52,8 @@ struct GlobalConstants {
 
 }
 
-let APIEndpoint = "http://192.168.1.82:8000/api/v1"
-// let APIEndpoint = "https://hw.knockfuture.com/api/v1"
+// let APIEndpoint = "http://192.168.1.82:8000/api/v1"
+let APIEndpoint = "https://hw.knockfuture.com/api/v1"
 
 struct APIURL {
     

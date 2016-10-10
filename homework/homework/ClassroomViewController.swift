@@ -140,8 +140,6 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     private func setupPullToRefresh() {
         tableView.addPullToRefreshWithActionHandler {
             APIClassroomGetList(vc: self).run()
-            // stop loading
-            self.tableView.pullToRefreshView.stopAnimating()
         }
         tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
         tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))

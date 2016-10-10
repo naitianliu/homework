@@ -16,7 +16,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     let kRoleMap = ["t": "教师", "s": "学生"]
 
-    let role = UserDefaultsHelper().getRole()
+    var role = UserDefaultsHelper().getRole()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     private func reloadTable() {
+        role = UserDefaultsHelper().getRole()
         self.tableView.reloadData()
     }
 

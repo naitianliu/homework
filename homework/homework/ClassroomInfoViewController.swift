@@ -32,11 +32,22 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
         self.initTableView()
 
         self.reloadTable()
+
+        if let role = UserDefaultsHelper().getRole() {
+            if role == "t" {
+                self.initiateActionButton()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
     }
 
     private func initTableView() {
@@ -167,6 +178,26 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
         Diplomat.sharedInstance().share(dtMessage, name: kDiplomatTypeWechat) { (result, error) in
             print(result)
         }
+    }
+
+    private func initiateActionButton() {
+        let actionButton = UIBarButtonItem(title: "选项", style: .Plain, target: self, action: #selector(self.actionButtonOnClick))
+        self.navigationItem.rightBarButtonItem = actionButton
+    }
+
+    func actionButtonOnClick(sender: AnyObject) {
+        self.showClassroomActionSheet()
+    }
+
+    private func showClassroomActionSheet() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "关闭当前班级", style: .Destructive, handler: { (action) in
+            APIClassroomClose(vc: self).run(self.classroomUUID, completion: { 
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            })
+        }))
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
 }

@@ -47,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let updateKeys = GlobalKeys.UpdateKeys.self
     let classroomKeys = GlobalKeys.ClassroomKeys.self
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +60,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.setupPullToRefresh()
 
-        self.updatesTableView.triggerPullToRefresh()
-
         if let role = UserDefaultsHelper().getRole() {
+            self.updatesTableView.triggerPullToRefresh()
             if role == "t" {
                 self.initiateAddButton()
             }
@@ -73,6 +73,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = false
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -170,6 +175,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.showClassroomDetailsVC(rowData)
             case self.updateKeys.submissions:
                 self.showHomeworkDetailVC(rowData)
+            case self.updateKeys.grades:
+                self.showStudentHomeworkDetailViewController(rowData)
             default:
                 break
             }
@@ -201,9 +208,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func showUpdateRequestsVC(updateData: [String: AnyObject]) {
         let updateRequestsVC = UpdateRequestViewController(nibName: "UpdateRequestViewController", bundle: nil)
         updateRequestsVC.updateData = updateData
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(updateRequestsVC, animated: true)
-        self.hidesBottomBarWhenPushed = false
+        self.navigationController?.pushViewControllerBottomBarHidden(self, viewController: updateRequestsVC, animated: true)
     }
 
     private func showClassroomDetailsVC(updateData: [String: AnyObject]) {
@@ -211,16 +216,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let storyboard = UIStoryboard(name: "Classroom", bundle: nil)
         let classroomDetailVC = storyboard.instantiateViewControllerWithIdentifier("ClassroomDetailViewController") as! ClassroomDetailViewController
         classroomDetailVC.classroomUUID = classroomUUID
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(classroomDetailVC, animated: true)
-        self.hidesBottomBarWhenPushed = false
+        self.navigationController?.pushViewControllerBottomBarHidden(self, viewController: classroomDetailVC, animated: true)
     }
 
     private func showHomeworkDetailVC(updateData: [String: AnyObject]) {
         let homeworkUUID: String = updateData[self.homeworkKeys.homeworkUUID]! as! String
         let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
         homeworkDetailVC.homeworkUUID = homeworkUUID
-        self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
+        self.navigationController?.pushViewControllerBottomBarHidden(self, viewController: homeworkDetailVC, animated: true)
+    }
+
+    private func showStudentHomeworkDetailViewController(updateData: [String: AnyObject]) {
+        let studentHWDetailVC = StudentHomeworkDetailViewController(nibName: "StudentHomeworkDetailViewController", bundle: nil)
+        let submissionUUID = updateData[self.submissionKeys.submissionUUID]! as! String
+        if let submissionInfo = SubmissionModelHelper().getSubmissionInfoByUUID(submissionUUID) {
+            let homeworkUUID = submissionInfo[self.submissionKeys.homeworkUUID] as! String
+            studentHWDetailVC.homeworkUUID = homeworkUUID
+            self.navigationController?.pushViewControllerBottomBarHidden(self, viewController: studentHWDetailVC, animated: true)
+        }
     }
 
     func showToast(message: String) {
@@ -233,7 +246,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func setupPullToRefresh() {
         updatesTableView.addPullToRefreshWithActionHandler {
             APIUpdateGet(vc: self).run()
-            self.updatesTableView.pullToRefreshView.stopAnimating()
         }
         updatesTableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
         updatesTableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))

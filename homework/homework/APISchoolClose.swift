@@ -29,8 +29,11 @@ class APISchoolClose {
         let data: [String: AnyObject] = [
             self.classroomKeys.schoolUUID: schoolUUID
         ]
+        let hud = ProgressHUDHelper(view: self.vc.view)
+        hud.show()
         CallAPIHelper(url: url, data: data).POST({ (responseData) in
             // success
+            hud.hide()
             let success = responseData["success"].boolValue
             if success {
                 self.schoolModelHelper.close(schoolUUID)
@@ -40,6 +43,7 @@ class APISchoolClose {
             }
             }) { (error) in
                 // error
+                hud.hide()
                 AlertHelper(viewController: self.vc).showPromptAlertView("关闭学校失败, 请稍后重试")
         }
     }

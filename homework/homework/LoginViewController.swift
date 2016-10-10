@@ -19,12 +19,18 @@ class LoginViewController: UIViewController {
     var nickname: String?
     var imgURL: String?
 
+    @IBOutlet weak var weixinLoginButton: UIButton!
+
     let userDefaultHelper = UserDefaultsHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if UIApplication.sharedApplication().canOpenURL(NSURL(string: "weixin://")!) {
+
+        } else {
+            self.weixinLoginButton.hidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

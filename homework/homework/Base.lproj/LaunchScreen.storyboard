@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,7 +16,30 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo-inverse" translatesAutoresizingMaskIntoConstraints="NO" id="BPy-MX-9Xt">
+                                <rect key="frame" x="236" y="236" width="129" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0pf-NK-v1j"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="BV6-kI-9ml"/>
+                                    <constraint firstAttribute="width" constant="100" id="VEB-wP-bwc"/>
+                                    <constraint firstAttribute="width" constant="1" id="XnJ-Fh-aeh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="YeL-03-Chd"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="BV6-kI-9ml"/>
+                                        <exclude reference="XnJ-Fh-aeh"/>
+                                        <exclude reference="YeL-03-Chd"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="BPy-MX-9Xt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="sib-tv-AxQ"/>
+                            <constraint firstItem="BPy-MX-9Xt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uqK-Jh-c6T"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +47,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo-inverse" width="100" height="100"/>
+    </resources>
 </document>

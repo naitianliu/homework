@@ -40,8 +40,7 @@ class HomewordCardContentView: UIView {
     }
 
     private func renderProfileImageView() {
-        let width = profileImageView.frame.width
-        profileImageView.layer.cornerRadius = width / 2
+        profileImageView.layer.cornerRadius = GlobalConstants.kProfileImageViewWidthMd
         profileImageView.layer.masksToBounds = true
 
     }
@@ -72,7 +71,6 @@ class HomewordCardContentView: UIView {
         let range = (text as NSString).rangeOfString(homeworkType)
         self.attributedLabel.addLinkToURL(NSURL(string: homeworkType), withRange: range)
 
-
     }
 
     private func setupTimeLabel() {
@@ -88,7 +86,6 @@ class HomewordCardContentView: UIView {
     private func setupDueDateLabel() {
         let dueDate = self.data[self.homeworkKeys.dueDateString] as! String
         self.dueDateLabel.text = dueDate
-
     }
 
 }

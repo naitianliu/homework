@@ -61,6 +61,8 @@ class UpdateTableViewCell: UITableViewCell {
             self.setupHomeworkCell(dataJSON)
         case self.updateKeys.submissions:
             self.setupSubmissionCell(dataJSON)
+        case self.updateKeys.grades:
+            self.setupGradeCell(dataJSON)
         default:
             break
         }
@@ -101,6 +103,16 @@ class UpdateTableViewCell: UITableViewCell {
 
     private func setupSubmissionCell(data: JSON) {
         self.iconImageView.image = UIImage(named: "circle-icon-student")
+        let title = data[self.updateKeys.title].stringValue
+        let subtitle = data[self.updateKeys.subtitle].stringValue
+        let timeString = data[self.updateKeys.timeString].stringValue
+        self.titleLabel.text = title
+        self.subtitleLabel.text = subtitle
+        self.timeLabel.text = timeString
+    }
+
+    private func setupGradeCell(data: JSON) {
+        self.iconImageView.image = UIImage(named: "circle-icon-teacher")
         let title = data[self.updateKeys.title].stringValue
         let subtitle = data[self.updateKeys.subtitle].stringValue
         let timeString = data[self.updateKeys.timeString].stringValue

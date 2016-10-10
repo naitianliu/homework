@@ -71,7 +71,12 @@ class SelectHWTypeViewController: UIViewController {
             3: typeKeys.dictation
         ]
         let index = sender.tag
-        self.performDidSelectHomewworkType(tagTypeMap[index]!)
+        if index == 3 {
+            AlertHelper(viewController: self).showPromptAlertView("当前版本暂不支持听力作业。相关功能会在后续版本发布，尽请期待！")
+        } else {
+            self.performDidSelectHomewworkType(tagTypeMap[index]!)
+        }
+
     }
 
     @IBAction func cancelButtonOnClick(sender: AnyObject) {

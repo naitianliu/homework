@@ -18,6 +18,7 @@ class UpdateViewModel {
     let updateKeys = GlobalKeys.UpdateKeys.self
     let profileKeys = GlobalKeys.ProfileKeys.self
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
     let classroomKeys = GlobalKeys.ClassroomKeys.self
 
     let dataTypeConversionHelper = DataTypeConversionHelper()
@@ -51,6 +52,9 @@ class UpdateViewModel {
             case self.updateKeys.submissions:
                 let rowDict = self.getSubmissionRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
                 dataArray.insert(rowDict, atIndex: 0)
+            case self.updateKeys.grades:
+                let rowDict = self.getGradeRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
+                dataArray.insert(rowDict, atIndex: 0)
             default:
                 break
             }
@@ -67,7 +71,7 @@ class UpdateViewModel {
             let requesterProfile = info[self.updateKeys.requesterProfile]
             let nickname = requesterProfile[self.profileKeys.nickname].stringValue
             let imgURL = requesterProfile[self.profileKeys.imgURL].stringValue
-            let title = "\(nickname) 申请加入班级"
+            let title = "\(nickname)申请加入班级"
             let subtitle = "班级名称：\(classroomName)"
             let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
             let rowDict: [String: AnyObject] = [
@@ -94,9 +98,9 @@ class UpdateViewModel {
         let classroomUUID = info[self.classroomKeys.classroomUUID].stringValue
         let classroomName = info[self.classroomKeys.classroomName].stringValue
         let approverProfileInfo = info[self.updateKeys.approverProfileInfo]
-        let nickname = approverProfileInfo[self.profileKeys.nickname].stringValue
+        // let nickname = approverProfileInfo[self.profileKeys.nickname].stringValue
         let imgURL = approverProfileInfo[self.profileKeys.imgURL].stringValue
-        let title = "已被\(nickname)加入班级"
+        let title = "已被加入班级"
         let subtitle = "班级名称：\(classroomName)"
         let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
         let rowDict: [String: AnyObject] = [
@@ -148,14 +152,23 @@ class UpdateViewModel {
         return rowDict
     }
 
-    /*
-    func getApproveRowDict(uuid: String, type: String, timestamp: Int, info: JSON, read: Bool) -> [String: AnyObject] {
+    func getGradeRowDict(uuid: String, type: String, timestamp: Int, info: JSON, read: Bool) -> [String: AnyObject] {
+        let submissionUUID = info[self.submissionKeys.submissionUUID].stringValue
+        let score = info[self.submissionKeys.score].stringValue
+        let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
+        let title = "作业已批改"
+        let subtitle = "分数：\(score)"
         let rowDict: [String: AnyObject] = [
-            self.updateKeys.type: type
-        ]
+            self.updateKeys.type: type,
+            self.updateKeys.uuid: uuid,
+            self.submissionKeys.submissionUUID: submissionUUID,
+            self.updateKeys.title: title,
+            self.updateKeys.subtitle: subtitle,
+            self.updateKeys.timeString: timeString,
+            self.updateKeys.read: read,
+            ]
         return rowDict
     }
-    */
 
     func markAsRead(uuid: String) {
         self.updateModelHelper.markAsRead(uuid)

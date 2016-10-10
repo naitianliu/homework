@@ -24,6 +24,7 @@ class APIUpdateGet {
     let updateKeys = GlobalKeys.UpdateKeys.self
     let classroomKeys = GlobalKeys.ClassroomKeys.self
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
     let profileKeys = GlobalKeys.ProfileKeys.self
 
     init(vc: HomeViewController) {
@@ -37,22 +38,38 @@ class APIUpdateGet {
                 // success
                 let errorCode = responseData["error"].intValue
                 if errorCode == 0 {
+                    var updateCount: Int = 0
                     let updatesDict = responseData[self.updateKeys.updates].dictionaryValue
-                    let homeworks = updatesDict[self.updateKeys.homeworks]!.arrayValue
-                    self.addHomeworks(homeworks)
-                    let requests = updatesDict[self.updateKeys.requests]!.arrayValue
-                    self.addRequests(requests)
-                    let approvals = updatesDict[self.updateKeys.approvals]!.arrayValue
-                    self.addApprovals(approvals)
-                    let submissions = updatesDict[self.updateKeys.submissions]!.arrayValue
-                    self.addSubmissions(submissions)
-                    let classrooms = updatesDict[self.updateKeys.classrooms]!.arrayValue
-                    self.addClassrooms(classrooms)
-                    let members = updatesDict[self.updateKeys.members]!.arrayValue
-                    self.addMembers(members)
+                    if let homeworks = updatesDict[self.updateKeys.homeworks] {
+                        self.addHomeworks(homeworks.arrayValue)
+                        updateCount += homeworks.count
+                    }
+                    if let requests = updatesDict[self.updateKeys.requests] {
+                        self.addRequests(requests.arrayValue)
+                        updateCount += requests.count
+                    }
+                    if let approvals = updatesDict[self.updateKeys.approvals] {
+                        self.addApprovals(approvals.arrayValue)
+                        updateCount += approvals.count
+                    }
+                    if let submissions = updatesDict[self.updateKeys.submissions] {
+                        self.addSubmissions(submissions.arrayValue)
+                        updateCount += submissions.count
+                    }
+                    if let classrooms = updatesDict[self.updateKeys.classrooms] {
+                        self.addClassrooms(classrooms.arrayValue)
+                        updateCount += classrooms.count
+                    }
+                    if let members = updatesDict[self.updateKeys.members] {
+                        self.addMembers(members.arrayValue)
+                        updateCount += members.count
+                    }
+                    if let grades = updatesDict[self.updateKeys.grades] {
+                        self.addGrades(grades.arrayValue)
+                        updateCount += grades.count
+                    }
                     self.vc.reloadUpdateTable()
                     // show toast
-                    let updateCount: Int = homeworks.count + requests.count + submissions.count + classrooms.count + members.count
                     let toastMessage = self.getToastMessge(updateCount)
                     self.vc.showToast(toastMessage)
                 }
@@ -60,8 +77,22 @@ class APIUpdateGet {
             }) { (error) in
                 // error
                 self.vc.updatesTableView.pullToRefreshView.stopAnimating()
-                
             }
+        }
+    }
+
+    private func addGrades(grades: [JSON]) {
+        let type = self.updateKeys.grades
+        for item in grades {
+            let timestamp = item[self.updateKeys.timestamp].intValue
+            let submissionUUID = item[self.submissionKeys.submissionUUID].stringValue
+            let score = item[self.submissionKeys.score].stringValue
+            let infoDict: [String: AnyObject] = [
+                self.submissionKeys.submissionUUID: submissionUUID,
+                self.submissionKeys.score: score
+            ]
+            let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
+            self.updateModelHelper.add(timestamp, type: type, info: infoData)
         }
     }
 

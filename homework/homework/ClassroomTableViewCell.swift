@@ -55,8 +55,7 @@ class ClassroomTableViewCell: UITableViewCell {
     }
 
     private func renderProfileImageView(imageView: UIImageView) {
-        let height = imageView.frame.width
-        imageView.layer.cornerRadius = height / 2
+        imageView.layer.cornerRadius = GlobalConstants.kProfileImageViewWidthLg
         imageView.layer.masksToBounds = true
     }
 

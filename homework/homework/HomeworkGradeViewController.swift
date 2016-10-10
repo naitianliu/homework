@@ -52,6 +52,8 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
 
         self.tableView.triggerPullToRefresh()
 
+        self.tabBarController?.tabBar.hidden = true
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -253,6 +255,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
 
     func shareButtonOnClick(sender: AnyObject) {
         print("share")
+        AlertHelper(viewController: self).showPromptAlertView("该功能可以将该学生的作业展示给全班同学。尽请期待！")
     }
 
     func showHomeworkCommentVC() {
@@ -337,7 +340,6 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
             if let submissionUUID = self.submissionUUID {
                 APICommentGetList(vc: self).run(submissionUUID)
             }
-
         }
         tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
         tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))

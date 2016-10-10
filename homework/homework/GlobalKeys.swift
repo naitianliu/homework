@@ -131,6 +131,7 @@ struct GlobalKeys {
         static let submissions = "submissions"
         static let classrooms = "classrooms"
         static let members = "members"
+        static let grades = "grades"
 
         static let requestUUID = "request_uuid"
         static let requesterProfile = "requester_profile"

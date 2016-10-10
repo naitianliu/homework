@@ -108,6 +108,7 @@
 		4686A51A1DA8D815004C8802 /* NotificationListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686A5181DA8D815004C8802 /* NotificationListViewController.xib */; };
 		4686A51D1DA9ABE4004C8802 /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686A51B1DA9ABE4004C8802 /* MemberListViewController.swift */; };
 		4686A51E1DA9ABE4004C8802 /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686A51C1DA9ABE4004C8802 /* MemberListViewController.xib */; };
+		4686A5201DAB1E22004C8802 /* APIClassroomClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686A51F1DAB1E22004C8802 /* APIClassroomClose.swift */; };
 		468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */; };
 		468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */; };
 		468BBA161D31D0E500C944C4 /* SetClassroomNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */; };
@@ -338,6 +339,7 @@
 		4686A5181DA8D815004C8802 /* NotificationListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationListViewController.xib; sourceTree = "<group>"; };
 		4686A51B1DA9ABE4004C8802 /* MemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
 		4686A51C1DA9ABE4004C8802 /* MemberListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberListViewController.xib; sourceTree = "<group>"; };
+		4686A51F1DAB1E22004C8802 /* APIClassroomClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClassroomClose.swift; sourceTree = "<group>"; };
 		468BBA0F1D2E195400C944C4 /* ProfileDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		468BBA131D31C61B00C944C4 /* CreateClassroomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomViewController.swift; sourceTree = "<group>"; };
 		468BBA151D31D0E500C944C4 /* SetClassroomNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetClassroomNameViewController.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				4676795D1D8670E600A83DA2 /* APIClassroomUpdate.swift */,
 				4676795F1D8678C100A83DA2 /* APIClassroomSendRequest.swift */,
 				467679611D86831200A83DA2 /* APIClassroomApproveRequest.swift */,
+				4686A51F1DAB1E22004C8802 /* APIClassroomClose.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1595,6 +1598,7 @@
 				4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */,
 				46A173461D988F36001255C6 /* APIHomeworkClose.swift in Sources */,
 				4600BCF91D05222300BF460D /* TextHWMarkActionsView.swift in Sources */,
+				4686A5201DAB1E22004C8802 /* APIClassroomClose.swift in Sources */,
 				46CD106E1D7B96A200023055 /* APIHomeworkGetHomeworkList.swift in Sources */,
 				46A4DB461DA22D65003B9D07 /* APISchoolClose.swift in Sources */,
 				46A173421D979709001255C6 /* APIQAAnswerCreate.swift in Sources */,
