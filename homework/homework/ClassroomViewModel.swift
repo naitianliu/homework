@@ -75,11 +75,12 @@ class ClassroomViewModel {
     private func getClassroomRowDict(classroom: [String: AnyObject]) -> [String: AnyObject] {
         let classroomJSON = JSON(classroom)
         let classroomUUID: String = classroomJSON[self.classroomKeys.classroomUUID].stringValue
+        let creator: String = classroomJSON[self.classroomKeys.creator].stringValue
         // get school name
         let schoolUUID: String = classroomJSON[self.classroomKeys.schoolUUID].stringValue
         let schoolName: String = self.getSchoolName(schoolUUID)
         // get teacher profile image urls and student number
-        let result_tup = self.getTeacherProfilesAndStudentNumber(classroomUUID)
+        let result_tup = self.getTeacherProfilesAndStudentNumber(creator, classroomUUID: classroomUUID)
         let profiles: [[String: String]] = result_tup.0
         let studentNumberString: String = String(result_tup.1)
         //
@@ -87,6 +88,7 @@ class ClassroomViewModel {
             self.classroomKeys.classroomUUID: classroomUUID,
             self.classroomKeys.classroomName: classroom[self.classroomKeys.classroomName]!,
             self.classroomKeys.schoolName: schoolName,
+            self.classroomKeys.creator: creator,
             self.classroomKeys.teacherProfiles: profiles,
             self.classroomKeys.studentNumber: studentNumberString
         ]
@@ -103,14 +105,19 @@ class ClassroomViewModel {
         return schoolName
     }
 
-    private func getTeacherProfilesAndStudentNumber(classroomUUID: String) -> ([[String: String]], Int) {
+    private func getTeacherProfilesAndStudentNumber(creator: String, classroomUUID: String) -> ([[String: String]], Int) {
         var profiles: [[String: String]] = []
         var studentNumber: Int = 0
         let members = self.memberModelHelper.getMembersByClassroom(classroomUUID)
         for memberDict in members {
             let role: String = memberDict[self.profilesKeys.role]!
             if role == "t" {
-                profiles.append(memberDict)
+                let userId: String = memberDict[self.profilesKeys.userId]!
+                if userId == creator {
+                    profiles.insert(memberDict, atIndex: 0)
+                } else {
+                    profiles.append(memberDict)
+                }
             } else if role == "s" {
                 studentNumber += 1
             }

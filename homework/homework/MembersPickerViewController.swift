@@ -45,7 +45,11 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
 
         self.initTableData()
 
-        self.initiateConfirmButton()
+        if let role = UserDefaultsHelper().getRole() {
+            if role == "t" {
+                self.initiateConfirmButton()
+            }
+        }
 
         tableView.tableFooterView = UIView()
         tableView.registerNib(UINib(nibName: "MemberTableViewCell", bundle: nil), forCellReuseIdentifier: "MemberTableViewCell")

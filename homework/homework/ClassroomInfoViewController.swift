@@ -61,7 +61,9 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
     func reloadTable() {
         self.dataDict = self.classroomViewModel.getClassroomDetailedInfoByUUID(classroomUUID)!
         self.teachers = self.dataDict[self.classroomKeys.teachers] as! [String]
+        print(self.teachers)
         self.students = self.dataDict[self.classroomKeys.students] as! [String]
+        print(self.students)
         tableView.reloadData()
     }
 
@@ -85,8 +87,8 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
         let schoolName: String = self.dataDict[self.classroomKeys.schoolName] as! String
         let introduction: String = self.dataDict[self.classroomKeys.introduction] as! String
         let code: String = self.dataDict[self.classroomKeys.code] as! String
-        let teacherNumber: String = self.dataDict[self.classroomKeys.teacherNumber] as! String
-        let studentNumber: String = self.dataDict[self.classroomKeys.studentNumber] as! String
+        let teacherNumber: String = String(self.teachers.count)
+        let studentNumber: String = String(self.students.count)
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             let cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)

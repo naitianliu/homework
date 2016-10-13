@@ -34,12 +34,11 @@ class APIClassroomUpdate {
             self.profileKeys.role: role,
             self.classroomKeys.members: members
         ]
-        print(data)
         self.showHUD()
         CallAPIHelper(url: self.url, data: data).POST({ (responseData) in
             // success
             self.hideHUD()
-            let success = responseData["success"].boolValue
+            let success = responseData["error"].boolValue
             if success {
                 self.updateMembersModel(classroomUUID, members: members)
                 self.vc.reloadTable()

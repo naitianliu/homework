@@ -50,6 +50,7 @@ class ClassroomDetailViewController: UIViewController {
             self.countHomeworkNumber()
         }
 
+
         APIHomeworkGetHomeworkList(vc: self).run(self.classroomUUID)
 
     }
@@ -67,15 +68,15 @@ class ClassroomDetailViewController: UIViewController {
             swipeView.nextView = {
                 return self.nextCardView()
             }
-            if self.role == "t" {
-                self.renderHomeworkActionView()
-            }
         }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.reloadHomeworks()
+        if self.role == "t" {
+            self.renderHomeworkActionView()
+        }
     }
 
     override func didReceiveMemoryWarning() {

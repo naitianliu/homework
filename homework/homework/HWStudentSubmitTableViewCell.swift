@@ -36,8 +36,8 @@ class HWStudentSubmitTableViewCell: UITableViewCell {
     }
 
     private func renderProfileImageView() {
-        let width = profileImageView.bounds.width
-        profileImageView.layer.cornerRadius = width / 2
+        let radius = GlobalConstants.kProfileImageViewWidthSm
+        profileImageView.layer.cornerRadius = radius
         profileImageView.layer.masksToBounds = true
     }
 

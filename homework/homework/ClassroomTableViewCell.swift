@@ -30,6 +30,7 @@ class ClassroomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.countLabel.textColor = GlobalConstants.themeColor
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -101,6 +102,7 @@ class ClassroomTableViewCell: UITableViewCell {
             self.profileImageView2.sd_setImageWithURL(NSURL(string: profileImageURL2), placeholderImage: placeholderImage)
             self.teacherNameLabel1.text = nickname1
             self.teacherNameLabel2.text = nickname2
+            self.countLabel.hidden = false
             self.countLabel.text = "+\(teacherCount - 2)"
         } else {
 
