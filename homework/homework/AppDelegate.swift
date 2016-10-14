@@ -77,9 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func switchRootVC() {
         let isLogin = UserDefaultsHelper().checkIfLogin()
         if isLogin {
-            print(1)
             let mainTabBarController = MainTabBarController()
-            print(2)
             self.window?.rootViewController = mainTabBarController
         } else {
             let authStoryboard = UIStoryboard(name: "Auth", bundle: nil)

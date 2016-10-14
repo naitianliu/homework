@@ -36,6 +36,13 @@ class QAAnswerViewController: UIViewController, UITableViewDelegate, UITableView
         self.initiateLoadData()
 
         self.navigationItem.title = "问题回答"
+
+        let creator = self.questionData[self.qaKeys.creator] as! String
+        if let username = UserDefaultsHelper().getUsername() {
+            if username == creator {
+                self.initiateActionButton()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,6 +160,24 @@ class QAAnswerViewController: UIViewController, UITableViewDelegate, UITableView
             }
 
         }
+    }
+
+    private func initiateActionButton() {
+        let actionButton = UIBarButtonItem(title: "选项", style: .Plain, target: self, action: #selector(self.actionButtonOnClick))
+        self.navigationItem.rightBarButtonItem = actionButton
+    }
+
+    func actionButtonOnClick(sender: AnyObject) {
+        self.showQuestionActionSheet()
+    }
+
+    private func showQuestionActionSheet() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "关闭当前问题", style: .Destructive, handler: { (action) in
+            APIQAQuestionClose(vc: self).run(self.questionUUID)
+        }))
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
 }

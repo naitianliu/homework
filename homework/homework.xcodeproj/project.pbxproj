@@ -199,6 +199,8 @@
 		46E241CA1D55D71F00382394 /* CreateHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241C91D55D71F00382394 /* CreateHWViewController.swift */; };
 		46E241CD1D5713B400382394 /* EditTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */; };
 		46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */; };
+		46F5C3B31DAF59090067DBA6 /* APIQAQuestionClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5C3B21DAF59090067DBA6 /* APIQAQuestionClose.swift */; };
+		46F5C3B51DB04DB80067DBA6 /* Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46F5C3B41DB04DB80067DBA6 /* Info-dev.plist */; };
 		46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */; };
 		46F899761D320BA800DF870C /* SchoolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899751D320BA800DF870C /* SchoolTableViewCell.swift */; };
 		46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F899771D320BDC00DF870C /* SelectSchoolViewController.swift */; };
@@ -436,6 +438,8 @@
 		46E241C91D55D71F00382394 /* CreateHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateHWViewController.swift; sourceTree = "<group>"; };
 		46E241CB1D5713B400382394 /* EditTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewTableViewCell.swift; sourceTree = "<group>"; };
 		46E241CC1D5713B400382394 /* EditTextViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextViewTableViewCell.xib; sourceTree = "<group>"; };
+		46F5C3B21DAF59090067DBA6 /* APIQAQuestionClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIQAQuestionClose.swift; sourceTree = "<group>"; };
+		46F5C3B41DB04DB80067DBA6 /* Info-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		46F899751D320BA800DF870C /* SchoolTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolTableViewCell.swift; sourceTree = "<group>"; };
 		46F899771D320BDC00DF870C /* SelectSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSchoolViewController.swift; sourceTree = "<group>"; };
@@ -762,6 +766,7 @@
 				46A1733F1D964CFB001255C6 /* APIQAAnswerGetList.swift */,
 				46A173411D979709001255C6 /* APIQAAnswerCreate.swift */,
 				46A173471D98A1F3001255C6 /* APIQAAnswerAgree.swift */,
+				46F5C3B21DAF59090067DBA6 /* APIQAQuestionClose.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1033,6 +1038,7 @@
 				46C903D91D038619005FC496 /* ViewController.swift */,
 				46C903E01D038619005FC496 /* LaunchScreen.storyboard */,
 				46C903E31D038619005FC496 /* Info.plist */,
+				46F5C3B41DB04DB80067DBA6 /* Info-dev.plist */,
 				4600559D1D6FFB42006AA8AA /* homework-Bridging-Header.h */,
 			);
 			name = Others;
@@ -1325,6 +1331,7 @@
 				46E241CE1D5713B400382394 /* EditTextViewTableViewCell.xib in Resources */,
 				466D62331D8E00B10021AF33 /* QASearchResultsViewController.xib in Resources */,
 				466D62371D8E05B20021AF33 /* QASearchViewController.xib in Resources */,
+				46F5C3B51DB04DB80067DBA6 /* Info-dev.plist in Resources */,
 				46F899821D32218400DF870C /* InputTableViewCell.xib in Resources */,
 				46CD10311D738F4400023055 /* RoleSelectionViewController.xib in Resources */,
 				466D625D1D910DB60021AF33 /* QuestionActionTableViewCell.xib in Resources */,
@@ -1612,6 +1619,7 @@
 				4612AF6F1D24987900044E60 /* ResetPasswordViewController.swift in Sources */,
 				46B67D941D45C5770056EA84 /* ClassroomTableViewCell.swift in Sources */,
 				46CD10341D73D9C600023055 /* LogoutTableViewCell.swift in Sources */,
+				46F5C3B31DAF59090067DBA6 /* APIQAQuestionClose.swift in Sources */,
 				46A1733D1D96319D001255C6 /* QAAnswerTableViewCell.swift in Sources */,
 				46F899741D31F45200DF870C /* DescriptionTableViewCell.swift in Sources */,
 				46B67D971D4826310056EA84 /* PerformMigrations.swift in Sources */,
@@ -1762,7 +1770,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = homework/Info.plist;
+				INFOPLIST_FILE = "homework/Info-dev.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

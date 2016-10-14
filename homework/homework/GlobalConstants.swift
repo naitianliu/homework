@@ -99,6 +99,7 @@ struct APIURL {
     static let updateGet = "\(APIEndpoint)/updates/get/"
 
     static let qaQestionCreate = "\(APIEndpoint)/qa/question/create/"
+    static let qaQestionClose = "\(APIEndpoint)/qa/question/close/"
     static let qaQestionGetList = "\(APIEndpoint)/qa/question/get_list/"
     static let qaAnswerCreate = "\(APIEndpoint)/qa/answer/create/"
     static let qaAnswerAgree = "\(APIEndpoint)/qa/answer/agree/"
