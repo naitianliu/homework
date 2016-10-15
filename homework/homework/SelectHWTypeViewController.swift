@@ -12,6 +12,8 @@ class SelectHWTypeViewController: UIViewController {
 
     let kIconImageNames = ["homework-type-1", "homework-type-2", "homework-type-3", "homework-type-4"]
 
+    var selectedClassroomUUID: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -90,6 +92,7 @@ class SelectHWTypeViewController: UIViewController {
         let createHWNC = self.storyboard?.instantiateViewControllerWithIdentifier("CreateHWNC") as! UINavigationController
         let createHWVC = createHWNC.viewControllers[0] as! CreateHWViewController
         createHWVC.selectedType = selectedType
+        createHWVC.selectedClassroomUUID = self.selectedClassroomUUID
         createHWNC.modalTransitionStyle = .CoverVertical
         let vc = self.view.window?.rootViewController
         vc!.presentViewController(createHWNC, animated: true, completion: nil)

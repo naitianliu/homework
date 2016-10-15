@@ -166,7 +166,7 @@ class ClassroomDetailViewController: UIViewController {
     }
 
     func newHomeworkButtonOnClick(sender: AnyObject!) {
-        PresentVCUtility(vc: self).showSelectHWTypeVC()
+        PresentVCUtility(vc: self).showSelectHWTypeVC(self.classroomUUID)
     }
 
     @IBAction func moreInfoButtonOnClick(sender: AnyObject) {

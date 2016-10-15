@@ -126,7 +126,21 @@ class ClassroomModelHelper {
             print(error)
             return nil
         }
+    }
 
+    func getClassroomNameByUUID(uuid: String) -> String? {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(ClassroomModel.self, key: uuid) {
+                let name = item.name
+                return name
+            } else {
+                return nil
+            }
+        } catch {
+            print(error)
+            return nil
+        }
     }
 
     private func getRowDictByItem(item: ClassroomModel) -> [String: AnyObject] {
@@ -176,7 +190,8 @@ class ClassroomModelHelper {
         let schoolName = schoolInfo[self.classroomKeys.schoolName].stringValue
         let schoolAddress = schoolInfo[self.classroomKeys.schoolAddress].string
         let schoolTimestamp = schoolInfo[self.classroomKeys.createdTimestamp].intValue
-        self.schoolModelHelper.add(schoolUUID, name: schoolName, address: schoolAddress, active: true, timestamp: schoolTimestamp)
+        let schoolActive = schoolInfo[self.classroomKeys.active].boolValue
+        self.schoolModelHelper.add(schoolUUID, name: schoolName, address: schoolAddress, active: schoolActive, timestamp: schoolTimestamp)
 
     }
 }

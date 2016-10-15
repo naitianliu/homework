@@ -13,6 +13,8 @@ class CalendarDatePickerViewController: UIViewController, FSCalendarDelegate, FS
 
     @IBOutlet weak var calendar: FSCalendar!
 
+    var selectedDate: NSDate?
+
     typealias CompleteSelectionClosureType = (date: NSDate) -> Void
     var completeSelectionBlock: CompleteSelectionClosureType?
 
@@ -24,6 +26,10 @@ class CalendarDatePickerViewController: UIViewController, FSCalendarDelegate, FS
 
         calendar.appearance.headerTitleColor = GlobalConstants.themeColor
         calendar.appearance.weekdayTextColor = GlobalConstants.themeColor
+
+        if let selectedDate = selectedDate {
+            calendar.selectDate(selectedDate)
+        }
 
     }
 
@@ -37,6 +43,7 @@ class CalendarDatePickerViewController: UIViewController, FSCalendarDelegate, FS
     }
 
     func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
+        print(NSDate())
         print(date)
         if let completeSelectionBlock = self.completeSelectionBlock {
             completeSelectionBlock(date: date)

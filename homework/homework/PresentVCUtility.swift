@@ -18,8 +18,9 @@ class PresentVCUtility {
         self.vc = vc
     }
 
-    func showSelectHWTypeVC() {
+    func showSelectHWTypeVC(classroomUUID: String?) {
         let selectHWTypeVC = homeworkSB.instantiateViewControllerWithIdentifier("SelectHWTypeViewController") as! SelectHWTypeViewController
+        selectHWTypeVC.selectedClassroomUUID = classroomUUID
         selectHWTypeVC.modalPresentationStyle = .OverFullScreen
         self.vc?.presentViewController(selectHWTypeVC, animated: true, completion: nil)
     }

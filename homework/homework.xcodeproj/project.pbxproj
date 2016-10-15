@@ -827,9 +827,9 @@
 			children = (
 				468BBA171D31E63300C944C4 /* ParameterTableViewCell.swift */,
 				46F899731D31F45200DF870C /* DescriptionTableViewCell.swift */,
+				46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */,
 				46F899751D320BA800DF870C /* SchoolTableViewCell.swift */,
 				46A4DB411DA22403003B9D07 /* SchoolTableViewCell.xib */,
-				46F8997B1D32173E00DF870C /* DescriptionTableViewCell.xib */,
 				46F8997F1D32218400DF870C /* InputTableViewCell.swift */,
 				46F899801D32218400DF870C /* InputTableViewCell.xib */,
 				46B67D921D45C5770056EA84 /* ClassroomTableViewCell.swift */,

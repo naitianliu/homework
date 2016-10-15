@@ -28,6 +28,14 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.keyboardDismissMode = .OnDrag
 
+        if let classroomUUID = selectedClassroomUUID {
+            self.selectedClassroomName = ClassroomModelHelper().getClassroomNameByUUID(classroomUUID)
+        }
+
+        if let type = selectedType {
+            self.navigationItem.title = type
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,6 +150,7 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     private func showCalendarDatePickerVC() {
         let calendarDatePickerVC = CalendarDatePickerViewController(nibName: "CalendarDatePickerViewController", bundle: nil)
+        calendarDatePickerVC.selectedDate = self.selectedDate
         calendarDatePickerVC.completeSelectionBlockSetter { (date) in
             self.selectedDate = date
         }
