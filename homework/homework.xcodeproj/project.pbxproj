@@ -51,6 +51,8 @@
 		4612AF801D2B7C1C00044E60 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF7F1D2B7C1C00044E60 /* UINavigationControllerExtension.swift */; };
 		4612AF821D2B86AA00044E60 /* ProgressHUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF811D2B86AA00044E60 /* ProgressHUDHelper.swift */; };
 		4612AF841D2CD48D00044E60 /* SaveInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4612AF831D2CD48D00044E60 /* SaveInputViewController.swift */; };
+		463F782F1DB4561A0024151C /* CalendarHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463F782D1DB4561A0024151C /* CalendarHWViewController.swift */; };
+		463F78301DB4561A0024151C /* CalendarHWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463F782E1DB4561A0024151C /* CalendarHWViewController.xib */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -284,6 +286,8 @@
 		46307F501D20ECDB00A1971D /* dylib1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = dylib1.o; path = usr/lib/dylib1.o; sourceTree = SDKROOT; };
 		46307F521D20ED0000A1971D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		46307F541D20ED1500A1971D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		463F782D1DB4561A0024151C /* CalendarHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHWViewController.swift; sourceTree = "<group>"; };
+		463F782E1DB4561A0024151C /* CalendarHWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarHWViewController.xib; sourceTree = "<group>"; };
 		466222FA1D12387F0067F338 /* CallAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallAPIHelper.swift; sourceTree = "<group>"; };
 		466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		466222FF1D1258830067F338 /* OSSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSSHelper.swift; sourceTree = "<group>"; };
@@ -674,7 +678,6 @@
 		466222F91D12385F0067F338 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				46B67D961D4826310056EA84 /* PerformMigrations.swift */,
 				46B67D8D1D4494E00056EA84 /* Views */,
 				4600558D1D6FEEF2006AA8AA /* View Controllers */,
 				466222FE1D1258740067F338 /* Aliyun */,
@@ -883,6 +886,8 @@
 				4686A5181DA8D815004C8802 /* NotificationListViewController.xib */,
 				4686A51B1DA9ABE4004C8802 /* MemberListViewController.swift */,
 				4686A51C1DA9ABE4004C8802 /* MemberListViewController.xib */,
+				463F782D1DB4561A0024151C /* CalendarHWViewController.swift */,
+				463F782E1DB4561A0024151C /* CalendarHWViewController.xib */,
 			);
 			name = List;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				46C903D71D038619005FC496 /* AppDelegate.swift */,
 				4600BCF31D04E5A200BF460D /* GlobalConstants.swift */,
 				46CD10641D794FAA00023055 /* GlobalKeys.swift */,
+				46B67D961D4826310056EA84 /* PerformMigrations.swift */,
 				4612AF5E1D2489D100044E60 /* Home */,
 				469194961D8CF9C100456322 /* QA */,
 				4612AF541D24839700044E60 /* Me */,
@@ -1322,6 +1328,7 @@
 				46CD10191D71544200023055 /* HWStudentSubmitTableViewCell.xib in Resources */,
 				4686A51E1DA9ABE4004C8802 /* MemberListViewController.xib in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
+				463F78301DB4561A0024151C /* CalendarHWViewController.xib in Resources */,
 				46CD10351D73D9C600023055 /* LogoutTableViewCell.xib in Resources */,
 				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
 				4676795C1D864FBF00A83DA2 /* ClassroomInfoViewController.xib in Resources */,
@@ -1515,6 +1522,7 @@
 				469194A41D8D104100456322 /* QAPopularViewController.swift in Sources */,
 				460055A01D700345006AA8AA /* MemberTableViewCell.swift in Sources */,
 				4612AF601D2489DE00044E60 /* HomeViewController.swift in Sources */,
+				463F782F1DB4561A0024151C /* CalendarHWViewController.swift in Sources */,
 				46CD10451D77A27D00023055 /* APIClassroomSearch.swift in Sources */,
 				460055881D6EA886006AA8AA /* ProfileModel.swift in Sources */,
 				467679231D7E2D6C00A83DA2 /* UpdateModel.swift in Sources */,

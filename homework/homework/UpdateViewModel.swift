@@ -74,6 +74,7 @@ class UpdateViewModel {
             let title = "\(nickname)申请加入班级"
             let subtitle = "班级名称：\(classroomName)"
             let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
+            guard let requesterProfileDict = requesterProfile.dictionaryObject else { return nil }
             let rowDict: [String: AnyObject] = [
                 self.updateKeys.type: type,
                 self.updateKeys.uuid: uuid,
@@ -81,7 +82,7 @@ class UpdateViewModel {
                 self.updateKeys.title: title,
                 self.updateKeys.subtitle: subtitle,
                 self.updateKeys.requesterRole: requesterRole,
-                self.updateKeys.requesterProfile: requesterProfile.dictionaryObject! as! [String: String],
+                self.updateKeys.requesterProfile: requesterProfileDict as! [String: String],
                 self.updateKeys.timeString: timeString,
                 self.updateKeys.read: read,
                 self.updateKeys.requestUUID: requestUUID,

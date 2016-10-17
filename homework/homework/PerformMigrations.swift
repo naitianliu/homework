@@ -11,6 +11,8 @@ import RealmSwift
 
 class PerformMigrations {
 
+    let homeworkKeys = GlobalKeys.HomeworkKeys.self
+
     init() {
         self.setDefaultRealmForUser()
     }
@@ -41,6 +43,13 @@ class PerformMigrations {
                 if (oldSchemaVersion < 6) {
                     migration.enumerate(SchoolModel.className(), { (oldObject, newObject) in
                         newObject!["active"] = true
+                    })
+                }
+                if (oldSchemaVersion < 7) {
+                    migration.enumerate(HomeworkModel.className(), { (oldObject, newObject) in
+                        let infoData = oldObject!["info"] as! NSData
+                        let infoDict = DataTypeConversionHelper().convertNSDataToDict(infoData)
+                        newObject!["dueDateTimestamp"] = infoDict[self.homeworkKeys.dueDateTimestamp] as! Int
                     })
                 }
             }

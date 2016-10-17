@@ -15,6 +15,7 @@ class HomeworkModel: Object {
     dynamic var classroomUUID: String = ""
     dynamic var creator: String = ""
     dynamic var active: Bool = true
+    dynamic var dueDateTimestamp: Int = 0
     dynamic var createdTimestamp: Int = 0
     dynamic var updatedTimestamp: Int = 0
 
@@ -34,7 +35,7 @@ class HomeworkModelHelper {
 
     }
 
-    func add(homeworkUUID: String, classroomUUID: String, creator: String?, active: Bool, createdTimestamp: Int?, updatedTimestamp: Int, info: NSData) {
+    func add(homeworkUUID: String, classroomUUID: String, creator: String?, active: Bool, dueDateTimestamp: Int?, createdTimestamp: Int?, updatedTimestamp: Int, info: NSData) {
         let homework = HomeworkModel()
         homework.uuid = homeworkUUID
         homework.classroomUUID = classroomUUID
@@ -46,6 +47,9 @@ class HomeworkModelHelper {
         homework.active = active
         if let createdTimestamp = createdTimestamp {
             homework.createdTimestamp = createdTimestamp
+        }
+        if let dueDateTimestamp = dueDateTimestamp {
+            homework.dueDateTimestamp = dueDateTimestamp
         }
         homework.updatedTimestamp = updatedTimestamp
         homework.info = info
@@ -122,6 +126,7 @@ class HomeworkModelHelper {
             Keys.classroomUUID: item.classroomUUID,
             Keys.creator: item.creator,
             Keys.active: item.active,
+            Keys.dueDateTimestamp: item.dueDateTimestamp,
             Keys.createdTimestamp: item.createdTimestamp,
             Keys.updatedTimestamp: item.updatedTimestamp,
             Keys.info: item.info
@@ -129,4 +134,27 @@ class HomeworkModelHelper {
         return rowDict
     }
 
+    func getHomeworkCountByDateRange(classroomUUID: String, from: Int, to: Int, active: Bool) -> Int {
+        do {
+            let realm = try Realm()
+            let count = realm.objects(HomeworkModel).filter("classroomUUID = '\(classroomUUID)' AND dueDateTimestamp >= \(from) AND dueDateTimestamp < \(to) AND active = \(active)").count
+            return count
+        } catch {
+            return 0
+        }
+    }
+
+    func getHomeworkListByDateRange(classroomUUID: String, from: Int, to: Int, active: Bool) -> [[String: AnyObject]] {
+        var homeworkArray: [[String: AnyObject]] = []
+        do {
+            let realm = try Realm()
+            for item in realm.objects(HomeworkModel).filter("classroomUUID = '\(classroomUUID)' AND dueDateTimestamp >= \(from) AND dueDateTimestamp < \(to) AND active = \(active)") {
+                let rowDict = self.getHomeworkDictByItem(item)
+                homeworkArray.append(rowDict)
+            }
+        } catch {
+            print(error)
+        }
+        return homeworkArray
+    }
 }

@@ -112,5 +112,6 @@ class DateUtility {
         let date = calendar.dateByAddingUnit(.Day, value: -7, toDate: NSDate(), options: [])!
         return date
     }
+
 }
 

@@ -66,6 +66,7 @@ class APIHomeworkGetHomeworkList {
 
     private func addUpdateHomework(homeworkJSON: JSON) {
         let infoDict: [String: AnyObject] = homeworkJSON[self.Keys.info].dictionaryObject!
+        let dueDateTimestamp = infoDict[self.Keys.dueDateTimestamp] as! Int
         let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
         let classroomUUID = homeworkJSON[self.Keys.classroomUUID].stringValue
         let creator = homeworkJSON[self.Keys.creator].stringValue
@@ -74,7 +75,7 @@ class APIHomeworkGetHomeworkList {
         self.newUUIDArray.append(homeworkUUID)
         let createdTimestamp = homeworkJSON[self.Keys.createdTimestamp].intValue
         let updatedTimestamp = homeworkJSON[self.Keys.updatedTimestamp].intValue
-        self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: creator, active: active,
+        self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: creator, active: active, dueDateTimestamp: dueDateTimestamp,
                                      createdTimestamp: createdTimestamp, updatedTimestamp: updatedTimestamp,
                                      info: infoData)
     }

@@ -182,7 +182,7 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
             self.homeworkKeys.content: content!,
             self.homeworkKeys.dueDateTimestamp: dueDateTimestamp,
         ]
-        APIHomeworkCreate(vc: self).run(classroomUUID, info: info)
+        APIHomeworkCreate(vc: self).run(classroomUUID, dueDateTimestamp: dueDateTimestamp, info: info)
     }
 
 }

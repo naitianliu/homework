@@ -27,7 +27,7 @@ class APIHomeworkCreate {
         self.vc = vc
     }
 
-    func run(classroomUUID: String, info: [String: AnyObject]) {
+    func run(classroomUUID: String, dueDateTimestamp: Int, info: [String: AnyObject]) {
         MBProgressHUD.showHUDAddedTo(self.vc.view, animated: true)
         let data: [String: AnyObject] = [
             Keys.classroomUUID: classroomUUID,
@@ -42,7 +42,7 @@ class APIHomeworkCreate {
                 let timestamp = responseData["timestamp"].intValue
                 let homeworkUUID = responseData[self.Keys.homeworkUUID].stringValue
                 let infoData: NSData = DataTypeConversionHelper().convertDictToNSData(info)
-                self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: nil, active: true, createdTimestamp: timestamp, updatedTimestamp: timestamp, info: infoData)
+                self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: nil, active: true, dueDateTimestamp: dueDateTimestamp, createdTimestamp: timestamp, updatedTimestamp: timestamp, info: infoData)
             }
             self.vc.dismissViewControllerAnimated(true, completion: nil)
             }) { (error) in

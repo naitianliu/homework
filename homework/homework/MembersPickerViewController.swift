@@ -132,17 +132,17 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
         var nameUserIdArrayDict: [String: [String]] = [:]
         for  item in self.profiles {
             let contactInfo = item 
-            let name = contactInfo[profileKeys.nickname]
+            let name: String = contactInfo[profileKeys.nickname]!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let userId = contactInfo[profileKeys.userId]
-            if let userIdArray = nameUserIdArrayDict[name!] {
+            if let userIdArray = nameUserIdArrayDict[name] {
                 var tempArray = userIdArray
                 tempArray.append(userId!)
-                nameUserIdArrayDict[name!] = tempArray
+                nameUserIdArrayDict[name] = tempArray
             } else {
-                nameUserIdArrayDict[name!] = [userId!]
+                nameUserIdArrayDict[name] = [userId!]
             }
-            if !contactArray.contains(name!) {
-                contactArray.append(name!)
+            if !contactArray.contains(name) {
+                contactArray.append(name)
             }
             contactDict[userId!] = item
         }
@@ -153,7 +153,7 @@ class MembersPickerViewController: UIViewController, UITableViewDelegate, UITabl
             let rowArray:[String] = letterRow as! [String]
             var tempArray:[AnyObject] = []
             for item in rowArray {
-                let name:String = item
+                let name:String = item.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                 for userId in nameUserIdArrayDict[name]! {
                     let info = contactDict[userId]
                     tempArray.append(info!)

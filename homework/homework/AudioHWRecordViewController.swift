@@ -9,6 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 import MBProgressHUD
+import AVFoundation
 
 class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     struct Constant {
@@ -63,7 +64,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.emptyDataSetDelegate = self
         self.tableView.registerNib(UINib(nibName: "PlayingRecordItemTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayingRecordItemTableViewCell")
         self.tableView.registerNib(UINib(nibName: "RecordItemTableViewCell", bundle: nil), forCellReuseIdentifier: "RecordItemTableViewCell")
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,6 +75,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         recorderHelper = RecorderHelper()
+        self.checkMicrophonePermission()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -89,6 +91,22 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidDisappear(animated)
         self.navigationController?.navigationBar.shadowImage = originalNavbarShadowImage
         recorderHelper.closeRecordingSession()
+    }
+
+    func checkMicrophonePermission() {
+        if AVAudioSession.sharedInstance().recordPermission() == AVAudioSessionRecordPermission.Denied {
+            dispatch_async(dispatch_get_main_queue()) {
+                let alertController = UIAlertController(title: "未打开麦克风", message: "检查到您的麦克风没有打开，请到系统设置中打开麦克风。设置->窗外->打开麦克风", preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "返回", style: .Default, handler: { (action) in
+                    self.navigationController?.popViewControllerAnimated(true)
+                }))
+                alertController.addAction(UIAlertAction(title: "重新检查", style: .Destructive, handler: { (action) in
+                    self.checkMicrophonePermission()
+                }))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
+
     }
 
     func audioUploadedCompletionBlockSetter(completion: AudioUploadedCompletionClosureType) {

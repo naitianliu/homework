@@ -71,10 +71,15 @@ class SubmissionViewModel {
         let score: String? = submission[self.submissionKeys.score] as? String
         let createdTimestamp: Int = submission[self.submissionKeys.createdTimestamp] as! Int
         let info: NSData = submission[self.submissionKeys.info] as! NSData
-        let profileInfo: [String: String] = self.profileModelHelper.getProfileInfo(submitter)!
+        var submitterName = "未知"
+        var submitterImgURL = "none"
+        if let profileInfo = self.profileModelHelper.getProfileInfo(submitter) {
+            submitterName = profileInfo[self.profileKeys.nickname]!
+            submitterImgURL = profileInfo[self.profileKeys.imgURL]!
+        }
         let rowDict: [String: AnyObject?] = [
-            self.submissionKeys.submitterName: profileInfo[self.profileKeys.nickname],
-            self.submissionKeys.submitterImgURL: profileInfo[self.profileKeys.imgURL],
+            self.submissionKeys.submitterName: submitterName,
+            self.submissionKeys.submitterImgURL: submitterImgURL,
             self.submissionKeys.time: self.dateUtility.convertEpochToHumanFriendlyString(createdTimestamp),
             self.submissionKeys.score: score,
             self.submissionKeys.submissionUUID: submissionUUID,

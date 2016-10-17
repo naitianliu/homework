@@ -176,9 +176,14 @@ class ClassroomDetailViewController: UIViewController {
     }
 
     @IBAction func homeworkButtonOnClick(sender: AnyObject) {
+        /*
         let homeworkListVC = HomeworkListViewController(nibName: "HomeworkListViewController", bundle: nil)
         homeworkListVC.classroomUUID = classroomUUID
         self.navigationController?.pushViewController(homeworkListVC, animated: true)
+        */
+        let calendarHWVC = CalendarHWViewController(nibName: "CalendarHWViewController", bundle: nil)
+        calendarHWVC.classroomUUID = classroomUUID
+        self.navigationController?.pushViewController(calendarHWVC, animated: true)
     }
 
     @IBAction func teacherButtonOnClick(sender: AnyObject) {

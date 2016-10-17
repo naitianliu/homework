@@ -69,7 +69,8 @@ class HomeworkViewModel {
         let content = infoJSON[self.homeworkKeys.content].stringValue
         let type = infoJSON[self.homeworkKeys.type].stringValue
         // due date
-        let dueDateTimestamp = infoJSON[self.homeworkKeys.dueDateTimestamp].intValue
+        // let dueDateTimestamp = infoJSON[self.homeworkKeys.dueDateTimestamp].intValue
+        let dueDateTimestamp = homework[self.homeworkKeys.dueDateTimestamp]! as! Int
         let dueDate: NSDate = self.dateUtility.convertEpochToDate(dueDateTimestamp)
         let dueDateString = self.dateUtility.convertUTCDateToHumanFriendlyDateString(dueDate)
         let rowDict: [String: AnyObject] = [
@@ -94,4 +95,30 @@ class HomeworkViewModel {
         return (teacherName, teacherImgURL)
     }
 
+    func getDateCountDictByMonth(classroomUUID: String, month: NSDate) -> [NSDate: Int] {
+        var resultDict: [NSDate: Int] = [:]
+        let dateUtility = DateUtility()
+        for i in -7...38 {
+            let date = month.dateByAddingDays(i)
+            let from: Int = dateUtility.convertDateToEpoch(date)
+            let to: Int = dateUtility.convertDateToEpoch(date.dateByAddingDays(1))
+            let count = self.homeworkModelHelper.getHomeworkCountByDateRange(classroomUUID, from: from, to: to, active: true)
+            resultDict[date] = count
+        }
+        return resultDict
+    }
+
+    func getHomeworkListByDueDate(classroomUUID: String, dueDate: NSDate) -> [[String: AnyObject]] {
+        let from: Int = dateUtility.convertDateToEpoch(dueDate)
+        let to: Int = dateUtility.convertDateToEpoch(dueDate.dateByAddingDays(1))
+        var dataArray: [[String: AnyObject]] = []
+        for homework in self.homeworkModelHelper.getHomeworkListByDateRange(classroomUUID, from: from, to: to, active: true) {
+            let rowDict = self.getRowDictByHomework(homework)
+            dataArray.append(rowDict)
+        }
+        return dataArray
+    }
+
 }
+
+

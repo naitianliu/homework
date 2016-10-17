@@ -26,7 +26,7 @@ struct GlobalConstants {
         1051: "验证码错误或已过期，请返回重新获取验证码",
     ]
 
-    static let kRealmSchemaVersion: UInt64 = 6
+    static let kRealmSchemaVersion: UInt64 = 7
 
     static let kProfileImagePlaceholder: UIImage = UIImage(named: "profile-placeholder")!
 
@@ -52,8 +52,8 @@ struct GlobalConstants {
 
 }
 
-let APIEndpoint = "http://192.168.1.82:8000/api/v1"
-// let APIEndpoint = "https://hw.knockfuture.com/api/v1"
+// let APIEndpoint = "http://192.168.1.82:8000/api/v1"
+let APIEndpoint = "https://hw.knockfuture.com/api/v1"
 
 struct APIURL {
     

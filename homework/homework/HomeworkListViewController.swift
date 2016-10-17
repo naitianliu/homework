@@ -92,6 +92,7 @@ class HomeworkListViewController: UIViewController, UITableViewDelegate, UITable
             return nil
         }
     }
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
