@@ -34,9 +34,10 @@ class APICommentCreate {
             "role": role,
             self.commentKeys.info: info
         ]
+        self.showHUD()
+        self.vc.disableConfirmButton()
         CallAPIHelper(url: self.url, data: data).POST({ (responseData) in
             // success
-            self.showHUD()
             let success = responseData["success"].boolValue
             if success {
                 let timestamp = responseData["timestamp"].intValue
@@ -46,9 +47,11 @@ class APICommentCreate {
                 self.vc.dismissViewControllerAnimated(true, completion: nil)
             }
             self.hideHUD()
+            self.vc.enableConfirmButton()
             }) { (error) in
                 // error
                 self.hideHUD()
+                self.vc.enableConfirmButton()
         }
     }
 

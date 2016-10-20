@@ -101,6 +101,13 @@ class SubmissionViewModel {
             ]
             submissionArray.append(rowDict)
         }
+        if let imageURLs = infoJSON[self.submissionKeys.imageURLList].arrayObject {
+            let rowDict: [String: AnyObject] = [
+                self.submissionKeys.submissionType: "images",
+                self.submissionKeys.imageURLList: imageURLs
+            ]
+            submissionArray.append(rowDict)
+        }
         return submissionArray
     }
 }

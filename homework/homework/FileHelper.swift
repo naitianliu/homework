@@ -26,6 +26,17 @@ class FileHelper {
         }
     }
 
+    func saveCompressedJPEGImageToFile(image: UIImage, objectKey: String) -> String? {
+        let filepath: String = "\(getDocumentsDirectory())/\(objectKey)-image.jpg"
+        do {
+            try UIImageJPEGRepresentation(image, 0.1)?.writeToFile(filepath, options: .AtomicWrite)
+            return filepath
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+
     func getDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]

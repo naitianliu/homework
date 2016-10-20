@@ -14,6 +14,8 @@ class ProgressHUDHelper {
 
     var view: UIView!
 
+    var hud: MBProgressHUD!
+
     init(view: UIView) {
         self.view = view
     }
@@ -21,6 +23,19 @@ class ProgressHUDHelper {
     func show() {
         dispatch_async(dispatch_get_main_queue()) {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        }
+    }
+
+    func showWithTitle(title: String) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            self.hud.label.text = title
+        }
+    }
+
+    func updateSubtitle(subtitle: String) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.hud.detailsLabel.text = subtitle
         }
     }
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddImageCollectionViewCell" id="gTV-IL-0wX" customClass="AddImageCollectionViewCell" customModule="homework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSl-95-tVo">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-plus" translatesAutoresizingMaskIntoConstraints="NO" id="FBF-5z-Xqe">
+                                <rect key="frame" x="25" y="37" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ISc-lq-ZsK"/>
+                                    <constraint firstAttribute="height" constant="50" id="lEX-ss-WE3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="添加图片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnf-61-aot">
+                                <rect key="frame" x="8" y="95" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FBF-5z-Xqe" firstAttribute="top" secondItem="KSl-95-tVo" secondAttribute="top" constant="40" id="16H-A5-xd2"/>
+                            <constraint firstItem="cnf-61-aot" firstAttribute="top" secondItem="FBF-5z-Xqe" secondAttribute="bottom" constant="8" id="1WX-7I-IA8"/>
+                            <constraint firstAttribute="trailing" secondItem="FBF-5z-Xqe" secondAttribute="trailing" constant="25" id="BaS-wJ-hC0"/>
+                            <constraint firstItem="cnf-61-aot" firstAttribute="leading" secondItem="KSl-95-tVo" secondAttribute="leading" constant="8" id="S5f-bG-vQu"/>
+                            <constraint firstItem="FBF-5z-Xqe" firstAttribute="leading" secondItem="KSl-95-tVo" secondAttribute="leading" constant="25" id="fw7-cS-Np1"/>
+                            <constraint firstAttribute="trailing" secondItem="cnf-61-aot" secondAttribute="trailing" constant="8" id="rAG-2y-IWh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="KSl-95-tVo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DOd-Oa-PPn"/>
+                <constraint firstAttribute="bottom" secondItem="KSl-95-tVo" secondAttribute="bottom" id="DkK-I5-HpA"/>
+                <constraint firstAttribute="trailing" secondItem="KSl-95-tVo" secondAttribute="trailing" id="oQC-Ma-O7G"/>
+                <constraint firstItem="KSl-95-tVo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qr6-ie-yNC"/>
+            </constraints>
+            <size key="customSize" width="100" height="150"/>
+            <connections>
+                <outlet property="containerView" destination="KSl-95-tVo" id="LFE-5G-IxZ"/>
+            </connections>
+            <point key="canvasLocation" x="799" y="563"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon-plus" width="50" height="50"/>
+    </resources>
+</document>

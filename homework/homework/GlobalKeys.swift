@@ -74,6 +74,8 @@ struct GlobalKeys {
         static let audioList = "audio_list"
         static let audioURL = "audio_url"
 
+        static let imageURLList = "image_url_list"
+
         static let submitterName = "submitter_name"
         static let submitterImgURL = "submitter_img_url"
         static let time = "time"

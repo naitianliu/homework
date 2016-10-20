@@ -8,6 +8,7 @@
 
 import UIKit
 import SVPullToRefresh
+import SKPhotoBrowser
 
 class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
@@ -84,6 +85,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         tableView.registerNib(UINib(nibName: "HomeworkInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeworkInfoTableViewCell")
         tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
         tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWImagesTableViewCell", bundle: nil), forCellReuseIdentifier: "HWImagesTableViewCell")
         tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
         tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
         tableView.registerNib(UINib(nibName: "EmptySectionTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptySectionTableViewCell")
@@ -109,6 +111,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         case 0:
             return 1
         case 1:
+            
             return self.submissionArray.count + 1
         case 2:
             if self.comments.count == 0 {
@@ -125,7 +128,6 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
-            cell.selectionStyle = .None
             cell.configurate(homeworkData)
             return cell
         case 1:
@@ -135,18 +137,27 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                     cell.configurate(submissionData)
                     return cell
                 } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
-                    let currentIndex = indexPath.row - 1
-                    var status = self.submissionKeys.AudioStatus.hidden
-                    if currentIndex == self.playingIndex {
-                        status = self.playingStatus
-                    }
                     let rowDict = self.submissionArray[indexPath.row - 1]
-                    cell.configurate(rowDict, status: status, completePlay: { 
-                        self.playingIndex = -1
-                        self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                    })
-                    return cell
+                    let submissionType = rowDict[self.submissionKeys.submissionType] as! String
+                    if submissionType == "audio" {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
+                        let currentIndex = indexPath.row - 1
+                        var status = self.submissionKeys.AudioStatus.hidden
+                        if currentIndex == self.playingIndex {
+                            status = self.playingStatus
+                        }
+                        cell.configurate(rowDict, status: status, completePlay: {
+                            self.playingIndex = -1
+                            self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                        })
+                        return cell
+                    } else {
+                        let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
+                        let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
+                        cell.configurate(imageURLs.count)
+                        return cell
+                    }
+
                 }
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("EmptySectionTableViewCell") as! EmptySectionTableViewCell
@@ -187,19 +198,27 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row > 0 {
-            self.commentPlayingIndex = -1
-            self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
-            if self.playingIndex == indexPath.row - 1 {
-                self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                self.playingIndex = -1
-            } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
-                self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                self.playingIndex = indexPath.row - 1
+            let rowDict = self.submissionArray[indexPath.row - 1]
+            let submissionType = rowDict[self.submissionKeys.submissionType] as! String
+            if submissionType == "audio" {
+                self.commentPlayingIndex = -1
+                self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                if self.playingIndex == indexPath.row - 1 {
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.playingIndex = -1
+                } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.playingIndex = indexPath.row - 1
+                } else {
+                    self.playingStatus = self.submissionKeys.AudioStatus.working
+                    self.playingIndex = indexPath.row - 1
+                }
+                tableView.reloadData()
             } else {
-                self.playingStatus = self.submissionKeys.AudioStatus.working
-                self.playingIndex = indexPath.row - 1
+                let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
+                self.showPhotoBrowser(imageURLs)
             }
-            tableView.reloadData()
+
         } else if indexPath.section == 2 {
             self.playingIndex = -1
             self.playingStatus = self.submissionKeys.AudioStatus.hidden
@@ -267,11 +286,25 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     }
 
     func submitButtonOnClick(sender: AnyObject) {
-        self.showAudioWHRecordVC()
+        self.showPrepareSubmissionNC()
     }
 
     func commentButtonOnClick(sender: AnyObject) {
         self.showHomeworkCommentVC()
+    }
+
+    private func showPrepareSubmissionNC() {
+        if self.submissionUUID == nil {
+            let prepareSubmissionVC = PrepareSubmissionViewController(nibName: "PrepareSubmissionViewController", bundle: nil)
+            prepareSubmissionVC.homeworkUUID = self.homeworkUUID
+            prepareSubmissionVC.completePrepareSubmissionBlockSetter { (info) in
+                APIHomeworkSubmit(vc: self).run(self.homeworkUUID, info: info)
+            }
+            let navigationController = UINavigationController(rootViewController: prepareSubmissionVC)
+            self.presentViewController(navigationController, animated: true, completion: nil)
+        } else {
+            AlertHelper(viewController: self).showPromptAlertView("作业已提交，请勿重复提交")
+        }
     }
 
     private func showAudioWHRecordVC() {
@@ -294,10 +327,9 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         } else {
             AlertHelper(viewController: self).showPromptAlertView("作业已提交，请勿重复提交")
         }
-
     }
 
-    func showHomeworkCommentVC() {
+    private func showHomeworkCommentVC() {
         if let submissionUUID = submissionUUID {
             let homeworkCommentVC = HomeworkCommentViewController(nibName: "HomeworkCommentViewController", bundle: nil)
             homeworkCommentVC.submissionUUID = submissionUUID
@@ -309,12 +341,25 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         }
     }
 
+    private func showPhotoBrowser(imageURLs: [String]) {
+        var photos = [SKPhoto]()
+        for url in imageURLs {
+            let photo = SKPhoto.photoWithImageURL(url)
+            photos.append(photo)
+        }
+        // initiate browser
+        let browser = SKPhotoBrowser(photos: photos)
+        browser.initializePageIndex(0)
+        presentViewController(browser, animated: true, completion: nil)
+    }
+
     private func setupPullToRefresh() {
         tableView.addPullToRefreshWithActionHandler {
             if let submissionUUID = self.submissionUUID {
                 APIHomeworkGetSubmissionInfo(vc: self).run(submissionUUID)
+            } else {
+                self.tableView.pullToRefreshView.stopAnimating()
             }
-
         }
         tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
         tableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))

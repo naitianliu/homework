@@ -324,7 +324,6 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     func sliderValueChanged(sender: AnyObject!) {
         let slider = sender as! ASValueTrackingSlider
         self.changeCurrentScoreLabelValue(slider)
-
     }
 
     private func changeCurrentScoreLabelValue(slider: ASValueTrackingSlider) {
@@ -339,6 +338,8 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.addPullToRefreshWithActionHandler {
             if let submissionUUID = self.submissionUUID {
                 APICommentGetList(vc: self).run(submissionUUID)
+            } else {
+                self.tableView.pullToRefreshView.stopAnimating()
             }
         }
         tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))

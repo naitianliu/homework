@@ -21,6 +21,8 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
 
     let commentKeys = GlobalKeys.CommentKeys.self
 
+    var confirmButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,12 +53,20 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
     private func initBarItems() {
         let cancelButton = UIBarButtonItem(title: "取消", style: .Plain, target: self, action: #selector(self.cancelButtonOnClick))
         self.navigationItem.leftBarButtonItem = cancelButton
-        let confirmButton = UIBarButtonItem(title: "发送", style: .Plain, target: self, action: #selector(self.confirmButtonOnClick))
+        self.confirmButton = UIBarButtonItem(title: "发送", style: .Plain, target: self, action: #selector(self.confirmButtonOnClick))
         self.navigationItem.rightBarButtonItem = confirmButton
     }
 
     @objc private func cancelButtonOnClick(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func enableConfirmButton() {
+        self.confirmButton.enabled = true
+    }
+
+    func disableConfirmButton() {
+        self.confirmButton.enabled = false
     }
 
     @objc private func confirmButtonOnClick(sender: AnyObject) {
