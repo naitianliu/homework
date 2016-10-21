@@ -9,6 +9,7 @@
 import UIKit
 import ASValueTrackingSlider
 import SVPullToRefresh
+import SKPhotoBrowser
 
 class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ASValueTrackingSliderDataSource {
 
@@ -82,6 +83,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
         tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWImagesTableViewCell", bundle: nil), forCellReuseIdentifier: "HWImagesTableViewCell")
         tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
         tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
     }
@@ -113,18 +115,30 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
                     return UITableViewCell()
                 }
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
-                let currentIndex = indexPath.row - 1
-                var status = self.submissionKeys.AudioStatus.hidden
-                if currentIndex == self.playingIndex {
-                    status = self.playingStatus
-                }
                 let rowDict = self.submissionArray[indexPath.row - 1]
-                cell.configurate(rowDict, status: status, completePlay: {
-                    self.playingIndex = -1
-                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                })
-                return cell
+                let submissionType = rowDict[self.submissionKeys.submissionType] as! String
+                if submissionType == "audio" {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
+                    let currentIndex = indexPath.row - 1
+                    var status = self.submissionKeys.AudioStatus.hidden
+                    if currentIndex == self.playingIndex {
+                        status = self.playingStatus
+                    }
+                    let rowDict = self.submissionArray[indexPath.row - 1]
+                    cell.configurate(rowDict, status: status, completePlay: {
+                        self.playingIndex = -1
+                        self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    })
+                    return cell
+                } else if submissionType == "images" {
+                    let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
+                    let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
+                    cell.configurate(imageURLs.count)
+                    return cell
+                } else {
+                    return UITableViewCell()
+                }
+
             }
         } else if indexPath.section == 1 {
             let rowDict = comments[indexPath.row]
@@ -154,17 +168,24 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row > 0 {
-            if self.playingIndex == indexPath.row - 1 {
-                self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                self.playingIndex = -1
-            } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
-                self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                self.playingIndex = indexPath.row - 1
-            } else {
-                self.playingStatus = self.submissionKeys.AudioStatus.working
-                self.playingIndex = indexPath.row - 1
+            let rowDict = self.submissionArray[indexPath.row - 1]
+            let submissionType = rowDict[self.submissionKeys.submissionType] as! String
+            if submissionType == "audio" {
+                if self.playingIndex == indexPath.row - 1 {
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.playingIndex = -1
+                } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.playingIndex = indexPath.row - 1
+                } else {
+                    self.playingStatus = self.submissionKeys.AudioStatus.working
+                    self.playingIndex = indexPath.row - 1
+                }
+                tableView.reloadData()
+            } else if submissionType == "images" {
+                let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
+                self.showPhotoBrowser(imageURLs)
             }
-            tableView.reloadData()
         } else if indexPath.section == 1 {
             self.playingIndex = -1
             self.playingStatus = self.submissionKeys.AudioStatus.hidden
@@ -332,6 +353,18 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         let trimmedScore: String = score.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         self.currentScoreLabel?.text = "当前设定分数：\(trimmedScore)"
         self.currentScore = trimmedScore
+    }
+
+    private func showPhotoBrowser(imageURLs: [String]) {
+        var photos = [SKPhoto]()
+        for url in imageURLs {
+            let photo = SKPhoto.photoWithImageURL(url)
+            photos.append(photo)
+        }
+        // initiate browser
+        let browser = SKPhotoBrowser(photos: photos)
+        browser.initializePageIndex(0)
+        presentViewController(browser, animated: true, completion: nil)
     }
 
     private func setupPullToRefresh() {

@@ -111,7 +111,6 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         case 0:
             return 1
         case 1:
-            
             return self.submissionArray.count + 1
         case 2:
             if self.comments.count == 0 {
@@ -151,13 +150,14 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                             self.playingStatus = self.submissionKeys.AudioStatus.hidden
                         })
                         return cell
-                    } else {
+                    } else if submissionType == "images" {
                         let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
                         let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
                         cell.configurate(imageURLs.count)
                         return cell
+                    } else {
+                        return UITableViewCell()
                     }
-
                 }
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("EmptySectionTableViewCell") as! EmptySectionTableViewCell
@@ -214,11 +214,10 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                     self.playingIndex = indexPath.row - 1
                 }
                 tableView.reloadData()
-            } else {
+            } else if submissionType == "images" {
                 let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
                 self.showPhotoBrowser(imageURLs)
             }
-
         } else if indexPath.section == 2 {
             self.playingIndex = -1
             self.playingStatus = self.submissionKeys.AudioStatus.hidden

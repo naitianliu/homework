@@ -158,7 +158,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if indexPath.row == 0 {
                 self.createClassroomBlock!()
             } else if indexPath.row == 1 {
-                PresentVCUtility(vc: self).showSelectHWTypeVC(nil)
+                PresentVCUtility(vc: self).showSelectHWTypeVC(nil, completion: nil)
             } else if indexPath.row == 2 {
 
             }

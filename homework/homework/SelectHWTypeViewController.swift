@@ -14,11 +14,17 @@ class SelectHWTypeViewController: UIViewController {
 
     var selectedClassroomUUID: String?
 
+    typealias CompletionClosureType = () -> Void
+
+    var completionBlock: CompletionClosureType?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.renderBlurBackground()
+
         self.setupHomeworkTypeButtons()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +99,7 @@ class SelectHWTypeViewController: UIViewController {
         let createHWVC = createHWNC.viewControllers[0] as! CreateHWViewController
         createHWVC.selectedType = selectedType
         createHWVC.selectedClassroomUUID = self.selectedClassroomUUID
+        createHWVC.completionBlock = self.completionBlock
         createHWNC.modalTransitionStyle = .CoverVertical
         let vc = self.view.window?.rootViewController
         vc!.presentViewController(createHWNC, animated: true, completion: nil)

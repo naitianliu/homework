@@ -27,9 +27,10 @@ class FileHelper {
     }
 
     func saveCompressedJPEGImageToFile(image: UIImage, objectKey: String) -> String? {
+        let newImage = self.resizeImage(image, newWidth: 500)
         let filepath: String = "\(getDocumentsDirectory())/\(objectKey)-image.jpg"
         do {
-            try UIImageJPEGRepresentation(image, 0.1)?.writeToFile(filepath, options: .AtomicWrite)
+            try UIImageJPEGRepresentation(newImage, 0.5)?.writeToFile(filepath, options: .AtomicWrite)
             return filepath
         } catch {
             print(error)
@@ -41,6 +42,17 @@ class FileHelper {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+
+    private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        print(image.size.width)
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
     }
 
 }

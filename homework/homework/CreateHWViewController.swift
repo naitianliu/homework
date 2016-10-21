@@ -20,6 +20,10 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
 
+    typealias CompletionClosureType = () -> Void
+
+    var completionBlock: CompletionClosureType?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

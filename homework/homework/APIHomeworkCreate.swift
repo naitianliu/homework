@@ -21,9 +21,9 @@ class APIHomeworkCreate {
 
     let homeworkModelHelper = HomeworkModelHelper()
 
-    var vc: UIViewController!
+    var vc: CreateHWViewController!
     
-    init(vc: UIViewController!) {
+    init(vc: CreateHWViewController!) {
         self.vc = vc
     }
 
@@ -44,7 +44,11 @@ class APIHomeworkCreate {
                 let infoData: NSData = DataTypeConversionHelper().convertDictToNSData(info)
                 self.homeworkModelHelper.add(homeworkUUID, classroomUUID: classroomUUID, creator: nil, active: true, dueDateTimestamp: dueDateTimestamp, createdTimestamp: timestamp, updatedTimestamp: timestamp, info: infoData)
             }
-            self.vc.dismissViewControllerAnimated(true, completion: nil)
+            self.vc.dismissViewControllerAnimated(true, completion: {
+                if let completion = self.vc.completionBlock {
+                    completion()
+                }
+            })
             }) { (error) in
                 // error
                 MBProgressHUD.hideHUDForView(self.vc.view, animated: true)

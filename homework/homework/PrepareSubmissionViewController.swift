@@ -137,6 +137,7 @@ class PrepareSubmissionViewController: UIViewController, UITableViewDelegate, UI
             if indexPath.row < self.audioArray.count {
                 let rowDict = self.audioArray[indexPath.row]
                 let audioDuration: NSTimeInterval = rowDict[self.submissionKeys.duration]! as! NSTimeInterval
+                cell.accessoryType = .None
                 cell.configurate(audioDuration)
             } else {
                 cell.configurate(nil)

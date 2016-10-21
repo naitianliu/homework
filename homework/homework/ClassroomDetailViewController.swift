@@ -50,8 +50,9 @@ class ClassroomDetailViewController: UIViewController {
             self.countHomeworkNumber()
         }
 
-
         APIHomeworkGetHomeworkList(vc: self).run(self.classroomUUID)
+
+        self.reloadHomeworks()
 
     }
 
@@ -73,7 +74,6 @@ class ClassroomDetailViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.reloadHomeworks()
         if self.role == "t" {
             self.renderHomeworkActionView()
         }
@@ -166,7 +166,9 @@ class ClassroomDetailViewController: UIViewController {
     }
 
     func newHomeworkButtonOnClick(sender: AnyObject!) {
-        PresentVCUtility(vc: self).showSelectHWTypeVC(self.classroomUUID)
+        PresentVCUtility(vc: self).showSelectHWTypeVC(self.classroomUUID, completion: {
+            self.reloadHomeworks()
+        })
     }
 
     @IBAction func moreInfoButtonOnClick(sender: AnyObject) {
