@@ -118,6 +118,7 @@ class QAQuestionCreateViewController: UIViewController, UITableViewDelegate, UIT
             classroomPickerVC.completeSelectionBlockSetter({ (classroomUUID, classroomName) in
                 self.classroomUUID = classroomUUID
                 self.classroomName = classroomName
+                self.tableView.reloadData()
             })
             self.navigationController?.pushViewController(classroomPickerVC, animated: true)
         }

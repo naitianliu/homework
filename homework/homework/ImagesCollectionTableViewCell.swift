@@ -20,6 +20,9 @@ class ImagesCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     typealias ImagePickedClosureType = (index: Int) -> Void
     var imagePickedBlock: ImagePickedClosureType?
 
+    typealias DidDeleteClosureType = (imageArray: [UIImage]) -> Void
+    var didDeleteBlock: DidDeleteClosureType?
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -55,7 +58,13 @@ class ImagesCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         if indexPath.row < self.imageArray.count {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImagesCollectionViewCell", forIndexPath: indexPath) as! ImagesCollectionViewCell
             let image = self.imageArray[indexPath.row]
-            cell.configurate(image)
+            cell.configurate(image, delete: {
+                self.imageArray.removeAtIndex(indexPath.row)
+                if let didDeleteBlock = self.didDeleteBlock {
+                    didDeleteBlock(imageArray: self.imageArray)
+                }
+                self.collectionView.reloadData()
+            })
             return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AddImageCollectionViewCell", forIndexPath: indexPath) as! AddImageCollectionViewCell
@@ -81,10 +90,11 @@ class ImagesCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         return size
     }
 
-    func configurate(imageArray: [UIImage], addImageClicked: AddImageClickedClosureType, imagePicked: ImagePickedClosureType) {
+    func configurate(imageArray: [UIImage], addImageClicked: AddImageClickedClosureType, imagePicked: ImagePickedClosureType, didDelete: DidDeleteClosureType) {
         self.imageArray = imageArray
         self.addImageClickedBlock = addImageClicked
         self.imagePickedBlock = imagePicked
+        self.didDeleteBlock = didDelete
         collectionView.reloadData()
     }
     

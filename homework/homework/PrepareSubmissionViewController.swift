@@ -145,10 +145,12 @@ class PrepareSubmissionViewController: UIViewController, UITableViewDelegate, UI
             return cell
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("ImagesCollectionTableViewCell") as! ImagesCollectionTableViewCell
-            cell.configurate(self.imageArray, addImageClicked: {
+            cell.configurate(self.imageArray, addImageClicked: { 
                 self.showSelectAddImageTypeActionSheet()
                 }, imagePicked: { (index) in
                     self.showPhotoBrowser(index)
+                }, didDelete: { (imageArray) in
+                    self.imageArray = imageArray
             })
             return cell
         default:

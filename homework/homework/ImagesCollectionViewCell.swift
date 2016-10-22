@@ -14,6 +14,9 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var deleteButton: UIButton!
 
+    typealias DeleteClosureType = () -> Void
+    var deleteBlock: DeleteClosureType?
+
     let borderColor: UIColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
 
     override func awakeFromNib() {
@@ -30,11 +33,15 @@ class ImagesCollectionViewCell: UICollectionViewCell {
 
     }
 
-    func configurate(image: UIImage) {
+    func configurate(image: UIImage, delete: DeleteClosureType) {
         self.imageView.image = image
+        self.deleteBlock = delete
     }
 
     @IBAction func deleteButtonOnClick(sender: AnyObject) {
-        
+        if let deleteBlock = self.deleteBlock {
+            deleteBlock()
+        }
     }
+
 }
