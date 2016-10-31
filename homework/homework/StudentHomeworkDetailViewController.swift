@@ -38,6 +38,12 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     let submissionKeys = GlobalKeys.SubmissionKeys.self
     let commentKeys = GlobalKeys.CommentKeys.self
 
+    var homeworkAudioList = [[String: AnyObject]]()
+    var homeworkImageURLList = [String]()
+
+    var homeworkPlayingIndex: Int = -1
+    var homeworkPlayingStatus: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,6 +82,17 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         self.reloadTable()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.playingIndex = -1
+        self.playingStatus = self.submissionKeys.AudioStatus.hidden
+        self.commentPlayingIndex = -1
+        self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+        self.homeworkPlayingIndex = -1
+        self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
+        self.reloadTable()
+    }
+
     private func initTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -94,6 +111,12 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
 
     func reloadTable() {
         homeworkData = self.homeworkViewModel.getHomeworkInfo(self.homeworkUUID)
+        if let audioList = homeworkData[self.submissionKeys.audioList] {
+            self.homeworkAudioList = audioList as! [[String: AnyObject]]
+        }
+        if let imageURLs = homeworkData[self.submissionKeys.imageURLList] {
+            self.homeworkImageURLList = imageURLs as! [String]
+        }
         if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
             self.submissionData = submissionTup.0
             self.submissionArray = submissionTup.1
@@ -109,7 +132,11 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
+            var imageCount: Int = 0
+            if self.homeworkImageURLList.count > 0 {
+                imageCount = 1
+            }
+            return 1 + self.homeworkAudioList.count + imageCount
         case 1:
             return self.submissionArray.count + 1
         case 2:
@@ -126,9 +153,30 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
-            cell.configurate(homeworkData)
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
+                cell.configurate(homeworkData)
+                return cell
+            } else if indexPath.row < self.homeworkAudioList.count + 1 {
+                let rowDict = self.homeworkAudioList[indexPath.row - 1]
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
+                let currentIndex = indexPath.row - 1
+                var status = self.submissionKeys.AudioStatus.hidden
+                if currentIndex == self.homeworkPlayingIndex {
+                    status = self.homeworkPlayingStatus
+                }
+                cell.configurate(rowDict, status: status, completePlay: {
+                    self.homeworkPlayingIndex = -1
+                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                })
+                return cell
+            } else if indexPath.row == self.homeworkAudioList.count + 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
+                cell.configurate(self.homeworkImageURLList.count)
+                return cell
+            } else {
+                return UITableViewCell()
+            }
         case 1:
             if let submissionData = self.submissionData {
                 if indexPath.row == 0 {
@@ -203,6 +251,8 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             if submissionType == "audio" {
                 self.commentPlayingIndex = -1
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                self.homeworkPlayingIndex = -1
+                self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 if self.playingIndex == indexPath.row - 1 {
                     self.playingStatus = self.submissionKeys.AudioStatus.hidden
                     self.playingIndex = -1
@@ -221,6 +271,8 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         } else if indexPath.section == 2 {
             self.playingIndex = -1
             self.playingStatus = self.submissionKeys.AudioStatus.hidden
+            self.homeworkPlayingIndex = -1
+            self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
             if self.commentPlayingIndex == indexPath.row {
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 self.commentPlayingIndex = -1
@@ -232,6 +284,26 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 self.commentPlayingIndex = indexPath.row
             }
             tableView.reloadData()
+        } else if indexPath.section == 0 {
+            self.playingIndex = -1
+            self.playingStatus = self.submissionKeys.AudioStatus.hidden
+            self.commentPlayingIndex = -1
+            self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+            if indexPath.row > 0 && indexPath.row < self.homeworkAudioList.count + 1 {
+                if self.homeworkPlayingIndex == indexPath.row - 1 {
+                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.homeworkPlayingIndex = -1
+                } else if self.homeworkPlayingStatus == self.submissionKeys.AudioStatus.working {
+                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.homeworkPlayingIndex = indexPath.row - 1
+                } else {
+                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.working
+                    self.homeworkPlayingIndex = indexPath.row - 1
+                }
+                tableView.reloadData()
+            } else if indexPath.row == self.homeworkAudioList.count + 1 {
+                self.showPhotoBrowser(self.homeworkImageURLList)
+            }
         }
     }
 

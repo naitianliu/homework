@@ -137,6 +137,9 @@ class ClassroomDetailViewController: UIViewController {
         if self.role == "t" {
             let homeworkDetailVC = HomeworkDetailViewController(nibName: "HomeworkDetailViewController", bundle: nil)
             homeworkDetailVC.homeworkUUID = homeworkUUID
+            homeworkDetailVC.didCloseHomeworkBlockSetter({ 
+                self.reloadHomeworks()
+            })
             self.navigationController?.pushViewController(homeworkDetailVC, animated: true)
         } else if self.role == "s" {
             let studentHWDetailVC = StudentHomeworkDetailViewController(nibName: "StudentHomeworkDetailViewController", bundle: nil)

@@ -47,11 +47,25 @@ class UpdateModelHelper {
         }
     }
 
-    func getList() -> [[String: AnyObject]] {
+    func getList(page: Int) -> [[String: AnyObject]] {
+        let step: Int = 20
         var dataArray: [[String: AnyObject]] = []
         do {
             let realm = try Realm()
-            for item in realm.objects(UpdateModel) {
+            let updates = realm.objects(UpdateModel)
+            let totalCount = updates.count
+            var from: Int = totalCount - (page + 1) * step
+            var to: Int = from + step
+            if from < 0 {
+                if to > 0 {
+                    from = 0
+                } else {
+                    from = 0
+                    to = 0
+                }
+            }
+            for i in from..<to  {
+                let item = updates[i]
                 let rowDict = self.getUpdateRowDict(item)
                 dataArray.append(rowDict)
             }

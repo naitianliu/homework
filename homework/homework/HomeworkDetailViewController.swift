@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -25,36 +26,63 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     let submissionViewModel = SubmissionViewModel()
 
     let submissionKeys = GlobalKeys.SubmissionKeys.self
+
+    var homeworkAudioList = [[String: AnyObject]]()
+    var homeworkImageURLList = [String]()
+
+    var playingIndex: Int = -1
+    var playingStatus: String = ""
+
+    typealias DidCloseHomeworkClosureType = () -> Void
+    var didCloseHomeworkBlock: DidCloseHomeworkClosureType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "作业列表"
         self.initiateActionButton()
-
-        homeworkData = self.homeworkViewModel.getHomeworkInfo(self.homeworkUUID)
-
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
-
-        // tableView.backgroundColor = UIColor.whiteColor()
-        tableView.tableFooterView = UIView()
-
-        tableView.registerNib(UINib(nibName: "HomeworkInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeworkInfoTableViewCell")
-        tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
-
+        self.initHomeworkData()
+        self.initTableView()
         APIHomeworkGetSubmissionList(vc: self).run(self.homeworkUUID)
-
         self.tabBarController?.tabBar.hidden = true
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.playingIndex = -1
+        self.playingStatus = self.submissionKeys.AudioStatus.hidden
+        self.reloadTable()
+    }
+
+    func didCloseHomeworkBlockSetter(didCloseHomework: DidCloseHomeworkClosureType) {
+        self.didCloseHomeworkBlock = didCloseHomework
+    }
+
+    private func initHomeworkData() {
+        homeworkData = self.homeworkViewModel.getHomeworkInfo(self.homeworkUUID)
+        if let audioList = homeworkData[self.submissionKeys.audioList] {
+            self.homeworkAudioList = audioList as! [[String: AnyObject]]
+        }
+        if let imageURLs = homeworkData[self.submissionKeys.imageURLList] {
+            self.homeworkImageURLList = imageURLs as! [String]
+        }
+    }
+
+    private func initTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.registerNib(UINib(nibName: "HomeworkInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeworkInfoTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
+        tableView.registerNib(UINib(nibName: "HWImagesTableViewCell", bundle: nil), forCellReuseIdentifier: "HWImagesTableViewCell")
     }
 
     func reloadTable() {
@@ -71,7 +99,11 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
+            var imageCount: Int = 0
+            if self.homeworkImageURLList.count > 0 {
+                imageCount = 1
+            }
+            return 1 + self.homeworkAudioList.count + imageCount
         case 1:
             return self.ungradedHomeworkArray.count
         case 2:
@@ -84,9 +116,30 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
-            cell.configurate(homeworkData)
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("HomeworkInfoTableViewCell") as! HomeworkInfoTableViewCell
+                cell.configurate(homeworkData)
+                return cell
+            } else if indexPath.row < self.homeworkAudioList.count + 1 {
+                let rowDict = self.homeworkAudioList[indexPath.row - 1]
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
+                let currentIndex = indexPath.row - 1
+                var status = self.submissionKeys.AudioStatus.hidden
+                if currentIndex == self.playingIndex {
+                    status = self.playingStatus
+                }
+                cell.configurate(rowDict, status: status, completePlay: {
+                    self.playingIndex = -1
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                })
+                return cell
+            } else if indexPath.row == self.homeworkAudioList.count + 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
+                cell.configurate(self.homeworkImageURLList.count)
+                return cell
+            } else {
+                return UITableViewCell()
+            }
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("HWStudentSubmitTableViewCell") as! HWStudentSubmitTableViewCell
             let data = self.ungradedHomeworkArray[indexPath.row]
@@ -111,6 +164,22 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         } else if indexPath.section == 2 {
             let submissionUUID = self.gradedHomeworkArray[indexPath.row][self.submissionKeys.submissionUUID] as! String
             self.showHomeworkGradeVC(submissionUUID)
+        } else if indexPath.section == 0 {
+            if indexPath.row > 0 && indexPath.row < self.homeworkAudioList.count + 1 {
+                if self.playingIndex == indexPath.row - 1 {
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.playingIndex = -1
+                } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
+                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
+                    self.playingIndex = indexPath.row - 1
+                } else {
+                    self.playingStatus = self.submissionKeys.AudioStatus.working
+                    self.playingIndex = indexPath.row - 1
+                }
+                tableView.reloadData()
+            } else if indexPath.row == self.homeworkAudioList.count + 1 {
+                self.showPhotoBrowser(self.homeworkImageURLList)
+            }
         }
 
     }
@@ -167,6 +236,18 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         }))
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    private func showPhotoBrowser(imageURLs: [String]) {
+        var photos = [SKPhoto]()
+        for url in imageURLs {
+            let photo = SKPhoto.photoWithImageURL(url)
+            photos.append(photo)
+        }
+        // initiate browser
+        let browser = SKPhotoBrowser(photos: photos)
+        browser.initializePageIndex(0)
+        presentViewController(browser, animated: true, completion: nil)
     }
 
 

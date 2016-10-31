@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SwiftyJSON
-import MBProgressHUD
 
 class APIHomeworkCreate {
 
@@ -28,15 +27,16 @@ class APIHomeworkCreate {
     }
 
     func run(classroomUUID: String, dueDateTimestamp: Int, info: [String: AnyObject]) {
-        MBProgressHUD.showHUDAddedTo(self.vc.view, animated: true)
         let data: [String: AnyObject] = [
             Keys.classroomUUID: classroomUUID,
             "role": role,
             "info": info
         ]
+        let hud = ProgressHUDHelper(view: self.vc.view)
+        hud.show()
         CallAPIHelper(url: url, data: data).POST({ (responseData) in
             // success
-            MBProgressHUD.hideHUDForView(self.vc.view, animated: true)
+            hud.hide()
             let success = responseData["success"].boolValue
             if success {
                 let timestamp = responseData["timestamp"].intValue
@@ -51,7 +51,7 @@ class APIHomeworkCreate {
             })
             }) { (error) in
                 // error
-                MBProgressHUD.hideHUDForView(self.vc.view, animated: true)
+                hud.hide()
         }
     }
 }

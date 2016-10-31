@@ -61,8 +61,7 @@ class HWCommentTextAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
     }
 
     private func renderProfileImageView() {
-        let width = profileImageView.bounds.width
-        profileImageView.layer.cornerRadius = width / 2
+        profileImageView.layer.cornerRadius = GlobalConstants.kProfileImageViewWidthSm
         profileImageView.layer.masksToBounds = true
     }
 

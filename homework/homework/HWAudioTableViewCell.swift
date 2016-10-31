@@ -42,6 +42,7 @@ class HWAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.selectionStyle = .Gray
 
         self.player.delegate = self
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -117,7 +118,5 @@ class HWAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
             break
         }
     }
-
-
     
 }

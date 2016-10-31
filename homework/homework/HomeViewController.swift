@@ -39,6 +39,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     var updateDataArray: [[String: AnyObject]] = []
+    var currentPage: Int = 0
 
     let updateViewModel = UpdateViewModel()
 
@@ -59,6 +60,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.reloadUpdateTable()
 
         self.setupPullToRefresh()
+        self.setupInfiniteScrolling()
 
         if let role = UserDefaultsHelper().getRole() {
             self.updatesTableView.triggerPullToRefresh()
@@ -86,8 +88,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func reloadUpdateTable() {
-        self.updateDataArray = self.updateViewModel.getTableViewData()
+        self.currentPage = 0
+        self.updateDataArray = self.updateViewModel.getTableViewData(self.currentPage)
         self.updatesTableView.reloadData()
+        self.currentPage = 1
     }
 
     private func initUpdateTableView() {
@@ -250,6 +254,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         updatesTableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))
         updatesTableView.pullToRefreshView.setTitle("释放刷新", forState: UInt(SVPullToRefreshStateTriggered))
         updatesTableView.pullToRefreshView.setTitle("正在载入...", forState: UInt(SVPullToRefreshStateLoading))
+    }
+
+    private func setupInfiniteScrolling() {
+        self.updatesTableView.addInfiniteScrollingWithActionHandler {
+            self.updateDataArray += self.updateViewModel.getTableViewData(self.currentPage)
+            self.updatesTableView.reloadData()
+            self.currentPage += 1
+            self.updatesTableView.infiniteScrollingView.stopAnimating()
+        }
     }
 
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {

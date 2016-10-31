@@ -18,6 +18,7 @@ class HomewordCardContentView: UIView {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var statusContainerView: UIView!
 
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
 
@@ -36,6 +37,7 @@ class HomewordCardContentView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.renderProfileImageView()
+        // self.setupStatusContainerView()
 
     }
 
@@ -86,6 +88,37 @@ class HomewordCardContentView: UIView {
     private func setupDueDateLabel() {
         let dueDate = self.data[self.homeworkKeys.dueDateString] as! String
         self.dueDateLabel.text = dueDate
+    }
+
+    private func setupStatusContainerView() {
+        self.drawStatusLabel(true)
+    }
+
+    private func drawStatusLabel(submitted: Bool) {
+        let viewWidth = self.statusContainerView.frame.width
+        let labelWidth: CGFloat = 80
+        let labelHeight: CGFloat = 30
+        let x: CGFloat = viewWidth - labelWidth
+        let y: CGFloat = 20
+        let statusLabel = UILabel(frame: CGRect(x: x, y: y, width: labelWidth, height: labelHeight))
+        statusLabel.layer.cornerRadius = labelHeight / 2
+        statusLabel.textAlignment = .Center
+        statusLabel.layer.borderWidth = 1
+        statusLabel.font = UIFont.boldSystemFontOfSize(14)
+        if submitted {
+            statusLabel.text = "已提交"
+            statusLabel.textColor = GlobalConstants.themeColor
+            statusLabel.layer.borderColor = GlobalConstants.themeColor.CGColor
+        } else {
+            statusLabel.text = "未提交"
+            statusLabel.textColor = UIColor.lightGrayColor()
+            statusLabel.layer.borderColor = UIColor.lightGrayColor().CGColor
+        }
+        self.statusContainerView.addSubview(statusLabel)
+    }
+
+    private func drawTeacherStatusView(submittedNumber: Int, gradedNumber: Int) {
+
     }
 
 }

@@ -16,6 +16,7 @@ class HomeworkViewModel {
 
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
     let profileKeys = GlobalKeys.ProfileKeys.self
+    let submissionKeys = GlobalKeys.SubmissionKeys.self
 
     let dateUtility = DateUtility()
 
@@ -73,7 +74,7 @@ class HomeworkViewModel {
         let dueDateTimestamp = homework[self.homeworkKeys.dueDateTimestamp]! as! Int
         let dueDate: NSDate = self.dateUtility.convertEpochToDate(dueDateTimestamp)
         let dueDateString = self.dateUtility.convertUTCDateToHumanFriendlyDateString(dueDate)
-        let rowDict: [String: AnyObject] = [
+        var rowDict: [String: AnyObject] = [
             self.homeworkKeys.homeworkUUID: homeworkUUID,
             self.homeworkKeys.teacherImgURL: teacherInfoTup.1,
             self.homeworkKeys.teacherName: teacherInfoTup.0,
@@ -82,6 +83,12 @@ class HomeworkViewModel {
             self.homeworkKeys.dueDateString: dueDateString,
             self.homeworkKeys.createdTimeString: createdTimeString
         ]
+        if let audioList = infoJSON[self.submissionKeys.audioList].arrayObject {
+            rowDict[self.submissionKeys.audioList] = audioList
+        }
+        if let imageURLs = infoJSON[self.submissionKeys.imageURLList].arrayObject {
+            rowDict[self.submissionKeys.imageURLList] = imageURLs
+        }
         return rowDict
     }
 

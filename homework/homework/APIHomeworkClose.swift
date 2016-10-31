@@ -37,6 +37,9 @@ class APIHomeworkClose {
             if success {
                 self.homeworkModelHelper.close(homeworkUUID)
                 self.vc.navigationController?.popViewControllerAnimated(true)
+                if let didCloseHomework = self.vc.didCloseHomeworkBlock {
+                    didCloseHomework()
+                }
             }
             hudHelper.hide()
             }) { (error) in

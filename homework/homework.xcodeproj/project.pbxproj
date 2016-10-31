@@ -63,6 +63,8 @@
 		462EA3711DB88E3F00E7E557 /* HWImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 462EA36F1DB88E3F00E7E557 /* HWImagesTableViewCell.xib */; };
 		463F782F1DB4561A0024151C /* CalendarHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463F782D1DB4561A0024151C /* CalendarHWViewController.swift */; };
 		463F78301DB4561A0024151C /* CalendarHWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463F782E1DB4561A0024151C /* CalendarHWViewController.xib */; };
+		4651C08D1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651C08B1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift */; };
+		4651C08E1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4651C08C1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -308,6 +310,8 @@
 		46307F541D20ED1500A1971D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		463F782D1DB4561A0024151C /* CalendarHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHWViewController.swift; sourceTree = "<group>"; };
 		463F782E1DB4561A0024151C /* CalendarHWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarHWViewController.xib; sourceTree = "<group>"; };
+		4651C08B1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerTableViewCell.swift; sourceTree = "<group>"; };
+		4651C08C1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerTableViewCell.xib; sourceTree = "<group>"; };
 		466222FA1D12387F0067F338 /* CallAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallAPIHelper.swift; sourceTree = "<group>"; };
 		466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		466222FF1D1258830067F338 /* OSSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSSHelper.swift; sourceTree = "<group>"; };
@@ -1107,6 +1111,8 @@
 				467679451D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib */,
 				4600BD0B1D0E540A00BF460D /* RecordItemTableViewCell.swift */,
 				467679471D7FD2E000A83DA2 /* RecordItemTableViewCell.xib */,
+				4651C08B1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift */,
+				4651C08C1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -1370,6 +1376,7 @@
 				462EA35E1DB5DB6100E7E557 /* PrepareSubmissionViewController.xib in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
 				463F78301DB4561A0024151C /* CalendarHWViewController.xib in Resources */,
+				4651C08E1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib in Resources */,
 				46CD10351D73D9C600023055 /* LogoutTableViewCell.xib in Resources */,
 				4612AF4E1D23803400044E60 /* Classroom.storyboard in Resources */,
 				4676795C1D864FBF00A83DA2 /* ClassroomInfoViewController.xib in Resources */,
@@ -1609,6 +1616,7 @@
 				466223001D1258830067F338 /* OSSHelper.swift in Sources */,
 				468BBA101D2E195400C944C4 /* ProfileDisplayTableViewCell.swift in Sources */,
 				46F8997A1D32159800DF870C /* AddSchoolViewController.swift in Sources */,
+				4651C08D1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift in Sources */,
 				467679501D82437500A83DA2 /* APIHomeworkSubmit.swift in Sources */,
 				46CD104E1D780DDE00023055 /* HomeworkCommentViewController.swift in Sources */,
 				468BBA141D31C61B00C944C4 /* CreateClassroomViewController.swift in Sources */,

@@ -27,9 +27,9 @@ class UpdateViewModel {
 
     }
 
-    func getTableViewData() -> [[String: AnyObject]] {
+    func getTableViewData(page: Int) -> [[String: AnyObject]] {
         var dataArray: [[String: AnyObject]] = []
-        let updateArray = self.updateModelHelper.getList()
+        let updateArray = self.updateModelHelper.getList(page)
         for item in updateArray {
             let type = item[self.updateKeys.type]! as! String
             let uuid = item[self.updateKeys.uuid]! as! String

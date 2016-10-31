@@ -67,6 +67,15 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
         self.reloadTable()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.playingIndex = -1
+        self.playingStatus = self.submissionKeys.AudioStatus.hidden
+        self.commentPlayingIndex = -1
+        self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
+        self.reloadTable()
+    }
+
     func reloadTable() {
         if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
             self.submissionData = submissionTup.0
