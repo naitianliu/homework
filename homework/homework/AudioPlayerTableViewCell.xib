@@ -17,22 +17,17 @@
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u7b-sS-7oQ">
                         <rect key="frame" x="16" y="15" width="29" height="30"/>
-                        <color key="backgroundColor" red="0.41576194763183594" green="0.9953497052192688" blue="0.90624302625656128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="l59-ew-6hv"/>
                             <constraint firstAttribute="width" constant="30" id="ldn-wI-cwG"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tO-T1-mf0">
-                        <rect key="frame" x="65" y="19" width="369" height="21"/>
+                        <rect key="frame" x="65" y="19" width="173" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="QQS-1f-TVY">
-                        <rect key="frame" x="14" y="58" width="349" height="30"/>
-                        <color key="minimumTrackTintColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </slider>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="progressTimeLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sY-FT-Fal">
                         <rect key="frame" x="16" y="53" width="108" height="16"/>
                         <constraints>
@@ -52,15 +47,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5P-j4-gMf">
-                        <rect key="frame" x="168" y="113" width="40" height="40"/>
+                        <rect key="frame" x="167" y="113" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Urn-VQ-IYS"/>
                             <constraint firstAttribute="height" constant="40" id="laU-bh-KBW"/>
                         </constraints>
                         <state key="normal" backgroundImage="record-icon-2"/>
+                        <connections>
+                            <action selector="resumePauseButtonOnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0WR-Wu-3J3"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="暂停" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIo-2f-1sc">
-                        <rect key="frame" x="168" y="161" width="42" height="21"/>
+                        <rect key="frame" x="167" y="161" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -72,6 +70,9 @@
                             <constraint firstAttribute="width" constant="30" id="aqa-na-GgB"/>
                         </constraints>
                         <state key="normal" backgroundImage="play-back"/>
+                        <connections>
+                            <action selector="playBackwardButtonOnClick:" destination="KGk-i7-Jjw" eventType="touchDown" id="KSv-fs-I6c"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="快退" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJe-Iy-PbP">
                         <rect key="frame" x="112" y="150" width="42" height="16"/>
@@ -86,6 +87,9 @@
                             <constraint firstAttribute="height" constant="30" id="qUl-an-9ZD"/>
                         </constraints>
                         <state key="normal" backgroundImage="play-next"/>
+                        <connections>
+                            <action selector="playForwardButtonOnClick:" destination="KGk-i7-Jjw" eventType="touchDown" id="ydx-LJ-PRo"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="快进" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEl-6D-4Ca">
                         <rect key="frame" x="222" y="147" width="42" height="21"/>
@@ -100,6 +104,9 @@
                             <constraint firstAttribute="height" constant="30" id="dBq-fR-uDL"/>
                         </constraints>
                         <state key="normal" backgroundImage="icon-exit"/>
+                        <connections>
+                            <action selector="exitButtonOnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q8r-WK-yh5"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="退出" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJz-H8-hve">
                         <rect key="frame" x="288" y="147" width="30" height="21"/>
@@ -114,6 +121,9 @@
                             <constraint firstAttribute="width" constant="30" id="B8Z-4v-T6M"/>
                         </constraints>
                         <state key="normal" backgroundImage="icon-restart"/>
+                        <connections>
+                            <action selector="restartButtonOnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FU9-cf-qDM"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="重播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4g-bS-eCt">
                         <rect key="frame" x="49" y="147" width="42" height="21"/>
@@ -121,12 +131,31 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="stausLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqd-gE-eGC">
+                        <rect key="frame" x="295" y="19" width="66" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="MeX-nT-2Wi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="QQS-1f-TVY">
+                        <rect key="frame" x="14" y="59" width="349" height="30"/>
+                        <color key="minimumTrackTintColor" red="0.45882352939999999" green="0.82745098039999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <action selector="sliderDragReleased:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="k7m-lr-nkj"/>
+                            <action selector="sliderDragStarted:" destination="KGk-i7-Jjw" eventType="touchDown" id="Pe1-3O-GxF"/>
+                            <action selector="sliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="M6P-oO-4gB"/>
+                        </connections>
+                    </slider>
                 </subviews>
                 <constraints>
                     <constraint firstItem="lEl-6D-4Ca" firstAttribute="top" secondItem="Oce-Qc-qD4" secondAttribute="bottom" constant="5" id="0Ss-54-Et1"/>
                     <constraint firstItem="SHu-f4-kAk" firstAttribute="leading" secondItem="lWh-Rg-kwP" secondAttribute="trailing" constant="25" id="1Pf-FC-cYn"/>
                     <constraint firstItem="c4g-bS-eCt" firstAttribute="width" secondItem="lWh-Rg-kwP" secondAttribute="width" id="2Lr-PX-kq9"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="3tO-T1-mf0" secondAttribute="trailing" constant="20" id="6LL-Mh-Ugq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Mqd-gE-eGC" secondAttribute="trailing" constant="10" id="5Qy-iv-19P"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3tO-T1-mf0" secondAttribute="trailing" constant="100" id="6LL-Mh-Ugq"/>
                     <constraint firstItem="aIo-2f-1sc" firstAttribute="width" secondItem="j5P-j4-gMf" secondAttribute="width" id="8dU-MU-dYh"/>
                     <constraint firstItem="Oce-Qc-qD4" firstAttribute="top" secondItem="j5P-j4-gMf" secondAttribute="top" constant="5" id="8mf-Ww-IVI"/>
                     <constraint firstItem="lEl-6D-4Ca" firstAttribute="leading" secondItem="Oce-Qc-qD4" secondAttribute="leading" id="C5z-2U-t5F"/>
@@ -136,7 +165,7 @@
                     <constraint firstItem="aIo-2f-1sc" firstAttribute="leading" secondItem="j5P-j4-gMf" secondAttribute="leading" id="Khg-FK-Xif"/>
                     <constraint firstItem="dJe-Iy-PbP" firstAttribute="width" secondItem="SHu-f4-kAk" secondAttribute="width" id="Tt7-cn-ImJ"/>
                     <constraint firstItem="3tO-T1-mf0" firstAttribute="height" secondItem="u7b-sS-7oQ" secondAttribute="height" id="UEb-Qa-zXp"/>
-                    <constraint firstItem="3tO-T1-mf0" firstAttribute="leading" secondItem="u7b-sS-7oQ" secondAttribute="trailing" constant="20" id="VQV-UV-nQk"/>
+                    <constraint firstItem="3tO-T1-mf0" firstAttribute="leading" secondItem="u7b-sS-7oQ" secondAttribute="trailing" constant="5" id="VQV-UV-nQk"/>
                     <constraint firstItem="c4g-bS-eCt" firstAttribute="top" secondItem="lWh-Rg-kwP" secondAttribute="bottom" constant="5" id="VpL-bk-aFg"/>
                     <constraint firstItem="lEl-6D-4Ca" firstAttribute="width" secondItem="Oce-Qc-qD4" secondAttribute="width" id="Wnl-gH-cev"/>
                     <constraint firstItem="SHu-f4-kAk" firstAttribute="top" secondItem="j5P-j4-gMf" secondAttribute="top" constant="5" id="YuF-Rf-Ryt"/>
@@ -153,7 +182,7 @@
                     <constraint firstItem="dJe-Iy-PbP" firstAttribute="top" secondItem="SHu-f4-kAk" secondAttribute="bottom" constant="5" id="pkH-6K-0BM"/>
                     <constraint firstAttribute="bottomMargin" secondItem="aIo-2f-1sc" secondAttribute="bottom" constant="10" id="qXn-Lt-woj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="QQS-1f-TVY" secondAttribute="trailing" constant="10" id="rYs-Hw-0W3"/>
-                    <constraint firstItem="QQS-1f-TVY" firstAttribute="top" secondItem="4sY-FT-Fal" secondAttribute="bottom" constant="-11" id="rz1-W3-zVo"/>
+                    <constraint firstItem="QQS-1f-TVY" firstAttribute="top" secondItem="4sY-FT-Fal" secondAttribute="bottom" constant="-8" id="rz1-W3-zVo"/>
                     <constraint firstItem="TJz-H8-hve" firstAttribute="leading" secondItem="yk4-wj-BoF" secondAttribute="leading" id="sDT-m8-O0V"/>
                     <constraint firstItem="j5P-j4-gMf" firstAttribute="top" secondItem="QQS-1f-TVY" secondAttribute="bottom" constant="20" id="t0V-Dp-BP1"/>
                     <constraint firstItem="Oce-Qc-qD4" firstAttribute="leading" secondItem="j5P-j4-gMf" secondAttribute="trailing" constant="25" id="tQB-yG-zZv"/>
@@ -164,6 +193,8 @@
                     <constraint firstItem="4sY-FT-Fal" firstAttribute="leading" secondItem="QQS-1f-TVY" secondAttribute="leading" id="wVz-Jo-If6"/>
                     <constraint firstItem="QQS-1f-TVY" firstAttribute="leading" secondItem="u7b-sS-7oQ" secondAttribute="leading" id="wfN-2o-Rxz"/>
                     <constraint firstItem="c4g-bS-eCt" firstAttribute="leading" secondItem="lWh-Rg-kwP" secondAttribute="leading" id="wkp-MU-aae"/>
+                    <constraint firstItem="Mqd-gE-eGC" firstAttribute="top" secondItem="3tO-T1-mf0" secondAttribute="top" id="zFg-ZV-W9E"/>
+                    <constraint firstItem="Mqd-gE-eGC" firstAttribute="height" secondItem="3tO-T1-mf0" secondAttribute="height" id="zsj-rE-9If"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -171,6 +202,16 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="playStatusView" destination="u7b-sS-7oQ" id="3Jf-bj-X3q"/>
+                <outlet property="progressTimeLabel" destination="4sY-FT-Fal" id="yio-fe-E5S"/>
+                <outlet property="resumePauseButton" destination="j5P-j4-gMf" id="Tj0-Sx-zRo"/>
+                <outlet property="resumePauseLabel" destination="aIo-2f-1sc" id="0GC-hb-xYX"/>
+                <outlet property="slider" destination="QQS-1f-TVY" id="3oZ-rd-t37"/>
+                <outlet property="statusLabel" destination="Mqd-gE-eGC" id="0cx-om-Afx"/>
+                <outlet property="titleLabel" destination="3tO-T1-mf0" id="sir-dB-wt2"/>
+                <outlet property="totalTimeLabel" destination="fhp-IA-YF4" id="tdQ-Q6-uCG"/>
+            </connections>
             <point key="canvasLocation" x="588.5" y="516"/>
         </tableViewCell>
     </objects>

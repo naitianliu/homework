@@ -35,6 +35,8 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
 
     typealias DidCloseHomeworkClosureType = () -> Void
     var didCloseHomeworkBlock: DidCloseHomeworkClosureType?
+
+    var currentPlayingIndex: (Int, Int) = (-1, -1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +85,8 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
         tableView.registerNib(UINib(nibName: "HWStudentSubmitTableViewCell", bundle: nil), forCellReuseIdentifier: "HWStudentSubmitTableViewCell")
         tableView.registerNib(UINib(nibName: "HWAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWAudioTableViewCell")
         tableView.registerNib(UINib(nibName: "HWImagesTableViewCell", bundle: nil), forCellReuseIdentifier: "HWImagesTableViewCell")
+        tableView.registerNib(UINib(nibName: "AudioRecordTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioRecordTableViewCell")
+        tableView.registerNib(UINib(nibName: "AudioPlayerTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioPlayerTableViewCell")
     }
 
     func reloadTable() {
@@ -122,6 +126,18 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
                 return cell
             } else if indexPath.row < self.homeworkAudioList.count + 1 {
                 let rowDict = self.homeworkAudioList[indexPath.row - 1]
+                let duration: NSTimeInterval = rowDict[self.submissionKeys.duration] as! NSTimeInterval
+                let audioURL = rowDict[self.submissionKeys.audioURL] as? String
+                if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
+                    cell.configure(nil, audioURL: audioURL, duration: duration, play: true)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("AudioRecordTableViewCell") as! AudioRecordTableViewCell
+                    cell.configurate(duration)
+                    return cell
+                }
+                /*
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
                 let currentIndex = indexPath.row - 1
                 var status = self.submissionKeys.AudioStatus.hidden
@@ -132,7 +148,8 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
                     self.playingIndex = -1
                     self.playingStatus = self.submissionKeys.AudioStatus.hidden
                 })
-                return cell
+                */
+
             } else if indexPath.row == self.homeworkAudioList.count + 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
                 cell.configurate(self.homeworkImageURLList.count)
@@ -166,7 +183,9 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
             self.showHomeworkGradeVC(submissionUUID)
         } else if indexPath.section == 0 {
             if indexPath.row > 0 && indexPath.row < self.homeworkAudioList.count + 1 {
+                /*
                 if self.playingIndex == indexPath.row - 1 {
+
                     self.playingStatus = self.submissionKeys.AudioStatus.hidden
                     self.playingIndex = -1
                 } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
@@ -176,7 +195,11 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
                     self.playingStatus = self.submissionKeys.AudioStatus.working
                     self.playingIndex = indexPath.row - 1
                 }
-                tableView.reloadData()
+                */
+                if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
+                    self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    tableView.reloadData()
+                }
             } else if indexPath.row == self.homeworkAudioList.count + 1 {
                 self.showPhotoBrowser(self.homeworkImageURLList)
             }
