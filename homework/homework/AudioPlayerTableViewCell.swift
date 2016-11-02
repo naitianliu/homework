@@ -39,6 +39,9 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
 
     var playing: Bool = false
 
+    typealias ExitPlayerClosureType = () -> Void
+    var exitPlayerBlock: ExitPlayerClosureType?
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -81,7 +84,7 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.slider.setThumbImage(thumbImageNormal, forState: .Normal)
     }
 
-    func configure(title: String?, audioURL: String?, duration: NSTimeInterval, play: Bool) {
+    func configure(title: String?, audioURL: String?, duration: NSTimeInterval, play: Bool, exitPlayerBlock: ExitPlayerClosureType) {
         if let title = title {
             self.titleLabel.text = title
         } else {
@@ -92,8 +95,12 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.totalTimeLabel.text = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(duration)
         self.audioURL = audioURL
         if play {
-            self.restart()
+            self.currentPlayingTime = 0
+            self.slider.value = 0
+            player.stop()
+            self.play()
         }
+        self.exitPlayerBlock = exitPlayerBlock
     }
 
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
@@ -122,9 +129,8 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
 
     private func restart() {
         self.currentPlayingTime = 0
-        player.stop()
-        self.play()
-
+        self.slider.value = 0
+        self.player.seekToTime(self.currentPlayingTime)
     }
 
     private func play() {
@@ -141,6 +147,7 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.indicator.state = .ESTMusicIndicatorViewStatePlaying
         self.indicator.hidden = false
         self.activityIndicator.hidden = true
+        self.setButtonToPause()
     }
 
     private func pause() {
@@ -149,6 +156,7 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.indicator.state = .ESTMusicIndicatorViewStatePaused
         self.indicator.hidden = false
         self.activityIndicator.hidden = true
+        self.setButtonToPlay()
     }
 
     private func buffer() {
@@ -156,6 +164,7 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.statusLabel.text = "正在缓冲"
         self.indicator.hidden = true
         self.activityIndicator.hidden = false
+        self.setButtonToPause()
     }
 
     private func connect() {
@@ -163,6 +172,7 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.statusLabel.text = "正在连接"
         self.indicator.hidden = true
         self.activityIndicator.hidden = false
+        self.setButtonToPause()
     }
 
     private func stop() {
@@ -171,6 +181,11 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.indicator.state = .ESTMusicIndicatorViewStateStopped
         self.indicator.hidden = false
         self.activityIndicator.hidden = true
+        self.resumePauseButton.setBackgroundImage(UIImage(named: "record-icon-1"), forState: .Normal)
+        self.resumePauseLabel.text = "播放"
+        self.currentPlayingTime = self.totalTime
+        self.setButtonToPlay()
+        self.performExitPlayer()
     }
 
     private func error() {
@@ -179,26 +194,44 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.indicator.state = .ESTMusicIndicatorViewStateStopped
         self.indicator.hidden = false
         self.activityIndicator.hidden = true
+        self.setButtonToPlay()
     }
 
     @IBAction func restartButtonOnClick(sender: AnyObject) {
-
+        self.restart()
     }
 
     @IBAction func exitButtonOnClick(sender: AnyObject) {
+        self.performExitPlayer()
+    }
 
+    private func performExitPlayer() {
+        self.player.stop()
+        if let exitPlayer = self.exitPlayerBlock {
+            exitPlayer()
+        }
     }
 
     @IBAction func resumePauseButtonOnClick(sender: AnyObject) {
         if self.playing {
             self.player.pause()
-            self.resumePauseButton.setBackgroundImage(UIImage(named: "record-icon-1"), forState: .Normal)
-            self.resumePauseLabel.text = "播放"
         } else {
-            self.player.resume()
-            self.resumePauseButton.setBackgroundImage(UIImage(named: "record-icon-2"), forState: .Normal)
-            self.resumePauseLabel.text = "暂停"
+            if self.currentPlayingTime == self.totalTime {
+                self.restart()
+            } else {
+                self.player.resume()
+            }
         }
+    }
+
+    private func setButtonToPlay() {
+        self.resumePauseButton.setBackgroundImage(UIImage(named: "record-icon-1"), forState: .Normal)
+        self.resumePauseLabel.text = "播放"
+    }
+
+    private func setButtonToPause() {
+        self.resumePauseButton.setBackgroundImage(UIImage(named: "record-icon-2"), forState: .Normal)
+        self.resumePauseLabel.text = "暂停"
     }
 
     @IBAction func playBackwardButtonOnClick(sender: AnyObject) {
@@ -224,15 +257,8 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
 
     @IBAction func sliderDragReleased(sender: AnyObject) {
         print("released")
-        if self.playing {
-            self.player.seekToTime(self.currentPlayingTime)
-        } else {
-            self.player.seekToTime(self.currentPlayingTime)
-            self.play()
-        }
+        self.player.seekToTime(self.currentPlayingTime)
 
     }
-    
-
     
 }

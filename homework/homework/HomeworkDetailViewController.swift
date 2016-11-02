@@ -130,7 +130,10 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
                 let audioURL = rowDict[self.submissionKeys.audioURL] as? String
                 if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
                     let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
-                    cell.configure(nil, audioURL: audioURL, duration: duration, play: true)
+                    cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                        self.currentPlayingIndex = (-1, -1)
+                        self.tableView.reloadData()
+                    })
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCellWithIdentifier("AudioRecordTableViewCell") as! AudioRecordTableViewCell
