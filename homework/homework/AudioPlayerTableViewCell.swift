@@ -55,7 +55,6 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.selectionStyle = .None
 
         self.player.delegate = self
-
         self.playing = false
 
     }
@@ -85,22 +84,22 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
     }
 
     func configure(title: String?, audioURL: String?, duration: NSTimeInterval, play: Bool, exitPlayerBlock: ExitPlayerClosureType) {
-        if let title = title {
-            self.titleLabel.text = title
-        } else {
-            self.titleLabel.text = "未命名录音"
-        }
-        self.progressTimeLabel.text = "00:00"
-        self.totalTime = duration
-        self.totalTimeLabel.text = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(duration)
-        self.audioURL = audioURL
         if play {
+            self.activityIndicator.startAnimating()
+            if let title = title {
+                self.titleLabel.text = title
+            } else {
+                self.titleLabel.text = "未命名录音"
+            }
+            self.progressTimeLabel.text = "00:00"
+            self.totalTime = duration
+            self.totalTimeLabel.text = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(duration)
+            self.audioURL = audioURL
             self.currentPlayingTime = 0
             self.slider.value = 0
-            player.stop()
             self.play()
+            self.exitPlayerBlock = exitPlayerBlock
         }
-        self.exitPlayerBlock = exitPlayerBlock
     }
 
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
@@ -108,6 +107,9 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.progressTimeLabel.text = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(time)
         let sliderValue = Float(percentageRead / 100)
         self.slider.value = sliderValue
+        if sliderValue == 1.0 {
+            self.performExitPlayer()
+        }
     }
 
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
@@ -185,7 +187,6 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
         self.resumePauseLabel.text = "播放"
         self.currentPlayingTime = self.totalTime
         self.setButtonToPlay()
-        self.performExitPlayer()
     }
 
     private func error() {
@@ -206,7 +207,7 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
     }
 
     private func performExitPlayer() {
-        self.player.stop()
+        self.player.pause()
         if let exitPlayer = self.exitPlayerBlock {
             exitPlayer()
         }
@@ -258,7 +259,13 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
     @IBAction func sliderDragReleased(sender: AnyObject) {
         print("released")
         self.player.seekToTime(self.currentPlayingTime)
+        self.player.resume()
+    }
 
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        if let event = event {
+            self.player.remoteControlReceivedWithEvent(event)
+        }
     }
     
 }

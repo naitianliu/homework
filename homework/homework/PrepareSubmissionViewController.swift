@@ -57,6 +57,11 @@ class PrepareSubmissionViewController: UIViewController, UITableViewDelegate, UI
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+
     func completePrepareSubmissionBlockSetter(completePrepareSubmission: CompletePrepareSubmissionClosureType) {
         self.completePrepareSubmissionBlock = completePrepareSubmission
     }
@@ -137,10 +142,10 @@ class PrepareSubmissionViewController: UIViewController, UITableViewDelegate, UI
             if indexPath.row < self.audioArray.count {
                 let rowDict = self.audioArray[indexPath.row]
                 let audioDuration: NSTimeInterval = rowDict[self.submissionKeys.duration]! as! NSTimeInterval
-                cell.accessoryType = .None
-                cell.configurate(audioDuration)
+                let recordName: String? = rowDict[self.submissionKeys.recordName] as? String
+                cell.configurate(audioDuration, recordName: recordName)
             } else {
-                cell.configurate(nil)
+                cell.configurate(nil, recordName: nil)
             }
             return cell
         case 2:
@@ -231,10 +236,11 @@ class PrepareSubmissionViewController: UIViewController, UITableViewDelegate, UI
 
     private func showAudioRecordVC() {
         let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
-        audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
+        audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL, recordName) in
             let rowDict: [String: AnyObject] = [
                 self.submissionKeys.duration: Int(duration),
-                self.submissionKeys.audioURL: audioURL
+                self.submissionKeys.audioURL: audioURL,
+                self.submissionKeys.recordName: recordName
             ]
             self.audioArray.append(rowDict)
             self.tableView.reloadData()

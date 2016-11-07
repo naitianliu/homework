@@ -8,12 +8,12 @@
 
 import UIKit
 import Diplomat
+import KDEAudioPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil))
         UIApplication.sharedApplication().registerForRemoteNotifications()
+
+        application.beginReceivingRemoteControlEvents()
 
         return true
     }

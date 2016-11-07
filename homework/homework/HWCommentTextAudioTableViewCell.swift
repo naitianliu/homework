@@ -32,6 +32,7 @@ class HWCommentTextAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
     var audioURL: String?
     var startEpoch: Int = 0
     var totalDuration: NSTimeInterval = 0
+
     let player = AudioPlayer()
 
     typealias CompletePlayClosureType = () -> Void
@@ -108,7 +109,6 @@ class HWCommentTextAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
     }
 
     func playFromStart() {
-        player.stop()
         self.startEpoch = self.dateUtility.getCurrentEpochTime()
         if let audioURL = audioURL {
             print(audioURL)

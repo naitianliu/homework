@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,27 +15,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="508" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon-images" translatesAutoresizingMaskIntoConstraints="NO" id="1bQ-ye-L89">
-                        <rect key="frame" x="58" y="8" width="58" height="58.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="35" id="8Mm-hx-eWZ"/>
-                            <constraint firstAttribute="width" constant="35" id="kW8-0k-NkB"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdW-LM-y4i">
                         <rect key="frame" x="170" y="27" width="71" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon-images" translatesAutoresizingMaskIntoConstraints="NO" id="1bQ-ye-L89">
+                        <rect key="frame" x="58" y="8" width="58" height="58.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="8Mm-hx-eWZ"/>
+                            <constraint firstAttribute="width" constant="30" id="kW8-0k-NkB"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="1bQ-ye-L89" firstAttribute="top" secondItem="yev-XK-Oay" secondAttribute="topMargin" constant="10" id="BIC-dL-tGn"/>
+                    <constraint firstItem="1bQ-ye-L89" firstAttribute="top" secondItem="yev-XK-Oay" secondAttribute="topMargin" constant="5" id="BIC-dL-tGn"/>
                     <constraint firstItem="gdW-LM-y4i" firstAttribute="top" secondItem="1bQ-ye-L89" secondAttribute="top" id="BuL-0c-lTw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gdW-LM-y4i" secondAttribute="trailing" constant="100" id="CDO-Eo-org"/>
-                    <constraint firstItem="1bQ-ye-L89" firstAttribute="bottom" secondItem="yev-XK-Oay" secondAttribute="bottomMargin" constant="-10" id="FbU-KE-YBH"/>
+                    <constraint firstItem="1bQ-ye-L89" firstAttribute="bottom" secondItem="yev-XK-Oay" secondAttribute="bottomMargin" constant="-5" id="FbU-KE-YBH"/>
                     <constraint firstItem="gdW-LM-y4i" firstAttribute="leading" secondItem="1bQ-ye-L89" secondAttribute="trailing" constant="20" id="KZO-x5-ijC"/>
-                    <constraint firstItem="1bQ-ye-L89" firstAttribute="leading" secondItem="yev-XK-Oay" secondAttribute="leadingMargin" constant="80" id="eKK-7U-2WN"/>
+                    <constraint firstItem="1bQ-ye-L89" firstAttribute="leading" secondItem="yev-XK-Oay" secondAttribute="leadingMargin" constant="10" id="eKK-7U-2WN"/>
                     <constraint firstItem="gdW-LM-y4i" firstAttribute="height" secondItem="1bQ-ye-L89" secondAttribute="height" id="p4i-sA-CDO"/>
                 </constraints>
             </tableViewCellContentView>

@@ -70,6 +70,23 @@ class SubmissionModelHelper {
         }
     }
 
+    func getSubmissionUUID(submitter: String, homeworkUUID: String) -> String? {
+        do {
+            let realm = try Realm()
+            let rows = realm.objects(SubmissionModel).filter("homeworkUUID = '\(homeworkUUID)' AND submitter = '\(submitter)'")
+            if rows.count == 0 {
+                return nil
+            } else {
+                let item = rows[0]
+                let submissionUUID = item.uuid
+                return submissionUUID
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+
     func getListByHomework(homeworkUUID: String) -> [[String: AnyObject?]] {
         var submissionArray: [[String: AnyObject?]] = []
         do {

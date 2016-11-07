@@ -136,10 +136,10 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
             if indexPath.row < self.audioArray.count {
                 let rowDict = self.audioArray[indexPath.row]
                 let audioDuration: NSTimeInterval = rowDict[self.submissionKeys.duration]! as! NSTimeInterval
-                cell.accessoryType = .None
-                cell.configurate(audioDuration)
+                let recordName: String? = rowDict[self.submissionKeys.recordName] as? String
+                cell.configurate(audioDuration, recordName: recordName)
             } else {
-                cell.configurate(nil)
+                cell.configurate(nil, recordName: nil)
             }
             return cell
         case 3:
@@ -245,10 +245,11 @@ class CreateHWViewController: UIViewController, UITableViewDelegate, UITableView
 
     private func showAudioRecordVC() {
         let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
-        audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
+        audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL, recordName) in
             let rowDict: [String: AnyObject] = [
                 self.submissionKeys.duration: Int(duration),
-                self.submissionKeys.audioURL: audioURL
+                self.submissionKeys.audioURL: audioURL,
+                self.submissionKeys.recordName: recordName
             ]
             self.audioArray.append(rowDict)
             self.tableView.reloadData()

@@ -10,6 +10,11 @@ import UIKit
 
 class RecordItemTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    
+
     struct Constant {
         static let iconImageName = "record-icon-1"
     }
@@ -22,7 +27,7 @@ class RecordItemTableViewCell: UITableViewCell {
         self.preservesSuperviewLayoutMargins = false
         self.separatorInset = UIEdgeInsetsZero
         self.layoutMargins = UIEdgeInsetsZero
-        self.imageView?.image = UIImage(named: Constant.iconImageName)
+        self.iconImageView?.image = UIImage(named: Constant.iconImageName)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -33,8 +38,8 @@ class RecordItemTableViewCell: UITableViewCell {
     
     func configurate(duration: NSTimeInterval, time: String) {
         let durationString = self.dateUtility.convertTimeIntervalToHumanFriendlyTime(duration)
-        self.textLabel?.text = durationString
-        self.detailTextLabel?.text = time
+        self.titleLabel?.text = durationString
+        self.subtitleLabel?.text = time
     }
 
 }

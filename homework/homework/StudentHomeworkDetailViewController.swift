@@ -44,6 +44,8 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     var homeworkPlayingIndex: Int = -1
     var homeworkPlayingStatus: String = ""
 
+    var currentPlayingIndex: (Int, Int) = (-1, -1)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,6 +108,8 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         tableView.registerNib(UINib(nibName: "HWCommetTextTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommetTextTableViewCell")
         tableView.registerNib(UINib(nibName: "HWCommentTextAudioTableViewCell", bundle: nil), forCellReuseIdentifier: "HWCommentTextAudioTableViewCell")
         tableView.registerNib(UINib(nibName: "EmptySectionTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptySectionTableViewCell")
+        tableView.registerNib(UINib(nibName: "AudioRecordTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioRecordTableViewCell")
+        tableView.registerNib(UINib(nibName: "AudioPlayerTableViewCell", bundle: nil), forCellReuseIdentifier: "AudioPlayerTableViewCell")
 
     }
 
@@ -159,17 +163,21 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 return cell
             } else if indexPath.row < self.homeworkAudioList.count + 1 {
                 let rowDict = self.homeworkAudioList[indexPath.row - 1]
-                let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
-                let currentIndex = indexPath.row - 1
-                var status = self.submissionKeys.AudioStatus.hidden
-                if currentIndex == self.homeworkPlayingIndex {
-                    status = self.homeworkPlayingStatus
+                let duration: NSTimeInterval = rowDict[self.submissionKeys.duration] as! NSTimeInterval
+                let audioURL = rowDict[self.submissionKeys.audioURL] as? String
+                let recordName = rowDict[self.submissionKeys.recordName] as? String
+                if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
+                    cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                        self.currentPlayingIndex = (-1, -1)
+                        self.tableView.reloadData()
+                    })
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("AudioRecordTableViewCell") as! AudioRecordTableViewCell
+                    cell.configurate(duration, recordName: recordName)
+                    return cell
                 }
-                cell.configurate(rowDict, status: status, completePlay: {
-                    self.homeworkPlayingIndex = -1
-                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
-                })
-                return cell
             } else if indexPath.row == self.homeworkAudioList.count + 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
                 cell.configurate(self.homeworkImageURLList.count)
@@ -187,17 +195,22 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                     let rowDict = self.submissionArray[indexPath.row - 1]
                     let submissionType = rowDict[self.submissionKeys.submissionType] as! String
                     if submissionType == "audio" {
-                        let cell = tableView.dequeueReusableCellWithIdentifier("HWAudioTableViewCell") as! HWAudioTableViewCell
-                        let currentIndex = indexPath.row - 1
-                        var status = self.submissionKeys.AudioStatus.hidden
-                        if currentIndex == self.playingIndex {
-                            status = self.playingStatus
+                        let duration: NSTimeInterval = rowDict[self.submissionKeys.duration] as! NSTimeInterval
+                        let audioURL = rowDict[self.submissionKeys.audioURL] as? String
+                        let recordName = rowDict[self.submissionKeys.recordName] as? String
+                        print(self.currentPlayingIndex)
+                        if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
+                            let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
+                            cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                                self.currentPlayingIndex = (-1, -1)
+                                self.tableView.reloadData()
+                            })
+                            return cell
+                        } else {
+                            let cell = tableView.dequeueReusableCellWithIdentifier("AudioRecordTableViewCell") as! AudioRecordTableViewCell
+                            cell.configurate(duration, recordName: recordName)
+                            return cell
                         }
-                        cell.configurate(rowDict, status: status, completePlay: {
-                            self.playingIndex = -1
-                            self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                        })
-                        return cell
                     } else if submissionType == "images" {
                         let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
                         let cell = tableView.dequeueReusableCellWithIdentifier("HWImagesTableViewCell") as! HWImagesTableViewCell
@@ -251,28 +264,16 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             if submissionType == "audio" {
                 self.commentPlayingIndex = -1
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
-                self.homeworkPlayingIndex = -1
-                self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
-                if self.playingIndex == indexPath.row - 1 {
-                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                    self.playingIndex = -1
-                } else if self.playingStatus == self.submissionKeys.AudioStatus.working {
-                    self.playingStatus = self.submissionKeys.AudioStatus.hidden
-                    self.playingIndex = indexPath.row - 1
-                } else {
-                    self.playingStatus = self.submissionKeys.AudioStatus.working
-                    self.playingIndex = indexPath.row - 1
+                if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
+                    self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    tableView.reloadData()
                 }
-                tableView.reloadData()
             } else if submissionType == "images" {
                 let imageURLs: [String] = rowDict[self.submissionKeys.imageURLList] as! [String]
                 self.showPhotoBrowser(imageURLs)
             }
         } else if indexPath.section == 2 {
-            self.playingIndex = -1
-            self.playingStatus = self.submissionKeys.AudioStatus.hidden
-            self.homeworkPlayingIndex = -1
-            self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
+            self.currentPlayingIndex = (-1, -1)
             if self.commentPlayingIndex == indexPath.row {
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 self.commentPlayingIndex = -1
@@ -285,22 +286,13 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             }
             tableView.reloadData()
         } else if indexPath.section == 0 {
-            self.playingIndex = -1
-            self.playingStatus = self.submissionKeys.AudioStatus.hidden
             self.commentPlayingIndex = -1
             self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
             if indexPath.row > 0 && indexPath.row < self.homeworkAudioList.count + 1 {
-                if self.homeworkPlayingIndex == indexPath.row - 1 {
-                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
-                    self.homeworkPlayingIndex = -1
-                } else if self.homeworkPlayingStatus == self.submissionKeys.AudioStatus.working {
-                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
-                    self.homeworkPlayingIndex = indexPath.row - 1
-                } else {
-                    self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.working
-                    self.homeworkPlayingIndex = indexPath.row - 1
+                if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
+                    self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    tableView.reloadData()
                 }
-                tableView.reloadData()
             } else if indexPath.row == self.homeworkAudioList.count + 1 {
                 self.showPhotoBrowser(self.homeworkImageURLList)
             }
@@ -381,12 +373,13 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     private func showAudioWHRecordVC() {
         if self.submissionUUID == nil {
             let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
-            audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
+            audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL, recordName) in
                 let durationInt = Int(duration)
                 var audioList: [[String: AnyObject]] = []
                 let audioInfo: [String: AnyObject] = [
                     self.submissionKeys.duration: durationInt,
-                    self.submissionKeys.audioURL: audioURL
+                    self.submissionKeys.audioURL: audioURL,
+                    self.submissionKeys.recordName: recordName
                 ]
                 audioList.append(audioInfo)
                 let info: [String: AnyObject] = [

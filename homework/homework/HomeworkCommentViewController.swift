@@ -14,6 +14,7 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
 
     var audioDuration: NSTimeInterval?
     var audioURL: String?
+    var recordName: String?
 
     var commentText: String?
 
@@ -81,7 +82,7 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
         if let audioDuration = audioDuration, let audioURL = audioURL {
             let audioInfo: [String: AnyObject] = [
                 self.commentKeys.duration: Int(audioDuration),
-                self.commentKeys.audioURL: audioURL
+                self.commentKeys.audioURL: audioURL,
             ]
             info[self.commentKeys.audioInfo] = audioInfo
         }
@@ -108,7 +109,7 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
             return cell
         case (0, 1):
             let cell = tableView.dequeueReusableCellWithIdentifier("AudioRecordTableViewCell") as! AudioRecordTableViewCell
-            cell.configurate(audioDuration)
+            cell.configurate(audioDuration, recordName: self.recordName)
             return cell
         default:
             return UITableViewCell()
@@ -133,9 +134,10 @@ class HomeworkCommentViewController: UIViewController, UITableViewDelegate, UITa
     private func showAudioRecordVC() {
         if audioDuration == nil {
             let audioHWRecordVC = AudioHWRecordViewController(nibName: "AudioHWRecordViewController", bundle: nil)
-            audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL) in
+            audioHWRecordVC.audioUploadedCompletionBlockSetter { (duration, filename, audioURL, recordName) in
                 self.audioDuration = duration
                 self.audioURL = audioURL
+                self.recordName = recordName
                 self.tableView.reloadData()
             }
             self.navigationController?.pushViewController(audioHWRecordVC, animated: true)

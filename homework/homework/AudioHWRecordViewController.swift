@@ -42,6 +42,8 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
     
     var tableData = [[String: AnyObject]]()
 
+    var nameTextField: UITextField?
+
     @IBOutlet weak var recordView: UIView!
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
@@ -51,7 +53,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
 
     let ossHelper = OSSHelper()
 
-    typealias AudioUploadedCompletionClosureType = (duration: NSTimeInterval, filename: String, audioURL: String) -> Void
+    typealias AudioUploadedCompletionClosureType = (duration: NSTimeInterval, filename: String, audioURL: String, recordName: String) -> Void
     var audioUploadedCompletionBlock:AudioUploadedCompletionClosureType!
 
     override func viewDidLoad() {
@@ -60,6 +62,7 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
+        self.tableView.estimatedRowHeight = 44
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         self.tableView.registerNib(UINib(nibName: "PlayingRecordItemTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayingRecordItemTableViewCell")
@@ -106,7 +109,6 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-
     }
 
     func audioUploadedCompletionBlockSetter(completion: AudioUploadedCompletionClosureType) {
@@ -217,23 +219,35 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
         if indexPath.row == playingRow {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constant.Identifier.playingRecordItemCell) as! PlayingRecordItemTableViewCell
             cell.configurate(filename, duration: duration, submitOnClick: {
-                // submit button event
-                let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                hud.mode = MBProgressHUDMode.DeterminateHorizontalBar
-                hud.label.text = "上传语音..."
-                self.ossHelper.uploadFile(filename, objectKey: objectKey, complete: { (success, objectURL) in
-                    if success {
-                        // upload url to server
-                        self.hideProgressHUD()
-                        self.audioUploadedCompletionBlock(duration: duration, filename: filename, audioURL: objectURL!)
-
-                    } else {
-
-                    }
-                    }, uploadProgress: { (progress) in
-                        // upload progress
-                        hud.progress = progress
+                let alertController = UIAlertController(title: "命名录音", message: "", preferredStyle: .Alert)
+                alertController.addTextFieldWithConfigurationHandler({ (textField) in
+                    self.nameTextField = textField
+                    self.nameTextField?.text = "未命名录音"
+                    self.nameTextField?.selected = true
+                    self.nameTextField?.becomeFirstResponder()
                 })
+                alertController.addAction(UIAlertAction(title: "确定并提交", style: .Destructive, handler: { (action) in
+                    // submit button event
+                    let recordName: String = self.nameTextField!.text!
+                    let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                    hud.mode = MBProgressHUDMode.DeterminateHorizontalBar
+                    hud.label.text = "上传语音..."
+                    self.ossHelper.uploadFile(filename, objectKey: objectKey, complete: { (success, objectURL) in
+                        if success {
+                            // upload url to server
+                            self.hideProgressHUD()
+                            self.audioUploadedCompletionBlock(duration: duration, filename: filename, audioURL: objectURL!, recordName: recordName)
+                        } else {
+
+                        }
+                        }, uploadProgress: { (progress) in
+                            // upload progress
+                            hud.progress = progress
+                    })
+                }))
+                alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+
                 }, playBackNextOnClick: { (type) in
                     if type == "next" {
                         
@@ -247,14 +261,13 @@ class AudioHWRecordViewController: UIViewController, UITableViewDelegate, UITabl
             cell.configurate(duration, time: currentTime)
             return cell
         }
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == playingRow {
             return 160
         } else {
-            return 60
+            return UITableViewAutomaticDimension
         }
     }
 

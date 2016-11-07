@@ -54,14 +54,9 @@ class SubmissionViewModel {
     }
 
     func getSubmissionUUIDByHomeworkUUID(homeworkUUID: String) -> String? {
-        let submissions = self.submissionModelHelper.getListByHomework(homeworkUUID)
-        if submissions.count == 0 {
-            return nil
-        } else {
-            let rowDict = submissions[0]
-            let submissionUUID = rowDict[self.submissionKeys.submissionUUID]! as! String
-            return submissionUUID
-        }
+        let username = UserDefaultsHelper().getUsername()!
+        let submissionUUID = self.submissionModelHelper.getSubmissionUUID(username, homeworkUUID: homeworkUUID)
+        return submissionUUID
     }
 
     private func getRowDictBySubmission(submission: [String: AnyObject?]) -> ([String: AnyObject?], NSData) {
