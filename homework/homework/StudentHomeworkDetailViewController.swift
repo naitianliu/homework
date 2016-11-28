@@ -10,6 +10,7 @@ import UIKit
 import SVPullToRefresh
 import SKPhotoBrowser
 
+
 class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var tableView: UITableView!
@@ -45,6 +46,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     var homeworkPlayingStatus: String = ""
 
     var currentPlayingIndex: (Int, Int) = (-1, -1)
+    var shouldPlay: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,13 +88,10 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.playingIndex = -1
-        self.playingStatus = self.submissionKeys.AudioStatus.hidden
         self.commentPlayingIndex = -1
         self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
-        self.homeworkPlayingIndex = -1
-        self.homeworkPlayingStatus = self.submissionKeys.AudioStatus.hidden
-        self.reloadTable()
+        self.shouldPlay = false
+        self.tableView.reloadData()
     }
 
     private func initTableView() {
@@ -168,7 +167,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 let recordName = rowDict[self.submissionKeys.recordName] as? String
                 if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
                     let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
-                    cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                    cell.configure(nil, audioURL: audioURL, duration: duration, play: self.shouldPlay, exitPlayerBlock: {
                         self.currentPlayingIndex = (-1, -1)
                         self.tableView.reloadData()
                     })
@@ -201,7 +200,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                         print(self.currentPlayingIndex)
                         if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
                             let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
-                            cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                            cell.configure(nil, audioURL: audioURL, duration: duration, play: self.shouldPlay, exitPlayerBlock: {
                                 self.currentPlayingIndex = (-1, -1)
                                 self.tableView.reloadData()
                             })
@@ -266,6 +265,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
                     self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    self.shouldPlay = true
                     tableView.reloadData()
                 }
             } else if submissionType == "images" {
@@ -273,7 +273,6 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 self.showPhotoBrowser(imageURLs)
             }
         } else if indexPath.section == 2 {
-            self.currentPlayingIndex = (-1, -1)
             if self.commentPlayingIndex == indexPath.row {
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 self.commentPlayingIndex = -1
@@ -284,6 +283,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.working
                 self.commentPlayingIndex = indexPath.row
             }
+            self.shouldPlay = false
             tableView.reloadData()
         } else if indexPath.section == 0 {
             self.commentPlayingIndex = -1
@@ -291,6 +291,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
             if indexPath.row > 0 && indexPath.row < self.homeworkAudioList.count + 1 {
                 if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
                     self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    self.shouldPlay = true
                     tableView.reloadData()
                 }
             } else if indexPath.row == self.homeworkAudioList.count + 1 {

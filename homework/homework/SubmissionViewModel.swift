@@ -92,7 +92,8 @@ class SubmissionViewModel {
             let rowDict: [String: AnyObject] = [
                 self.submissionKeys.submissionType: "audio",
                 self.submissionKeys.duration: audio[self.submissionKeys.duration].intValue,
-                self.submissionKeys.audioURL: audio[self.submissionKeys.audioURL].stringValue
+                self.submissionKeys.audioURL: audio[self.submissionKeys.audioURL].stringValue,
+                self.submissionKeys.recordName: audio[self.submissionKeys.recordName].stringValue
             ]
             submissionArray.append(rowDict)
         }

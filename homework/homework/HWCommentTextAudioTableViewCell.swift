@@ -143,5 +143,11 @@ class HWCommentTextAudioTableViewCell: UITableViewCell, AudioPlayerDelegate {
             break
         }
     }
+
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        if let event = event {
+            self.player.remoteControlReceivedWithEvent(event)
+        }
+    }
     
 }

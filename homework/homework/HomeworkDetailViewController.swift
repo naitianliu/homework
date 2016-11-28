@@ -8,6 +8,7 @@
 
 import UIKit
 import SKPhotoBrowser
+import KDEAudioPlayer
 
 class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -37,6 +38,7 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
     var didCloseHomeworkBlock: DidCloseHomeworkClosureType?
 
     var currentPlayingIndex: (Int, Int) = (-1, -1)
+    var shouldPlay: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +58,8 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.playingIndex = -1
-        self.playingStatus = self.submissionKeys.AudioStatus.hidden
-        self.reloadTable()
+        self.shouldPlay = false
+        self.tableView.reloadData()
     }
 
     func didCloseHomeworkBlockSetter(didCloseHomework: DidCloseHomeworkClosureType) {
@@ -131,7 +132,7 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
                 let recordName = rowDict[self.submissionKeys.recordName] as? String
                 if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
                     let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
-                    cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                    cell.configure(nil, audioURL: audioURL, duration: duration, play: self.shouldPlay, exitPlayerBlock: {
                         self.currentPlayingIndex = (-1, -1)
                         self.tableView.reloadData()
                     })
@@ -202,6 +203,7 @@ class HomeworkDetailViewController: UIViewController, UITableViewDelegate, UITab
                 */
                 if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
                     self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    self.shouldPlay = true
                     tableView.reloadData()
                 }
             } else if indexPath.row == self.homeworkAudioList.count + 1 {

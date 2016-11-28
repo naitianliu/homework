@@ -39,6 +39,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
     let commentKeys = GlobalKeys.CommentKeys.self
 
     var currentPlayingIndex: (Int, Int) = (-1, -1)
+    var shouldPlay: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +72,10 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.playingIndex = -1
-        self.playingStatus = self.submissionKeys.AudioStatus.hidden
         self.commentPlayingIndex = -1
         self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
-        self.reloadTable()
+        self.shouldPlay = false
+        self.tableView.reloadData()
     }
 
     func reloadTable() {
@@ -136,7 +136,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
                     let recordName = rowDict[self.submissionKeys.recordName] as? String
                     if self.currentPlayingIndex == (indexPath.section, indexPath.row) {
                         let cell = tableView.dequeueReusableCellWithIdentifier("AudioPlayerTableViewCell") as! AudioPlayerTableViewCell
-                        cell.configure(nil, audioURL: audioURL, duration: duration, play: true, exitPlayerBlock: {
+                        cell.configure(nil, audioURL: audioURL, duration: duration, play: self.shouldPlay, exitPlayerBlock: {
                             self.currentPlayingIndex = (-1, -1)
                             self.tableView.reloadData()
                         })
@@ -191,6 +191,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 if self.currentPlayingIndex != (indexPath.section, indexPath.row) {
                     self.currentPlayingIndex = (indexPath.section, indexPath.row)
+                    self.shouldPlay = true
                     tableView.reloadData()
                 }
             } else if submissionType == "images" {
@@ -198,8 +199,6 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
                 self.showPhotoBrowser(imageURLs)
             }
         } else if indexPath.section == 1 {
-            self.playingIndex = -1
-            self.playingStatus = self.submissionKeys.AudioStatus.hidden
             if self.commentPlayingIndex == indexPath.row {
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.hidden
                 self.commentPlayingIndex = -1
@@ -210,6 +209,7 @@ class HomeworkGradeViewController: UIViewController, UITableViewDelegate, UITabl
                 self.commentPlayingStatus = self.submissionKeys.AudioStatus.working
                 self.commentPlayingIndex = indexPath.row
             }
+            self.shouldPlay = false
             tableView.reloadData()
         }
     }

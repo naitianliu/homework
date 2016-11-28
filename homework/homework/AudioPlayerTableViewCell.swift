@@ -99,6 +99,8 @@ class AudioPlayerTableViewCell: UITableViewCell, AudioPlayerDelegate {
             self.slider.value = 0
             self.play()
             self.exitPlayerBlock = exitPlayerBlock
+        } else {
+            self.player.pause()
         }
     }
 
