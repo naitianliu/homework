@@ -73,6 +73,19 @@ class ClassroomModelHelper {
         }
     }
 
+    func updateClassroomName(uuid: String, name: String) {
+        do {
+            let realm = try Realm()
+            if let item = realm.objectForPrimaryKey(ClassroomModel.self, key: uuid) {
+                try realm.write({ 
+                    item.setValue(name, forKey: "name")
+                })
+            }
+        } catch {
+            print(error)
+        }
+    }
+
     func close(uuid: String) {
         do {
             let realm = try Realm()

@@ -23,7 +23,7 @@ class ActionButtonTableViewCell: UITableViewCell {
         self.separatorInset = UIEdgeInsetsZero
         self.layoutMargins = UIEdgeInsetsZero
         self.selectionStyle = .None
-        self.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+        self.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

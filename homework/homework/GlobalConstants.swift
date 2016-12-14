@@ -52,7 +52,7 @@ struct GlobalConstants {
 
 }
 
-let APIEndpoint = "http://192.168.0.119:8004/api/v1"
+let APIEndpoint = "http://localhost:8004/api/v1"
 // let APIEndpoint = "https://hw.knockfuture.com/api/v1"
 
 struct APIURL {

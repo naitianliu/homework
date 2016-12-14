@@ -19,12 +19,36 @@ class APIClassroomUpdate {
     let role: String = UserDefaultsHelper().getRole()!
 
     let membersModelHelper = MemberModelHelper()
+    let classroomModelHelper = ClassroomModelHelper()
 
     let classroomKeys = GlobalKeys.ClassroomKeys.self
     let profileKeys = GlobalKeys.ProfileKeys.self
 
     init(vc: ClassroomInfoViewController) {
         self.vc = vc
+    }
+
+    func updateClassroomName(classroomUUID: String, classroomName: String) {
+        let data: [String: AnyObject] = [
+            self.classroomKeys.classroomUUID: classroomUUID,
+            self.profileKeys.role: role,
+            self.classroomKeys.classroomName: classroomName
+        ]
+        print(data)
+        self.showHUD()
+        CallAPIHelper(url: self.url, data: data).POST({ (responseData) in
+            // success
+            self.hideHUD()
+            let success = responseData["error"].boolValue
+            if success {
+                self.updateClassroomModel(classroomUUID, classroomName: classroomName)
+                self.vc.reloadTable()
+            }
+        }) { (error) in
+            // error
+            self.hideHUD()
+
+        }
     }
 
     func updateMembers(classroomUUID: String, teachers: [String], students: [String]) {
@@ -72,6 +96,10 @@ class APIClassroomUpdate {
     private func updateMembersModel(classroomUUID: String, members: [[String: String]]) {
         self.membersModelHelper.deleteMembers(classroomUUID)
         self.membersModelHelper.addMembers(classroomUUID, members: members)
+    }
+
+    private func updateClassroomModel(classroomUUID: String, classroomName: String) {
+        self.classroomModelHelper.updateClassroomName(classroomUUID, name: classroomName)
     }
 
     private func showHUD() {

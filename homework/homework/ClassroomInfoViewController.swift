@@ -133,6 +133,8 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let code: String = self.dataDict[self.classroomKeys.code] as! String
         switch (indexPath.section, indexPath.row) {
+        case (0, 0):
+            self.showClassroomNameEditVC()
         case (0, 3):
             self.showShareCodeActionSheet(code)
         case (1, 0):
@@ -142,6 +144,17 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
         default:
             break
         }
+    }
+
+    private func showClassroomNameEditVC() {
+        let editTextFieldVC = EditTextFieldViewController(nibName: "EditTextFieldViewController", bundle: nil)
+        let classroomName: String = self.dataDict[self.classroomKeys.classroomName] as! String
+        editTextFieldVC.contentText = classroomName
+        editTextFieldVC.completeBlockSetter { (text) in
+            print(text)
+            APIClassroomUpdate(vc: self).updateClassroomName(self.classroomUUID, classroomName: text)
+        }
+        self.navigationController?.pushViewController(editTextFieldVC, animated: true)
     }
 
     private func showMembersPicker(teacher: Bool) {

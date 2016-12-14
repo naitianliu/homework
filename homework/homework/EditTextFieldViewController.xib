@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTextFieldViewController" customModule="homework" customModuleProvider="target">
+            <connections>
+                <outlet property="textField" destination="eYk-XE-bXv" id="ZT3-3i-xSJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkB-44-WAr">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LsB-br-xFt">
+                            <rect key="frame" x="0.0" y="38" width="600" height="54"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="eYk-XE-bXv">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="9ud-PD-FMl"/>
+                                <constraint firstItem="eYk-XE-bXv" firstAttribute="top" secondItem="LsB-br-xFt" secondAttribute="top" id="E0S-ZN-943"/>
+                                <constraint firstAttribute="trailing" secondItem="eYk-XE-bXv" secondAttribute="trailing" constant="10" id="ZpC-bG-atm"/>
+                                <constraint firstItem="eYk-XE-bXv" firstAttribute="leading" secondItem="LsB-br-xFt" secondAttribute="leading" constant="10" id="eq7-8w-Cab"/>
+                                <constraint firstAttribute="bottom" secondItem="eYk-XE-bXv" secondAttribute="bottom" id="jYu-W0-Huw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="LsB-br-xFt" firstAttribute="leading" secondItem="MkB-44-WAr" secondAttribute="leading" id="FRD-KN-k4M"/>
+                        <constraint firstAttribute="trailing" secondItem="LsB-br-xFt" secondAttribute="trailing" id="Mso-bk-Jud"/>
+                        <constraint firstItem="LsB-br-xFt" firstAttribute="top" secondItem="MkB-44-WAr" secondAttribute="top" constant="20" id="WDV-Cx-Tjm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="MkB-44-WAr" secondAttribute="bottom" id="EWg-42-Dmv"/>
+                <constraint firstItem="MkB-44-WAr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GUq-8H-EOX"/>
+                <constraint firstAttribute="trailing" secondItem="MkB-44-WAr" secondAttribute="trailing" id="W0n-2K-s40"/>
+                <constraint firstItem="MkB-44-WAr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yz4-6U-bQj"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

@@ -65,6 +65,10 @@
 		463F78301DB4561A0024151C /* CalendarHWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463F782E1DB4561A0024151C /* CalendarHWViewController.xib */; };
 		4651C08D1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651C08B1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift */; };
 		4651C08E1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4651C08C1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib */; };
+		4654FDCF1E01173B009620B8 /* EditTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4654FDCD1E01173B009620B8 /* EditTextFieldViewController.swift */; };
+		4654FDD01E01173B009620B8 /* EditTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4654FDCE1E01173B009620B8 /* EditTextFieldViewController.xib */; };
+		4654FDD31E0118D2009620B8 /* EditTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4654FDD11E0118D2009620B8 /* EditTextFieldTableViewCell.swift */; };
+		4654FDD41E0118D2009620B8 /* EditTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4654FDD21E0118D2009620B8 /* EditTextFieldTableViewCell.xib */; };
 		466222FB1D12387F0067F338 /* CallAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FA1D12387F0067F338 /* CallAPIHelper.swift */; };
 		466222FD1D123B1B0067F338 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */; };
 		466223001D1258830067F338 /* OSSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466222FF1D1258830067F338 /* OSSHelper.swift */; };
@@ -312,6 +316,10 @@
 		463F782E1DB4561A0024151C /* CalendarHWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarHWViewController.xib; sourceTree = "<group>"; };
 		4651C08B1DC723DF00CF1E6E /* AudioPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		4651C08C1DC723DF00CF1E6E /* AudioPlayerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerTableViewCell.xib; sourceTree = "<group>"; };
+		4654FDCD1E01173B009620B8 /* EditTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextFieldViewController.swift; sourceTree = "<group>"; };
+		4654FDCE1E01173B009620B8 /* EditTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextFieldViewController.xib; sourceTree = "<group>"; };
+		4654FDD11E0118D2009620B8 /* EditTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		4654FDD21E0118D2009620B8 /* EditTextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		466222FA1D12387F0067F338 /* CallAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallAPIHelper.swift; sourceTree = "<group>"; };
 		466222FC1D123B1B0067F338 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		466222FF1D1258830067F338 /* OSSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSSHelper.swift; sourceTree = "<group>"; };
@@ -553,6 +561,8 @@
 				46CD10581D78CECD00023055 /* CalendarDatePickerViewController.xib */,
 				46CD105B1D78E73200023055 /* ClassroomPickerViewController.swift */,
 				46CD105C1D78E73200023055 /* ClassroomPickerViewController.xib */,
+				4654FDCD1E01173B009620B8 /* EditTextFieldViewController.swift */,
+				4654FDCE1E01173B009620B8 /* EditTextFieldViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -893,6 +903,8 @@
 				467679491D82289B00A83DA2 /* EmptySectionTableViewCell.swift */,
 				4676794A1D82289B00A83DA2 /* EmptySectionTableViewCell.xib */,
 				466D62531D8F71D50021AF33 /* SwitchTableViewCell.swift */,
+				4654FDD11E0118D2009620B8 /* EditTextFieldTableViewCell.swift */,
+				4654FDD21E0118D2009620B8 /* EditTextFieldTableViewCell.xib */,
 			);
 			name = "Table View Cell";
 			sourceTree = "<group>";
@@ -1360,6 +1372,7 @@
 				46A4DB421DA22403003B9D07 /* SchoolTableViewCell.xib in Resources */,
 				467679461D7FD2C100A83DA2 /* PlayingRecordItemTableViewCell.xib in Resources */,
 				46CD104B1D77ECB000023055 /* HWGradeView.xib in Resources */,
+				4654FDD41E0118D2009620B8 /* EditTextFieldTableViewCell.xib in Resources */,
 				4600558C1D6FEEDC006AA8AA /* MembersPickerViewController.xib in Resources */,
 				469194A91D8D105300456322 /* QAFavoriteViewController.xib in Resources */,
 				469194A51D8D104100456322 /* QAPopularViewController.xib in Resources */,
@@ -1373,6 +1386,7 @@
 				46C903DF1D038619005FC496 /* Assets.xcassets in Resources */,
 				46CD10191D71544200023055 /* HWStudentSubmitTableViewCell.xib in Resources */,
 				4686A51E1DA9ABE4004C8802 /* MemberListViewController.xib in Resources */,
+				4654FDD01E01173B009620B8 /* EditTextFieldViewController.xib in Resources */,
 				462EA35E1DB5DB6100E7E557 /* PrepareSubmissionViewController.xib in Resources */,
 				46C9040A1D0387A3005FC496 /* Homework.storyboard in Resources */,
 				463F78301DB4561A0024151C /* CalendarHWViewController.xib in Resources */,
@@ -1547,6 +1561,7 @@
 				462EA3671DB7501100E7E557 /* ImagesCollectionViewCell.swift in Sources */,
 				46F899781D320BDC00DF870C /* SelectSchoolViewController.swift in Sources */,
 				4612AF531D2482D100044E60 /* ClassroomViewController.swift in Sources */,
+				4654FDD31E0118D2009620B8 /* EditTextFieldTableViewCell.swift in Sources */,
 				467679581D8523F900A83DA2 /* CommentViewModel.swift in Sources */,
 				46B67D901D4495300056EA84 /* EditTextViewController.swift in Sources */,
 				4600BCFE1D0B7DF400BF460D /* TextHWCameraImagePreviewViewController.swift in Sources */,
@@ -1647,6 +1662,7 @@
 				4612AF7B1D2B4E5700044E60 /* FileHelper.swift in Sources */,
 				4686A51D1DA9ABE4004C8802 /* MemberListViewController.swift in Sources */,
 				46B67D9B1D4829120056EA84 /* ClassroomModel.swift in Sources */,
+				4654FDCF1E01173B009620B8 /* EditTextFieldViewController.swift in Sources */,
 				46B67D9D1D4961D20056EA84 /* HomeworkCardView.swift in Sources */,
 				46CD10591D78CECD00023055 /* CalendarDatePickerViewController.swift in Sources */,
 				4600BCF21D04CD4000BF460D /* TextHWMarkViewHelper.swift in Sources */,
