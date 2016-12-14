@@ -14,7 +14,7 @@ class PerformMigrations {
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
 
     init() {
-        self.setDefaultRealmForUser()
+
     }
 
     func migrate() {

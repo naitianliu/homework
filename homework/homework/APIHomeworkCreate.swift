@@ -33,7 +33,7 @@ class APIHomeworkCreate {
             "info": info
         ]
         let hud = ProgressHUDHelper(view: self.vc.view)
-        hud.show()
+        hud.showWithTitle("正在发布...")
         CallAPIHelper(url: url, data: data).POST({ (responseData) in
             // success
             hud.hide()

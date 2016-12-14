@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PerformMigrations().migrate()
 
+        PerformMigrations().setDefaultRealmForUser()
+
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil))
         UIApplication.sharedApplication().registerForRemoteNotifications()
 

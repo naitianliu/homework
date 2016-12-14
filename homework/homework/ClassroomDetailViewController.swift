@@ -146,7 +146,6 @@ class ClassroomDetailViewController: UIViewController {
             studentHWDetailVC.homeworkUUID = homeworkUUID
             self.navigationController?.pushViewController(studentHWDetailVC, animated: true)
         }
-
     }
 
     private func renderHomeworkActionView() {

@@ -34,8 +34,8 @@ class CallAPIHelper: NSObject {
             self.headers["Authorization"] = "Token \(token)"
         }
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.timeoutIntervalForRequest = 20
-        configuration.timeoutIntervalForResource = 20
+        configuration.timeoutIntervalForRequest = 30
+        configuration.timeoutIntervalForResource = 30
         let serverTrustPolicy = ServerTrustPolicy.DisableEvaluation
         self.manager = Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(
             policies: [

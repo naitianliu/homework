@@ -109,8 +109,9 @@ class HomeworkViewModel {
             let date = month.dateByAddingDays(i)
             let from: Int = dateUtility.convertDateToEpoch(date)
             let to: Int = dateUtility.convertDateToEpoch(date.dateByAddingDays(1))
-            let count = self.homeworkModelHelper.getHomeworkCountByDateRange(classroomUUID, from: from, to: to, active: true)
-            resultDict[date] = count
+            let count1 = self.homeworkModelHelper.getHomeworkCountByDateRange(classroomUUID, from: from, to: to, active: true)
+            let count2 = self.homeworkModelHelper.getHomeworkCountByDateRange(classroomUUID, from: from, to: to, active: false)
+            resultDict[date] = count1 + count2
         }
         return resultDict
     }
@@ -120,6 +121,10 @@ class HomeworkViewModel {
         let to: Int = dateUtility.convertDateToEpoch(dueDate.dateByAddingDays(1))
         var dataArray: [[String: AnyObject]] = []
         for homework in self.homeworkModelHelper.getHomeworkListByDateRange(classroomUUID, from: from, to: to, active: true) {
+            let rowDict = self.getRowDictByHomework(homework)
+            dataArray.append(rowDict)
+        }
+        for homework in self.homeworkModelHelper.getHomeworkListByDateRange(classroomUUID, from: from, to: to, active: false) {
             let rowDict = self.getRowDictByHomework(homework)
             dataArray.append(rowDict)
         }
