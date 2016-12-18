@@ -147,14 +147,21 @@ class ClassroomInfoViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     private func showClassroomNameEditVC() {
-        let editTextFieldVC = EditTextFieldViewController(nibName: "EditTextFieldViewController", bundle: nil)
-        let classroomName: String = self.dataDict[self.classroomKeys.classroomName] as! String
-        editTextFieldVC.contentText = classroomName
-        editTextFieldVC.completeBlockSetter { (text) in
-            print(text)
-            APIClassroomUpdate(vc: self).updateClassroomName(self.classroomUUID, classroomName: text)
+        if let role = UserDefaultsHelper().getRole() {
+            if role == "t" {
+                let editTextFieldVC = EditTextFieldViewController(nibName: "EditTextFieldViewController", bundle: nil)
+                let classroomName: String = self.dataDict[self.classroomKeys.classroomName] as! String
+                editTextFieldVC.contentText = classroomName
+                editTextFieldVC.completeBlockSetter { (text) in
+                    print(text)
+                    APIClassroomUpdate(vc: self).updateClassroomName(self.classroomUUID, classroomName: text)
+                }
+                self.navigationController?.pushViewController(editTextFieldVC, animated: true)
+            } else {
+                AlertHelper(viewController: self).showPromptAlertView("只有教师才能修改班级名称")
+            }
         }
-        self.navigationController?.pushViewController(editTextFieldVC, animated: true)
+
     }
 
     private func showMembersPicker(teacher: Bool) {

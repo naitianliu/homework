@@ -26,10 +26,13 @@ class ClassroomDetailViewController: UIViewController {
     let role = UserDefaultsHelper().getRole()!
     
     var currentIndex = 0
+    var currentShiftIndex = 0
 
     var numberOfLayoutCalls = 0
 
     var cardDataArray = [[String: AnyObject]]()
+
+    var cardNumberOfActiveView: UInt = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +68,7 @@ class ClassroomDetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
         numberOfLayoutCalls += 1
         if numberOfLayoutCalls > 1 {
-            swipeView.numberOfActiveView = UInt(self.cardDataArray.count)
+            swipeView.numberOfActiveView = self.cardNumberOfActiveView
             swipeView.nextView = {
                 return self.nextCardView()
             }
@@ -84,14 +87,26 @@ class ClassroomDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    private func resetNumberOfActiveViews() {
+        let cardNumber = UInt(self.cardDataArray.count)
+        let limit: UInt = 6
+        if cardNumber >= limit {
+            self.cardNumberOfActiveView = limit
+        } else {
+            self.cardNumberOfActiveView = cardNumber
+        }
+    }
+
     func reloadHomeworks() {
+        self.resetNumberOfActiveViews()
         self.swipeView.discardViews()
         self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
-        swipeView.numberOfActiveView = UInt(self.cardDataArray.count)
-        self.currentIndex = 0
+        swipeView.numberOfActiveView = self.cardNumberOfActiveView
+        self.currentShiftIndex = 0
         if self.cardDataArray.count > 0 {
             self.swipeView.loadViews()
         }
+        self.currentIndex = 0
         self.countHomeworkNumber()
     }
 
@@ -109,16 +124,34 @@ class ClassroomDetailViewController: UIViewController {
         let cardView = HomeworkCardView(frame: self.swipeView.bounds)
 
         let contentView = NSBundle.mainBundle().loadNibNamed("HomeworkCardContentView", owner: self, options: nil)!.first! as! HomewordCardContentView
-        contentView.configurate(self.cardDataArray[currentIndex])
+        contentView.configurate(self.cardDataArray[currentShiftIndex])
+        currentShiftIndex += 1
         currentIndex += 1
         contentView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(contentView)
 
         self.constrain(cardView, view2: contentView)
 
+        /*
+        let cardNumberOfActiveViewInt = Int(self.cardNumberOfActiveView)
+        if cardDataArray.count > cardNumberOfActiveViewInt {
+            if currentIndex >= cardNumberOfActiveViewInt {
+                currentIndex = currentIndex - cardNumberOfActiveView
+            }
+        } else {
+            if currentIndex >= cardDataArray.count {
+                currentIndex = 0
+            }
+        }
+        */
+
+        if currentShiftIndex >= cardDataArray.count {
+            currentShiftIndex = 0
+        }
         if currentIndex >= cardDataArray.count {
             currentIndex = 0
         }
+        print(self.currentIndex)
 
         return cardView
 
