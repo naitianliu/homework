@@ -181,6 +181,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.showHomeworkDetailVC(rowData)
             case self.updateKeys.grades:
                 self.showStudentHomeworkDetailViewController(rowData)
+            case self.updateKeys.comments:
+                self.showSubmissionVC(rowData)
             default:
                 break
             }
@@ -237,6 +239,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let homeworkUUID = submissionInfo[self.submissionKeys.homeworkUUID] as! String
             studentHWDetailVC.homeworkUUID = homeworkUUID
             self.navigationController?.pushViewControllerBottomBarHidden(self, viewController: studentHWDetailVC, animated: true)
+        }
+    }
+
+    private func showSubmissionVC(updateData: [String: AnyObject]) {
+        guard let role = UserDefaultsHelper().getRole() else { return }
+        if role == "t" {
+            let submissionUUID = updateData[self.submissionKeys.submissionUUID]! as! String
+            let homeworkGradeVC = HomeworkGradeViewController(nibName: "HomeworkGradeViewController", bundle: nil)
+            homeworkGradeVC.submissionUUID = submissionUUID
+            self.navigationController?.pushViewController(homeworkGradeVC, animated: true)
+        } else if role == "s" {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.showStudentHomeworkDetailViewController(updateData)
+            }
         }
     }
 

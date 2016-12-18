@@ -63,6 +63,8 @@ class UpdateTableViewCell: UITableViewCell {
             self.setupSubmissionCell(dataJSON)
         case self.updateKeys.grades:
             self.setupGradeCell(dataJSON)
+        case self.updateKeys.comments:
+            self.setupCommentCell(dataJSON)
         default:
             break
         }
@@ -116,6 +118,17 @@ class UpdateTableViewCell: UITableViewCell {
         let title = data[self.updateKeys.title].stringValue
         let subtitle = data[self.updateKeys.subtitle].stringValue
         let timeString = data[self.updateKeys.timeString].stringValue
+        self.titleLabel.text = title
+        self.subtitleLabel.text = subtitle
+        self.timeLabel.text = timeString
+    }
+
+    private func setupCommentCell(data: JSON) {
+        let title = data[self.updateKeys.title].stringValue
+        let subtitle = data[self.updateKeys.subtitle].stringValue
+        let timeString = data[self.updateKeys.timeString].stringValue
+        let imgURL = data[self.updateKeys.imgURL].stringValue
+        self.iconImageView.sd_setImageWithURL(NSURL(string: imgURL), placeholderImage: GlobalConstants.kProfileImagePlaceholder)
         self.titleLabel.text = title
         self.subtitleLabel.text = subtitle
         self.timeLabel.text = timeString

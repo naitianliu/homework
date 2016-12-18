@@ -64,7 +64,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
 
         self.setupPullToRefresh()
 
-        self.submissionUUID = self.submissionViewModel.getSubmissionUUIDByHomeworkUUID(self.homeworkUUID)
+
 
         self.reloadTable()
 
@@ -120,6 +120,7 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
         if let imageURLs = homeworkData[self.submissionKeys.imageURLList] {
             self.homeworkImageURLList = imageURLs as! [String]
         }
+        self.submissionUUID = self.submissionViewModel.getSubmissionUUIDByHomeworkUUID(self.homeworkUUID)
         if let submissionUUID = submissionUUID, let submissionTup = self.submissionViewModel.getSubmissionData(submissionUUID) {
             self.submissionData = submissionTup.0
             self.submissionArray = submissionTup.1
@@ -421,9 +422,10 @@ class StudentHomeworkDetailViewController: UIViewController, UITableViewDelegate
     private func setupPullToRefresh() {
         tableView.addPullToRefreshWithActionHandler {
             if let submissionUUID = self.submissionUUID {
-                APIHomeworkGetSubmissionInfo(vc: self).run(submissionUUID)
+                APIHomeworkGetSubmissionInfo(vc: self).run(submissionUUID, homeworkUUID: nil)
             } else {
-                self.tableView.pullToRefreshView.stopAnimating()
+                APIHomeworkGetSubmissionInfo(vc: self).run(nil, homeworkUUID: self.homeworkUUID)
+                // self.tableView.pullToRefreshView.stopAnimating()
             }
         }
         tableView.pullToRefreshView.setTitle("下拉刷新", forState: UInt(SVPullToRefreshStateStopped))

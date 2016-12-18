@@ -68,16 +68,41 @@ class APIUpdateGet {
                         self.addGrades(grades.arrayValue)
                         updateCount += grades.count
                     }
+                    if let comments = updatesDict[self.updateKeys.comments] {
+                        self.addComments(comments.arrayValue)
+                        updateCount += comments.count
+                    }
                     self.vc.reloadUpdateTable()
                     // show toast
                     let toastMessage = self.getToastMessge(updateCount)
-                    self.vc.showToast(toastMessage)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.vc.showToast(toastMessage)
+                    }
                 }
                 self.vc.updatesTableView.pullToRefreshView.stopAnimating()
             }) { (error) in
                 // error
                 self.vc.updatesTableView.pullToRefreshView.stopAnimating()
             }
+        }
+    }
+
+    private func addComments(comments: [JSON]) {
+        let type = self.updateKeys.comments
+        for item in comments {
+            let timestamp = item[self.updateKeys.timestamp].intValue
+            let submissionUUID = item[self.submissionKeys.submissionUUID].stringValue
+            let homeworkUUID = item[self.submissionKeys.homeworkUUID].stringValue
+            let authorProfileInfo = item[self.updateKeys.authorProfileInfo].dictionaryObject!
+            let info = item[self.updateKeys.info].dictionaryObject!
+            let infoDict: [String: AnyObject] = [
+                self.submissionKeys.submissionUUID: submissionUUID,
+                self.submissionKeys.homeworkUUID: homeworkUUID,
+                self.updateKeys.authorProfileInfo: authorProfileInfo,
+                self.updateKeys.info: info
+            ]
+            let infoData = DataTypeConversionHelper().convertDictToNSData(infoDict)
+            self.updateModelHelper.add(timestamp, type: type, info: infoData)
         }
     }
 

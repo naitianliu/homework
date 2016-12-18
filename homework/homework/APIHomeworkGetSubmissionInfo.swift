@@ -30,11 +30,15 @@ class APIHomeworkGetSubmissionInfo {
         self.vc = vc
     }
 
-    func run(submissionUUID: String) {
-        let data: [String: AnyObject] = [
-            "role": self.role,
-            self.submissionKeys.submissionUUID: submissionUUID
+    func run(submissionUUID: String?, homeworkUUID: String?) {
+        var data: [String: AnyObject] = [
+            "role": self.role
         ]
+        if let submissionUUID = submissionUUID {
+            data[self.submissionKeys.submissionUUID] = submissionUUID
+        } else if let homeworkUUID = homeworkUUID {
+            data[self.submissionKeys.homeworkUUID] = homeworkUUID
+        }
         CallAPIHelper(url: url, data: data).GET({ (responseData) in
             // success
             let errorCode = responseData["error"].intValue

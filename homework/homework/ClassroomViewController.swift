@@ -70,8 +70,10 @@ class ClassroomViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func reloadTable() {
-        self.data = self.classroomViewModel.getTableViewData()
-        self.tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.data = self.classroomViewModel.getTableViewData()
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func actionButtonOnClick(sender: AnyObject) {

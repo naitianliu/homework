@@ -20,6 +20,7 @@ class UpdateViewModel {
     let homeworkKeys = GlobalKeys.HomeworkKeys.self
     let submissionKeys = GlobalKeys.SubmissionKeys.self
     let classroomKeys = GlobalKeys.ClassroomKeys.self
+    let commentKeys = GlobalKeys.CommentKeys.self
 
     let dataTypeConversionHelper = DataTypeConversionHelper()
 
@@ -54,6 +55,9 @@ class UpdateViewModel {
                 dataArray.insert(rowDict, atIndex: 0)
             case self.updateKeys.grades:
                 let rowDict = self.getGradeRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
+                dataArray.insert(rowDict, atIndex: 0)
+            case self.updateKeys.comments:
+                let rowDict = self.getCommentRowDict(uuid, type: type, timestamp: timestamp, info: infoJSON, read: read)
                 dataArray.insert(rowDict, atIndex: 0)
             default:
                 break
@@ -168,6 +172,30 @@ class UpdateViewModel {
             self.updateKeys.timeString: timeString,
             self.updateKeys.read: read,
             ]
+        return rowDict
+    }
+
+    func getCommentRowDict(uuid: String, type: String, timestamp: Int, info: JSON, read: Bool) -> [String: AnyObject] {
+        let homeworkUUID = info[self.submissionKeys.homeworkUUID].stringValue
+        let submissionUUID = info[self.submissionKeys.submissionUUID].stringValue
+        let timeString = DateUtility().convertEpochToHumanFriendlyString(timestamp)
+        let text = info[self.updateKeys.info][self.commentKeys.text].stringValue
+        let authorProfileInfo = info[self.updateKeys.authorProfileInfo]
+        let nickname = authorProfileInfo[self.profileKeys.nickname].stringValue
+        let imgURL = authorProfileInfo[self.profileKeys.imgURL].stringValue
+        let title = "来自 \(nickname) 的评论"
+        let subtitle = "\(text)"
+        let rowDict: [String: AnyObject] = [
+            self.updateKeys.type: type,
+            self.updateKeys.uuid: uuid,
+            self.submissionKeys.submissionUUID: submissionUUID,
+            self.submissionKeys.homeworkUUID: homeworkUUID,
+            self.profileKeys.imgURL: imgURL,
+            self.updateKeys.title: title,
+            self.updateKeys.subtitle: subtitle,
+            self.updateKeys.timeString: timeString,
+            self.updateKeys.read: read
+        ]
         return rowDict
     }
 

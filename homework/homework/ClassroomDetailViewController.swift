@@ -55,7 +55,7 @@ class ClassroomDetailViewController: UIViewController {
 
         APIHomeworkGetHomeworkList(vc: self).run(self.classroomUUID)
 
-        self.reloadHomeworks()
+        // self.reloadHomeworks()
 
     }
 
@@ -66,11 +66,13 @@ class ClassroomDetailViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        numberOfLayoutCalls += 1
-        if numberOfLayoutCalls > 1 {
-            swipeView.numberOfActiveView = self.cardNumberOfActiveView
-            swipeView.nextView = {
-                return self.nextCardView()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.numberOfLayoutCalls += 1
+            if self.numberOfLayoutCalls > 1 {
+                self.swipeView.numberOfActiveView = self.cardNumberOfActiveView
+                self.swipeView.nextView = {
+                    return self.nextCardView()
+                }
             }
         }
     }
@@ -98,16 +100,16 @@ class ClassroomDetailViewController: UIViewController {
     }
 
     func reloadHomeworks() {
-        self.resetNumberOfActiveViews()
-        self.swipeView.discardViews()
-        self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
-        swipeView.numberOfActiveView = self.cardNumberOfActiveView
-        self.currentShiftIndex = 0
-        if self.cardDataArray.count > 0 {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.cardDataArray = self.homeworkViewModel.getCurrentHomeworksData(self.classroomUUID)
+            self.resetNumberOfActiveViews()
+            self.swipeView.discardViews()
+            self.swipeView.numberOfActiveView = self.cardNumberOfActiveView
+            self.currentShiftIndex = 0
             self.swipeView.loadViews()
+            self.currentIndex = 0
+            self.countHomeworkNumber()
         }
-        self.currentIndex = 0
-        self.countHomeworkNumber()
     }
 
     private func countHomeworkNumber() {
@@ -116,45 +118,34 @@ class ClassroomDetailViewController: UIViewController {
         } else {
             homeworkCountLabel.text = "当前作业: 暂无"
         }
-
     }
 
     func nextCardView() -> UIView? {
+        if self.cardDataArray.count > 0 {
+            let cardView = HomeworkCardView(frame: self.swipeView.bounds)
 
-        let cardView = HomeworkCardView(frame: self.swipeView.bounds)
+            let contentView = NSBundle.mainBundle().loadNibNamed("HomeworkCardContentView", owner: self, options: nil)!.first! as! HomewordCardContentView
+            contentView.configurate(self.cardDataArray[currentShiftIndex])
+            currentShiftIndex += 1
+            currentIndex += 1
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+            cardView.addSubview(contentView)
 
-        let contentView = NSBundle.mainBundle().loadNibNamed("HomeworkCardContentView", owner: self, options: nil)!.first! as! HomewordCardContentView
-        contentView.configurate(self.cardDataArray[currentShiftIndex])
-        currentShiftIndex += 1
-        currentIndex += 1
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.addSubview(contentView)
+            self.constrain(cardView, view2: contentView)
 
-        self.constrain(cardView, view2: contentView)
-
-        /*
-        let cardNumberOfActiveViewInt = Int(self.cardNumberOfActiveView)
-        if cardDataArray.count > cardNumberOfActiveViewInt {
-            if currentIndex >= cardNumberOfActiveViewInt {
-                currentIndex = currentIndex - cardNumberOfActiveView
+            if currentShiftIndex >= cardDataArray.count {
+                currentShiftIndex = 0
             }
-        } else {
             if currentIndex >= cardDataArray.count {
                 currentIndex = 0
             }
-        }
-        */
+            print(self.currentIndex)
+            
+            return cardView
 
-        if currentShiftIndex >= cardDataArray.count {
-            currentShiftIndex = 0
+        } else {
+            return nil
         }
-        if currentIndex >= cardDataArray.count {
-            currentIndex = 0
-        }
-        print(self.currentIndex)
-
-        return cardView
-
     }
 
     private func constrain(view1: UIView, view2: UIView) {
